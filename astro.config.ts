@@ -96,7 +96,7 @@ export default defineConfig({
 	prefetch: true,
 	// ! Please remember to replace the following site property with your own domain
 	site: 'https://dingfjaer.github.io',
-  base: 'cactus',
+  //base: 'cactus',
 	vite: {
 		optimizeDeps: {
 			exclude: ["@resvg/resvg-js"],
