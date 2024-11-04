@@ -21,6 +21,8 @@ import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://dingfjaer.github.io',
+  base: 'cactus',
 	image: {
 		domains: ["webmention.io"],
 	},
