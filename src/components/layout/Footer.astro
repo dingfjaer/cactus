@@ -2,6 +2,7 @@
 import { menuLinks, siteConfig } from "@/site-config";
 
 const year = new Date().getFullYear();
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <footer
@@ -17,7 +18,10 @@ const year = new Date().getFullYear();
 	>
 		{
 			menuLinks.map((link) => (
-				<a class="px-4 py-2 sm:py-0 sm:hover:text-textColor sm:hover:underline" href={link.path}>
+				<a
+					class="px-4 py-2 sm:py-0 sm:hover:text-textColor sm:hover:underline"
+					href={`${baseUrl}${link.path}`}
+				>
 					{link.title}
 				</a>
 			))
