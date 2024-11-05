@@ -46,11 +46,13 @@ const paginationProps = {
 		},
 	}),
 };
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <PageLayout meta={meta}>
 	<h1 class="title mb-6 flex items-center">
-		<a class="text-accent sm:hover:underline" href="/tags/">Tags</a>
+		<a class="text-accent sm:hover:underline" href={`${baseUrl}/tags/`}>Tags</a>
 		<span class="me-3 ms-2">→</span>
 		<span class="text-xl">#{tag}</span>
 	</h1>
