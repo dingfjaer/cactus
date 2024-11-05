@@ -1,5 +1,3 @@
-
-
 ---
 title: "Bear note"
 description: "test workflow"
