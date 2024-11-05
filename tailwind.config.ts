@@ -33,6 +33,10 @@ export default {
 				},
 			});
 		}),
+		/* Jeg la til den for å fikse menu-knapp på mobilvisning */
+		plugin(({ addVariant }) => {
+      addVariant('menu-open', '&.menu-open #navigation-menu'); // Definerer .menu-open-varianten
+    }),
 	],
 	theme: {
 		extend: {

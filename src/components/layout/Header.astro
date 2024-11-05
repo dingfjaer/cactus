@@ -173,4 +173,25 @@ const baseUrl = import.meta.env.BASE_URL;
 			</svg>
 		</button>
 	</mobile-button>
+	<!-- Plasser denne nederst i Header.astro, etter siste HTML-element -->
+	<script>
+		class MobileNavBtn extends HTMLElement {
+			#menuOpen = false;
+
+			connectedCallback() {
+				const headerEl = document.getElementById("main-header");
+				const mobileButtonEl = this.querySelector("button");
+
+				mobileButtonEl?.addEventListener("click", () => {
+					if (headerEl) {
+						this.#menuOpen = !this.#menuOpen;
+						headerEl.classList.toggle("menu-open", this.#menuOpen);
+						mobileButtonEl.setAttribute("aria-expanded", this.#menuOpen.toString());
+					}
+				});
+			}
+		}
+
+		customElements.define("mobile-button", MobileNavBtn);
+	</script>
 </header>
