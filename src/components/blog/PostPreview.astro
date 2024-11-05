@@ -16,7 +16,8 @@ const postDate = getPostSortDate(post);
 <FormattedDate class="min-w-[120px] text-gray-600 dark:text-gray-400" date={postDate} />
 <Tag>
 	{post.data.draft && <span class="text-red-500">(Draft) </span>}
-	<a class="cactus-link" data-astro-prefetch href={`/posts/${post.slug}/`}>
+	<!-- Jeg la til /cactus/ foran posts for å jukse på routing-problem. -->
+	<a class="cactus-link" data-astro-prefetch href={`/cactus/posts/${post.slug}/`}>
 		{post.data.title}
 	</a>
 </Tag>
