@@ -1,4 +1,4 @@
-# Welcome to Bear 👋
+
 
 ---
 title: "Bear note"
@@ -9,7 +9,7 @@ tags: ["bear", "test"]
 
 
 
-![](Welcome%20to%20Bear%20%F0%9F%91%8B/Welcome%20-%20Illo%202.png)
+
 
 Bear is a beautiful, powerfully simple note taking app to capture, write, and organize your life. You can take notes, plan your day, journal thoughts, create lists and tasks, sketch ideas, link notes together, write a book, and much more. To get started, click any of the links below to learn more about a feature or topic.
 
