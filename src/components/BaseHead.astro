@@ -88,4 +88,14 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 	)
 }
 
+<script>
+	// Hvis dark mode ikke er satt på brukerens lagrede preferanser, settes dark mode som default.
+	if (
+		!localStorage.getItem("theme") &&
+		!window.matchMedia("(prefers-color-scheme: light)").matches
+	) {
+		document.documentElement.classList.add("dark");
+	}
+</script>
+
 <meta content={Astro.generator} name="generator" />
