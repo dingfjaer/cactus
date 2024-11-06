@@ -31,23 +31,21 @@ const meta = {
 	description: `View all posts with the tag - ${tag}`,
 	title: `Tag: ${tag}`,
 };
-
+const baseUrl = import.meta.env.BASE_URL;
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
 			text: "← Previous Tags",
-			url: page.url.prev,
+			url: `${baseUrl}${page.url.prev}`,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
 			text: "Next Tags →",
-			url: page.url.next,
+			url: `${baseUrl}${page.url.next}`,
 		},
 	}),
 };
-
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <PageLayout meta={meta}>

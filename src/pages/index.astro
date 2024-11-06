@@ -7,6 +7,7 @@ import PageLayout from "@/layouts/Base.astro";
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const baseUrl = import.meta.env.BASE_URL;
 
 {
 	/* Jeg har skjult Techonolies delen ved å skjule linje 77-96 */
@@ -63,7 +64,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 		<p class="text-lg">så havner jeg i "THE WONDERFUL STATE".</p>
 	</section>
 	<section aria-label="Blog post list" class="mt-16">
-		<h2 class="title mb-4 text-2xl">Posts</h2>
+		<!-- <h2 class="title mb-4 text-2xl">Posts</h2> -->
 		<ul class="space-y-4">
 			{
 				allPostsByDate.map((p) => (
@@ -75,6 +76,10 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 			}
 		</ul>
 	</section>
+	<section class="mt-8">
+		<a href={`${baseUrl}/posts/`} class="text-accent sm:hover:underline">All posts</a>
+	</section>
+
 	<!-- <section class="mt-16">
 		<h2 class="title mb-4 text-xl">Technologies</h2>
 		<dl class="space-y-4">
