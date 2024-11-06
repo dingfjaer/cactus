@@ -8,6 +8,10 @@ const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 
+{
+	/* Jeg har skjult Techonolies delen ved å skjule linje 77-96 */
+}
+
 const cactusTech: { desc: string; href: string; title: string }[] = [
 	{
 		desc: "Build fast websites, faster.",
@@ -54,12 +58,12 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-6">Heisann!</h1>
-		<p class="mb-4">Hei, velkommen til min digitale hage. Dette er laget med Astro.</p>
-		<SocialList />
+		<h1 class="title mb-4 text-2xl">jeg tenker mye, snakker sjeldent, skriver litt.</h1>
+		<h2 class="title mb-4 text-xl">når jeg får fingrene danse på tastaturen,</h2>
+		<p class="text-lg">så havner jeg i "THE WONDERFUL STATE".</p>
 	</section>
 	<section aria-label="Blog post list" class="mt-16">
-		<h2 class="title mb-4 text-xl">Posts</h2>
+		<h2 class="title mb-4 text-2xl">Posts</h2>
 		<ul class="space-y-4">
 			{
 				allPostsByDate.map((p) => (
@@ -71,7 +75,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 			}
 		</ul>
 	</section>
-	<section class="mt-16">
+	<!-- <section class="mt-16">
 		<h2 class="title mb-4 text-xl">Technologies</h2>
 		<dl class="space-y-4">
 			{
@@ -90,5 +94,5 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 				))
 			}
 		</dl>
-	</section>
+	</section> -->
 </PageLayout>

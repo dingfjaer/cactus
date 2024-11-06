@@ -1,6 +1,6 @@
 ---
-title: "Bear note"
-description: "test workflow"
+title: "Bear note Markdown"
+description: "test workflow fra mobil.This post showcases using the markdown admonition feature in Astro Cactus"
 publishDate: "05 Nov 2024"
 tags: ["bear", "test"]
 ---
@@ -14,6 +14,7 @@ Bear is a beautiful, powerfully simple note taking app to capture, write, and or
 ---
 ## Get started
 * 📝 [[Get started with Bear/How to create a new note|How to create a new note]]
+[bear.app](https://bear.app/)
 * 🖍️ [[Get started with Bear/Meet the Styles|Formatting text]]
   * [[Get started with Bear/📝 Write with styles|Write with styles]]
   * [[Get started with Bear/📷 More than text|More than text]] - Notes can contain photos, PDFs, and virtually any other attachments
