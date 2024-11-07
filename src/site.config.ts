@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
 	// Option to sort posts by updatedDate if set to true (if property exists). Default (false) will sort by publishDate
 	sortPostsByUpdatedDate: false,
 	// Used to construct the meta title property found in src/components/BaseHead.astro L:11, and webmanifest name found in astro.config.ts L:42
-	title: "What does the fox say",
+	title: "Ding Chen Fjær",
 	webmentions: {
 		// Webmention.io API endpoint. Get your own here: https://webmention.io/, and follow this blog post: https://astro-cactus.chriswilliams.dev/posts/webmentions/
 		link: "https://webmention.io/astro-cactus.chriswilliams.dev/webmention",
@@ -38,11 +38,11 @@ export const menuLinks: { path: string; title: string }[] = [
 	},
 	{
 		path: "/about/",
-		title: "om Dīng",
+		title: "🦊 om Dīng",
 	},
 	{
 		path: "/posts/",
-		title: "av Dĩng",
+		title: "🪶 av Dĩng",
 	},
 ];
 
