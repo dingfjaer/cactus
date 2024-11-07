@@ -11,6 +11,7 @@ const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <script>
@@ -30,6 +31,14 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 		document.documentElement.classList.remove("dark");
 	}
 </script>
+<style>
+	html {
+		background-image: url("${baseUrl}/public/images/stars.svg");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+	}
+</style>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <title>{siteTitle}</title>

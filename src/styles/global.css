@@ -26,16 +26,6 @@
 		--theme-quote: hsl(102deg 100% 86%);
 	}
 
-	/* Bruker SVG som bakgrunnsbilde globalt */
-	html {
-		background-image: url('public/images/stars.svg');
-		/* Sett riktig sti til SVG-filen */
-		background-size: contain;
-		/* Fyller hele siden */
-		background-repeat: no-repeat;
-		/* Unngår gjentakelse */
-	}
-
 
 
 }
