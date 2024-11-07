@@ -3,6 +3,7 @@ import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import { getAllPosts, sortMDByDate } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
+import ImageComponent from "../components/ImageComponent.astro";
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
@@ -79,6 +80,22 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 	<section class="mt-8">
 		<a href={`${baseUrl}/posts/`} class="text-accent sm:hover:underline">All posts</a>
 	</section>
+
+	<!-- <ImageComponent src="public/images/tintinding.jpg" alt="Beskrivende tekst for bildet" /> -->
+	<!-- index.astro eller ImageComponent.astro -->
+	<style>
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr;
+		}
+
+		.right-aligned-image {
+			justify-self: end;
+		}
+	</style>
+	<div class="grid-container">
+		<img src="public/images/ImageForside.svg" alt="Forsidebilde" class="right-aligned-image" />
+	</div>
 
 	<!-- <section class="mt-16">
 		<h2 class="title mb-4 text-xl">Technologies</h2>

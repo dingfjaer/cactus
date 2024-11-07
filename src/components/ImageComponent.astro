@@ -1,0 +1,18 @@
+---
+interface Props {
+	src: string;
+	alt: string;
+	className?: string;
+}
+
+// Mottar props fra der komponenten brukes (f.eks. index.astro)
+const { src, alt, className } = Astro.props;
+---
+
+<img
+	src={src}
+	alt={alt}
+	class={className}
+	loading="lazy"
+	style="background-color: transparent; max-width: 100%;"
+/>
