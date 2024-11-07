@@ -3,7 +3,6 @@ import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import { getAllPosts, sortMDByDate } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
-import ImageComponent from "../components/ImageComponent.astro";
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
@@ -94,7 +93,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 		}
 	</style>
 	<div class="grid-container">
-		<img src="/images/ImageForside.png" alt="Forsidebilde" class="right-aligned-image" />
+		<img src="`${baseUrl}/images/ImageForside.svg" alt="Forsidebilde" class="right-aligned-image" />
 	</div>
 
 	<!-- <section class="mt-16">
