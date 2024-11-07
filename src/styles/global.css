@@ -3,25 +3,39 @@
 @tailwind utilities;
 
 @layer base {
+
+
 	:root,
 	:root[data-theme="light"] {
 		color-scheme: light;
-		/* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
-		--theme-bg: 0deg 0% 98%;
-		--theme-link: 172deg 18% 41%;
-		--theme-text: 203deg 11% 15%;
-		--theme-accent: 351deg 66% 48%;
-		--theme-accent-2: 0deg 0% 7%;
-		--theme-quote: 351deg 66% 48%;
+		--theme-bg: hsl(0deg 0% 98%);
+		--theme-link: hsl(172deg 18% 41%);
+		--theme-text: hsl(203deg 11% 15%);
+		--theme-accent: hsl(351deg 66% 48%);
+		--theme-accent-2: hsl(0deg 0% 7%);
+		--theme-quote: hsl(351deg 66% 48%);
 	}
 
 	:root[data-theme="dark"] {
 		color-scheme: dark;
-		--theme-bg: 210deg 6% 12%;
-		--theme-link: 330deg 49% 67%;
-		--theme-text: 220deg 3% 79%;
-		--theme-accent: 159deg 64% 45%;
-		--theme-accent-2: 0deg 0% 93%;
-		--theme-quote: 102deg 100% 86%;
+		--theme-bg: hsl(210deg 6% 12%);
+		--theme-link: hsl(330deg 49% 67%);
+		--theme-text: hsl(220deg 3% 79%);
+		--theme-accent: hsl(159deg 64% 45%);
+		--theme-accent-2: hsl(0deg 0% 93%);
+		--theme-quote: hsl(102deg 100% 86%);
 	}
+
+	/* Bruker SVG som bakgrunnsbilde globalt */
+	html {
+		background-image: url('public/images/stars.svg');
+		/* Sett riktig sti til SVG-filen */
+		background-size: contain;
+		/* Fyller hele siden */
+		background-repeat: no-repeat;
+		/* Unngår gjentakelse */
+	}
+
+
+
 }
