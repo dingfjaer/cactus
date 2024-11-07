@@ -1,10 +1,10 @@
 ---
-title: "Mal"
-description: "Denne beskrivelsen må være 50-160 ord. Teksten synes når man går til siden til tags"
-publishDate: "11.06.2024"
-tags: ["test", "mal"]
+title: "Markdown cheatsheet"
+description: "This post is for testing and listing a number of different markdown elements"
+publishDate: "11.07.2024"
+tags: ["markdown"]
+draft: true
 ---
-
 
 ## This is a H2 Heading
 
@@ -101,7 +101,7 @@ Syntax highlighting
 
 ```js
 var foo = function (bar) {
-  return bar++;
+	return bar++;
 };
 
 console.log(foo(5));
@@ -125,11 +125,11 @@ Highlighting code lines
 
 ```js title="line-markers.js" del={2} ins={3-4} {6}
 function demo() {
-  console.log("this line is marked as deleted");
-  // This line and the next one are marked as inserted
-  console.log("this is the second inserted line");
+	console.log("this line is marked as deleted");
+	// This line and the next one are marked as inserted
+	console.log("this is the second inserted line");
 
-  return "this line uses the neutral default marker type";
+	return "this line uses the neutral default marker type";
 }
 ```
 
@@ -166,6 +166,7 @@ function demo() {
 
 Image in the same folder: `src/content/post/markdown-elements/logo.png`
 
+![Astro theme cactus logo](./logo.png)
 
 Image in the aliased assets folder: `src/assets/about-astro.png`
 
@@ -174,4 +175,3 @@ Image in the aliased assets folder: `src/assets/about-astro.png`
 ## Links
 
 [Content from markdown-it](https://markdown-it.github.io/)
-

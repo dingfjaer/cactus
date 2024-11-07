@@ -2,7 +2,7 @@
 title: "Bear note Markdown"
 description: "test workflow fra mobil.This post showcases using the markdown admonition feature in Astro Cactus"
 publishDate: "05 Nov 2024"
-tags: ["bear", "test"]
+tags: ["test"]
 ---
 
 

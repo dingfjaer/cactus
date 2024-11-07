@@ -2,8 +2,7 @@
 title: "Søknadsbrev til NRK Radio"
 description: "Jeg skrev et søknadsbrev i diktform da jeg søkte på NRK Radio"
 publishDate: "11.07.2024"
-tags: ["dikt", "mal"]
-draft: true
+tags: ["dikt"]
 ---
 
 
