@@ -1,11 +1,11 @@
 ---
 title: Markdown cheatsheet
-description: This post is for testing and listing a number of different markdown elements
+description: Markdown cheatsheet med en liste av eksempler i markdown format. 
 publishDate: 05.19.2018
 tags:
   - markdown
   - mal
-draft: true
+draft: false
 ---
 
 ## This is a H2 Heading
