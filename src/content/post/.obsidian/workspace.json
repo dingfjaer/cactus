@@ -20,21 +20,8 @@
               "icon": "lucide-file",
               "title": "template"
             }
-          },
-          {
-            "id": "4d302a4ecbd87398",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.7.5"
-              },
-              "icon": "lucide-file",
-              "title": "Release Notes 1.7.5"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -175,11 +162,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4d302a4ecbd87398",
+  "active": "e4d01fac2390eb55",
   "lastOpenFiles": [
+    "maler/template/cover.png",
+    "maler/template/template.md",
+    "maler/maler fra obsidian med bilde/rediger i obsidian.md",
+    "bear.md",
+    "bear copy 11.md",
+    "bear copy 2.md",
+    "bear copy 3.md",
+    "bear copy 4.md",
+    "bear copy 5.md",
+    "bear copy 6.md",
     "maler/markdown-elements/markdown cheatsheet.md",
     "maler/markdown-elements/markdown Admonitions.md",
-    "maler/maler fra obsidian med bilde/rediger i obsidian.md",
     "maler/maler fra obsidian med bilde/bildeobsi.png",
     "maler/maler fra obsidian med bilde/markdown cheatsheet 1.md",
     "maler/maler fra obsidian/logo ob.png",
