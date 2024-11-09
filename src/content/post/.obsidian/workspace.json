@@ -13,15 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "maler/maler fra obsidian med bilde/rediger i obsidian.md",
+                "file": "maler/template/template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "rediger i obsidian"
+              "title": "template"
+            }
+          },
+          {
+            "id": "4d302a4ecbd87398",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.7.5"
+              },
+              "icon": "lucide-file",
+              "title": "Release Notes 1.7.5"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -162,15 +175,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e4d01fac2390eb55",
+  "active": "4d302a4ecbd87398",
   "lastOpenFiles": [
-    "maler/maler fra obsidian med bilde/bildeobsi.png",
-    "maler/maler fra obsidian med bilde/markdown cheatsheet 1.md",
-    "maler/maler fra obsidian med bilde/rediger i obsidian.md",
-    "maler/maler fra obsidian/logo ob.png",
-    "maler/markdown-elements/logo.png",
     "maler/markdown-elements/markdown cheatsheet.md",
     "maler/markdown-elements/markdown Admonitions.md",
+    "maler/maler fra obsidian med bilde/rediger i obsidian.md",
+    "maler/maler fra obsidian med bilde/bildeobsi.png",
+    "maler/maler fra obsidian med bilde/markdown cheatsheet 1.md",
+    "maler/maler fra obsidian/logo ob.png",
+    "maler/markdown-elements/logo.png",
     "maler/maler fra obsidian med bilde",
     "Skriver i Obsidian.md",
     "2024/workflow ipad.md",

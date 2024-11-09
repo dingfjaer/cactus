@@ -57,7 +57,7 @@ export default defineConfig({
 							type: "image/png",
 					},
 			],
-			start_url: "/cactus/",
+			start_url: "/",
 			background_color: "#1d1f21",
 			theme_color: "#2bbc8a",
 			display: "standalone",
@@ -88,8 +88,7 @@ export default defineConfig({
 	// https://docs.astro.build/en/guides/prefetch/
 	prefetch: true,
 	// ! Please remember to replace the following site property with your own domain
-	site: 'https://dingfjaer.github.io',
-  base: '/cactus',
+	site: 'https://dingchen.no',
 	vite: {
 		optimizeDeps: {
 			exclude: ["@resvg/resvg-js"],
