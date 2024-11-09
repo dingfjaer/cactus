@@ -1,6 +1,6 @@
 import type { SiteConfig } from "@/types";
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
-
+const baseUrl = import.meta.env.BASE_URL;
 export const siteConfig: SiteConfig = {
 	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
 	author: "Ding Chen Fjær",
@@ -33,15 +33,15 @@ export const siteConfig: SiteConfig = {
 
 export const menuLinks: { path: string; title: string }[] = [
 	{
-		path: "/",
+		path: "${baseUrl}/",
 		title: "🔔",
 	},
 	{
-		path: "/about/",
+		path: "${baseUrl}/about/",
 		title: "🦊 om Dīng",
 	},
 	{
-		path: "/posts/",
+		path: "${baseUrl}/posts/",
 		title: "🪶 av Dĩng",
 	},
 ];
