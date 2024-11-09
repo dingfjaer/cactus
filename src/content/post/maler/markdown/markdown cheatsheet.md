@@ -1,9 +1,10 @@
 ---
-title: rediger i Obsidian
+title: Markdown cheatsheet
 description: This post is for testing and listing a number of different markdown elements
-publishDate: 11.07.2024
+publishDate: 05.19.2018
 tags:
   - markdown
+  - mal
 draft: true
 ---
 
@@ -164,12 +165,15 @@ function demo() {
 | Maximize a pane       | <kbd>Ctrl+Shift+P</kbd> + Toggle pane zoom |
 
 ## Images
-![[bildeobsi.png]]
 
+Image in the same folder: `src/content/post/markdown-elements/logo.png`
+
+![Astro theme cactus logo](./logo.png)
 
 Image in the aliased assets folder: `src/assets/about-astro.png`
 
 ![A cartoon cactus looking at the Astro.build logo](@/assets/about-astro.png)
+
 
 ## Links
 
