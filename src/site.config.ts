@@ -1,8 +1,10 @@
 import type { SiteConfig } from "@/types";
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
 const baseUrl = import.meta.env.BASE_URL;
+
 export const siteConfig: SiteConfig = {
 	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
+	baseUrl: "https://dingchen.no", // Bytt til ditt egentlige domenenavn
 	author: "Ding Chen Fjær",
 	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
 	date: {
@@ -33,16 +35,16 @@ export const siteConfig: SiteConfig = {
 
 export const menuLinks: { path: string; title: string }[] = [
 	{
-		path: `${baseUrl}/`,
-		title: "🔔",
+			path: `${siteConfig.baseUrl}/`,
+			title: "🔔",
 	},
 	{
-		path: `${baseUrl}/about/`,
-		title: "🦊 om Dīng",
+			path: `${siteConfig.baseUrl}/about/`,
+			title: "🦊 om Dīng",
 	},
 	{
-		path: `${baseUrl}/posts/`,
-		title: "🪶 av Dĩng",
+			path: `${siteConfig.baseUrl}/posts/`,
+			title: "🪶 av Dĩng",
 	},
 ];
 

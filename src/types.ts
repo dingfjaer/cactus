@@ -1,4 +1,5 @@
 export interface SiteConfig {
+	baseUrl: string;
 	author: string;
 	date: {
 		locale: string | string[] | undefined;
