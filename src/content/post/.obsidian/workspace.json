@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "maler/template/template with cover.md",
+                "file": "maler/markdown/markdown Admonitions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "template with cover"
+              "title": "markdown Admonitions"
             }
           }
         ]
@@ -164,13 +164,20 @@
   },
   "active": "e4d01fac2390eb55",
   "lastOpenFiles": [
+    "maler/markdown/quick copies.md",
+    "maler/markdown/hurtig notat.md",
+    "maler/markdown/markdown Admonitions.md",
+    "maler/markdown/quick copies",
+    "maler/markdown/handy copies.md",
+    "maler/markdown/Handy copies.md",
+    "2024/nov/Handy copies.md",
+    "maler/template/template with cover.md",
     "2024/nov/NRK.md",
     "2024/nov",
     "2024/NRK.md",
     "2024",
     "maler/markdown/pic.png",
     "maler/markdown/markdown cheatsheet.md",
-    "maler/markdown/markdown Admonitions.md",
     "maler/markdown/logo.png",
     "maler/markdown",
     "maler/unique-tags.md",
@@ -187,7 +194,6 @@
     "maler/markdown-examples",
     "maler/social-image.md",
     "maler/template/template with updated date.md",
-    "maler/template/template with cover.md",
     "maler/template/template.md",
     "maler/markdown-elements/markdown Admonitions.md",
     "publisert/NRK.md",
@@ -196,16 +202,11 @@
     "Something.md",
     "maler/template/template with cover copy.md",
     "Untitled 1.md",
-    "NRK.md",
-    "2024/bear.md",
-    "bear.md",
-    "maler/maler fra obsidian med bilde/rediger i obsidian.md",
     "maler/markdown-elements/pic.png",
     "maler/markdown-elements/pic in md.png",
     "maler/maler fra obsidian med bilde/bildeobsi.png",
     "maler/template/coverfox.svg",
     "maler/template/tintin.jpg",
-    "bear copy 11.md",
     "maler/maler fra obsidian med bilde"
   ]
 }
