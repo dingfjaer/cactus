@@ -10,3 +10,6 @@ tags:
   - mal
 draft: false
 ---
+
+## Hva med bilde inline?
+

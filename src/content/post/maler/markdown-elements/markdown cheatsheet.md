@@ -3,7 +3,7 @@ title: "Markdown cheatsheet"
 description: "This post is for testing and listing a number of different markdown elements"
 publishDate: "11.07.2024"
 tags: ["markdown"]
-draft: true
+draft: false
 ---
 
 ## This is a H2 Heading
@@ -171,6 +171,8 @@ Image in the same folder: `src/content/post/markdown-elements/logo.png`
 Image in the aliased assets folder: `src/assets/about-astro.png`
 
 ![A cartoon cactus looking at the Astro.build logo](@/assets/about-astro.png)
+
+![pic in md](./pic.png)
 
 ## Links
 

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "maler/template/template.md",
+                "file": "maler/markdown-elements/markdown cheatsheet.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "template"
+              "title": "markdown cheatsheet"
             }
           }
         ]
@@ -164,10 +164,15 @@
   },
   "active": "e4d01fac2390eb55",
   "lastOpenFiles": [
+    "maler/markdown-elements/pic.png",
+    "maler/markdown-elements/pic in md.png",
+    "maler/markdown-elements/markdown cheatsheet.md",
+    "maler/maler fra obsidian med bilde/bildeobsi.png",
+    "maler/markdown-elements/markdown Admonitions.md",
+    "maler/template/template.md",
     "maler/template/coverfox.svg",
     "maler/template/tintin.jpg",
     "maler/template/cover.png",
-    "maler/template/template.md",
     "maler/maler fra obsidian med bilde/rediger i obsidian.md",
     "bear.md",
     "bear copy 11.md",
@@ -176,9 +181,6 @@
     "bear copy 4.md",
     "bear copy 5.md",
     "bear copy 6.md",
-    "maler/markdown-elements/markdown cheatsheet.md",
-    "maler/markdown-elements/markdown Admonitions.md",
-    "maler/maler fra obsidian med bilde/bildeobsi.png",
     "maler/maler fra obsidian med bilde/markdown cheatsheet 1.md",
     "maler/maler fra obsidian/logo ob.png",
     "maler/markdown-elements/logo.png",
