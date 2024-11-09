@@ -27,17 +27,19 @@ const meta = {
 	title: "Av",
 };
 
+const siteUrl = Astro.site?.toString() || ""; // Sørger for at siteUrl alltid er en streng
+
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
 			text: "← Previous Page",
-			url: page.url.prev.startsWith(baseUrl) ? page.url.prev : `${baseUrl}${page.url.prev}`,
+			url: page.url.prev.startsWith(siteUrl) ? page.url.prev : `${siteUrl}${page.url.prev}`,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
 			text: "Next Page →",
-			url: page.url.next.startsWith(baseUrl) ? page.url.next : `${baseUrl}${page.url.next}`,
+			url: page.url.next.startsWith(siteUrl) ? page.url.next : `${siteUrl}${page.url.next}`,
 		},
 	}),
 };
@@ -94,7 +96,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 								<a
 									aria-label={`View all posts with the tag: ${tag}`}
 									class="flex items-center justify-center rounded-lg bg-accent p-1"
-									href={`${baseUrl}/tags/${tag}/`}
+									href={`${Astro.site}tags/${tag}/`}
 								>
 									{tag}
 								</a>
@@ -105,7 +107,7 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 						<a
 							aria-label="View all blog categories"
 							class="sm:hover:text-accent"
-							href={`${baseUrl}/tags/`}
+							href={`${Astro.site}tags/`}
 						>
 							View all →
 						</a>
