@@ -7,7 +7,7 @@ import PageLayout from "@/layouts/Base.astro";
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
-const baseUrl = import.meta.env.BASE_URL;
+/*const baseUrl = import.meta.env.BASE_URL; */
 
 {
 	/* Jeg har skjult Techonolies delen ved å skjule linje 77-96 */
@@ -77,7 +77,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 		</ul>
 	</section>
 	<section class="mt-8">
-		<a href={`${Astro.site}/posts/`} class="text-accent sm:hover:underline">All posts</a>
+		<a href={`${Astro.site}posts/`} class="text-accent sm:hover:underline">All posts</a>
 	</section>
 
 	<svg
