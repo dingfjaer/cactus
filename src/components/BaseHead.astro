@@ -11,7 +11,7 @@ const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
-const baseUrl = import.meta.env.BASE_URL;
+/*const baseUrl = import.meta.env.BASE_URL;*/
 ---
 
 <meta charset="utf-8" />
@@ -20,16 +20,16 @@ const baseUrl = import.meta.env.BASE_URL;
 
 {/* Icons */}
 
-<link href={`${baseUrl}/favicon.svg`} rel="favicon" type="image/svg+xml" />
+<link href={`${Astro.site}favicon.svg`} rel="favicon" type="image/svg+xml" />
 {
 	(
 		<>
 			{/* Favicon & Apple Icon */}
 
-			<link rel="favicon" href={`${baseUrl}/favicon.svg`} type="image/svg+xml" />
-			<link href={`${baseUrl}/icons/apple-touch-icon.png`} rel="apple-touch-icon" />
+			<link rel="favicon" href={`${Astro.site}favicon.svg`} type="image/svg+xml" />
+			<link href={`${Astro.site}icons/apple-touch-icon.png`} rel="apple-touch-icon" />
 			{/* Manifest */}
-			<link href="${baseUrl}/manifest.webmanifest" rel="manifest" />
+			<link href="${Astro.site}manifest.webmanifest" rel="manifest" />
 		</>
 	)
 }
@@ -65,11 +65,11 @@ const baseUrl = import.meta.env.BASE_URL;
 }
 
 {/* Sitemap */}
-<link href="${baseUrl}/sitemap-index.xml" rel="sitemap" />
+<link href="`${Astro.site}sitemap-index.xml" rel="sitemap" />
 
 {/* RSS auto-discovery */}
 <link
-	href="${baseUrl}/rss.xml"
+	href="${Astro.site}rss.xml"
 	rel="alternate"
 	title={siteConfig.title}
 	type="application/rss+xml"

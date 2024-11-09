@@ -31,18 +31,20 @@ const meta = {
 	description: `View all posts with the tag - ${tag}`,
 	title: `Tag: ${tag}`,
 };
-const baseUrl = import.meta.env.BASE_URL;
+
+const siteUrl = Astro.site?.toString() || ""; // Sørger for at siteUrl alltid er en streng
+
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
 			text: "← Previous Tags",
-			url: `${baseUrl}${page.url.prev}`,
+			url: page.url.prev.startsWith(siteUrl) ? page.url.prev : `${siteUrl}${page.url.prev}`,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
 			text: "Next Tags →",
-			url: `${baseUrl}${page.url.next}`,
+			url: page.url.next.startsWith(siteUrl) ? page.url.next : `${siteUrl}${page.url.next}`,
 		},
 	}),
 };
