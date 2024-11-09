@@ -1,5 +1,6 @@
 import type { SiteConfig } from "@/types";
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
+
 const baseUrl = import.meta.env.BASE_URL;
 
 export const siteConfig: SiteConfig = {
@@ -35,15 +36,15 @@ export const siteConfig: SiteConfig = {
 
 export const menuLinks: { path: string; title: string }[] = [
 	{
-			path: `${siteConfig.baseUrl}/`,
+			path: `${baseUrl}/`,
 			title: "🔔",
 	},
 	{
-			path: `${siteConfig.baseUrl}/about/`,
+			path: `${baseUrl}/about/`,
 			title: "🦊 om Dīng",
 	},
 	{
-			path: `${siteConfig.baseUrl}/posts/`,
+			path: `${baseUrl}/posts/`,
 			title: "🪶 av Dĩng",
 	},
 ];
