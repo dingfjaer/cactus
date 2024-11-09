@@ -33,15 +33,15 @@ export const siteConfig: SiteConfig = {
 
 export const menuLinks: { path: string; title: string }[] = [
 	{
-		path: "${baseUrl}/",
+		path: `${baseUrl}/`,
 		title: "🔔",
 	},
 	{
-		path: "${baseUrl}/about/",
+		path: `${baseUrl}/about/`,
 		title: "🦊 om Dīng",
 	},
 	{
-		path: "${baseUrl}/posts/",
+		path: `${baseUrl}/posts/`,
 		title: "🪶 av Dĩng",
 	},
 ];
