@@ -34,20 +34,13 @@ export const siteConfig: SiteConfig = {
 
 // Used to generate links in both the Header & Footer.
 
-export const menuLinks: { path: string; title: string }[] = [
-	{
-			path: `${baseUrl}/`,
-			title: "🔔",
-	},
-	{
-			path: `${baseUrl}/about/`,
-			title: "🦊 om Dīng",
-	},
-	{
-			path: `${baseUrl}/posts/`,
-			title: "🪶 av Dĩng",
-	},
+export const menuLinks = [
+	{ path: "", title: "🔔" },
+	{ path: "about/", title: "🦊 om Dīng" },
+	{ path: "posts/", title: "🪶 av Dĩng" },
 ];
+
+
 
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
