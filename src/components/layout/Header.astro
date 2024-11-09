@@ -4,7 +4,7 @@ import Search from "../Search.astro";
 import ThemeToggle from "../ThemeToggle.astro";
 
 const url = new URL(Astro.request.url);
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 ---
 
 <header class="group relative mb-28 flex items-center sm:ps-[4.5rem]" id="main-header">
