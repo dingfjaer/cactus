@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
 	// Meta property, found in src/components/BaseHead.astro L:42
 	ogLocale: "en_GB",
 	// Option to sort posts by updatedDate if set to true (if property exists). Default (false) will sort by publishDate
-	sortPostsByUpdatedDate: false,
+	sortPostsByUpdatedDate: true,
 	// Used to construct the meta title property found in src/components/BaseHead.astro L:11, and webmanifest name found in astro.config.ts L:42
 	title: "Ding Chen Fjær",
 	/*webmentions: {
@@ -34,7 +34,7 @@ export const siteConfig: SiteConfig = {
 // Used to generate links in both the Header & Footer.
 
 export const menuLinks = [
-	{ path: "", title: "🔔" },
+	{ path: "posts/velkommen_til_fjaerdinghage", title: "🔔" },
 	{ path: "about/", title: "🦊 om Dīng" },
 	{ path: "posts/", title: "🪶 av Dĩng" },
 ];

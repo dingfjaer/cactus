@@ -1,27 +1,26 @@
 ---
-title: Digital hage
-description: This post is an example of how to add a new article. Description 50-160 words
-publishDate: 11.10.2024
-tags:
-  - skriving
+title: Velkommen til Fjærdinghage
+description: Oversikt over min digitale hage. Hva jeg skriver om, og hva jeg planlegger å skrive.
+publishDate: 11.11.2024
+updatedDate: 12.01.2024
 draft: false
 ---
 
 
 
 
-Velkommen til min digitale hage! (Den er under konstant utvikling, så du vil se en uferdig eller noenlunde ustrukturert versjon av hagen akkurat nå.)
+Velkommen til min digitale hage! (Den er under konstant utvikling, så du vil se en uferdig eller  ustrukturert versjon av hagen akkurat nå, akkurat som min ekte hage hjemme.)
 
 Denne siden gir deg en oversikt over hva jeg skriver, planlegger å skrive, og har skrevet. 
 
 :::note[Begrep]
-🍎 frukt: publisert i andre plattformer, f.ek. Medium
+🍎 frukt: artikler publisert på andre plattformer, f.ek. Medium
 
-🪻 blomstre: (relativt) ferdig artikkel, polert
+🪻 blomstre: (relativt) ferdig artikkel, polert, publisert her i hagen
 
-🌱 frø sådd: løs tanke, uferdig 
+🌱 frø sådd i jorda: løse tanker, påbegynte 
 
-💭 frø usådd: ideer, planlagt 
+💭 frø i poser: ideer, planlagt 
 
 👨🏻‍🌾 arter: tema, kategori, tags 
 :::
@@ -29,24 +28,29 @@ Denne siden gir deg en oversikt over hva jeg skriver, planlegger å skrive, og h
 
 
 ## 🍎 frukt, kronologisk
-
+:::caution[Publisert andre steder]
+ingen artikler publisert på andre plattformer
+:::
 
 ## 🪻 blomstre, kronologisk
-
+:::important[Bor i Fjærdinghage]
+![søknadsbrev til NRK]
+:::
 
 ## 🌱 frø sådd, alfabetisk
-
+:::tip[Just a thought]
+:::
 
 ## 💭 frø usådd, uten rekkefølge 
-
+:::tip[To-write]
 - [ ] hvorfor jeg skriver
-- [x] hvordan jeg startet reisen av Quartz og Obsidian
+- [ ] hvordan jeg startet reisen av Quartz og Obsidian
 - [ ] hvordan jeg bruker ChatGPT
 - [ ] hobby
 - [ ] livet
 - [ ] dingser jeg bruker
 - [ ] hvorfor bare apple ting
-- [x] apper jeg bruker
+- [ ] apper jeg bruker
 - [ ] apper jeg digger
 - [ ] ting som irriterer meg
 - [ ] bøker jeg leser
@@ -59,9 +63,10 @@ Denne siden gir deg en oversikt over hva jeg skriver, planlegger å skrive, og h
 - [ ] dokumentering av læring av designsystem
 - [ ] kinesiske (tradisjonelle) farger
 - [ ] [failure resume](https://github.com/jackyzha0/blog/blob/master/content/posts/a-failure-resume/index.md)
+:::
 
 ## 👨🏻‍🌾 Arter
-
+:::warning[Temaer]
 - språk
 - design
 	- ux design
@@ -75,11 +80,8 @@ Denne siden gir deg en oversikt over hva jeg skriver, planlegger å skrive, og h
 - teknologi
 - hobby
 - livet
-
-
-:::warning[workflow]
-Arbeidsflyt:
- :::
+- skriving
+:::
 
 
 
