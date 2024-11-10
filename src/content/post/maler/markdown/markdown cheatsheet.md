@@ -1,6 +1,6 @@
 ---
-title: Markdown cheatsheet
-description: Markdown cheatsheet med en liste av eksempler i markdown format. 
+title: Markdown Cheatsheet
+description: Markdown cheatsheet med en liste av eksempler i markdown format.
 publishDate: 05.19.2018
 tags:
   - markdown
