@@ -6,6 +6,7 @@ tags: ["markdown"]
 draft: true
 ---
 
+
 ## What are admonitions
 
 Admonitions (also known as “asides”) are useful for providing supportive and/or supplementary information related to your content.
