@@ -5,6 +5,7 @@ publishDate: 11.07.2024
 tags:
   - dikt
   - obsidian
+draft: false
 ---
 
 Dette er en magisk test.
@@ -27,6 +28,5 @@ Det gjenstår å deploy og ser om alt går bra.
 
 Hva skjer hvis jeg skriver direkte i visual kode? 
 Da kommer det også opp på alle stedene, Obsidian desktop, mobil, og lokal test!
-
 
 
