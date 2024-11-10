@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Maler/Template/Template with cover.md",
+                "file": "Maler/Template/Template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Template with cover"
+              "title": "Template"
             }
           }
         ]
@@ -164,10 +164,10 @@
   },
   "active": "e4d01fac2390eb55",
   "lastOpenFiles": [
-    "Maler/Template/cover.jpg",
-    "Maler/Template/Template.md",
     "Maler/Template/Template with updated date.md",
     "Maler/Template/Template with cover.md",
+    "Maler/Template/cover.jpg",
+    "Maler/Template/Template.md",
     "Maler/Markdown/Markdown øvelse.md",
     "Maler/Markdown/Markdown cheatsheet.md",
     "Maler/Markdown/Markdown Admonitions.md",
@@ -206,7 +206,6 @@
     "maler/markdown-elements/pic in md.png",
     "maler/maler fra obsidian med bilde/bildeobsi.png",
     "maler/template/coverfox.svg",
-    "maler/template/tintin.jpg",
     "maler/maler fra obsidian med bilde"
   ]
 }
