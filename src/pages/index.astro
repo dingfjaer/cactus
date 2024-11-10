@@ -15,44 +15,14 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 
 const cactusTech: { desc: string; href: string; title: string }[] = [
 	{
-		desc: "Build fast websites, faster.",
-		href: "https://astro.build",
-		title: "Astro",
+		desc: "Min interaktive portefølje bygget i Figma.",
+		href: "https://www.figma.com/proto/dIULhitI3aG6HagQdU6cRC/dingchen.no?page-id=0%3A1&type=design&node-id=12-205&viewport=729%2C139%2C0.16&t=iMVKlHhdlVCH74Va-1&scaling=scale-down-width&starting-point-node-id=12%3A205",
+		title: "Design Portfolio",
 	},
 	{
-		desc: "Rapidly build modern websites without ever leaving your HTML.",
-		href: "https://tailwindcss.com",
-		title: "Tailwind CSS",
-	},
-	{
-		desc: "Simple and easy-to-use markup language.",
-		href: "https://www.markdownguide.org/",
-		title: "Markdown",
-	},
-	{
-		desc: "Markdown for the component era.",
-		href: "https://mdxjs.com/",
-		title: "MDX",
-	},
-	{
-		desc: "Generating png Open Graph images for blog posts.",
-		href: "https://github.com/vercel/satori",
-		title: "Satori",
-	},
-	{
-		desc: "A fully static search library.",
-		href: "https://pagefind.app/",
-		title: "Pagefind",
-	},
-	{
-		desc: "An easy to use Icon component for Astro.",
-		href: "https://github.com/natemoo-re/astro-icon#readme",
-		title: "Astro Icon",
-	},
-	{
-		desc: "Highly customisable source code & syntax highlighter",
-		href: "https://expressive-code.com/",
-		title: "Expressive Code",
+		desc: "Om meg og mine erfaringer som UX-designer",
+		href: "https://dingchen.no/cv.pdf",
+		title: "CV",
 	},
 ];
 ---
@@ -78,6 +48,27 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 	</section>
 	<section class="mt-8">
 		<a href={`${baseUrl}posts/`} class="text-accent sm:hover:underline">All posts</a>
+	</section>
+
+	<section class="mt-16">
+		<h2 class="title mb-4 text-xl">Gimme Dat Ding</h2>
+		<dl class="space-y-4">
+			{
+				cactusTech.map(({ desc, href, title }) => (
+					<div class="flex flex-col gap-2 sm:flex-row">
+						<dt>
+							<span class="flex">
+								<a class="cactus-link" href={href} rel="noopener noreferrer" target="_blank">
+									{title}
+								</a>
+								:
+							</span>
+						</dt>
+						<dd>{desc}</dd>
+					</div>
+				))
+			}
+		</dl>
 	</section>
 
 	<svg
@@ -649,51 +640,4 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 			d="M48.4651 91.1381C48.1659 91.7947 47.9028 93.0916 47.3225 93.4898C47.1328 93.6193 47.0676 93.5727 47.1268 93.3499C47.3592 92.47 47.6957 91.7327 48.1363 91.1381C48.2579 91.0448 48.3675 91.0448 48.4651 91.1381Z"
 			fill="#FFFFB7"></path>
 	</svg>
-
-	<!--<style>
-		.text-with-background {
-			position: relative;
-			padding: 2rem; /* Avstand til kantene */
-		}
-
-		.background-svg {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			object-fit: cover; /* Fyller hele området */
-			z-index: -1; /* Ligger bak innholdet */
-			opacity: 0.3; /* Juster for ønsket gjennomskinnelighet */
-		}
-
-		.text-box {
-			position: relative;
-			color: #333;
-			background-color: rgba(255, 255, 255, 0.8); /* Kontrastfylt bakgrunn for tekst */
-			padding: 1rem;
-			border-radius: 8px;
-		}
-	</style>
-
-	<!-- <section class="mt-16">
-		<h2 class="title mb-4 text-xl">Technologies</h2>
-		<dl class="space-y-4">
-			{
-				cactusTech.map(({ desc, href, title }) => (
-					<div class="flex flex-col gap-2 sm:flex-row">
-						<dt>
-							<span class="flex">
-								<a class="cactus-link" href={href} rel="noreferrer" target="_blank">
-									{title}
-								</a>
-								:
-							</span>
-						</dt>
-						<dd>{desc}</dd>
-					</div>
-				))
-			}
-		</dl>
-	</section> -->
 </PageLayout>

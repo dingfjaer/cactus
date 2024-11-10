@@ -1,19 +1,15 @@
 ---
+import PageLayout from "@/layouts/Base.astro";
 const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
-const cvUrl = `${Astro.site}cv.pdf`; // Sett riktig sti til PDF-filen
-
-// Omdirigerer til PDF-en når siden lastes
-Astro.redirect(cvUrl);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>CV Omdirigering</title>
-	</head>
-	<body>
-		<p>Omdirigerer til CV-en din...</p>
-	</body>
-</html>
+<PageLayout meta={{ title: "cv" }}>
+	<section class="mb-6 text-xl">
+		<a
+			href={`${baseUrl}cv.pdf`}
+			class="text-accent sm:hover:underline"
+			target="_blank"
+			rel="noopener noreferrer">Les eller last ned CV-en her</a
+		>
+	</section>
+</PageLayout>
