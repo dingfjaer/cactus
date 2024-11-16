@@ -10,26 +10,24 @@ draft: false
 
 
 
-> UX-bransjens “junior-problem”, der alle vil ansette og leie inn folk med erfaring, fremfor å utvikle og støtte de som er nye i bransjen.
-> 
-> Fremtinds tilnærming til rekruttering og employer branding, og hvordan de bruker bl.a. internships, sommerjobber, bachelor- og masteroppgaver for å gjøre seg synlige blant fagfolk.
+>In a very real way, designers create the human environment; they make the things we use, the places we live and work, our modes of communication and mobility. Simply put, design matters. And at a moment in our history in which the scientific community has issued serious warnings about the negative impacts of our flawed designs-from global warming and water pollution to the loss of biodiversity and natural resources-designers have a critical role to play in the creation of a more just, healthful and sustainable world.
 
-:::tip[green]
+:::tip[tip, emerald]
 This is a note with a custom title. light bulb
 :::
 
-:::note[blue]
+:::note[note, sky]
 This is a note with a custom title. Info icon
 :::
 
-:::important[purple]
+:::important[important, violet]
 This is a note with a custom title. Message!
 :::
 
-:::warning[yellow]
+:::warning[warning, yellow]
 This is a note with a custom title. triangle warning icon
 :::
 
-:::caution[red]
+:::caution[caution, rose]
 This is a note with a custom title. caution!!
 :::

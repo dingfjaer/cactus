@@ -14,34 +14,34 @@ Velkommen til min digitale hage! (Den er under konstant utvikling, så du vil se
 Denne siden gir deg en oversikt over hva jeg skriver, planlegger å skrive, og har skrevet. 
 
 :::note[Begrep]
-🍎 frukt: artikler publisert på andre plattformer, f.ek. Medium
+ Frukt: artikler publisert på andre plattformer, f.ek. Medium
 
-🪻 blomstre: (relativt) ferdig artikkel, polert, publisert her i hagen
+ Blomstre: (relativt) ferdig artikkel, publisert her i hagen
 
-🌱 frø sådd i jorda: løse tanker, påbegynte 
+ Frø sådd i jorda: løse tanker, påbegynte 
 
-💭 frø i poser: ideer, planlagt 
+ Frø i poser: ideer, planlagt 
 
-👨🏻‍🌾 arter: tema, kategori, tags 
+ Arter: tema, kategori, tags 
 :::
 
 
 
-## 🍎 frukt, kronologisk
+## 🍎 frukt
 :::caution[Publisert andre steder]
 ingen artikler publisert på andre plattformer
 :::
 
-## 🪻 blomstre, kronologisk
+## 🪻 blomstre
 :::important[Bor i Fjærdinghage]
 ![søknadsbrev til NRK]
 :::
 
-## 🌱 frø sådd, alfabetisk
+## 🌱 frø sådd
 :::tip[Just a thought]
 :::
 
-## 💭 frø usådd, uten rekkefølge 
+## 🌱 frø usådd
 :::tip[To-write]
 - [ ] hvorfor jeg skriver
 - [ ] hvordan jeg startet reisen av Quartz og Obsidian
@@ -65,7 +65,7 @@ ingen artikler publisert på andre plattformer
 - [ ] [failure resume](https://github.com/jackyzha0/blog/blob/master/content/posts/a-failure-resume/index.md)
 :::
 
-## 👨🏻‍🌾 Arter
+## 👨🏻‍🌾 arter
 :::warning[Temaer]
 - språk
 - design
