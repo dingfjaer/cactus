@@ -13,3 +13,4 @@ Billie Eilish (Billie Eilish Pirate Baird O'Connell)
 
 Finneas O'Connell
 
+Fredrik Skavlan (journalist og tegner)

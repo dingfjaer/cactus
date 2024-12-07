@@ -10,3 +10,4 @@ draft: true
 
 Ramler: noe som faller av
 Vegre: å nekte å gjøre noe
+Gjør narr av noe/noen: latterliggjør
