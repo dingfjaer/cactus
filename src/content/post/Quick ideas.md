@@ -42,4 +42,5 @@ Logo
 Artikler
 - [ ] a hatful of dreams
 - [ ] https://mp.weixin.qq.com/s/srhomWF5Oni1wtTkcnPtIg
-- [ ] p
+- [ ] par-designing
+- [ ] Dings
