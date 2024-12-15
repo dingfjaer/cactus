@@ -5,7 +5,7 @@ publishDate: 11.07.2024
 tags:
   - dikt
   - obsidian
-draft: false
+draft: true
 ---
 
 Dette er en magisk test.

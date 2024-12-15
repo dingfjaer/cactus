@@ -4,7 +4,7 @@ description: Dette notatet brukes for å ha klare tekster for diverse formatter.
 publishDate: 11.09.2024
 tags:
   - mal
-draft: false
+draft: true
 ---
 
 
