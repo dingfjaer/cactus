@@ -11,3 +11,7 @@ draft: true
 ---
 
 
+Jeg har mange hobbyer.
+… eller, 
+jeg har ingen hobby.
+Ser rundt i huset, står det xxx, xxx, xxx. Vi har musikkrom, xxx
