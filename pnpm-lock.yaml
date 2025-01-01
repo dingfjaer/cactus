@@ -54,8 +54,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       pnpm:
-        specifier: ^9.12.3
-        version: 9.12.3
+        specifier: ^9.15.2
+        version: 9.15.2
       rehype-external-links:
         specifier: ^3.0.0
         version: 3.0.0
@@ -2427,8 +2427,8 @@ packages:
   pkg-types@1.1.3:
     resolution: {integrity: sha512-+JrgthZG6m3ckicaOB74TwQ+tBWsFl3qVQg7mN8ulwSOElJ7gBhKzj2VkCPnZ4NlF6kEquYU+RIYNVAvzd54UA==}
 
-  pnpm@9.12.3:
-    resolution: {integrity: sha512-zOD53pxafJW++UQWnMXf6HQav7FFB4wNUIuGgFaEiofIHmJiRstglny9f9KabAYu9z/4QNlrPIbECsks9KgT7g==}
+  pnpm@9.15.2:
+    resolution: {integrity: sha512-k+V7ASbw33TOa/8paAOUwLpU7Ecka5zzIfASHY2bsD91CnBfJO3DwRgIU6/XwsO5QZbQo9U9PgadnieT7xHzIQ==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -6236,7 +6236,7 @@ snapshots:
       mlly: 1.7.1
       pathe: 1.1.2
 
-  pnpm@9.12.3: {}
+  pnpm@9.15.2: {}
 
   postcss-calc@10.0.2(postcss@8.4.47):
     dependencies:
