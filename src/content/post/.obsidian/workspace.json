@@ -1,56 +1,55 @@
 {
   "main": {
-    "id": "672da53b66db0ad3",
+    "id": "632e919f49395b77",
     "type": "split",
     "children": [
       {
-        "id": "588dbb828df492f9",
+        "id": "fb4c93c4601a9934",
         "type": "tabs",
         "children": [
           {
-            "id": "5d8257fea286e7dc",
+            "id": "529a64f343023c1d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Velkommen_til_fjaerdinghage.md",
+                "file": "2025/Nyttårsforsett.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Velkommen_til_fjaerdinghage"
+              "title": "Nyttårsforsett"
             }
           },
           {
-            "id": "a5ed63038a56910d",
+            "id": "7a91287901fa15db",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Velkommen_til_fjaerdinghage.md",
+                "file": "2025/Nyttårsforsett.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Velkommen_til_fjaerdinghage"
+              "title": "Nyttårsforsett"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "018cca164f81dabf",
+    "id": "8905b94660c48c95",
     "type": "split",
     "children": [
       {
-        "id": "2fde21661d13fc2f",
+        "id": "29ec4389f1919188",
         "type": "tabs",
         "children": [
           {
-            "id": "13ea06c594c63975",
+            "id": "64004131acb1febc",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -62,7 +61,7 @@
             }
           },
           {
-            "id": "e405917c5a86b671",
+            "id": "62146c6ff4063875",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -79,7 +78,7 @@
             }
           },
           {
-            "id": "32a2fc7b527f484b",
+            "id": "315ab637e2be43de",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -95,20 +94,20 @@
     "width": 300
   },
   "right": {
-    "id": "4b0d43dc6824c760",
+    "id": "d8ffa15155e00cc1",
     "type": "split",
     "children": [
       {
-        "id": "342bbbed9bc27dd6",
+        "id": "6fc93ef8cec91600",
         "type": "tabs",
         "children": [
           {
-            "id": "b32740fee52e6838",
+            "id": "5fee0538aed16d77",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Drafts/Packaging workflow.md",
+                "file": "A hatful of hobbies.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,25 +117,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Packaging workflow"
+              "title": "Backlinks for A hatful of hobbies"
             }
           },
           {
-            "id": "7f3eca4003f204fd",
+            "id": "641e902a25c8115b",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Drafts/Packaging workflow.md",
+                "file": "A hatful of hobbies.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Packaging workflow"
+              "title": "Outgoing links from A hatful of hobbies"
             }
           },
           {
-            "id": "1cef7777c94ab8f7",
+            "id": "8f877635c9bf57e4",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -149,19 +148,18 @@
             }
           },
           {
-            "id": "415b1309864a6d8a",
+            "id": "14f9289b224c84fb",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Drafts/Packaging workflow.md"
+                "file": "A hatful of hobbies.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Packaging workflow"
+              "title": "Outline of A hatful of hobbies"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -178,53 +176,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a5ed63038a56910d",
+  "active": "64004131acb1febc",
   "lastOpenFiles": [
-    "A hatful of hobbies.md",
-    "Quick ideas.md",
     "Velkommen_til_fjaerdinghage.md",
+    "2025/Nyttårsforsett.md",
+    "A hatful of hobbies.md",
     "cover.jpg",
-    "Templates/Template with updated date.md",
-    "Templates/Template with cover.md",
     "Templates/Template.md",
+    "Drafts/Nyttårs.md",
+    "Templates/Template with cover.md",
     "Drafts/Soknadsbrev_til_NRK_Radio.md",
+    "Nyttårs?.md",
+    "Templates/Template with updated date.md",
     "Templates/cover.jpg",
-    "Templates/Template/Template with cover.md",
-    "Templates/Template/cover.jpg",
-    "Templates/Template/Template.md",
-    "Templates/Template/Template with updated date.md",
-    "Templates/Template",
     "Templates",
-    "Maler/Guides/Markdown øvelse.md",
-    "Maler/Guides/Social-image.md",
-    "Drafts/Quick ideas.md",
-    "Drafts/Navnekart.md",
-    "Drafts/Blog Drops.md",
-    "Maler/Guides/Markdown Admonitions.md",
-    "Maler/Guides/logo.png",
-    "Maler/Guides/Hurtig notat.md",
-    "Drafts/sync Obsidian.md",
-    "Drafts/Workflow flere apps og kontoer.md",
-    "Drafts/Packaging workflow.md",
-    "Drafts/Ordbok.md",
-    "velkommen_til_fjaerdinghage.md",
-    "Maler/Template/Template with updated date.md",
-    "IMG_1124.png",
-    "Maler/Guides/Webmentions.md",
-    "Drafts",
-    "Velkommen_til_Fjærdinghage.md",
-    "Digital hage.md",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler/Template/cover.jpg",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler/Template",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler/Guides",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler/Markdown/logo.png",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler/Template/cover.jpg",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler/Markdown/logo.png",
-    "dingchen.no/dingchen.no/dingchen.no/dingchen.no/Maler/Template/cover.jpg"
+    "2025"
   ]
 }
