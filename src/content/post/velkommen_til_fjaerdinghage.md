@@ -8,8 +8,7 @@ draft: false
 
 
 
-
-Velkommen til min digitale hage! 
+Velkommen til min digitale hage - Fjærdinghage! 
 
 
 
