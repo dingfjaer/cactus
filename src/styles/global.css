@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,6 +16,8 @@
 		--theme-accent: 270deg 60% 30%;
 		--theme-accent-2: 0deg 0% 7%;
 		--theme-quote: 270deg 60% 30%;
+		--theme-font-family: 'Inter', sans-serif;
+		/* Ny fontvariabel */
 	}
 
 	:root[data-theme="dark"] {
@@ -24,5 +28,11 @@
 		--theme-accent: 41deg 79% 68%;
 		--theme-accent-2: 0deg 0% 93%;
 		--theme-quote: 41deg 79% 68%;
+		--theme-font-family: 'Inter', sans-serif;
+		/* Samme font for mørk modus */
+	}
+
+	body {
+		font-family: var(--theme-font-family);
 	}
 }

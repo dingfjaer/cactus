@@ -14,7 +14,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 }
 
 const cactusTech: { desc: string; href: string; title: string }[] = [
-	{
+	/*{
 		desc: "En interaktiv prototype bygget i Figma",
 		href: "https://www.figma.com/proto/dIULhitI3aG6HagQdU6cRC/dingchen.no?page-id=0%3A1&type=design&node-id=12-205&viewport=729%2C139%2C0.16&t=iMVKlHhdlVCH74Va-1&scaling=scale-down-width&starting-point-node-id=12%3A205",
 		title: "Design Portfolio",
@@ -23,7 +23,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 		desc: "Meg som UX-designer",
 		href: "https://dingchen.no/cv.pdf",
 		title: "CV",
-	},
+	},*/
 ];
 ---
 
@@ -49,9 +49,10 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 		</ul>
 	</section>
 	<section class="mt-8">
-		<a href={`${baseUrl}posts/`} class="text-accent sm:hover:underline">All posts</a>
+		<a href={`${baseUrl}posts/`} class="text-accent sm:hover:underline">Alle spirer</a>
 	</section>
 
+	<!--
 	<section class="mt-16">
 		<h2 class="title mb-4 text-xl">Gimme Dat Ding</h2>
 		<dl class="space-y-4">
@@ -72,6 +73,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 			}
 		</dl>
 	</section>
+	-->
 
 	<svg
 		width="206"

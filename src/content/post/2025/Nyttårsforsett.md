@@ -13,3 +13,4 @@ draft: false
 Men ærlig talt, skjer ikke dette hvert eneste år? Man setter noen ambisiøse nyttårsforsetter, bare for å se dem svinne hen innen februar.
 
 Blir det annerledes for meg i år? Kanskje. Nja, hvem vet? Men hvis mitt nyttårsforsett er å holde min digitale hage levende, kan dette notatet faktisk være en god start – så lenge jeg tør å publisere det?
+

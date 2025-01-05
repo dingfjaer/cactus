@@ -54,8 +54,7 @@ export default {
 			},
 			fontFamily: {
 				// Add any custom fonts here
-				sans: ["Noto Sans", ...fontFamily.sans], // Setter Noto Sans som førstevalg for sans
-				serif: [...fontFamily.serif],
+				sans: ['Inter', 'ui-sans-serif', 'system-ui'],
 			},
 			fontSize: {
 				base: '1.125rem', // Endrer grunnstørrelse til 18px (fra 16px)
@@ -68,9 +67,9 @@ export default {
 			typography: (theme) => ({
 				DEFAULT: {
 					css: {
-						fontSize: '1.063rem', // Øker typografi grunnstørrelse
+						fontSize: '1.125rem', // Øker typografi grunnstørrelse
             lineHeight: '1.75rem', // Justerer linjehøyde tilsvarende
-            p: { fontSize: '1.063rem' }, // Øker skriftstørrelse på avsnitt
+            p: { fontSize: '1.125rem' }, // Øker skriftstørrelse på avsnitt
 						a: {
 							"@apply cactus-link": "",
 						},
