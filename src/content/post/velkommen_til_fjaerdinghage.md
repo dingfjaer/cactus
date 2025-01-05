@@ -20,9 +20,12 @@ Hvis du ikke har hørt om konseptet “digital hage” før (eller _digital gard
 
 ## Hva som gror i Fjærdinghage akkurat nå (januar 2025)
 
-Siden denne hagen er fortsatt ny og jeg fremdeles er i en eksperimental fase, er ikke det så mye å se her, enda. Jeg kommer til å teste med litt forskjellige innhold, som gjør at det enten virker en ustrukturert og kanskje uinteressant side, så er det bare å lukke siden og forlate denne hagen. Men jeg håper virkelig at Fjærdinghage får utvikle seg vilt dette året så den blir en fin plass med mangfoldige arter som gir både meg ro og glede, og kanskje deg (som en ukjent leser på andre siden av skjermen) noe. 
+Akkurat nå er denne hagen ganske ny, og jeg er fortsatt i en eksperimentell fase. Det er kanskje ikke så mye å se her ennå. Jeg prøver meg fram med forskjellig innhold, derfor kan hagen virke litt ustrukturert eller rotete akkurat nå, og jeg synes det er helt greit. 
+  
+Men målet mitt for Fjærdinghage er at den skal få utvikle seg fritt dette året. Jeg drømmer om at den blir en frodig og mangfoldig plass, en som gir meg ro og glede – og kanskje også deg, en ukjent leser på andre siden av skjermen.
 
-Akkurat nå gror det nesten ingenting i Fjærdinghage, og det er helt greit. Det er vinter, og alt gikk i dvale. Men det sås frøer litt her og der, og forhåpentligvis får vi se noen spirer, om ikke altfor lenge. 
+Akkurat nå er det vinter, og som i alle andre hager er det stille. Alt er i dvale, men jeg har sådd noen frø her og der. Forhåpentligvis spirer de snart.
+
 
 
 
