@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2025/Nyttårsforsett.md",
+                "file": "Velkommen_til_fjaerdinghage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Nyttårsforsett"
+              "title": "Velkommen_til_fjaerdinghage"
             }
           },
           {
@@ -176,10 +176,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "64004131acb1febc",
+  "active": "529a64f343023c1d",
   "lastOpenFiles": [
-    "Velkommen_til_fjaerdinghage.md",
     "2025/Nyttårsforsett.md",
+    "Velkommen_til_fjaerdinghage.md",
     "A hatful of hobbies.md",
     "cover.jpg",
     "Templates/Template.md",
