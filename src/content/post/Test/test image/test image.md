@@ -1,11 +1,11 @@
 ---
-title: Template
+title: test image
 description: This post is an example of how to add a new article. Description 50-160 words
 publishDate: 01.01.2025
 tags:
-  - spire
-draft: true
+  - mal
+draft: false
 ---
 
-En quick note daily
 
+![image from internett](image3.png)
