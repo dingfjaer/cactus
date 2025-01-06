@@ -1,8 +1,10 @@
 ---
 title: Velkommen til Fjærdinghage
-description: Oversikt over min digitale hage. Hva jeg skriver om, og hva jeg planlegger å skrive.
+description: En intro-side for Fjærdinghage. Oppdateres underveis mens hagen utvikler seg.
 publishDate: 11.11.2024
 updatedDate: 01.05.2025
+tags:
+  - digital hage
 draft: false
 ---
 
