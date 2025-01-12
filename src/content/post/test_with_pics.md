@@ -1,9 +1,9 @@
 ---
 title: Test with pics
 description: This post is an example of how to add a new article. Description 50-160 words
-publishDate: 01.01.2025
+publishDate: 2025-01-12
 tags:
-  - test
+  - draft
 draft: true
 ---
 
@@ -12,3 +12,6 @@ draft: true
 ![illustration](images/image2.png)
 
 ![tintin rir](images/tintin_rir.png)
+
+Er dato som skaper problemet? Ser sånn ut!
+DÆVEN. Da fikser jeg alt det, da!

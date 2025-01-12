@@ -1,7 +1,7 @@
 ---
 title: Nyttårsforsett
 description: Skal jeg sette et nyttårsforsett som er realistisk for meg?
-publishDate: 01.04.2025
+publishDate: 2025-01-04
 tags:
   - notat
 draft: false

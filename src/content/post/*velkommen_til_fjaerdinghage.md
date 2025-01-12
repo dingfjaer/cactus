@@ -1,10 +1,10 @@
 ---
 title: Velkommen til Fjærdinghage
 description: En intro-side for Fjærdinghage. Oppdateres underveis mens hagen utvikler seg.
-publishDate: 11.11.2024
-updatedDate: 01.05.2025
+publishDate: 2024-11-11
+updatedDate: 2025-01-05
 tags:
-  - digital hage
+  - digital_hage
 draft: false
 ---
 

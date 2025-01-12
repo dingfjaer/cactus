@@ -1,9 +1,9 @@
 ---
-title: Markdown attach picture
-description: This post is an example of how to add a new article. Description 50-160 words
-publishDate: 01.01.2025
+title: Legg inn bilde snippet
+description: bruk dette for å legge ved et bilde
+publishDate: 2025-01-01
 tags:
-  - mal
+  - draft
 draft: true
 ---
 ![alt text](images/image0.png)

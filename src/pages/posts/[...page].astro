@@ -30,13 +30,13 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			text: "← Previous Page",
+			text: "← Forrige",
 			url: page.url.prev.startsWith(baseUrl) ? page.url.prev : `${baseUrl}${page.url.prev}`,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			text: "Next Page →",
+			text: "Neste →",
 			url: page.url.next.startsWith(baseUrl) ? page.url.next : `${baseUrl}${page.url.next}`,
 		},
 	}),
