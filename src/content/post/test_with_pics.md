@@ -13,5 +13,4 @@ draft: true
 
 ![tintin rir](images/tintin_rir.png)
 
-Er dato som skaper problemet? Ser sånn ut!
-DÆVEN. Da fikser jeg alt det, da!
+![[IMG_7583.jpeg]]
