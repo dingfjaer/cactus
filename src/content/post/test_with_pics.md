@@ -1,13 +1,14 @@
 ---
-title: Template with cover
+title: Test with pics
 description: This post is an example of how to add a new article. Description 50-160 words
 publishDate: 01.01.2025
-coverImage:
-  src: ./cover.jpg
-  alt: a text that explains the pic
 tags:
-  - mal
+  - test
 draft: true
 ---
 
+![alt text](images/image1.jpg)
 
+![illustration](images/image2.png)
+
+![tintin rir](images/tintin_rir.png)

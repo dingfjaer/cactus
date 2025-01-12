@@ -1,14 +1,11 @@
 ---
-title: Template with pics
+title: Markdown attach picture
 description: This post is an example of how to add a new article. Description 50-160 words
 publishDate: 01.01.2025
 tags:
   - mal
-draft: false
+draft: true
 ---
-
-![alt text](image1.jpg)
-
+![alt text](images/image0.png)
 
 
-![illustration](image2.png)
