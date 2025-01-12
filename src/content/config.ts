@@ -10,19 +10,15 @@ function removeDupsAndLowerCase(array: string[]) {
 const post = defineCollection({
 	schema: ({ image }) =>
 		z.object({
-			/* Fjernet coverImage i template
 			coverImage: z
 				.object({
 					alt: z.string(),
 					src: image(),
 				})
 				.optional(), 
-			*/
 			description: z.string().min(50).max(160),
 			draft: z.boolean().default(false),
-			/* Fjernet ogImage i template
 			ogImage: z.string().optional(),
-			*/
 			publishDate: z
 				.string()
 				.or(z.date())
