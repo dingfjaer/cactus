@@ -6,7 +6,6 @@ tags:
   - notat
 draft: false
 ---
-[[2025-01-12]]
 
 >Et nyttårsforsett er et løfte eller en målsetting man setter for seg selv ved starten av et nytt år, ofte med et ønske om å forbedre livet sitt på en eller annen måte. For mange føles det som en symbolsk ny begynnelse, et lite dytt i riktig retning.
 

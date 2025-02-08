@@ -13,4 +13,7 @@ draft: true
 
 ![tintin rir](images/tintin_rir.png)
 
-![[IMG_7583.jpeg]]
+![text](images/IMG_7583.jpeg)
+
+![covertext](images/cover.jpg)
+

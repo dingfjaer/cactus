@@ -1,10 +1,10 @@
 ---
 title: Litterære sjangre, skjønnlitteratur osv
 description: Hva er forskjell mellom novelle, roman, SciFi... og hva er skjønnlitteratur?
-publishDate: 2025-01-12
+publishDate: 2025-02-08
 tags:
-  - draft
-draft: true
+  - notat
+draft: false
 ---
 [Litterære sjangre](https://kublakan.no/sjangre/)
 

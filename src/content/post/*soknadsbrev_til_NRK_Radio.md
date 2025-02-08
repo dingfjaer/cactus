@@ -3,8 +3,8 @@ title: Søknadsbrev til NRK Radio
 description: Jeg skrev et søknadsbrev i diktform da jeg søkte på NRK Radio som UX-designer
 publishDate: 2024-11-07
 tags:
-  - staging
-draft: true
+  - design
+draft: false
 ---
 
 
