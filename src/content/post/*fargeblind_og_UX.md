@@ -147,3 +147,5 @@ Trafikklysene er generelt designet med fargeblindhet i tankene, men hvordan de o
 ---
 
 Trafikklysene fungerer for de fleste fargeblinde fordi de er designet for å kombinere farge, plassering og lysstyrke. Likevel kan utfordringer oppstå for de med mer alvorlige former for fargeblindhet eller under spesielle forhold.
+
+Test deploy
