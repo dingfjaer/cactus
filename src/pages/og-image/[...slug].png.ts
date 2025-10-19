@@ -69,7 +69,8 @@ export async function GET(context: APIContext) {
 	const svg = await satori(markup(title, postDate), ogOptions);
 	const png = new Resvg(svg).render().asPng();
 	const bytes = png instanceof Uint8Array ? png : Uint8Array.from(png);
-	const arrayBuffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+	const arrayBuffer = new ArrayBuffer(bytes.byteLength);
+	new Uint8Array(arrayBuffer).set(bytes);
 	return new Response(arrayBuffer, {
 		headers: {
 			"Cache-Control": "public, max-age=31536000, immutable",
