@@ -4,11 +4,12 @@ description: Hva er fargeblind, og utfordringer med fargeblindhet i ux
 publishDate: 2025-01-13
 tags:
   - design
+  - notat
 draft: false
 ---
-https://www.whocanuse.com/?bg=076940&fg=ffffff&fs=16&fw=
 
-https://chatgpt.com/share/67850bd9-29a0-8000-a66a-95ea3d96409c
+
+Verktøy: [Whocanuse](https://www.whocanuse.com/?bg=076940&fg=ffffff&fs=16&fw=)
 
 **Fargeblindhet** er en tilstand som påvirker en persons evne til å se visse farger eller skille mellom farger. Dette kan skape utfordringer i hverdagen, spesielt når informasjon formidles kun gjennom fargekoding. Å forstå fargeblindhet og hvordan det kan påvirke design er avgjørende for å skape inkluderende og brukervennlige løsninger.
 
@@ -147,5 +148,3 @@ Trafikklysene er generelt designet med fargeblindhet i tankene, men hvordan de o
 ---
 
 Trafikklysene fungerer for de fleste fargeblinde fordi de er designet for å kombinere farge, plassering og lysstyrke. Likevel kan utfordringer oppstå for de med mer alvorlige former for fargeblindhet eller under spesielle forhold.
-
-Test deploy+1

@@ -15,7 +15,7 @@ Velkommen til min digitale hage – **Fjærdinghage**! Hvordan du har snublet in
 
 ## Fjærdinghage og digital hage
 
-Navnet **Fjærdinghage** kommer fra hjemmet vårt, som vi kaller Fjærdingheim – en sammensmelting av mitt fornavn _Ding_ og ektefellens etternavn _Fjær_. Da var det ganske naturlig å døpe min digitale hage Fjærdinghage også!
+Navnet **Fjærdinghage** kommer fra hjemmet vårt, som vi kaller Fjærdingheim – en sammensmelting av mitt fornavn _Ding_ og ektefellens etternavn _Fjær_. Da var det ganske naturlig å døpe min digitale hage Fjærdinghage også! 
 
   
 Hvis du ikke har hørt om konseptet “digital hage” før (eller _digital garden_ på engelsk), anbefaler jeg at du sjekker ut [denne artikkelen som er skrevet av en av de som startet og promoterte konseptet **digital hage**](https://maggieappleton.com/garden-history). Det er en slags personlig nettside, en blanding av dagbok og notater, samling av ideer, tanker og eksperimenter, som vokser og endrer seg over tid – akkurat som en ekte hage. [Her er en fin oppsummering ](https://search.arc.net/Ud75Xmmw6vCT18nmeWZe)av Arc Search med "browse for me" funksjon om digital hage.
@@ -29,7 +29,8 @@ Men målet mitt for Fjærdinghage er at den skal få utvikle seg fritt dette år
 Nå er det vinter, og som i alle andre hager er det stille. Alt er i dvale, men jeg har sådd noen frø her og der. Forhåpentligvis spirer de snart.
 
 
-
+## 📑 Gå til Oversikten
+Se [alt som gror i Fjærdinghagen her](https://dingchen.no/posts/). -->
 
 
 
