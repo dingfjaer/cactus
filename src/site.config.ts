@@ -34,7 +34,7 @@ export const siteConfig: SiteConfig = {
 // Used to generate links in both the Header & Footer.
 
 export const menuLinks = [
-	{ path: "posts/velkommen_til_fjaerdinghage", title: "🔔" },
+	{ path: "posts/velkommen_til_fjaerdinghage", title: "🔔 Ding Dong" },
 	{ path: "posts/", title: "🪻 Alt som gror" },
 	{ path: "about/", title: "👨🏻‍🌾 Om gartneren" },
 ];

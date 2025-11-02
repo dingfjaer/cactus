@@ -2,7 +2,7 @@
 title: Velkommen til Fjærdinghage
 description: En intro-side for Fjærdinghage. Oppdateres underveis mens hagen utvikler seg.
 publishDate: 2024-11-11
-updatedDate: 2025-01-05
+updatedDate: 2025-11-02
 tags:
   - digital_hage
 draft: false
@@ -11,7 +11,11 @@ draft: false
 
 ## 🔔 Ding Dong! 
 
-Velkommen til min digitale hage – **Fjærdinghage**! Hvordan du har snublet inn hit, vet jeg ikke, men jeg er uansett glad for at du er her. Dette er ikke mitt første forsøk på å sette opp en fungerende personlig nettside, en som jeg har full kontroll på. Etter utallige iterasjoner, med en solid dose frustrasjon og mestringsfølelse, har jeg endelig landet på en versjon som er både enkel å bruke og lett å vedlikeholde og utvide.
+Velkommen til min digitale hage – **Fjærdinghage**! 
+
+Snarvei til hva som finnes i hagen:  [Alt som gror i Fjærdinghagen](https://dingchen.no/posts/). -->
+
+Hvordan du har snublet inn hit, vet jeg ikke, men jeg er uansett glad for at du er her. Dette er ikke mitt første forsøk på å sette opp en fungerende personlig nettside, en som jeg har full kontroll på. Etter utallige iterasjoner, med en solid dose frustrasjon og mestringsfølelse, har jeg endelig landet på en versjon som er både enkel å bruke og lett å vedlikeholde og utvide.
 
 ## Fjærdinghage og digital hage
 
