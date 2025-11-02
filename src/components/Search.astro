@@ -70,11 +70,22 @@ import "@pagefind/default-ui/css/ui.css";
 		searching: "Søker etter [SEARCH_TERM]...",
 	};
 
-	const processSearchResult = (data) => {
+	type PagefindMetaValue = string | string[];
+
+	type PagefindResultData = {
+		meta?: Record<string, PagefindMetaValue>;
+		[key: string]: unknown;
+	};
+
+	const toLabelValue = (value: PagefindMetaValue): string =>
+		Array.isArray(value) ? value.join(", ") : value;
+
+	const processSearchResult = (data: PagefindResultData) => {
 		if (!data?.meta) return data;
 
-		const toLabelValue = (value) => (Array.isArray(value) ? value.join(", ") : value);
-		const meta = { ...data.meta };
+		const meta = Object.fromEntries(
+			Object.entries(data.meta).map(([key, value]) => [key, toLabelValue(value)]),
+		) as Record<string, string>;
 
 		if (meta.tag) {
 			meta.Tagg = toLabelValue(meta.tag);
