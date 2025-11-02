@@ -55,6 +55,43 @@ import "@pagefind/default-ui/css/ui.css";
 </site-search>
 
 <script>
+	const pagefindTranslations = {
+		language: "nb",
+		placeholder: "Søk",
+		clear_search: "Tøm",
+		load_more: "Vis flere treff",
+		search_label: "Søk på dette nettstedet",
+		filters_label: "Filtre",
+		zero_results: "Ingen treff for [SEARCH_TERM]",
+		many_results: "[COUNT] treff for [SEARCH_TERM]",
+		one_result: "[COUNT] treff for [SEARCH_TERM]",
+		alt_search: "Ingen treff for [SEARCH_TERM]. Viser treff for [DIFFERENT_TERM] i stedet",
+		search_suggestion: "Ingen treff for [SEARCH_TERM]. Prøv ett av disse søkene:",
+		searching: "Søker etter [SEARCH_TERM]...",
+	};
+
+	const processSearchResult = (data) => {
+		if (!data?.meta) return data;
+
+		const toLabelValue = (value) => (Array.isArray(value) ? value.join(", ") : value);
+		const meta = { ...data.meta };
+
+		if (meta.tag) {
+			meta.Tagg = toLabelValue(meta.tag);
+			delete meta.tag;
+		}
+
+		if (meta.tags) {
+			meta.Tagger = toLabelValue(meta.tags);
+			delete meta.tags;
+		}
+
+		return {
+			...data,
+			meta,
+		};
+	};
+
 	class SiteSearch extends HTMLElement {
 		private closeBtn: HTMLButtonElement;
 		private dialog: HTMLDialogElement;
@@ -122,6 +159,8 @@ import "@pagefind/default-ui/css/ui.css";
 					element: "#cactus__search",
 					showImages: false,
 					showSubResults: true,
+					processResult: processSearchResult,
+					translations: pagefindTranslations,
 				});
 			});
 		}
