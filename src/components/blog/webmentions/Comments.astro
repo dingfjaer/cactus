@@ -25,7 +25,7 @@ const comments = mentions.filter(
 	!!comments.length && (
 		<div>
 			<p class="mb-0 text-accent-2">
-				<strong>{comments.length}</strong> Mention{comments.length > 1 ? "s" : ""}
+				<strong>{comments.length}</strong> webmention{comments.length > 1 ? "er" : ""}
 			</p>
 			<ul class="mt-0 divide-y divide-textColor/20 ps-0" role="list">
 				{comments.map((mention) => (
@@ -68,7 +68,7 @@ const comments = mentions.filter(
 									target="_blank"
 								>
 									<span class="hidden" id="cmt-source">
-										Vist the source of this webmention
+										Se kilden til denne webmentionen
 									</span>
 									<Icon
 										aria-hidden="true"

@@ -33,7 +33,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 		</div>
 	)
 }
-{data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
+{data.draft ? <span class="text-base text-red-500">(Kladd)</span> : null}
 <h1 class="title">
 	{data.title}
 </h1>
@@ -45,7 +45,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 	{
 		data.updatedDate && (
 			<span class="rounded-lg bg-quote/10 px-2 py-1 text-quote">
-				Updated:
+				Oppdatert:
 				<FormattedDate class="ms-1" date={data.updatedDate} dateTimeOptions={dateTimeOptions} />
 			</span>
 		)
@@ -74,7 +74,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 			{data.tags.map((tag, i) => (
 				<>
 					<a
-						aria-label={`View more blogs with the tag ${tag}`}
+						aria-label={`Se flere innlegg med taggen ${tag}`}
 						class="cactus-link inline-block before:content-['#']"
 						data-pagefind-filter="tag"
 						href={`${baseUrl}tags/${tag}/`}

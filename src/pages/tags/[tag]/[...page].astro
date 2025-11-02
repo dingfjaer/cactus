@@ -28,8 +28,8 @@ const { page } = Astro.props;
 const { tag } = Astro.params;
 
 const meta = {
-	description: `View all posts with the tag - ${tag}`,
-	title: `Tag: ${tag}`,
+	description: `Se alle innlegg med taggen ${tag}`,
+	title: `Tagg: ${tag}`,
 };
 
 const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
@@ -37,13 +37,13 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			text: "← Previous Tags",
+			text: "← Forrige tagger",
 			url: page.url.prev.startsWith(baseUrl) ? page.url.prev : `${baseUrl}${page.url.prev}`,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			text: "Next Tags →",
+			text: "Neste tagger →",
 			url: page.url.next.startsWith(baseUrl) ? page.url.next : `${baseUrl}${page.url.next}`,
 		},
 	}),
@@ -56,7 +56,7 @@ const paginationProps = {
 		<span class="me-3 ms-2">→</span>
 		<span class="text-xl">#{tag}</span>
 	</h1>
-	<section aria-label="Blog post list">
+	<section aria-label="Liste over blogginnlegg">
 		<ul class="space-y-8">
 			{
 				page.data.map((p) => (

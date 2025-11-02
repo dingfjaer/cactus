@@ -6,6 +6,7 @@ export function remarkReadingTime() {
 	return (tree, { data }) => {
 		const textOnPage = mdastToString(tree);
 		const readingTime = getReadingTime(textOnPage);
-		data.astro.frontmatter.minutesRead = readingTime.text;
+		const roundedMinutes = Math.max(1, Math.round(readingTime.minutes));
+		data.astro.frontmatter.minutesRead = `${roundedMinutes} min lesetid`;
 	};
 }
