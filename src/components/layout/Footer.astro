@@ -14,12 +14,12 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 	</div>
 	<nav
 		aria-label="Mer på dette nettstedet"
-		class="flex gap-x-2 sm:gap-x-0 sm:divide-x sm:divide-gray-500"
+		class="flex flex-wrap gap-x-3 sm:gap-x-0 sm:flex-nowrap sm:divide-x sm:divide-gray-500"
 	>
 		{
 			menuLinks.map((link) => (
 				<a
-					class="px-4 py-2 sm:py-0 sm:hover:text-textColor sm:hover:underline"
+					class="px-3 py-2 whitespace-nowrap sm:py-0 sm:px-4 sm:hover:text-textColor sm:hover:underline"
 					href={`${baseUrl}${link.path}`}
 				>
 					{link.title}
