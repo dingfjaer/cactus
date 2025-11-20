@@ -1,10 +1,11 @@
 ---
 title: Hva abonnerer jeg på og hvor mye jeg betaler hver måned
-description: Det er lett gjort å abonnere på en tjeneste som du ikke har tid til å bruke.  
+description: Det er lett gjort å abonnere på en tjeneste som du ikke har tid til å bruke.
 publishDate: 2025-02-08
 tags:
   - notat
 draft: false
+updatedDate: 2025-11-05
 ---
 
  

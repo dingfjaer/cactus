@@ -7,9 +7,9 @@ tags:
   - notat
 draft: false
 ---
+Dette er svar fra ChatGPT da jeg spurte om fargeblind og UX ifm. et prosjekt på jobb. Dumper den her bare for rask oppslag til neste gang. 
 
-
-Verktøy: [Whocanuse](https://www.whocanuse.com/?bg=076940&fg=ffffff&fs=16&fw=)
+**Verktøy**: [Whocanuse](https://www.whocanuse.com/?bg=076940&fg=ffffff&fs=16&fw=)
 
 **Fargeblindhet** er en tilstand som påvirker en persons evne til å se visse farger eller skille mellom farger. Dette kan skape utfordringer i hverdagen, spesielt når informasjon formidles kun gjennom fargekoding. Å forstå fargeblindhet og hvordan det kan påvirke design er avgjørende for å skape inkluderende og brukervennlige løsninger.
 

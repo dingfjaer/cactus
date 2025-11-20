@@ -32,6 +32,19 @@ Men målet mitt for Fjærdinghage er at den skal få utvikle seg fritt dette år
 
 Nå er det vinter, og som i alle andre hager er det stille. Alt er i dvale, men jeg har sådd noen frø her og der. Forhåpentligvis spirer de snart.
 
+## ... tiden går, har Fjærdinghagen vokst som jeg så for meg?
+
+Det er snart Jul, som betyr at år 2025 nærmer seg slutten. Har Fjærdinghagen utviklet seg til den jeg hadde håpet? Svaret er nei. Det ble nesten ingen innhøsting i hagen i år, og det var en lang periode da jeg ikke rørte den. Oops, typisk meg da - høy ambisjon, men lav aksjon. 
+
+Hvorfor ble det sånn? 
+
+Det dukket opp en merkelig feil da jeg skulle deployet en oppdatering, og fikk aldri fikset det uansett hva jeg prøvde. Det gjorde at jeg ble demotivert og synes det var frustrende med disse tekniske avhengigheter som jeg ikke hadde kontroll på. 
+
+Annen grunn var også at jeg innså at jeg ikke hadde så mye å skrive om. Kanskje noen tanker eller ideer slo meg innimellom, men aldri noe så spennende at jeg ville sette meg ned og skrive noe om det. 
+
+Sist, men ikke minst! Vi fikk hund i år, da er ikke det rart at man ikke får nok tid til å drive med noen sideprosjekter på kvelder. Men dette skal jeg skrive mye mer i et annet innlegg senere. 
+
+Så, Fjærdinghagen ble ikke like frodig og mangfoldig som jeg ønsket meg, men jeg er glad for at jeg plukket opp tråden igjen (faktisk fordi jeg kjøpte en ny Macbook Air og endelig fikset den deploy-buggen som gjorde det mulig å publisere igjen). La oss satser på at vi kan gjøre noe mer med hagen i 2026, da? Nyttårsforsettet for nyåret, hihi. 
 
 ## 📑 Gå til Oversikten
 Se [alt som gror i Fjærdinghagen her](https://dingchen.no/posts/). -->
