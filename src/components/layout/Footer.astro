@@ -1,7 +1,7 @@
 ---
 import { menuLinks, siteConfig } from "@/site-config";
 
-const year = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
 const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 ---
 
@@ -10,7 +10,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 >
 	<div class="me-0 sm:me-4">
 		&copy; {siteConfig.author}
-		{year}.<span class="inline-block">&nbsp;Hva sier reven? </span>
+		<span data-current-year>{currentYear}</span>.<span class="inline-block">&nbsp;Hva sier reven? </span>
 	</div>
 	<nav
 		aria-label="Mer på dette nettstedet"
@@ -28,3 +28,9 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 		}
 	</nav>
 </footer>
+<script is:inline>
+	const yearElement = document.querySelector("[data-current-year]");
+	if (yearElement) {
+		yearElement.textContent = new Date().getFullYear().toString();
+	}
+</script>

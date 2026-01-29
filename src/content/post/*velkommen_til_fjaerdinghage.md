@@ -2,7 +2,7 @@
 title: Velkommen til Fjærdinghage
 description: En intro-side for Fjærdinghage. Oppdateres underveis mens hagen utvikler seg.
 publishDate: 2024-11-11
-updatedDate: 2025-11-20
+updatedDate: 2026-01-29
 tags:
   - digital_hage
 draft: false
@@ -38,11 +38,11 @@ Det er snart Jul, som betyr at år 2025 nærmer seg slutten. Har Fjærdinghagen 
 
 Hvorfor ble det sånn? 
 
-Det dukket opp en merkelig feil da jeg skulle deployet en oppdatering, og fikk aldri fikset det uansett hva jeg prøvde. Det gjorde at jeg ble demotivert og synes det var frustrende med disse tekniske avhengigheter som jeg ikke hadde kontroll på. 
+Det dukket opp en merkelig feil da jeg skulle deployet en oppdatering, og fikk aldri fikset det uansett hva jeg prøvde. Jeg ble meget demotivert og synes det var frustrende med disse tekniske avhengigheter som jeg ikke hadde kontroll på. 
 
-Annen grunn var også at jeg innså at jeg ikke hadde så mye å skrive om. Kanskje noen tanker eller ideer slo meg innimellom, men aldri noe så spennende at jeg ville sette meg ned og skrive noe om det. 
+Annen grunn var at jeg ikke hadde så mye på hjertet som jeg ville skrive om. Kanskje noen tanker eller ideer slo meg innimellom, men aldri noe så spennende at jeg ville sette meg ned en kveld og skrive ned masse ord om det. chrome 
 
-Sist, men ikke minst! Vi fikk hund i år, da er ikke det rart at man ikke får nok tid til å drive med noen sideprosjekter på kvelder. Men dette skal jeg skrive mye mer i et annet innlegg senere. 
+Sist, men ikke minst! Vi fikk hund i år, da er ikke det rart at man ikke får nok tid til å drive med noen sideprosjekter på kvelder. Joda, det får man... men ikke jeg.
 
 Så, Fjærdinghagen ble ikke like frodig og mangfoldig som jeg ønsket meg, men jeg er glad for at jeg plukket opp tråden igjen (faktisk fordi jeg kjøpte en ny Macbook Air og endelig fikset den deploy-buggen som gjorde det mulig å publisere igjen). La oss satser på at vi kan gjøre noe mer med hagen i 2026, da? Nyttårsforsettet for nyåret, hihi. 
 
