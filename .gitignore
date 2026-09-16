@@ -24,3 +24,5 @@ pnpm-debug.log*
 .cache
 .astro
 **/.obsidian/*
+# Local Front Matter dashboard state
+.frontmatter/database/

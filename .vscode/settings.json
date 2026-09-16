@@ -1,21 +1,38 @@
 {
-	"[javascript]": { "editor.defaultFormatter": "biomejs.biome" },
-	"[typescript]": { "editor.defaultFormatter": "biomejs.biome" },
-	"[javascriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
-	"[typescriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
-	"[json]": { "editor.defaultFormatter": "biomejs.biome" },
-	"[jsonc]": { "editor.defaultFormatter": "biomejs.biome" },
-	"[astro]": { "editor.defaultFormatter": "astro-build.astro-vscode" },
-	"editor.formatOnSave": true,
-	"editor.codeActionsOnSave": {
-		"source.organizeImports": "never",
-		"source.organizeImports.biome": "explicit",
-		"source.fixAll": "never",
-		"quickfix.biome": "explicit"
-	},
-	"[markdown]": {
-		"editor.wordWrap": "on"
-	},
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"astro.content-intellisense": true
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll": "never",
+    "quickfix.biome": "explicit"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "astro.content-intellisense": true,
+  "terminal.integrated.env.osx": {
+    "PATH": "${env:HOME}/.nvm/versions/node/v24.21.0/bin:${env:PATH}"
+  }
 }

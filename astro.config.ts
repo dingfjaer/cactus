@@ -1,14 +1,12 @@
 import fs from "node:fs";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import { unified } from "@astrojs/markdown-remark";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
-import webmanifest from "astro-webmanifest";
 import { defineConfig } from "astro/config";
 import { expressiveCodeOptions } from "./src/site.config";
-import { siteConfig } from "./src/site.config";
 
 
 // Remark plugins
@@ -22,59 +20,25 @@ import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
+	compressHTML: true,
 	image: {
 		domains: ["webmention.io"],
 	},
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
 		icon(),
-		tailwind({
-			applyBaseStyles: false,
-			nesting: true,
-		}),
 		sitemap(),
 		mdx(),
 		robotsTxt(),
-		webmanifest({
-			name: siteConfig.title,
-			description: siteConfig.description,
-			lang: siteConfig.lang,
-			icon: "/icons/apple-touch-icon.png",
-			icons: [
-					{
-							src: "/icons/apple-touch-icon.png",
-							sizes: "180x180",
-							type: "image/png",
-					},
-					{
-							src: "/icons/icon-192.png",
-							sizes: "192x192",
-							type: "image/png",
-					},
-					{
-							src: "/icons/icon-512.png",
-							sizes: "512x512",
-							type: "image/png",
-					},
-			],
-			start_url: "/",
-			background_color: "#1d1f21",
-			theme_color: "#2bbc8a",
-			display: "standalone",
-			config: {
-					insertFaviconLinks: false,
-					insertThemeColorMeta: false,
-					insertManifestLink: false,
-			},
-	}),	
 	],
 	markdown: {
+		processor: unified({
 		rehypePlugins: [
 			rehypeUnwrapImages,
 			[
 				rehypeExternalLinks,
 				{
-					rel: ["nofollow, noreferrer"],
+					rel: ["nofollow", "noreferrer"],
 					target: "_blank",
 				},
 			],
@@ -85,6 +49,7 @@ export default defineConfig({
 				className: [""],
 			},
 		},
+		}),
 	},
 	// https://docs.astro.build/en/guides/prefetch/
 	prefetch: true,

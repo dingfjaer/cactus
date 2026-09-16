@@ -10,7 +10,7 @@ const { articleDate, description, ogImage, title } = Astro.props;
 const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
+const socialImageURL = new URL(ogImage ? ogImage : "/og-image/velkommen_til_fjaerdinghage.png", Astro.url).href;
 const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 ---
 
@@ -25,21 +25,9 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 
 <title>{siteTitle}</title>
 
-{/* Icons */}
-
-<link href={`${baseUrl}favicon.svg`} rel="favicon" type="image/svg+xml" />
-{
-	(
-		<>
-			{/* Favicon & Apple Icon */}
-
-			<link rel="favicon" href={`${baseUrl}favicon.svg`} type="image/svg+xml" />
-			<link href={`${baseUrl}icons/apple-touch-icon.png`} rel="apple-touch-icon" />
-			{/* Manifest */}
-			<link href="${baseUrl}manifest.webmanifest" rel="manifest" />
-		</>
-	)
-}
+<link href={`${baseUrl}favicon.svg`} rel="icon" type="image/svg+xml" />
+<link href={`${baseUrl}icons/apple-touch-icon.png`} rel="apple-touch-icon" />
+<link href={`${baseUrl}manifest.webmanifest`} rel="manifest" />
 
 {/* Canonical URL */}
 <link href={canonicalURL} rel="canonical" />
@@ -50,7 +38,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 <meta content={siteConfig.author} name="author" />
 
 {/* Theme Colour */}
-<meta content="" name="theme-color" />
+<meta content="#2bbc8a" name="theme-color" />
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? "article" : "website"} property="og:type" />
@@ -72,11 +60,11 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 }
 
 {/* Sitemap */}
-<link href="`${Astro.site}sitemap-index.xml" rel="sitemap" />
+<link href={new URL("sitemap-index.xml", Astro.site)} rel="sitemap" />
 
 {/* RSS auto-discovery */}
 <link
-	href="${Astro.site}rss.xml"
+	href={new URL("rss.xml", Astro.site)}
 	rel="alternate"
 	title={siteConfig.title}
 	type="application/rss+xml"

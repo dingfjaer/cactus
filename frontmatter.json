@@ -1,0 +1,75 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "astro",
+  "frontMatter.framework.startCommand": "pnpm dev",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.preview.trailingSlash": true,
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Innlegg",
+      "path": "[[workspace]]/src/content/post",
+      "excludeSubdir": true,
+      "contentTypes": [
+        "default"
+      ],
+      "previewPath": "posts"
+    }
+  ],
+  "frontMatter.content.publicFolder": {
+    "path": "src/content/post/images",
+    "relative": true
+  },
+  "frontMatter.media.pasteFolder": "src/content/post/images",
+  "frontMatter.content.autoUpdateDate": false,
+  "frontMatter.taxonomy.dateFormat": "yyyy-MM-dd",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "fileType": "md",
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Tittel",
+          "name": "title",
+          "type": "string",
+          "single": true,
+          "required": true
+        },
+        {
+          "title": "Kort beskrivelse (maks 160 tegn)",
+          "name": "description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Publiseringsdato",
+          "name": "publishDate",
+          "type": "datetime",
+          "default": "{{now}}",
+          "dateFormat": "yyyy-MM-dd",
+          "isPublishDate": true,
+          "required": true
+        },
+        {
+          "title": "Sist oppdatert (valgfritt)",
+          "name": "updatedDate",
+          "type": "datetime",
+          "dateFormat": "yyyy-MM-dd",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Emneknagger",
+          "name": "tags",
+          "type": "tags",
+          "default": []
+        },
+        {
+          "title": "Utkast",
+          "name": "draft",
+          "type": "draft",
+          "default": true
+        }
+      ]
+    }
+  ]
+}

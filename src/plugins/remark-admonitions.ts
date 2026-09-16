@@ -1,3 +1,4 @@
+import type {} from "mdast-util-to-hast";
 import type { AdmonitionType } from "@/types";
 import { type Properties, h as _h } from "hastscript";
 import type { Node, Paragraph as P, Parent, PhrasingContent, Root } from "mdast";

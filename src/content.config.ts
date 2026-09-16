@@ -1,4 +1,7 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
+import { slug } from "github-slugger";
 
 function removeDupsAndLowerCase(array: string[]) {
 	if (!array.length) return array;
@@ -8,6 +11,12 @@ function removeDupsAndLowerCase(array: string[]) {
 }
 
 const post = defineCollection({
+	loader: glob({
+		base: "./src/content/post",
+		pattern: ["**/*.{md,mdx}", "!Templates/**"],
+		// Keep the original Cactus URLs, including Norwegian letters and underscores.
+		generateId: ({ entry, data }) => typeof data.slug === "string" ? data.slug : entry.replace(/\.(md|mdx)$/, "").split("/").map(part => slug(part)).join("/").replace(/\/index$/, ""),
+	}),
 	schema: ({ image }) =>
 		z.object({
 			coverImage: z
@@ -31,7 +40,6 @@ const post = defineCollection({
 				.optional()
 				.transform((str) => (str ? new Date(str) : undefined)),
 		}),
-	type: "content",
 });
 
 export const collections = { post };
