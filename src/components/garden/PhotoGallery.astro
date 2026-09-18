@@ -15,12 +15,10 @@ const isTinsta = kind === "tinsta";
       const day = photoCalendarDate(photo.takenAt);
       return <figure>
         {isTinsta && <figcaption><span>{tintinAge(day)}</span><time datetime={day ?? undefined}>{formatPhotoDate(day)}</time></figcaption>}
-        <a href={photo.page} aria-label={`Se ${isTinsta ? "bilde av Tintin" : `bilde fra ${title}`}${day ? `, ${formatPhotoDate(day)}` : ""} på Jottacloud`}>
           <Image src={photo.preview} inferSize widths={[480, 960, 1600]}
             sizes="(min-width: 1200px) 347px, (min-width: 1024px) calc((100vw - 160px) / 3), (min-width: 640px) calc((100vw - 96px) / 2), 100vw"
             format="webp" quality={85} alt={`${isTinsta ? "Tintin" : title}${day ? ` – ${formatPhotoDate(day)}` : ""}, bilde ${index + 1}`}
             loading={index < 3 ? "eager" : "lazy"} decoding="async" />
-        </a>
       </figure>;
     })}
   </div>
@@ -30,8 +28,6 @@ const isTinsta = kind === "tinsta";
   figure { margin: 0; min-width: 0; }
   figcaption { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .5rem; font-size: .8rem; font-variant-numeric: tabular-nums; }
   time { white-space: nowrap; }
-  a { display: block; }
-  a:focus-visible { outline: 2px solid hsl(var(--theme-accent)); outline-offset: 4px; }
   img { display: block; width: 100%; height: auto; }
   .empty { padding-block: 3rem; }
   @media (max-width: 639px) {
