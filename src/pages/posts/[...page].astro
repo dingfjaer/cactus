@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import GardenTabs from "@/components/garden/GardenTabs.astro";
 import Pagination from "@/components/Paginator.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import { getAllPosts, getUniqueTags, groupPostsByYear, sortMDByDate } from "@/data/post";
@@ -23,7 +24,7 @@ const { page, uniqueTags } = Astro.props;
 
 const meta = {
 	description: "Les samlingen min av innlegg og det som inspirerer meg",
-	title: "Av",
+	title: "Spira – Alt som gror",
 };
 const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 
@@ -46,7 +47,8 @@ const groupedByYear = groupPostsByYear(page.data);
 const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 ---
 
-<PageLayout meta={meta}>
+<PageLayout meta={meta} garden>
+	<GardenTabs slot="navigation" active="spira" />
 	<!-- <h1 class="title mb-6">Posts</h1> -->
 	<div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
 		<section aria-label="Liste over blogginnlegg">

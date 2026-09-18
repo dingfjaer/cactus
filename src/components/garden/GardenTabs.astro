@@ -1,0 +1,158 @@
+---
+import { Icon } from "astro-icon/components";
+import type { GalleryKey } from "@/data/galleries";
+interface Props { active: GalleryKey | "spira" }
+const { active } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const tabs = [
+  { key: "spira", label: "Spira", path: "/posts/", icon: "mdi:sprout-outline" },
+  { key: "rosa", label: "Rosa", path: "/posts/rosa/", icon: "mdi:flower" },
+  { key: "vipa", label: "Vipa", path: "/posts/vipa/", icon: "mdi:bird" },
+  { key: "lova", label: "Løva", path: "/posts/lova/", icon: "mdi:leaf" },
+  { key: "tinsta", label: "Tinsta", path: "/posts/tinsta/", icon: "mdi:paw-outline" },
+];
+const selected = tabs.findIndex(tab => tab.key === active);
+---
+<garden-tabs class="garden-tabs" data-selected={selected}>
+  <nav aria-label="Alt som gror" class="glass-bar" style={`--selected: ${selected}`}>
+    <span class="glass-selection" aria-hidden="true"></span>
+    <ul>
+      {tabs.map(tab => <li><a href={`${base}${tab.path}`} aria-current={active === tab.key ? "page" : undefined} data-astro-prefetch="hover" draggable="false">
+        <Icon name={tab.icon} aria-hidden="true" /><span>{tab.label}</span>
+      </a></li>)}
+    </ul>
+  </nav>
+</garden-tabs>
+<script>
+  class GardenTabs extends HTMLElement {
+    connectedCallback() {
+      const bar = this.querySelector<HTMLElement>('.glass-bar')!;
+      const links = [...this.querySelectorAll<HTMLAnchorElement>('a')];
+      const selected = Number(this.dataset.selected);
+      let start: { x: number; y: number; id: number } | null = null;
+      let dragging = false;
+      let suppressClick = false;
+      let target = selected;
+      const reset = () => {
+        bar.classList.remove('is-dragging');
+        bar.style.setProperty('--selected', String(selected));
+        links.forEach(link => link.removeAttribute('data-preview'));
+        start = null;
+        dragging = false;
+      };
+      bar.addEventListener('pointerdown', event => {
+        if (!event.isPrimary || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        start = { x: event.clientX, y: event.clientY, id: event.pointerId };
+        suppressClick = false;
+      });
+      bar.addEventListener('pointermove', event => {
+        if (!start) return;
+        const dx = event.clientX - start.x;
+        const dy = event.clientY - start.y;
+        if (!dragging) {
+          if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) { reset(); return; }
+          if (Math.abs(dx) < 8) return;
+          dragging = true;
+          bar.setPointerCapture(event.pointerId);
+          bar.classList.add('is-dragging');
+        }
+        const rect = bar.getBoundingClientRect();
+        const position = Math.max(0, Math.min(4, (event.clientX - rect.left - 4) / ((rect.width - 8) / 5) - .5));
+        target = Math.round(position);
+        bar.style.setProperty('--selected', String(position));
+        links.forEach((link, index) => link.toggleAttribute('data-preview', index === target));
+      });
+      bar.addEventListener('pointerup', event => {
+        if (!start) return;
+        if (dragging) {
+          suppressClick = true;
+          const destination = links[target];
+          reset();
+          if (bar.hasPointerCapture(event.pointerId)) bar.releasePointerCapture(event.pointerId);
+          if (target !== selected) window.location.assign(destination.href);
+        } else reset();
+      });
+      bar.addEventListener('pointercancel', reset);
+      bar.addEventListener('lostpointercapture', reset);
+      bar.addEventListener('click', event => {
+        if (suppressClick) { event.preventDefault(); suppressClick = false; }
+      });
+      bar.addEventListener('keydown', event => {
+        const index = links.indexOf(document.activeElement as HTMLAnchorElement);
+        if (index < 0) return;
+        let next = index;
+        if (event.key === 'ArrowRight') next = (index + 1) % links.length;
+        else if (event.key === 'ArrowLeft') next = (index + links.length - 1) % links.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = links.length - 1;
+        else return;
+        event.preventDefault();
+        links[next].focus();
+      });
+    }
+  }
+  if (!customElements.get('garden-tabs')) customElements.define('garden-tabs', GardenTabs);
+</script>
+<style>
+  .garden-tabs { display: block; margin-bottom: 3rem; }
+  .glass-bar {
+    position: relative; isolation: isolate; max-width: 31rem; padding: 4px;
+    border-radius: 999px; touch-action: pan-y; user-select: none;
+    background: hsl(var(--theme-bg) / .72);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    backdrop-filter: blur(20px) saturate(1.6);
+    box-shadow: inset 0 0 0 1px hsl(var(--theme-text) / .18), inset 0 1px 0 #fff6,
+      0 5px 18px #0000000d, 0 1px 3px #0000000a;
+  }
+  .glass-bar::before {
+    content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(160deg, #ffffff24, transparent 45%, hsl(var(--theme-accent) / .035));
+  }
+  .glass-selection {
+    position: absolute; top: 4px; bottom: 4px; left: 4px;
+    width: calc((100% - 8px) / 5); border-radius: 999px; pointer-events: none;
+    transform: translateX(calc(var(--selected) * 100%));
+    background: linear-gradient(155deg, #ffffff50, #ffffff0a 50%, #ffffff24), hsl(var(--theme-text) / .1);
+    box-shadow: inset 0 1px 1px #ffffff90, inset 0 -1px 1px #ffffff30,
+      0 0 0 1px hsl(var(--theme-text) / .1), 0 3px 9px #00000014;
+    view-transition-name: garden-selection;
+    transition: transform .45s cubic-bezier(.2,.85,.25,1.1), filter .15s;
+  }
+  ul { position: relative; display: flex; }
+  li { flex: 1; min-width: 0; }
+  a {
+    display: flex; align-items: center; justify-content: center; gap: .4rem;
+    min-height: 44px; padding: .4rem .25rem; border-radius: 999px;
+    color: hsl(var(--theme-text) / .8); font-size: .8rem;
+    -webkit-tap-highlight-color: transparent;
+    transition: color .18s, transform .22s cubic-bezier(.2,.8,.2,1.2), background .18s;
+  }
+  a[aria-current="page"], a[data-preview] { color: hsl(var(--theme-accent)); }
+  a:active { transform: scale(.93); background: hsl(var(--theme-text) / .075); }
+  a:focus-visible { outline: 2px solid hsl(var(--theme-accent)); outline-offset: 3px; }
+  [data-icon] { width: 1rem; height: 1rem; flex-shrink: 0; }
+  .is-dragging .glass-selection { transition: none; filter: brightness(1.12); }
+  .is-dragging a { transform: none; }
+  @media (hover: hover) { a:hover { color: hsl(var(--theme-accent)); background: hsl(var(--theme-text) / .055); } }
+  @media (max-width: 359px) { a { gap: .2rem; font-size: .7rem; } }
+  @media (prefers-reduced-motion: reduce) { .glass-selection, a { transition: none; } a:active { transform: none; } }
+  @media (prefers-reduced-transparency: reduce) {
+    .glass-bar { background: hsl(var(--theme-bg)); -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .glass-selection { background: hsl(var(--theme-text) / .16); }
+  }
+  @media (forced-colors: active) {
+    .glass-bar { border: 1px solid ButtonText; }
+    a[aria-current="page"] { outline: 2px solid Highlight; outline-offset: -2px; }
+  }
+</style>
+<style is:global>
+  /* Native cross-document transitions keep real URLs, history and no-JS links.
+     The shared glass lens moves between its old and new tab positions. */
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  ::view-transition-group(garden-selection) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2,.85,.25,1.1); }
+  ::view-transition-old(garden-selection), ::view-transition-new(garden-selection) { height: 100%; mix-blend-mode: normal; }
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 0s !important; }
+  }
+</style>

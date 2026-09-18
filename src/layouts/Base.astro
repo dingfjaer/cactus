@@ -9,12 +9,15 @@ import type { SiteMeta } from "@/types";
 
 interface Props {
 	meta: SiteMeta;
+	garden?: boolean;
+	wide?: boolean;
 }
 
 const {
+	garden = false,
+	wide = false,
 	meta: { articleDate, description = siteConfig.description, ogImage, title },
 } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 ---
 
 <html class="scroll-smooth" lang={siteConfig.lang}>
@@ -22,14 +25,29 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
 	</head>
 	<body
+		class:list={[{ "garden-page": garden, "garden-wide": wide }]}
 		class="mx-auto flex min-h-screen max-w-3xl flex-col bg-bgColor px-4 pt-16 font-sans text-base font-normal text-textColor antialiased sm:px-8"
 	>
 		<ThemeProvider />
 		<SkipLink />
 		<Header />
+		<slot name="navigation" />
 		<main id="main">
 			<slot />
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.garden-page :global(footer nav) { max-width: 100%; flex-wrap: wrap; justify-content: center; }
+	.garden-page :global(#main-header) { margin-bottom: 1rem; }
+	.garden-wide { max-width: 1200px; }
+	.garden-wide :global(#main-header),
+	.garden-wide :global(.garden-tabs),
+	.garden-wide :global(footer) {
+		width: 100%;
+		max-width: 704px;
+		margin-inline: auto;
+	}
+</style>

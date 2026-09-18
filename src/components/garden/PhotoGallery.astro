@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import { fetchAlbum } from "../../../scripts/jottacloud-poc.mjs";
+import { photoCalendarDate, tintinAge, formatPhotoDate } from "@/utils/tintin-age.mjs";
+import type { GalleryKey } from "@/data/galleries";
+interface Props { shareId: string; kind: GalleryKey; title: string }
+const { shareId, kind, title } = Astro.props;
+const album = await fetchAlbum(shareId);
+const photos = album.photos.sort((a, b) => (b.takenAt ?? "").localeCompare(a.takenAt ?? ""));
+const isTinsta = kind === "tinsta";
+---
+{photos.length === 0 ? <p class="empty">Her spirer det snart noe nytt. Ingen bilder ennå.</p> :
+  <div class:list={["photo-gallery", { tinsta: isTinsta }]}>
+    {photos.map((photo, index) => {
+      const day = photoCalendarDate(photo.takenAt);
+      return <figure>
+        {isTinsta && <figcaption><span>{tintinAge(day)}</span><time datetime={day ?? undefined}>{formatPhotoDate(day)}</time></figcaption>}
+        <a href={photo.page} aria-label={`Se ${isTinsta ? "bilde av Tintin" : `bilde fra ${title}`}${day ? `, ${formatPhotoDate(day)}` : ""} på Jottacloud`}>
+          <Image src={photo.preview} inferSize widths={[480, 960, 1600]}
+            sizes="(min-width: 1200px) 347px, (min-width: 1024px) calc((100vw - 160px) / 3), (min-width: 640px) calc((100vw - 96px) / 2), 100vw"
+            format="webp" quality={85} alt={`${isTinsta ? "Tintin" : title}${day ? ` – ${formatPhotoDate(day)}` : ""}, bilde ${index + 1}`}
+            loading={index < 3 ? "eager" : "lazy"} decoding="async" />
+        </a>
+      </figure>;
+    })}
+  </div>
+}
+<style>
+  .photo-gallery { display: grid; grid-template-columns: 1fr; align-items: start; gap: 2rem; }
+  figure { margin: 0; min-width: 0; }
+  figcaption { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .5rem; font-size: .8rem; font-variant-numeric: tabular-nums; }
+  time { white-space: nowrap; }
+  a { display: block; }
+  a:focus-visible { outline: 2px solid hsl(var(--theme-accent)); outline-offset: 4px; }
+  img { display: block; width: 100%; height: auto; }
+  .empty { padding-block: 3rem; }
+  @media (max-width: 639px) {
+    .tinsta { margin-inline: -1rem; gap: 2rem; }
+    .tinsta figcaption { padding-inline: 1rem; }
+  }
+  @media (min-width: 640px) { .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .photo-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; } }
+</style>

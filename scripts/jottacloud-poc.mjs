@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 
 const DEFAULT_SHARE = 'k0qd6q3j37gn';
-const LIMIT = 100;
+const PAGE_SIZE = 100;
 
 function jottaURL(value) {
   const url = new URL(value);
@@ -30,23 +30,42 @@ async function get(url) {
  * @returns {Promise<{
  *   title: string, shareId: string, endpoint: string, fetchedAt: string,
  *   photos: Array<{
- *     id: string, filename: string, width: number, height: number,
+ *     id: string, filename: string, takenAt: string | null, width: number, height: number,
  *     thumbnail: string, preview: string, original: string, page: string,
  *     localPreview?: string
  *   }>
  * }>}
  */
-export async function fetchAlbum(shareId = DEFAULT_SHARE) {
+export async function fetchAlbum(shareId = DEFAULT_SHARE, { pageSize = PAGE_SIZE } = {}) {
   if (!/^[a-zA-Z0-9_-]+$/.test(shareId)) throw new Error('Invalid share ID');
-  const endpoint = `https://api.jottacloud.com/photos/v1/public/${shareId}/?order=ASC&limit=${LIMIT}&comments=false`;
-  const raw = await (await get(endpoint)).json();
-  if (typeof raw.title !== 'string' || !Array.isArray(raw.photos)) {
-    throw new Error('Unexpected album response');
+  if (!Number.isInteger(pageSize) || pageSize < 1) throw new Error('Invalid page size');
+  const base = `https://api.jottacloud.com/photos/v1/public/${shareId}/`;
+  const query = `?order=ASC&limit=${pageSize}&comments=false`;
+  const endpoint = `${base}${query}`;
+  let title = '', cursor = '';
+  const seenCursors = new Set();
+  const entries = new Map();
+  // Jottacloud's public-album client passes the last photo's timestamp as
+  // the next path segment (from). Keep it as a string: it is nanoseconds.
+  while (true) {
+    const raw = await (await get(`${base}${encodeURIComponent(cursor)}${query}`)).json();
+    if (typeof raw.title !== 'string' || !Array.isArray(raw.photos)) {
+      throw new Error('Unexpected album response');
+    }
+    if (!cursor) title = raw.title;
+    for (const photo of raw.photos) {
+      if (typeof photo.id !== 'string') throw new Error('Unexpected photo ID');
+      entries.set(photo.id, photo);
+    }
+    if (raw.photos.length < pageSize) break;
+    const next = raw.photos.at(-1)?.timestamp;
+    if (typeof next !== 'string' || !/^\d+$/.test(next) || seenCursors.has(next)) {
+      throw new Error('Jottacloud pagination did not advance');
+    }
+    seenCursors.add(next);
+    cursor = next;
   }
-  // Pagination has not been proven by this two-photo experiment.
-  // Stop rather than quietly publish an incomplete large album.
-  if (raw.photos.length >= LIMIT) throw new Error('PoC limit reached; pagination must be implemented');
-  const photos = raw.photos.filter(p => !p.deleted && !p.hidden && p.content === 'image').map(p => {
+  const photos = [...entries.values()].filter(p => !p.deleted && !p.hidden && p.content === 'image').map(p => {
     if (typeof p.id !== 'string' || typeof p.filename !== 'string' ||
         !Number.isFinite(p.width) || p.width <= 0 ||
         !Number.isFinite(p.height) || p.height <= 0) {
@@ -55,6 +74,11 @@ export async function fetchAlbum(shareId = DEFAULT_SHARE) {
     return {
       id: p.id,
       filename: p.filename,
+      // capturedDate is Jottacloud's photo date in milliseconds, not the
+      // nanosecond timestamp used by the API for ordering/versioning.
+      takenAt: typeof p.capturedDate === 'number' && Number.isFinite(p.capturedDate)
+        && p.capturedDate > 0 && !Number.isNaN(new Date(p.capturedDate).valueOf())
+        ? new Date(p.capturedDate).toISOString() : null,
       width: p.width,
       height: p.height,
       thumbnail: jottaURL(`${p.thumbnail_url}.s`),
@@ -63,7 +87,7 @@ export async function fetchAlbum(shareId = DEFAULT_SHARE) {
       page: `https://jottacloud.com/share/${shareId}/${encodeURIComponent(p.id)}`,
     };
   });
-  return { title: raw.title, shareId, endpoint, fetchedAt: new Date().toISOString(), photos };
+  return { title, shareId, endpoint, fetchedAt: new Date().toISOString(), photos };
 }
 
 const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({
