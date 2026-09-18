@@ -1,0 +1,112 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import DesignDevice from "@/components/design/DesignDevice.astro";
+// Portfolio draft: edit the copy here and replace DesignDevice slots with project images.
+const projects = [
+  { id: "prosjekt-en", number: "01", title: "Litt enklere.\nMye bedre.", category: "DIGITAL PRODUKTDESIGN", name: "Prosjekt én", description: "Et lite grep kan gjøre en stor forskjell. Her kommer historien om en digital tjeneste som gjør hverdagen litt lettere.", tone: "peach" as const, type: "Mobilopplevelse", year: "2026" },
+  { id: "prosjekt-to", number: "02", title: "Rom for\nnysgjerrighet.", category: "TJENESTEDESIGN & UX", name: "Prosjekt to", description: "Fra mange muligheter til én tydelig retning. Her kommer et prosjekt om å utforske behov og finne frem til det som betyr noe.", tone: "mint" as const, type: "Digital tjeneste", year: "2025" },
+  { id: "prosjekt-tre", number: "03", title: "De små tingene.\nDen store følelsen.", category: "VISUELL DESIGN & INTERAKSJON", name: "Prosjekt tre", description: "Når innhold, form og bevegelse spiller sammen. Her kommer et prosjekt der detaljene får lov til å gjøre jobben.", tone: "lavender" as const, type: "Nettside & identitet", year: "2025" },
+];
+---
+<!doctype html>
+<html lang="nb">
+  <head><BaseHead title="Design — Ding Chen Fjær" description="Utvalgte prosjekter og tanker om design. Portefølje av Ding Chen Fjær." /></head>
+  <body class="design-page">
+    <a class="skip" href="#innhold">Hopp til innhold</a>
+    <header class="navigation">
+      <a class="wordmark" href="/" aria-label="Ding Chen Fjær – tilbake til Fjærdinghage">ding<span aria-hidden="true">✳</span></a>
+      <nav aria-label="Portefølje"><a href="#prosjekter">Prosjekter</a><a href="#tilnarming">Tilnærming</a><a class="nav-cv" href="/cv/">Min CV <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="innhold">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="dot"></span> DING CHEN FJÆR · DESIGNER</p>
+          <h1 id="hero-title">Design som<br />kjennes <em>riktig.</em></h1>
+          <p class="intro">Nysgjerrighet først. Mennesker i sentrum.<br />Digitale opplevelser med omtanke i detaljene.</p>
+          <a class="button dark" href="#prosjekter">Utforsk prosjektene <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-stage" aria-label="Plassholdere for tre prosjektbilder">
+          <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+          <span class="stage-note" aria-hidden="true">Små detaljer.<br /><em>Store forskjeller.</em></span>
+          <div class="hero-phone left" data-parallax="0.09"><DesignDevice tone="mint" label="Prosjekt 02" /></div>
+          <div class="hero-phone center" data-parallax="-0.045"><DesignDevice tone="peach" label="Prosjekt 01" /></div>
+          <div class="hero-phone right" data-parallax="0.13"><DesignDevice tone="lavender" label="Prosjekt 03" /></div>
+          <span class="asterisk" aria-hidden="true">✳</span>
+        </div>
+        <div class="hero-bottom"><span>ET UTVALG ARBEIDER</span><span>SCROLL FOR Å UTFORSKE <span aria-hidden="true">↓</span></span><span>2025 — 2026</span></div>
+      </section>
+
+      <section class="work section-width" id="prosjekter" aria-labelledby="work-title">
+        <div class="section-heading"><div><p class="eyebrow">FRA IDÉ TIL OPPLEVELSE</p><h2 id="work-title">Utvalgte arbeider<span class="orange">.</span></h2></div><p>Ulike utfordringer.<br />Den samme nysgjerrigheten.</p></div>
+        {projects.map((project, index) => (
+          <article id={project.id} class:list={["project", project.tone]}>
+            <div class="project-copy">
+              <p class="eyebrow"><span class="project-number">{project.number}</span> {project.category}</p>
+              <h3>{project.title.split("\n").map(line => <span>{line}</span>)}</h3>
+              <p class="project-description">{project.description}</p>
+              <div class="project-tags"><span>{project.name}</span><span>{project.type}</span></div>
+              <a class="text-link" href={`#${project.id}-historie`}>Om prosjektet <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class:list={["project-stage", { "wide-stage": index === 2 }]}>
+              <span class="backdrop-circle" aria-hidden="true"></span>
+              {index === 0 ? <><div class="project-phone phone-a" data-parallax="0.06"><DesignDevice tone={project.tone} label="Hovedskjerm" /></div><div class="project-phone phone-b" data-parallax="-0.055"><DesignDevice tone={project.tone} label="Detaljvisning" /></div></> : index === 1 ? <><div class="floating-caption" data-parallax="0.1"><span aria-hidden="true">↗</span><span>En ny<br />retning.</span></div><div class="project-phone phone-solo" data-parallax="-0.06"><DesignDevice tone={project.tone} label="Brukeropplevelse" /></div></> : <div class="project-browser" data-parallax="-0.04"><DesignDevice tone={project.tone} label="Nettside / desktop" variant="browser" /></div>}
+              <span class="stage-index" aria-hidden="true">{project.number} / 03</span>
+            </div>
+            <details id={`${project.id}-historie`} class="project-details">
+              <summary><span>{project.name} · Prosjektnotater</span><span class="details-toggle" aria-hidden="true">+</span></summary>
+              <div class="details-grid"><div><p class="eyebrow">UTFORDRINGEN</p><p>Her kommer bakgrunnen for prosjektet, hvem løsningen er laget for og problemet vi ønsket å løse.</p></div><div><p class="eyebrow">MIN ROLLE</p><p>Her beskrives mitt bidrag, samarbeidet med teamet og valgene som formet løsningen.</p></div><div><p class="eyebrow">DET JEG TAR MED VIDERE</p><p>Her kommer læring, resultater og refleksjoner fra arbeidet.</p></div></div>
+            </details>
+          </article>
+        ))}
+      </section>
+
+      <section class="approach section-width" id="tilnarming" aria-labelledby="approach-title">
+        <div class="approach-intro"><p class="eyebrow">MÅTEN JEG JOBBER PÅ</p><h2 id="approach-title">Gode spørsmål.<br /><em>Bedre løsninger.</em></h2><p>Design er like mye å lytte som å skape. Her er det plass til å fortelle om prosessen bak arbeidet.</p><span class="approach-flower" aria-hidden="true">✳</span></div>
+        <div class="steps">
+          <div class="step"><span>01 — FORSTÅ</span><h3>Begynn med menneskene.</h3><p>Her kommer noen ord om innsikt, samtaler og det å finne det egentlige behovet bak en utfordring.</p></div>
+          <div class="step"><span>02 — UTFORSKE</span><h3>Gi ideene litt spillerom.</h3><p>Her kommer noen ord om skisser, prototyper og små eksperimenter som åpner for nye muligheter.</p></div>
+          <div class="step"><span>03 — FORFINE</span><h3>Omtanke, helt ned i detaljene.</h3><p>Her kommer noen ord om testing, samarbeid og veien fra en lovende idé til en god opplevelse.</p></div>
+        </div>
+      </section>
+      <section class="closing" aria-labelledby="closing-title"><p class="eyebrow">MER OM MEG</p><h2 id="closing-title">Et arbeid i utvikling.<br /><em>Akkurat som meg.</em></h2><p>Flere prosjekter og små oppdagelser kommer etter hvert.</p><div class="closing-links"><a class="button light" href="/about/">Møt designeren <span aria-hidden="true">↗</span></a><a class="closing-cv" href="/cv/">Se min CV <span aria-hidden="true">↗</span></a></div><span class="closing-flower" aria-hidden="true">✳</span></section>
+    </main>
+    <footer class="design-footer"><a href="/">← Tilbake til Fjærdinghage</a><span>© {new Date().getFullYear()} Ding Chen Fjær</span><a href="#innhold">Til toppen ↑</a></footer>
+  </body>
+</html>
+
+<script>
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const items = [...document.querySelectorAll<HTMLElement>("[data-parallax]")];
+  let pending = false;
+  const update = () => {
+    pending = false;
+    const enabled = !motionQuery.matches && window.innerWidth > 700;
+    for (const item of items) {
+      const section = item.closest(".hero-stage, .project-stage");
+      if (!section) continue;
+      const rect = section.getBoundingClientRect();
+      const offset = enabled ? Math.max(-65, Math.min(65, (window.innerHeight / 2 - rect.top - rect.height / 2) * Number(item.dataset.parallax))) : 0;
+      item.style.setProperty("--drift", `${offset}px`);
+    }
+  };
+  const schedule = () => { if (!pending) { pending = true; requestAnimationFrame(update); } };
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule, { passive: true });
+  motionQuery.addEventListener("change", schedule);
+  update();
+  document.querySelectorAll<HTMLAnchorElement>(".text-link").forEach(link => {
+    link.addEventListener("click", () => {
+      const details = document.getElementById(link.hash.slice(1));
+      if (details instanceof HTMLDetailsElement) details.open = true;
+    });
+  });
+</script>
+<style>
+:global(html:has(.design-page)){scroll-behavior:smooth;scroll-padding-top:100px;color-scheme:light;background:#faf9f6}
+:global(body.design-page){margin:0;color:#272727;background:#faf9f6;font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.design-page :is(h1,h2,h3,p){margin:0}.design-page a{color:inherit;text-decoration:none}.design-page a:focus-visible,.design-page summary:focus-visible{outline:3px solid #aa4b28;outline-offset:7px}.skip{position:fixed;top:-80px;left:20px;z-index:100;background:white;padding:14px}.skip:focus{top:12px}.navigation{height:90px;max-width:1320px;margin:auto;padding:0 6%;display:flex;align-items:center;justify-content:space-between}.wordmark{font-size:35px;font-weight:700;letter-spacing:-2.5px;display:flex;align-items:center;gap:5px}.wordmark span{color:#c8623d;font-size:35px;line-height:1}.navigation nav{display:flex;align-items:center;gap:34px;font-size:13px;font-weight:500}.navigation nav a:hover{color:#af4829}.nav-cv{border:1px solid #d5d1ca;border-radius:30px;padding:11px 19px}.nav-cv span{margin-left:16px}.hero{text-align:center;overflow:hidden;position:relative}.hero-copy{padding:70px 20px 0;position:relative;z-index:2}.eyebrow{font-size:10px;letter-spacing:.15em;font-weight:600;line-height:1.6}.dot{display:inline-block;height:6px;width:6px;border-radius:50%;background:#c8623d;margin-right:8px;vertical-align:middle}h1{font-size:clamp(64px,7.6vw,112px);font-weight:500;letter-spacing:-.075em;line-height:1.03;margin-top:24px!important}em{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.065em}h1 em{color:#ba5737}.intro{font-size:16px;color:#6e6a66;line-height:1.7;margin-top:26px!important}.button{display:inline-flex;gap:35px;align-items:center;padding:16px 24px;border-radius:40px;font-size:13px;transition:transform .2s,background .2s}.button:hover{transform:translateY(-3px)}.dark{background:#29292a;color:#fff!important;margin-top:27px}.button span{font-size:19px}.hero-stage{height:550px;width:min(100%,1100px);position:relative;margin:45px auto 0}.hero-phone{width:235px;position:absolute;left:50%;translate:0 var(--drift,0px);will-change:translate}.hero-phone.center{transform:translateX(-50%);top:8px;z-index:3}.hero-phone.left{transform:translateX(-142%) rotate(-13deg);top:88px;z-index:2}.hero-phone.right{transform:translateX(42%) rotate(13deg);top:88px;z-index:2}.orbit{position:absolute;left:50%;top:66%;transform:translate(-50%,-50%);border:1px solid #e3dfd7;border-radius:50%;height:330px;width:1020px;rotate:-10deg}.orbit-two{width:850px;height:550px;rotate:12deg}.stage-note{position:absolute;left:5%;top:24%;font-size:12px;color:#77716a;text-align:left;line-height:1.7;rotate:-9deg}.stage-note em{font-size:17px;letter-spacing:-.04em}.asterisk{position:absolute;right:12%;top:10%;color:#c96543;font-size:75px;rotate:12deg}.hero-bottom{padding:25px 6%;position:relative;z-index:4;background:#faf9f6;display:flex;justify-content:space-between;border-bottom:1px solid #e5e1db;color:#706c65;font-size:9px;letter-spacing:.14em}.hero-bottom span span{margin-left:12px}.section-width{max-width:1320px;padding:0 6%;margin:0 auto}.work{padding-top:110px}.section-heading{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:42px}.section-heading h2{font-size:clamp(32px,4vw,48px);font-weight:500;letter-spacing:-.06em;margin-top:12px}.orange{color:#c8623d}.section-heading>p{font-size:13px;color:#77716a;line-height:1.7}.project{--surface:#f1ded0;--accent:#bc7456;background:var(--surface);border-radius:28px;margin-bottom:28px;display:grid;grid-template-columns:.95fr 1.05fr;overflow:hidden;scroll-margin-top:30px}.project.mint{--surface:#e3e9de;--accent:#758672}.project.lavender{--surface:#e6e1ee;--accent:#9583b1}.project-copy{padding:65px 0 58px 58px;align-self:center;position:relative;z-index:2}.project-number{border:1px solid #27272735;padding:7px;border-radius:50%;margin-right:10px;letter-spacing:0}.project h3{font-size:clamp(34px,4.3vw,58px);font-weight:500;letter-spacing:-.06em;line-height:1.1;margin-top:36px}.project h3 span{display:block}.project-description{font-size:14px;line-height:1.8;color:#5d5854;max-width:325px;margin-top:24px!important}.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;font-size:10px}.project-tags span{padding:6px 10px;border:1px solid #27272725;border-radius:20px}.text-link{display:inline-flex;gap:30px;align-items:center;margin-top:38px;font-size:12px;border-bottom:1px solid #27272780;padding-bottom:6px}.text-link:hover{gap:40px}.project-stage{min-height:570px;position:relative;overflow:hidden}.backdrop-circle{position:absolute;width:390px;aspect-ratio:1;border:1px solid #fff8;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.project-phone{width:220px;position:absolute;translate:0 var(--drift,0px);will-change:translate}.phone-a{top:96px;left:5%;transform:rotate(-9deg);z-index:2}.phone-b{top:38px;right:5%;transform:rotate(10deg)}.phone-solo{top:59px;left:35%;transform:rotate(9deg)}.stage-index{position:absolute;right:30px;bottom:24px;font-size:10px;letter-spacing:.12em;color:#27272770}.floating-caption{position:absolute;left:6%;top:50%;z-index:3;rotate:-8deg;translate:0 var(--drift,0px);background:#fcfbf4;padding:22px 28px;border-radius:18px;box-shadow:0 15px 25px #28322812;font-size:25px;letter-spacing:-.06em;line-height:1.1}.floating-caption>span:first-child{font-size:34px;display:block;color:#788c6b;margin-bottom:14px}.project-browser{position:absolute;left:2%;right:-14%;top:24%;transform:rotate(-7deg);translate:0 var(--drift,0px)}.project-details{grid-column:1/-1;border-top:1px solid #27272716}.project-details summary{padding:19px 32px;display:flex;justify-content:space-between;align-items:center;font-size:11px;cursor:pointer;list-style:none}.project-details summary::-webkit-details-marker{display:none}.details-toggle{font-size:21px;font-weight:400}.project-details[open] .details-toggle{transform:rotate(45deg)}.details-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;padding:20px 32px 38px}.details-grid p:not(.eyebrow){font-size:13px;line-height:1.8;color:#595652;margin-top:14px}.approach{padding-top:140px;padding-bottom:140px;display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}.approach-intro{position:sticky;top:70px}.approach h2{font-size:clamp(35px,4vw,52px);letter-spacing:-.06em;line-height:1.13;margin-top:24px}.approach-intro>p:not(.eyebrow){font-size:14px;line-height:1.8;color:#77716a;max-width:310px;margin-top:24px}.approach-flower{display:block;color:#bd633f;font-size:100px;margin-top:40px;line-height:1}.step{padding:30px 0 40px;border-top:1px solid #dcd7ce}.step>span{font-size:10px;letter-spacing:.15em;color:#86786c}.step h3{font-size:26px;letter-spacing:-.04em;font-weight:500;line-height:1.25;margin-top:23px}.step p{font-size:14px;color:#77716a;line-height:1.8;margin-top:17px;max-width:350px}.closing{position:relative;text-align:center;background:#292d2a;color:#faf9f6;padding:90px 25px 105px;overflow:hidden}.closing .eyebrow{color:#bac8b2}.closing h2{font-size:clamp(38px,5.3vw,70px);line-height:1.1;letter-spacing:-.06em;margin-top:28px}.closing h2 em{color:#c6d4b6}.closing>p:not(.eyebrow){font-size:14px;color:#c5c7bf;margin-top:26px}.closing-links{display:flex;justify-content:center;align-items:center;gap:30px;margin-top:32px}.light{background:#f4f1e9;color:#272727!important}.closing-cv{font-size:12px;border-bottom:1px solid #aeb3a8;padding-bottom:6px}.closing-flower{position:absolute;right:-45px;bottom:-110px;color:#c6d4b613;font-size:370px;line-height:1;pointer-events:none}.design-footer{padding:28px 6%;display:flex;gap:20px;align-items:center;justify-content:space-between;font-size:10px;color:#706c65}.design-footer a:hover{text-decoration:underline}
+@media(min-width:1500px){.hero-stage{height:570px}.hero-copy{padding-top:90px}}
+@media(max-width:950px){.project-copy{padding:42px 0 40px 32px}.project-stage{min-height:480px}.project-phone{width:185px}.phone-a{left:0;top:115px}.phone-b{right:-5%}.phone-solo{left:28%}.project h3{font-size:40px}.project-description{padding-right:15px}.approach{gap:45px}.floating-caption{left:0;font-size:20px;padding:18px}.stage-note{left:3%;top:9%}.asterisk{right:5%}.hero-phone{width:215px}.hero-stage{height:515px}}
+@media(max-width:700px){.navigation{height:78px;padding:0 6%}.navigation nav{gap:18px;font-size:11px}.navigation nav a:nth-child(2){display:none}.wordmark{font-size:31px}.nav-cv{padding:9px 13px}.nav-cv span{margin-left:8px}.hero-copy{padding-top:40px}h1{font-size:clamp(57px,12vw,80px);letter-spacing:-.075em}.intro{font-size:14px;padding:0 12px}.hero-stage{height:400px;margin-top:43px}.hero-phone{width:175px}.hero-phone.center{top:18px}.hero-phone.left{transform:translateX(-130%) rotate(-14deg);top:64px}.hero-phone.right{transform:translateX(30%) rotate(14deg);top:64px}.stage-note{display:none}.asterisk{font-size:46px;top:0;right:7%}.orbit{width:620px;height:230px}.orbit-two{width:490px;height:390px}.hero-bottom{font-size:8px;padding:20px 6%}.hero-bottom>span:nth-child(2){display:none}.work{padding-top:65px}.section-heading{margin-bottom:28px}.section-heading>p{display:none}.project{grid-template-columns:1fr;border-radius:22px}.project-copy{padding:36px 28px 0}.project h3{font-size:43px;margin-top:30px}.project-description{max-width:390px;font-size:14px}.text-link{margin-top:24px}.project-stage{min-height:440px;margin-top:10px}.project-phone{width:185px}.phone-a{left:calc(50% - 170px);top:52px}.phone-b{right:calc(50% - 170px);top:38px}.phone-solo{left:calc(50% - 65px);top:30px}.floating-caption{left:calc(50% - 155px);top:45%}.project-browser{top:20%;left:7%;right:-5%}.wide-stage{min-height:310px}.backdrop-circle{width:310px}.details-grid{grid-template-columns:1fr;gap:25px;padding:10px 28px 30px}.project-details summary{padding:18px 28px}.approach{grid-template-columns:1fr;padding-top:70px;padding-bottom:70px;gap:42px}.approach-intro{position:static}.approach h2{font-size:43px}.approach-flower{display:none}.step{padding-bottom:30px}.step h3{font-size:25px}.closing{padding:65px 25px 75px}.closing h2{font-size:42px}.closing-links{gap:20px}.design-footer{flex-wrap:wrap;justify-content:space-between;line-height:1.6;font-size:10px}.design-footer>span{order:3;width:100%}.eyebrow{font-size:9px}}
+@media(prefers-reduced-motion:reduce){:global(html:has(.design-page)){scroll-behavior:auto}.button{transition:none}.hero-phone,.project-phone{will-change:auto}}
+</style>

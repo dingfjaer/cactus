@@ -4,7 +4,7 @@ description: Når jeg kommer på noe morsomt om språket, dumper jeg det her.
 publishDate: 2026-01-29
 tags:
   - språk
-draft: false
+draft: true
 ---
 Skjønn kjønn
 

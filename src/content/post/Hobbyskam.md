@@ -3,7 +3,7 @@ title: hobbyskam
 description: Skal ikke hobby være noe som gir deg glede? Hvorfor kjenner jeg bare skam?
 publishDate: 2025-01-09
 tags:
-  - draft
+  - RandomThoughts
 draft: true
 ---
 
@@ -26,7 +26,7 @@ Jeg husker de lange og varme sommerdager når alle skoler er stengt men jeg måt
 For å drive med det du elsker, må du gjør mye du hater. Eller, det blir aldri kun glede ved å gjøre ting du liker, det kan komme med smerte, frustrasjon, og mye mer. 
 
 ## Min hobby er å stadig finne nye hobbyer
-Jeg ønsker å finne ut hva jeg liker å gjøre i fritid, og dypdykke i det slik at jeg kan virkelig koser meg når jeg gjøre det, samtidig blir god på det så jeg slipper å føle skam men kan få en mestringsfølelse også. Det blir kanskje en del av identiteten min også (som jeg har let etter).
+Jeg ønsker å finne ut hva jeg liker å gjøre i fritid, og dypdykke i det slik at jeg kan virkelig kose meg når jeg gjør det, samtidig blir god på det så jeg slipper å føle skam men kan få en mestringsfølelse også. Det blir kanskje en del av identiteten min også (som jeg har let etter).
 
 ## For lite energi igjen etter jobb
 

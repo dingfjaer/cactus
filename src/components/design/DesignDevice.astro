@@ -1,0 +1,33 @@
+---
+interface Props {
+  tone?: "peach" | "mint" | "lavender";
+  label?: string;
+  variant?: "phone" | "browser";
+}
+const { tone = "peach", label = "Skjermbilde", variant = "phone" } = Astro.props;
+// Replace the screen slot with an <Image /> when the actual project images are ready.
+---
+<div class:list={["device", variant, tone]} role="img" aria-label={`${label} – bildeplassholder`}>
+  <div class="hardware" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="screen">
+    <slot>
+      <div class="placeholder" aria-hidden="true">
+        <span class="small-line"></span><span class="title-line"></span>
+        <div class="shape"><span></span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="tiles"><i></i><i></i></div>
+        <span class="image-label">{label}</span>
+      </div>
+    </slot>
+  </div>
+  <span class="home-bar" aria-hidden="true"></span>
+</div>
+<style>
+.device{--screen:#fbebe1;--ink:#bf7959;width:100%;position:relative;background:#fefdfb;border:1px solid #d9d6d0;padding:9px;box-shadow:0 28px 55px -25px #352b3545,0 2px 6px #352b3512;overflow:hidden}
+.phone{aspect-ratio: .485;border-radius:38px;max-width:300px}
+.mint{--screen:#e6ede5;--ink:#6e8b71}.lavender{--screen:#eae6f4;--ink:#9380b6}
+.screen{height:100%;border-radius:29px;background:var(--screen);overflow:hidden}.hardware{height:18px;position:absolute;top:19px;left:50%;transform:translateX(-50%);width:30%;background:#29282c;border-radius:20px;z-index:1}.home-bar{position:absolute;bottom:17px;left:36%;width:28%;height:4px;background:#323034;border-radius:8px}
+.placeholder{height:100%;padding:24% 9% 12%;display:flex;flex-direction:column;gap:6%;color:var(--ink)}.small-line,.title-line,.lines span{display:block;background:currentColor;opacity:.24;border-radius:12px;height:8px;width:35%}.title-line{width:73%;height:15px;opacity:.4}.shape{height:35%;display:grid;place-items:center;position:relative}.shape::before,.shape::after,.shape span{content:"";position:absolute;width:67%;aspect-ratio:1;border-radius:50%;border:1px solid currentColor;opacity:.35}.shape::before{transform:translateX(-13%)}.shape::after{transform:translateX(13%)}.shape span{width:36%;background:currentColor;opacity:.15}.lines{display:grid;gap:9px}.lines span{width:100%;height:6px}.lines span:last-child{width:67%}.tiles{display:flex;gap:9px;flex:1;max-height:18%}.tiles i{flex:1;background:currentColor;border-radius:12px;opacity:.13}.image-label{margin-top:auto;font-size:10px;letter-spacing:.1em;text-align:center;text-transform:uppercase;opacity:.85}
+.browser{aspect-ratio:1.5;border-radius:18px;max-width:720px;padding:30px 7px 7px}.browser .hardware{top:12px;left:16px;transform:none;width:auto;display:flex;gap:5px;height:auto;background:none}.browser .hardware i{height:5px;width:5px;background:#b6b3ba;border-radius:50%}.browser .screen{border-radius:6px}.browser .home-bar{display:none}.browser .placeholder{padding:7%;gap:7%;position:relative}.browser .small-line{width:13%;height:5px}.browser .title-line{width:40%;height:12px}.browser .shape{position:absolute;right:8%;top:18%;width:40%;height:62%}.browser .lines{width:40%}.browser .tiles{width:40%}.browser .image-label{text-align:left}
+@media(max-width:600px){.phone{border-radius:28px;padding:6px}.screen{border-radius:22px}.hardware{top:14px;height:13px}.image-label{font-size:8px}.home-bar{bottom:12px;height:3px}}
+</style>

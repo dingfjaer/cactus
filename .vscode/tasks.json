@@ -4,23 +4,41 @@
     {
       "label": "Forhåndsvis hagen",
       "type": "shell",
-      "command": "pnpm dev",
+      "command": "source \"$HOME/.nvm/nvm.sh\" --no-use && nvm use --silent && pnpm dev",
       "isBackground": true,
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": {
+          "executable": "/bin/zsh",
+          "args": [
+            "-lc"
+          ]
+        }
       }
     },
     {
       "label": "Kontroller før publisering",
       "type": "shell",
-      "command": "pnpm build",
+      "command": "source \"$HOME/.nvm/nvm.sh\" --no-use && nvm use --silent && pnpm build",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": []
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": {
+          "executable": "/bin/zsh",
+          "args": [
+            "-lc"
+          ]
+        }
+      }
     }
   ]
 }
