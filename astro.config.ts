@@ -23,6 +23,7 @@ export default defineConfig({
 	compressHTML: true,
 	image: {
 		domains: ["webmention.io"],
+		remotePatterns: [{ protocol: "https", hostname: "*.jottacloud.com", pathname: "/thumbs/**" }],
 	},
 	integrations: [
 		expressiveCode(expressiveCodeOptions),

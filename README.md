@@ -41,6 +41,16 @@ GitHub Actions bygger og publiserer automatisk til GitHub Pages. `public/CNAME` 
 
 Utkast som committes til det offentlige GitHub-repoet er lesbare der selv om de ikke vises på nettsiden.
 
+## Fotogalleriet
+
+`/photos/` viser bildene fra det offentlige Jottacloud-albumet `k0qd6q3j37gn`. Siden har bare et responsivt bildegalleri og den vanlige lys-/mørkmodusbryteren. Den viser ingen bildetekster, nedlastingsknapper eller lenker til Jottacloud.
+
+Legg til eller fjern bilder i albumet og kjør et nytt bygg/deploy for å oppdatere galleriet. Astro henter forhåndsvisningene og lager lokale WebP-bilder i flere størrelser. Den publiserte siden laster dermed bildene fra dingchen.no. Tomt album gir et tomt galleri; feil ved henting stopper bygget og erstatter ikke en fungerende publisering.
+
+Under utprøvingen stopper albumhentingen ved 100 bilder for å unngå et ufullstendig galleri. Paginering må utvides før albumet når denne grensen. Integrasjonen bruker et internt Jottacloud-endepunkt som kan endres.
+
+Etter at kodeendringen er publisert, kan **Deploy to GitHub Pages → Run workflow** hente nye albumendringer uten en ny kode-commit. Ingen tidsplan eller iOS-snarvei er satt opp ennå. Se `scripts/jottacloud-poc.md` for de opprinnelige API-testene.
+
 ## Prøv Front Matter i VS Code
 
 Utvidelsen **Front Matter CMS** (`eliostruyf.vscode-front-matter`) bruker de samme Markdown-filene som Obsidian. Ingen konto, database eller flytting av innhold er nødvendig for denne lokale bruken.

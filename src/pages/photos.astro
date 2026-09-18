@@ -1,0 +1,89 @@
+---
+import { Image } from "astro:assets";
+import BaseHead from "@/components/BaseHead.astro";
+import ThemeProvider from "@/components/ThemeProvider.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import { siteConfig } from "@/site-config";
+import { fetchAlbum } from "../../scripts/jottacloud-poc.mjs";
+
+export const prerender = true;
+const { photos } = await fetchAlbum();
+const columns = Math.max(1, Math.min(3, photos.length));
+---
+
+<html lang={siteConfig.lang}>
+	<head>
+		<BaseHead title="Foto" description="Fotografier fra Dings digitale hage." />
+	</head>
+	<body class="min-h-screen bg-bgColor text-textColor antialiased">
+		<ThemeProvider />
+		<div class="gallery-toolbar">
+			<ThemeToggle />
+		</div>
+		<main
+			aria-label="Fotogalleri"
+			class="gallery"
+			style={`--columns: ${columns}; --tablet-columns: ${Math.min(2, columns)}`}
+		>
+			{
+				photos.map((photo, index) => (
+					<Image
+						src={photo.preview}
+						inferSize
+						widths={[480, 960, 1600]}
+						sizes={columns === 1
+							? "(min-width: 1480px) 1440px, calc(100vw - 32px)"
+							: `(min-width: 1480px) ${Math.floor((1440 - (columns - 1) * 16) / columns)}px, (min-width: 1024px) calc((100vw - 64px) / ${columns}), (min-width: 640px) calc((100vw - 48px) / 2), calc(100vw - 32px)`}
+						format="webp"
+						quality={85}
+						alt={`Fotografi ${index + 1}`}
+						loading={index < columns ? "eager" : "lazy"}
+						decoding="async"
+					/>
+				))
+			}
+		</main>
+	</body>
+</html>
+
+<style>
+	.gallery-toolbar,
+	.gallery {
+		width: calc(100% - 32px);
+		max-width: 1440px;
+		margin-inline: auto;
+	}
+
+	.gallery-toolbar {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		min-height: 64px;
+	}
+
+	.gallery {
+		columns: 1;
+		column-gap: 16px;
+		padding-bottom: 16px;
+	}
+
+	.gallery :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin-bottom: 16px;
+		break-inside: avoid;
+	}
+
+	@media (min-width: 640px) {
+		.gallery {
+			column-count: var(--tablet-columns);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.gallery {
+			column-count: var(--columns);
+		}
+	}
+</style>
