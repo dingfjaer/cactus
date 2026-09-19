@@ -1,0 +1,107 @@
+---
+// Isolated, unlinked experiment. No signed media URLs are baked into the build.
+export const prerender = true;
+---
+<!doctype html>
+<html lang="nb">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="robots" content="noindex" /><title>Jottacloud – videotest</title></head>
+<body>
+<main>
+<h1>Jottacloud – videotest</h1>
+<p>Velg en video og trykk Spill. Forhåndsvisningen lastes automatisk.</p>
+<label>Video <select id="clip" aria-label="Video"></select></label>
+<details><summary>Avanserte testvalg</summary>
+<label>Avspiller <select id="mode" aria-label="Avspiller"><option value="auto">Automatisk HLS</option><option value="native">Kun vanlig video-element (HLS)</option><option value="hls">HLS med hls.js</option><option value="original">Originalfil uten CORS</option><option value="cors">Originalfil med CORS</option></select></label>
+<label><input id="autoplay" type="checkbox" /> Test dempet autoplay etter lasting</label>
+<p><button id="load" disabled>Last video på nytt</button> <button id="seek">Spol til midten</button></p>
+</details>
+<p id="message" role="status">Henter videoer …</p>
+<p><button id="play" disabled>Spill</button></p>
+<video id="video" controls playsinline muted preload="metadata"></video>
+<details><summary>Teknisk logg</summary><pre id="status"></pre></details>
+</main>
+<script is:inline type="module">
+const endpoint = 'https://api.jottacloud.com/photos/v1/public/hjq801c0qqam/?order=ASC&limit=100&comments=false';
+const video = document.querySelector('#video');
+const clip = document.querySelector('#clip');
+const status = document.querySelector('#status');
+const load = document.querySelector('#load');
+let hls;
+let generation = 0;
+const play = document.querySelector('#play');
+const message = document.querySelector('#message');
+const modeSelect = document.querySelector('#mode');
+let media = [];
+let readyTimer;
+const showError = text => { message.textContent = text; play.disabled = true; clearTimeout(readyTimer); };
+function preview(p) {
+ video.poster = safeURL(p.thumbnail_url + '.l');
+}
+const log = message => { status.textContent = `${message}\n${status.textContent}`.slice(0, 6000); };
+const safeURL = value => { const u = new URL(value); if(u.protocol !== 'https:' || !u.hostname.endsWith('.jottacloud.com')) throw Error('Uventet medieadresse'); return u.href; };
+async function album() {
+ const r = await fetch(endpoint, {credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(20000)});
+ if (!r.ok) throw Error(`Album: HTTP ${r.status}`);
+ const a = await r.json();
+ if (!Array.isArray(a.photos) || a.photos.length >= 100) throw Error('Uventet album / PoC-grense nådd');
+ return a.photos.filter(p => p.content === 'video' && !p.hidden && !p.deleted);
+}
+for (const event of ['loadedmetadata','canplay','playing','seeked','ended','error']) video.addEventListener(event, () => log(`${event}: tid=${video.currentTime.toFixed(2)}, varighet=${video.duration}, ${video.videoWidth}×${video.videoHeight}, feil=${video.error?.code ?? 'ingen'}`));
+async function prepare(initial) {
+ const current = ++generation;
+ const selected = clip.value;
+ const mode = modeSelect.value;
+ clearTimeout(readyTimer);
+ load.disabled = true; play.disabled = true; play.textContent = 'Spill';
+ message.textContent = 'Laster valgt video …';
+ try {
+  hls?.destroy(); hls = undefined; video.pause(); video.removeAttribute('src'); video.load();
+  const cached = media.find(p => p.id === selected);
+  if (cached) preview(cached);
+  const items = initial ?? await album();
+  if (current !== generation) return;
+  const p = items.find(p => p.id === selected);
+  if (!p) throw Error('Videoen finnes ikke lenger i albumet');
+  media = items;
+  video.muted = true; video.autoplay = document.querySelector('#autoplay').checked;
+  if(mode === 'original') video.removeAttribute('crossorigin'); else video.crossOrigin = 'anonymous';
+  preview(p);
+  readyTimer = setTimeout(() => { if (current === generation) showError('Videoen bruker for lang tid på å laste. Prøv «Last video på nytt» under avanserte testvalg.'); }, 20000);
+  if(mode === 'original' || mode === 'cors') { video.src = safeURL(p.file_url); log('Originalfil lastet'); }
+  else {
+   const src = safeURL(p.video_url);
+   if(mode === 'native' || (mode === 'auto' && video.canPlayType('application/vnd.apple.mpegurl'))) { video.src = src; log('HLS direkte i video-element'); }
+   else {
+    // Pinned CDN import is deliberate for this PoC; bundle hls.js locally for production.
+    const {default:Hls} = await import('https://cdn.jsdelivr.net/npm/hls.js@1.7.3/dist/hls.mjs');
+    if (current !== generation) return;
+    if(!Hls.isSupported()) throw Error('Nettleseren støtter ikke HLS/MSE');
+    hls = new Hls({maxBufferLength:10, maxMaxBufferLength:20});
+    hls.on(Hls.Events.ERROR, (_,data) => { if(data.fatal) { log(`HLS-feil: ${data.type}/${data.details}`); showError('Kunne ikke laste videoen. Prøv å laste den på nytt.'); hls.destroy(); } });
+    hls.loadSource(src); hls.attachMedia(video); log('HLS med hls.js 1.7.3');
+   }
+  }
+ } catch(e) { if(current === generation) { log(`Feil: ${e.message}`); showError(`Kunne ikke laste videoen: ${e.message}`); } }
+ finally { if(current === generation) load.disabled = false; }
+}
+load.addEventListener('click', () => prepare());
+clip.addEventListener('change', () => prepare());
+modeSelect.addEventListener('change', () => prepare());
+video.addEventListener('canplay', () => { clearTimeout(readyTimer); play.disabled = false; message.textContent = `Klar: ${clip.selectedOptions[0]?.textContent}. Trykk Spill.`; });
+video.addEventListener('playing', () => { play.textContent = 'Pause'; message.textContent = `Spiller: ${clip.selectedOptions[0]?.textContent}`; });
+video.addEventListener('pause', () => { play.textContent = 'Spill'; if(video.readyState >= 2 && !video.ended) message.textContent = 'Satt på pause. Trykk Spill for å fortsette.'; });
+video.addEventListener('ended', () => { play.textContent = 'Spill igjen'; message.textContent = 'Videoen er ferdig.'; });
+video.addEventListener('error', () => { if(video.getAttribute('src')) showError('Kunne ikke spille videoen. Prøv en annen avspiller under avanserte testvalg,.'); });
+document.querySelector('#play').addEventListener('click', async () => { try { if(video.paused) await video.play(); else video.pause(); } catch(e) { log(`Avspilling avvist: ${e.message}`); message.textContent = 'Avspilling ble avvist. Prøv videospillerens egen spillknapp.'; } });
+document.querySelector('#seek').addEventListener('click', () => { if(Number.isFinite(video.duration)) video.currentTime = video.duration / 2; });
+try {
+ media = await album();
+ for(const p of media) { const o = document.createElement('option'); o.value = p.id; o.textContent = `${p.filename} (${p.duration})`; clip.append(o); }
+ load.disabled = clip.options.length === 0;
+ log(`${clip.options.length} videoer. Native HLS-støtte: ${video.canPlayType('application/vnd.apple.mpegurl') || 'nei'}`);
+ if(media.length) await prepare(media); else message.textContent = 'Albumet inneholder ingen tilgjengelige videoer.';
+} catch(e) { log(`Feil: ${e.message}`); showError(`Kunne ikke hente albumet: ${e.message}`); }
+</script>
+<style>body{font:16px system-ui;margin:2rem auto;padding:0 1rem;max-width:850px}label{display:block;margin:1rem 0}video{display:block;width:100%;height:440px;max-height:60vh;object-fit:contain;background:#111}details{margin:1rem 0}summary{cursor:pointer}button:disabled{opacity:.5}button,select{font:inherit;padding:.4rem}pre{white-space:pre-wrap;font-size:.8rem;background:#eee;color:#111;padding:1rem}</style>
+</body>
+</html>

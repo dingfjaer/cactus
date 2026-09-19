@@ -32,11 +32,11 @@ async function get(url) {
  *   photos: Array<{
  *     id: string, filename: string, takenAt: string | null, width: number, height: number,
  *     thumbnail: string, preview: string, original: string, page: string,
- *     localPreview?: string
+ *     kind: "image" | "video", duration: string, localPreview?: string
  *   }>
  * }>}
  */
-export async function fetchAlbum(shareId = DEFAULT_SHARE, { pageSize = PAGE_SIZE } = {}) {
+export async function fetchAlbum(shareId = DEFAULT_SHARE, { pageSize = PAGE_SIZE, includeVideos = false } = {}) {
   if (!/^[a-zA-Z0-9_-]+$/.test(shareId)) throw new Error('Invalid share ID');
   if (!Number.isInteger(pageSize) || pageSize < 1) throw new Error('Invalid page size');
   const base = `https://api.jottacloud.com/photos/v1/public/${shareId}/`;
@@ -65,13 +65,15 @@ export async function fetchAlbum(shareId = DEFAULT_SHARE, { pageSize = PAGE_SIZE
     seenCursors.add(next);
     cursor = next;
   }
-  const photos = [...entries.values()].filter(p => !p.deleted && !p.hidden && p.content === 'image').map(p => {
+  const photos = [...entries.values()].filter(p => !p.deleted && !p.hidden && (p.content === 'image' || (includeVideos && p.content === 'video'))).map(p => {
     if (typeof p.id !== 'string' || typeof p.filename !== 'string' ||
         !Number.isFinite(p.width) || p.width <= 0 ||
         !Number.isFinite(p.height) || p.height <= 0) {
       throw new Error('Unexpected photo response');
     }
     return {
+      kind: p.content,
+      duration: typeof p.duration === "string" ? p.duration : "",
       id: p.id,
       filename: p.filename,
       // capturedDate is Jottacloud's photo date in milliseconds, not the

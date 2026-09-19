@@ -34,3 +34,12 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 		yearElement.textContent = new Date().getFullYear().toString();
 	}
 </script>
+
+<style>
+@media (max-width:639px) {
+  :global(.garden-page) footer { font-size:clamp(.625rem, 2.8vw, .75rem); }
+  :global(.garden-page) footer > div { white-space:nowrap; }
+  :global(.garden-page) footer nav { width:100%; flex-wrap:nowrap; justify-content:space-between; gap:.25rem; overflow:visible; }
+  :global(.garden-page) footer nav a { padding-inline:0; white-space:nowrap; }
+}
+</style>

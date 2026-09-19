@@ -1,0 +1,32 @@
+---
+import { photoCalendarDate, tintinAge } from '@/utils/tintin-age.mjs';
+import leading from '@/assets/symbols/laurel.leading.png';
+import trailing from '@/assets/symbols/laurel.trailing.png';
+const age = tintinAge(photoCalendarDate(new Date().toISOString()));
+---
+<tintin-today class="tintin-today">
+  <span class="laurel" style={`--symbol:url('${leading.src}')`} aria-hidden="true"></span>
+  <span data-age-today>Tintin er {age} i dag</span>
+  <span class="laurel" style={`--symbol:url('${trailing.src}')`} aria-hidden="true"></span>
+</tintin-today>
+<script>
+import { photoCalendarDate, tintinAge } from '@/utils/tintin-age.mjs';
+class TintinToday extends HTMLElement {
+  timer?: ReturnType<typeof setInterval>;
+  update = () => {
+    const text = this.querySelector('[data-age-today]');
+    if(text) text.textContent = `Tintin er ${tintinAge(photoCalendarDate(new Date().toISOString()))} i dag`;
+  };
+  connectedCallback() { this.update(); this.timer = setInterval(this.update, 60000); document.addEventListener('visibilitychange',this.update); }
+  disconnectedCallback() { clearInterval(this.timer); document.removeEventListener('visibilitychange',this.update); }
+}
+if(!customElements.get('tintin-today')) customElements.define('tintin-today',TintinToday);
+</script>
+<style>
+.tintin-today { position:relative; display:flex; align-items:center; justify-content:center; gap:clamp(1.25rem,4vw,3.5rem); padding-block:.75rem; margin:2rem 0 3rem; font-size:.9rem; text-align:center; }
+.tintin-today::before,.tintin-today::after { content:''; position:absolute; height:1px; background:currentColor; opacity:.65; }
+.tintin-today::before { top:0; left:35%; right:0; }
+.tintin-today::after { bottom:0; left:0; right:35%; }
+.laurel { display:block; flex-shrink:0; width:.75rem; height:1.35rem; background:currentColor; mask-image:var(--symbol); -webkit-mask-image:var(--symbol); mask-repeat:no-repeat; -webkit-mask-repeat:no-repeat; mask-size:contain; -webkit-mask-size:contain; mask-position:center; -webkit-mask-position:center; }
+@media (max-width:639px) { .tintin-today { margin-inline:-1rem; font-size:clamp(.7rem,3vw,.9rem); } .tintin-today::before { left:21%; } .tintin-today::after { right:24%; } }
+</style>

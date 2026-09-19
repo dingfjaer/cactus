@@ -25,8 +25,23 @@ const selected = tabs.findIndex(tab => tab.key === active);
 </garden-tabs>
 <script>
   class GardenTabs extends HTMLElement {
+    alignmentObserver?: ResizeObserver;
+    disconnectedCallback() { this.alignmentObserver?.disconnect(); }
     connectedCallback() {
       const bar = this.querySelector<HTMLElement>('.glass-bar')!;
+      const header = document.querySelector<HTMLElement>('#main-header');
+      const lastLink = header?.querySelector<HTMLAnchorElement>('#navigation-menu a:last-child');
+      const align = () => {
+        if(!header || !lastLink || !matchMedia('(min-width:640px)').matches) { bar.style.width = '100%'; return; }
+        const range = document.createRange(); range.selectNodeContents(lastLink);
+        const width = range.getBoundingClientRect().right - header.getBoundingClientRect().left;
+        bar.style.width = width > 0 ? `${width}px` : '100%';
+      };
+      this.alignmentObserver = new ResizeObserver(align);
+      if(header) this.alignmentObserver.observe(header);
+      if(lastLink) this.alignmentObserver.observe(lastLink);
+      document.fonts.ready.then(align);
+      align();
       const links = [...this.querySelectorAll<HTMLAnchorElement>('a')];
       const selected = Number(this.dataset.selected);
       let start: { x: number; y: number; id: number } | null = null;
@@ -96,7 +111,7 @@ const selected = tabs.findIndex(tab => tab.key === active);
 <style>
   .garden-tabs { display: block; margin-bottom: 3rem; }
   .glass-bar {
-    position: relative; isolation: isolate; max-width: 31rem; padding: 4px;
+    position: relative; isolation: isolate; width:100%; max-width:100%; box-sizing:border-box; padding: 4px;
     border-radius: 999px; touch-action: pan-y; user-select: none;
     background: hsl(var(--theme-bg) / .72);
     -webkit-backdrop-filter: blur(20px) saturate(1.6);

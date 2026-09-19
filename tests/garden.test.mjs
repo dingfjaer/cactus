@@ -79,3 +79,16 @@ test('broken pagination and later-page network errors cannot silently truncate a
     : new Response('', {status: 503});
   await assert.rejects(fetchAlbum('test', {pageSize: 1}), /HTTP 503/);
 });
+
+test('mixed galleries opt into videos without baking expiring stream URLs into the page data', async t => {
+  t.mock.method(globalThis, 'fetch', async () => Response.json({title: 'Mixed', photos: [
+    photo, {...photo, id: 'video', content: 'video', duration: '00:31', video_url: 'https://video-v2.jottacloud.com/expiring.m3u8'},
+    {...photo, id: 'hidden-video', content: 'video', hidden: true},
+  ]}));
+  const images = await fetchAlbum('test');
+  assert.equal(images.photos.length, 1);
+  const mixed = await fetchAlbum('test', {includeVideos: true});
+  assert.deepEqual(mixed.photos.map(p => p.kind), ['image', 'video']);
+  assert.equal(mixed.photos[1].duration, '00:31');
+  assert.equal('video_url' in mixed.photos[1], false);
+});

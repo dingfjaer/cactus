@@ -1,4 +1,5 @@
 ---
+import MediaViewer from "../components/garden/MediaViewer.astro";
 import { Image } from "astro:assets";
 import BaseHead from "@/components/BaseHead.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
@@ -20,6 +21,7 @@ const columns = Math.max(1, Math.min(3, photos.length));
 		<div class="gallery-toolbar">
 			<ThemeToggle />
 		</div>
+		<MediaViewer>
 		<main
 			aria-label="Fotogalleri"
 			class="gallery"
@@ -27,6 +29,7 @@ const columns = Math.max(1, Math.min(3, photos.length));
 		>
 			{
 				photos.map((photo, index) => (
+					<button type="button" class="media-open" data-media-open data-kind="image" aria-label={`Åpne bilde ${index + 1} i stor visning`}>
 					<Image
 						src={photo.preview}
 						inferSize
@@ -40,13 +43,17 @@ const columns = Math.max(1, Math.min(3, photos.length));
 						loading={index < columns ? "eager" : "lazy"}
 						decoding="async"
 					/>
+					</button>
 				))
 			}
 		</main>
+		</MediaViewer>
 	</body>
 </html>
 
 <style>
+ .media-open { display:block; width:100%; padding:0; border:0; background:transparent; cursor:zoom-in; break-inside:avoid; }
+ .media-open:focus-visible { outline:3px solid currentColor; outline-offset:3px; }
 	.gallery-toolbar,
 	.gallery {
 		width: calc(100% - 32px);

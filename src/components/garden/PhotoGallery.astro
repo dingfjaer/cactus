@@ -1,37 +1,90 @@
 ---
+import MediaViewer from "./MediaViewer.astro";
 import { Image } from "astro:assets";
 import { fetchAlbum } from "../../../scripts/jottacloud-poc.mjs";
 import { photoCalendarDate, tintinAge, formatPhotoDate } from "@/utils/tintin-age.mjs";
 import type { GalleryKey } from "@/data/galleries";
 interface Props { shareId: string; kind: GalleryKey; title: string }
 const { shareId, kind, title } = Astro.props;
-const album = await fetchAlbum(shareId);
+const album = await fetchAlbum(shareId, { includeVideos: true });
 const photos = album.photos.sort((a, b) => (b.takenAt ?? "").localeCompare(a.takenAt ?? ""));
 const isTinsta = kind === "tinsta";
 ---
-{photos.length === 0 ? <p class="empty">Her spirer det snart noe nytt. Ingen bilder ennå.</p> :
+<section class="filterable-gallery" data-filter="all">
+  <div class="media-filters" role="group" aria-label="Filtrer galleri">
+    <button type="button" data-filter-choice="all" aria-pressed="true">Alle</button>
+    <button type="button" data-filter-choice="image" aria-pressed="false">Bilder</button>
+    <button type="button" data-filter-choice="video" aria-pressed="false">Videoer</button>
+  </div>
+  <p class="filter-empty" role="status" hidden></p>
+<MediaViewer>
+{photos.length === 0 ? <p class="empty">Her spirer det snart noe nytt. Ingen bilder eller videoer ennå.</p> :
   <div class:list={["photo-gallery", { tinsta: isTinsta }]}>
     {photos.map((photo, index) => {
       const day = photoCalendarDate(photo.takenAt);
-      return <figure>
+      return <figure data-media-kind={photo.kind}>
         {isTinsta && <figcaption><span>{tintinAge(day)}</span><time datetime={day ?? undefined}>{formatPhotoDate(day)}</time></figcaption>}
+        <button class="media-open" type="button" data-media-open data-kind={photo.kind}
+          data-share={shareId} data-id={photo.id}
+          aria-label={`${photo.kind === 'video' ? 'Spill video' : 'Åpne bilde'} ${index + 1} i stor visning`}>
           <Image src={photo.preview} inferSize widths={[480, 960, 1600]}
             sizes="(min-width: 1200px) 347px, (min-width: 1024px) calc((100vw - 160px) / 3), (min-width: 640px) calc((100vw - 96px) / 2), 100vw"
-            format="webp" quality={85} alt={`${isTinsta ? "Tintin" : title}${day ? ` – ${formatPhotoDate(day)}` : ""}, bilde ${index + 1}`}
+            format="webp" quality={85} alt={`${isTinsta ? "Tintin" : title}${day ? ` – ${formatPhotoDate(day)}` : ""}, ${photo.kind === "video" ? "video" : "bilde"} ${index + 1}`}
             loading={index < 3 ? "eager" : "lazy"} decoding="async" />
+          {photo.kind === 'video' && <span class="video-label" aria-hidden="true">▶ Video {photo.duration}</span>}
+        </button>
       </figure>;
     })}
   </div>
 }
+</MediaViewer>
+</section>
+<script>
+  function setupFilters() {
+    document.querySelectorAll<HTMLElement>('.filterable-gallery').forEach(root => {
+      if(root.dataset.ready) return;
+      root.dataset.ready = 'true';
+      const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-filter-choice]')];
+      const figures = [...root.querySelectorAll<HTMLElement>('[data-media-kind]')];
+      const empty = root.querySelector<HTMLElement>('.filter-empty')!;
+      buttons.forEach(button => button.addEventListener('click', () => {
+        const filter = button.dataset.filterChoice!;
+        root.dataset.filter = filter;
+        buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+        figures.forEach(f => { f.hidden = filter !== 'all' && f.dataset.mediaKind !== filter; });
+        empty.hidden = figures.some(f => !f.hidden) || !figures.length;
+        empty.textContent = filter === 'video' ? 'Ingen videoer i dette albumet ennå.' : 'Ingen bilder i dette albumet ennå.';
+      }));
+    });
+  }
+  setupFilters();
+  document.addEventListener('astro:page-load', setupFilters);
+</script>
 <style>
+  [hidden] { display:none !important; }
+  .media-filters { display:flex; justify-content:center; gap:.4rem; margin:0 0 2rem; }
+  .media-filters button { min-height:40px; padding:.4rem 1.1rem; border:1px solid hsl(var(--theme-text) / .18); border-radius:999px; background:transparent; color:inherit; font:inherit; font-size:.85rem; cursor:pointer; }
+  .media-filters button[aria-pressed="true"] { background:hsl(var(--theme-text)); color:hsl(var(--theme-bg)); }
+  .media-filters button:focus-visible { outline:2px solid hsl(var(--theme-accent)); outline-offset:3px; }
+  .filter-empty { text-align:center; padding:2rem; }
+  [data-filter="video"] .photo-gallery { gap:1rem; }
+  [data-filter="video"] figcaption, [data-filter="video"] .video-label { display:none; }
+  [data-filter="video"] .media-open { aspect-ratio:16 / 9; overflow:hidden; border-radius:.75rem; background:#111; cursor:pointer; }
+  [data-filter="video"] img { width:100%; height:100%; object-fit:contain; }
+  [data-filter="video"] .media-open::after { content:'▶'; position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:3.2rem; height:2.3rem; border-radius:.6rem; color:white; background:#000b; font-size:1.2rem; }
+
   .photo-gallery { display: grid; grid-template-columns: 1fr; align-items: start; gap: 2rem; }
   figure { margin: 0; min-width: 0; }
   figcaption { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .5rem; font-size: .8rem; font-variant-numeric: tabular-nums; }
   time { white-space: nowrap; }
   img { display: block; width: 100%; height: auto; }
+  .media-open { display:block; position:relative; width:100%; padding:0; border:0; background:transparent; cursor:zoom-in; color:inherit; }
+  .media-open:focus-visible { outline:3px solid currentColor; outline-offset:4px; }
+  .video-label { position:absolute; bottom:.75rem; left:.75rem; padding:.35rem .65rem; border-radius:.4rem; background:#000c; color:white; font-size:.85rem; }
   .empty { padding-block: 3rem; }
   @media (max-width: 639px) {
     .tinsta { margin-inline: -1rem; gap: 2rem; }
+    [data-filter="video"] .tinsta { margin-inline:0; }
     .tinsta figcaption { padding-inline: 1rem; }
   }
   @media (min-width: 640px) { .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

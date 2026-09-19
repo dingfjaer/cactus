@@ -1,6 +1,7 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
 import GardenTabs from "@/components/garden/GardenTabs.astro";
+import TintinToday from "@/components/garden/TintinToday.astro";
 import PhotoGallery from "@/components/garden/PhotoGallery.astro";
 import { galleries, type GalleryKey } from "@/data/galleries";
 interface Props { gallery: GalleryKey }
@@ -10,5 +11,6 @@ const { title, description, shareId } = galleries[gallery];
 <PageLayout meta={{ title: `${title} – Alt som gror`, description }} garden wide>
   <GardenTabs slot="navigation" active={gallery} />
   <h1 class="sr-only">{title}</h1>
+  {gallery === "tinsta" && <TintinToday />}
   <PhotoGallery kind={gallery} title={title} shareId={shareId} />
 </PageLayout>
