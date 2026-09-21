@@ -1,76 +1,33 @@
 ---
-import { Image } from "astro:assets";
-import aboutImg from "@/assets/about-astro.png";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
 	description: "Om Ding Chen Fjær",
 	title: "Om",
 };
-
-const cactusTech: { desc: string; href: string; title: string }[] = [
-	{
-		desc: "En interaktiv prototype bygget i Figma - før AI var så mainstream.",
-		href: "https://www.figma.com/proto/dIULhitI3aG6HagQdU6cRC/dingchen.no?page-id=0%3A1&type=design&node-id=12-205&viewport=729%2C139%2C0.16&t=iMVKlHhdlVCH74Va-1&scaling=scale-down-width&starting-point-node-id=12%3A205",
-		title: "Design Portfolio",
-	},
-	{
-		desc: "Meg som UX-designer",
-		href: "https://dingchen.no/cv.pdf",
-		title: "CV - oppdatert 2024",
-	},
-	{
-		desc: "For stilling Senior designer hos Trumf",
-		href: "https://dingchen.no/CV_DingChen_Trumf_2026.pdf",
-		title: "CV - oppdatert 2026",
-	},
-];
 ---
 
 <PageLayout meta={meta}>
-	<div class="space-y-6">
-		<h1 class="title">Om Dīng</h1>
-		<p class="mb-8">Her skal det fylles med noen ord når jeg kjenner selv hvem Ding er</p>
-		<section class="mt-16">
-			<dl class="space-y-4">
-				{
-					cactusTech.map(({ desc, href, title }) => (
-						<div class="flex flex-col gap-2 sm:flex-row">
-							<dt>
-								<span class="flex">
-									<a class="cactus-link" href={href} rel="noopener noreferrer" target="_blank">
-										{title}
-									</a>
-									:
-								</span>
-							</dt>
-							<dd>{desc}</dd>
-						</div>
-					))
-				}
-			</dl>
-		</section>
+	<div class="about-image">
+		<img src="/images/about.png" alt="Om Ding Chen Fjær" />
+	</div>
 
-		<!-- </div>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
-		<p>
-			Clone or fork my <a
-				aria-label="github repository"
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
-		</p>
-	</div> -->
+	<div class="mt-12 flex flex-col items-center gap-3 text-xl">
+		<a href="/cv" class="text-accent sm:hover:underline"> CV </a>
+
+		<a href="/portfolio" class="text-accent sm:hover:underline"> Portfolio </a>
 	</div>
 </PageLayout>
+
+<style>
+	.about-image {
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+	}
+
+	.about-image img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+</style>

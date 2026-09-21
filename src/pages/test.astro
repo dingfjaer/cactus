@@ -1,0 +1,15 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+---
+
+<PageLayout meta={{ title: "Test" }}>
+	<div class="about-image">
+		<img src="/images/about.png" alt="Om Ding Chen Fjær" />
+	</div>
+
+	<div class="mt-8 flex flex-col items-center gap-3 text-xl">
+		<a href="/cv" class="text-accent sm:hover:underline"> CV </a>
+
+		<a href="/portfolio" class="text-accent sm:hover:underline"> Portfolio </a>
+	</div>
+</PageLayout>
