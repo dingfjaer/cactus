@@ -24,6 +24,28 @@ const selected = tabs.findIndex(tab => tab.key === active);
   </nav>
 </garden-tabs>
 <script>
+  window.addEventListener('pageswap', event => {
+    if (!event.viewTransition) return;
+
+    // Cross-document snapshots use viewport coordinates. Only animate between
+    // tabs at the top of the page, so resetting scroll cannot move the selection.
+    const destination = event.activation?.entry.url;
+    const otherTabs = document.querySelectorAll<HTMLAnchorElement>(
+      'garden-tabs a:not([aria-current="page"])'
+    );
+    const changesTab = [...otherTabs].some(link => link.href === destination);
+    if (!changesTab || window.scrollX !== 0 || window.scrollY !== 0) {
+      event.viewTransition.skipTransition();
+    }
+  });
+
+  window.addEventListener('pagereveal', event => {
+    // Back/forward navigation can restore a scrolled destination, too.
+    if (window.scrollX !== 0 || window.scrollY !== 0) {
+      event.viewTransition?.skipTransition();
+    }
+  });
+
   class GardenTabs extends HTMLElement {
     alignmentObserver?: ResizeObserver;
     disconnectedCallback() { this.alignmentObserver?.disconnect(); }

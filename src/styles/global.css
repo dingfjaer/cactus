@@ -36,3 +36,53 @@
 		font-family: var(--theme-font-family);
 	}
 }
+
+/* Source cards work in ordinary Markdown, including light and dark themes. */
+.prose a.raut-source-card {
+	display: grid;
+	gap: 0.65rem;
+	margin-block: 1.75rem;
+	padding: clamp(1.1rem, 4vw, 1.65rem);
+	border: 1px solid hsl(var(--theme-text) / 0.25);
+	border-inline-start: 4px solid hsl(var(--theme-accent));
+	border-radius: 0.85rem;
+	background: hsl(var(--theme-accent) / 0.045);
+	color: hsl(var(--theme-text));
+	text-decoration: none;
+	overflow-wrap: anywhere;
+}
+
+.prose a.raut-source-card:hover {
+	border-color: hsl(var(--theme-accent));
+	background: hsl(var(--theme-accent) / 0.09);
+}
+
+.prose a.raut-source-card:focus-visible {
+	outline: 3px solid hsl(var(--theme-accent));
+	outline-offset: 4px;
+}
+
+.raut-source-card__meta {
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+}
+
+.prose .raut-source-card__title {
+	color: hsl(var(--theme-accent-2));
+	font-size: 1.15rem;
+	line-height: 1.45;
+}
+
+.raut-source-card__description {
+	font-size: 0.95rem;
+	line-height: 1.6;
+}
+
+.raut-source-card__action {
+	color: hsl(var(--theme-accent));
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}

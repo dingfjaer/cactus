@@ -1,0 +1,484 @@
+{
+  "checkedOn": "2026-09-23",
+  "archive": "https://raut.no/utgaver",
+  "reviewedIssues": [
+    123,
+    128,
+    131,
+    133,
+    136,
+    139,
+    140,
+    143,
+    146,
+    153,
+    154,
+    155,
+    158,
+    160,
+    161,
+    166,
+    172,
+    173,
+    177,
+    182,
+    184,
+    187,
+    188,
+    191,
+    193,
+    194,
+    195,
+    196
+  ],
+  "posts": [
+    {
+      "file": "src/content/post/raut-tilgjengelighet-er-en-praksis.md",
+      "title": "Tilgjengelighet er en praksis, ikke en sluttkontroll",
+      "publishDate": "2025-01-13",
+      "tags": [
+        "Rauting",
+        "uu",
+        "design"
+      ],
+      "newsletter": "https://raut.no/128",
+      "source": "https://github.com/Heydon/principles-of-web-accessibility",
+      "sourceTitle": "Principles Of Web Accessibility",
+      "rautLink": "https://raut.no/t/7lGdtTHI?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 158
+    },
+    {
+      "file": "src/content/post/raut-tilgjengelig-frontend.md",
+      "title": "Tilgjengelig frontend starter med riktige byggesteiner",
+      "publishDate": "2025-02-03",
+      "tags": [
+        "Rauting",
+        "uu",
+        "frontend"
+      ],
+      "newsletter": "https://raut.no/131",
+      "source": "https://martijnhols.nl/blog/accessibility-essentials-every-front-end-developer-should-know",
+      "sourceTitle": "Accessibility essentials every front-end developer should know",
+      "rautLink": "https://raut.no/t/FwRyJ1Lu?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 144
+    },
+    {
+      "file": "src/content/post/raut-design-for-usikre-ki-svar.md",
+      "title": "Når KI tar feil, har grensesnittet også et ansvar",
+      "publishDate": "2025-02-17",
+      "tags": [
+        "Rauting",
+        "kunstig-intelligens",
+        "ux"
+      ],
+      "newsletter": "https://raut.no/133",
+      "source": "https://www.nngroup.com/articles/ai-hallucinations/",
+      "sourceTitle": "AI Hallucinations: What Designers Need to Know",
+      "rautLink": "https://raut.no/t/wjS4C2Pc?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 144
+    },
+    {
+      "file": "src/content/post/raut-typografi-paa-brukerens-premisser.md",
+      "title": "Flytende typografi på brukerens premisser",
+      "publishDate": "2025-02-17",
+      "tags": [
+        "Rauting",
+        "frontend",
+        "uu"
+      ],
+      "newsletter": "https://raut.no/133",
+      "source": "https://www.oddbird.net/2025/02/12/fluid-type/",
+      "sourceTitle": "Reimagining Fluid Typography",
+      "rautLink": "https://raut.no/t/3KFjpPjg?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 140
+    },
+    {
+      "file": "src/content/post/raut-designsystemet-som-fellesgrunn.md",
+      "title": "Designsystemet som felles grunn å bygge på",
+      "publishDate": "2025-03-10",
+      "tags": [
+        "Rauting",
+        "designsystemer",
+        "uu"
+      ],
+      "newsletter": "https://raut.no/136",
+      "source": "https://designsystemet.no/no/blog/V1",
+      "sourceTitle": "Første versjon av Designsystemet er klar!",
+      "rautLink": "https://raut.no/t/eHuiMN7G?src=web",
+      "verification": "Originalartikkelen har flyttet. Ny adresse verifisert via Designsystemets nettsted.",
+      "words": 146
+    },
+    {
+      "file": "src/content/post/raut-design-i-nettleseren.md",
+      "title": "Nettleseren som designverktøy",
+      "publishDate": "2025-03-10",
+      "tags": [
+        "Rauting",
+        "design",
+        "frontend"
+      ],
+      "newsletter": "https://raut.no/136",
+      "source": "https://cloudfour.com/thinks/why-i-like-designing-in-the-browser/",
+      "sourceTitle": "Why I Like Designing in the Browser",
+      "rautLink": "https://raut.no/t/H44d6S28?src=web",
+      "verification": "Originalartikkel lest via nettsøk; direkte henting ga 403.",
+      "words": 151
+    },
+    {
+      "file": "src/content/post/raut-pact-foer-du-tegner.md",
+      "title": "PACT: fire spørsmål før du begynner å tegne",
+      "publishDate": "2025-03-31",
+      "tags": [
+        "Rauting",
+        "brukerinnsikt",
+        "ux"
+      ],
+      "newsletter": "https://raut.no/139",
+      "source": "https://medium.com/design-bootcamp/if-you-dont-know-where-to-start-research-start-with-pact-1ae4b6802134",
+      "sourceTitle": "If you don’t know where to start research, start with PACT",
+      "rautLink": "https://raut.no/t/Ut1Z5cYP?src=web",
+      "verification": "Originalartikkel lest via nettsøk; direkte henting ga 403.",
+      "words": 153
+    },
+    {
+      "file": "src/content/post/raut-ikke-mist-fokus-ved-innsending.md",
+      "title": "Ikke mist brukeren når skjemaet sendes inn",
+      "publishDate": "2025-03-31",
+      "tags": [
+        "Rauting",
+        "uu",
+        "ux"
+      ],
+      "newsletter": "https://raut.no/139",
+      "source": "https://gomakethings.com/articles/dont-disable-buttons/",
+      "sourceTitle": "Don’t disable buttons",
+      "rautLink": "https://raut.no/t/PFAkFCbf?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 144
+    },
+    {
+      "file": "src/content/post/raut-chat-er-ikke-alltid-riktig.md",
+      "title": "Når chat gjør en enkel handling mer tungvint",
+      "publishDate": "2025-04-07",
+      "tags": [
+        "Rauting",
+        "kunstig-intelligens",
+        "ux"
+      ],
+      "newsletter": "https://raut.no/140",
+      "source": "https://julian.digital/2025/03/27/the-case-against-conversational-interfaces/",
+      "sourceTitle": "The case against conversational interfaces",
+      "rautLink": "https://raut.no/t/UaccFwmY?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 149
+    },
+    {
+      "file": "src/content/post/raut-navigasjon-med-tastatur.md",
+      "title": "Navigasjon som fungerer med tastatur",
+      "publishDate": "2025-04-07",
+      "tags": [
+        "Rauting",
+        "uu",
+        "frontend"
+      ],
+      "newsletter": "https://raut.no/140",
+      "source": "https://www.tempertemper.net/blog/how-navigation-should-work-for-keyboard-users",
+      "sourceTitle": "How navigation should work for keyboard users",
+      "rautLink": "https://raut.no/t/91tNgkki?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 151
+    },
+    {
+      "file": "src/content/post/raut-kreative-begrensninger.md",
+      "title": "Begrensninger som setter kreativiteten i gang",
+      "publishDate": "2025-05-05",
+      "tags": [
+        "Rauting",
+        "design",
+        "kreativitet"
+      ],
+      "newsletter": "https://raut.no/143",
+      "source": "https://arun.is/blog/creative-power-constraints/",
+      "sourceTitle": "The creative power of constraints",
+      "rautLink": "https://raut.no/t/zNqO8N1t?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 138
+    },
+    {
+      "file": "src/content/post/raut-et-eget-sted-paa-nettet.md",
+      "title": "Et eget sted på nettet er verdt å ta vare på",
+      "publishDate": "2025-05-05",
+      "tags": [
+        "Rauting",
+        "digital-hage",
+        "design"
+      ],
+      "newsletter": "https://raut.no/143",
+      "source": "https://theinternet.review/2025/05/02/a-place-to-call-homepage/",
+      "sourceTitle": "A Place to Call Homepage",
+      "rautLink": "https://raut.no/t/-tdwNMWW?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 149
+    },
+    {
+      "file": "src/content/post/raut-lyd-som-interaksjonsdesign.md",
+      "title": "Lyd er også interaksjonsdesign",
+      "publishDate": "2025-05-26",
+      "tags": [
+        "Rauting",
+        "interaksjonsdesign",
+        "lyd"
+      ],
+      "newsletter": "https://raut.no/146",
+      "source": "https://notbor.ing/words/the-sound-of-software",
+      "sourceTitle": "The Sound of Software",
+      "rautLink": "https://raut.no/t/53dpmAuc?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 144
+    },
+    {
+      "file": "src/content/post/raut-fra-prosjekt-til-produkt.md",
+      "title": "Fra prosjekt til produkt krever en annen styring",
+      "publishDate": "2025-08-25",
+      "tags": [
+        "Rauting",
+        "produktutvikling",
+        "design"
+      ],
+      "newsletter": "https://raut.no/154",
+      "source": "https://www.linkedin.com/pulse/fra-prosjekt-til-produkt-et-skifte-i-styringslogikk-p%C3%A5l-habberstad-zolvf/",
+      "sourceTitle": "Fra prosjekt til produkt - et skifte i styringslogikk",
+      "rautLink": "https://raut.no/t/IiTfsoG4?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 142
+    },
+    {
+      "file": "src/content/post/raut-enighet-eller-stillhet.md",
+      "title": "Er vi enige, eller har vi bare sluttet å spørre?",
+      "publishDate": "2025-09-01",
+      "tags": [
+        "Rauting",
+        "samarbeid",
+        "produktutvikling"
+      ],
+      "newsletter": "https://raut.no/155",
+      "source": "https://www.ashmann.co/the-illusion-of-alignment/",
+      "sourceTitle": "The illusion of alignment",
+      "rautLink": "https://raut.no/t/h0AIc6Ra?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 150
+    },
+    {
+      "file": "src/content/post/raut-din-eller-min-konto.md",
+      "title": "Din konto, min konto – eller bare konto?",
+      "publishDate": "2025-09-22",
+      "tags": [
+        "Rauting",
+        "innholdsdesign",
+        "ux"
+      ],
+      "newsletter": "https://raut.no/158",
+      "source": "https://adamsilver.io/blog/your-vs-my-in-user-interfaces/",
+      "sourceTitle": "“Your” vs “My” in user interfaces",
+      "rautLink": "https://raut.no/t/5QsxRekp?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 136
+    },
+    {
+      "file": "src/content/post/raut-hvorfor-dropper-vi-brukerinnsikt.md",
+      "title": "Hva ligger bak motstanden mot brukerinnsikt?",
+      "publishDate": "2025-09-22",
+      "tags": [
+        "Rauting",
+        "brukerinnsikt",
+        "produktutvikling"
+      ],
+      "newsletter": "https://raut.no/158",
+      "source": "https://www.nngroup.com/articles/why-organizations-dont-do-user-research/",
+      "sourceTitle": "Why Organizations Don’t Do User Research and How to Change That",
+      "rautLink": "https://raut.no/t/inExojRD?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 157
+    },
+    {
+      "file": "src/content/post/raut-brukerens-innsats-er-en-kostnad.md",
+      "title": "Brukerens innsats er en kostnad",
+      "publishDate": "2025-10-06",
+      "tags": [
+        "Rauting",
+        "ux",
+        "interaksjonsdesign"
+      ],
+      "newsletter": "https://raut.no/160",
+      "source": "https://lea.verou.me/blog/2025/user-effort/",
+      "sourceTitle": "In the economy of user effort, be a bargain, not a scam",
+      "rautLink": "https://raut.no/t/ItcUEEGW?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 160
+    },
+    {
+      "file": "src/content/post/raut-lettere-nettsider.md",
+      "title": "Lettere nettsider begynner med brukerreisen",
+      "publishDate": "2025-10-13",
+      "tags": [
+        "Rauting",
+        "baerekraft",
+        "frontend"
+      ],
+      "newsletter": "https://raut.no/161",
+      "source": "https://www.smashingmagazine.com/2025/09/how-minimize-environmental-impact-website/",
+      "sourceTitle": "How To Minimize The Environmental Impact Of Your Website",
+      "rautLink": "https://raut.no/t/E4nZo74m?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 147
+    },
+    {
+      "file": "src/content/post/raut-farger-og-tilgjengelighet.md",
+      "title": "Tilgjengelige farger trenger ikke være kjedelige",
+      "publishDate": "2025-10-13",
+      "tags": [
+        "Rauting",
+        "uu",
+        "design"
+      ],
+      "newsletter": "https://raut.no/161",
+      "source": "https://stephaniewalter.design/blog/yellow-purple-and-the-myth-of-accessibility-limits-color-palettes/",
+      "sourceTitle": "Yellow, Purple, and the Myth of “Accessibility Limits Color Palettes”",
+      "rautLink": "https://raut.no/t/-dxTubys?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 145
+    },
+    {
+      "file": "src/content/post/raut-naar-tilgjengelighet-hjelper-flere.md",
+      "title": "Når tilgjengelighet gjør hverdagen bedre for flere",
+      "publishDate": "2026-01-12",
+      "tags": [
+        "Rauting",
+        "uu",
+        "design"
+      ],
+      "newsletter": "https://raut.no/172",
+      "source": "https://sketchplanations.com/the-curb-cut-effect",
+      "sourceTitle": "The curb-cut effect",
+      "rautLink": "https://raut.no/t/U8Zm-0cM?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 141
+    },
+    {
+      "file": "src/content/post/raut-kort-uten-nestede-klikk.md",
+      "title": "Klikkbare kort uten knapper inni lenker",
+      "publishDate": "2026-01-19",
+      "tags": [
+        "Rauting",
+        "frontend",
+        "uu"
+      ],
+      "newsletter": "https://raut.no/173",
+      "source": "https://noahliebman.net/2025/08/using-subgrid-to-avoid-nested-interactive-elements/",
+      "sourceTitle": "Using subgrid to avoid nested interactive elements",
+      "rautLink": "https://raut.no/t/M_Do1NWe?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 149
+    },
+    {
+      "file": "src/content/post/raut-designprosessen-kan-komprimeres.md",
+      "title": "Designprosessen kan bli kortere uten å forsvinne",
+      "publishDate": "2026-03-24",
+      "tags": [
+        "Rauting",
+        "designprosess",
+        "kunstig-intelligens"
+      ],
+      "newsletter": "https://raut.no/182",
+      "source": "https://www.nngroup.com/articles/design-process-isnt-dead/",
+      "sourceTitle": "Design Process Isn't Dead, It's Compressed",
+      "rautLink": "https://raut.no/t/27m-ypYi?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 164
+    },
+    {
+      "file": "src/content/post/raut-mer-enn-produksjon.md",
+      "title": "Et ferdig grensesnitt er ikke et ferdig løst problem",
+      "publishDate": "2026-04-28",
+      "tags": [
+        "Rauting",
+        "designprosess",
+        "produktutvikling"
+      ],
+      "newsletter": "https://raut.no/187",
+      "source": "https://www.linkedin.com/pulse/output-isnt-design-karri-saarinen-ayhnc",
+      "sourceTitle": "Output isn’t design",
+      "rautLink": "https://raut.no/t/m-MQP7Ib?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 161
+    },
+    {
+      "file": "src/content/post/raut-synliggjoer-designarbeidet.md",
+      "title": "Gjør arbeidet bak skjermbildene synlig",
+      "publishDate": "2026-08-18",
+      "tags": [
+        "Rauting",
+        "designledelse",
+        "samarbeid"
+      ],
+      "newsletter": "https://raut.no/193",
+      "source": "https://www.petermerholz.com/newsletter/designs-legibility-gap/",
+      "sourceTitle": "Design’s Legibility Gap",
+      "rautLink": "https://raut.no/t/-0zqf-Jy?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 150
+    },
+    {
+      "file": "src/content/post/raut-html-kan-mer.md",
+      "title": "HTML kan mer enn vi ofte gir det ansvar for",
+      "publishDate": "2026-08-25",
+      "tags": [
+        "Rauting",
+        "frontend",
+        "uu"
+      ],
+      "newsletter": "https://raut.no/194",
+      "source": "https://chrisburnell.com/html-can-do-that/",
+      "sourceTitle": "HTML Can Do That",
+      "rautLink": "https://raut.no/t/PpYV2dvA?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 151
+    },
+    {
+      "file": "src/content/post/raut-trenger-vi-temabryteren.md",
+      "title": "Trenger alle nettsider en synlig temabryter?",
+      "publishDate": "2026-09-08",
+      "tags": [
+        "Rauting",
+        "ux",
+        "interaksjonsdesign"
+      ],
+      "newsletter": "https://raut.no/195",
+      "source": "https://lea.verou.me/blog/2026/dark-mode-toggles-2/",
+      "sourceTitle": "The best dark mode toggle is probably none • Lea Verou",
+      "rautLink": "https://raut.no/t/F704yAcT?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 148
+    },
+    {
+      "file": "src/content/post/raut-faerre-detaljer-mer-omtanke.md",
+      "title": "Færre detaljer gir mer rom for omtanke",
+      "publishDate": "2026-09-22",
+      "tags": [
+        "Rauting",
+        "interaksjonsdesign",
+        "produktutvikling"
+      ],
+      "newsletter": "https://raut.no/196",
+      "source": "https://design.lightspark.com/limit-the-number-of-details",
+      "sourceTitle": "Limit the number of details",
+      "rautLink": "https://raut.no/t/ZWbEbvH0?src=web",
+      "verification": "Originalartikkel hentet og lest.",
+      "words": 143
+    }
+  ]
+}
