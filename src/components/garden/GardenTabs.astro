@@ -1,15 +1,19 @@
 ---
-import { Icon } from "astro-icon/components";
+import PlantIcon from "@/assets/admonitions/plant.svg";
+import FlowerIcon from "@/assets/admonitions/flower.svg";
+import BirdIcon from "@/assets/admonitions/bird.svg";
+import LeafIcon from "@/assets/admonitions/leaf.svg";
+import PawIcon from "@/assets/admonitions/paw-print.svg";
 import type { GalleryKey } from "@/data/galleries";
 interface Props { active: GalleryKey | "spira" }
 const { active } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const tabs = [
-  { key: "spira", label: "Spira", path: "/posts/", icon: "mdi:sprout-outline" },
-  { key: "rosa", label: "Rosa", path: "/posts/rosa/", icon: "mdi:flower" },
-  { key: "vipa", label: "Vipa", path: "/posts/vipa/", icon: "mdi:bird" },
-  { key: "lova", label: "Løva", path: "/posts/lova/", icon: "mdi:leaf" },
-  { key: "tinsta", label: "Tinsta", path: "/posts/tinsta/", icon: "mdi:paw-outline" },
+  { key: "spira", label: "Spira", path: "/posts/", icon: PlantIcon },
+  { key: "rosa", label: "Rosa", path: "/posts/rosa/", icon: FlowerIcon },
+  { key: "vipa", label: "Vipa", path: "/posts/vipa/", icon: BirdIcon },
+  { key: "lova", label: "Løva", path: "/posts/lova/", icon: LeafIcon },
+  { key: "tinsta", label: "Tinsta", path: "/posts/tinsta/", icon: PawIcon },
 ];
 const selected = tabs.findIndex(tab => tab.key === active);
 ---
@@ -17,8 +21,8 @@ const selected = tabs.findIndex(tab => tab.key === active);
   <nav aria-label="Alt som gror" class="glass-bar" style={`--selected: ${selected}`}>
     <span class="glass-selection" aria-hidden="true"></span>
     <ul>
-      {tabs.map(tab => <li><a href={`${base}${tab.path}`} aria-current={active === tab.key ? "page" : undefined} data-astro-prefetch="hover" draggable="false">
-        <Icon name={tab.icon} aria-hidden="true" /><span>{tab.label}</span>
+      {tabs.map(({ icon: TabIcon, ...tab }) => <li><a href={`${base}${tab.path}`} aria-current={active === tab.key ? "page" : undefined} data-astro-prefetch="hover" draggable="false">
+        <TabIcon data-icon aria-hidden="true" focusable="false" /><span>{tab.label}</span>
       </a></li>)}
     </ul>
   </nav>
@@ -47,23 +51,8 @@ const selected = tabs.findIndex(tab => tab.key === active);
   });
 
   class GardenTabs extends HTMLElement {
-    alignmentObserver?: ResizeObserver;
-    disconnectedCallback() { this.alignmentObserver?.disconnect(); }
     connectedCallback() {
       const bar = this.querySelector<HTMLElement>('.glass-bar')!;
-      const header = document.querySelector<HTMLElement>('#main-header');
-      const lastLink = header?.querySelector<HTMLAnchorElement>('#navigation-menu a:last-child');
-      const align = () => {
-        if(!header || !lastLink || !matchMedia('(min-width:640px)').matches) { bar.style.width = '100%'; return; }
-        const range = document.createRange(); range.selectNodeContents(lastLink);
-        const width = range.getBoundingClientRect().right - header.getBoundingClientRect().left;
-        bar.style.width = width > 0 ? `${width}px` : '100%';
-      };
-      this.alignmentObserver = new ResizeObserver(align);
-      if(header) this.alignmentObserver.observe(header);
-      if(lastLink) this.alignmentObserver.observe(lastLink);
-      document.fonts.ready.then(align);
-      align();
       const links = [...this.querySelectorAll<HTMLAnchorElement>('a')];
       const selected = Number(this.dataset.selected);
       let start: { x: number; y: number; id: number } | null = null;
@@ -133,7 +122,8 @@ const selected = tabs.findIndex(tab => tab.key === active);
 <style>
   .garden-tabs { display: block; margin-bottom: 3rem; }
   .glass-bar {
-    position: relative; isolation: isolate; width:100%; max-width:100%; box-sizing:border-box; padding: 4px;
+    /* Reserve the same compact width before scripts and fonts load on every tab. */
+    position: relative; isolation: isolate; width:100%; max-width:32.5rem; box-sizing:border-box; padding: 4px;
     border-radius: 999px; touch-action: pan-y; user-select: none;
     background: hsl(var(--theme-bg) / .72);
     -webkit-backdrop-filter: blur(20px) saturate(1.6);

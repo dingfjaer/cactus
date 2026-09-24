@@ -25,7 +25,7 @@ The Internet Review løfter frem Dave Ruperts kritikk av at faglige blogger blir
 - POSSE betyr å publisere på eget nettsted og deretter dele videre andre steder.
 - Plattformene kan brukes til distribusjon, samtidig som den opprinnelige teksten har et hjem du selv kontrollerer.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Dette er noe av det jeg vil at hagen skal gi rom for: notater, faglige interesser og andre ting som får stå ved siden av hverandre. Jeg vil heller bygge et sted det går an å vende tilbake til enn å tenke på hvert innlegg som en enkeltstående oppdatering. Sammenhengen mellom tekstene er også en del av det jeg lager.
 

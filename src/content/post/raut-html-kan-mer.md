@@ -25,7 +25,7 @@ Chris Burnell samler interaktive eksempler på hva HTML kan gjøre. Oversikten e
 - loading="lazy" kan utsette lasting av bilder som ikke trengs med en gang. Det må brukes der det passer innholdets rolle.
 - Innebygd betyr ikke automatisk problemfritt. Artikkelen påpeker blant annet svakheter ved datalist og enkelte kontroller, og oppfordrer til testing.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg vil bruke oversikten som en vane før jeg legger til et nytt bibliotek i hagen: Finnes en god byggestein allerede? Det kan gi mindre kode å passe på og en mer gjenkjennelig oppførsel. Samtidig vil jeg prøve den konkrete løsningen med tastatur, ulike nettlesere og relevante hjelpemidler. At funksjonen finnes, er starten på vurderingen.
 

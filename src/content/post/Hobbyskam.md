@@ -4,7 +4,7 @@ description: Skal ikke hobby være noe som gir deg glede? Hvorfor kjenner jeg ba
 publishDate: 2025-01-09
 tags:
   - RandomThoughts
-draft: true
+draft: false
 ---
 
 ## Hvem er du og hva er hobbyen din

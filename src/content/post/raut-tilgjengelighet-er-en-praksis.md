@@ -25,7 +25,7 @@ Heydon Pickering samler prinsipper som flytter oppmerksomheten fra feilretting p
 - Automatiske tester finner enkeltfeil. De forteller ikke alene om helheten er forståelig og mulig å bruke.
 - Kompetanse og ansvar må bli værende i organisasjonen, slik at forbedringene overlever neste leveranse.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg liker tanken om at tilgjengelighet må synes i selve arbeidet, ikke bare i en rapport. Den knytter seg også til notatet mitt om fargeblindhet: Fargevalg er én del av opplevelsen, men struktur og språk betyr minst like mye. Jeg vil bruke prinsippene som spørsmål underveis i designarbeidet: Hva gjør vi lett å forstå, og hvem gjør vi det unødvendig vanskelig for?
 

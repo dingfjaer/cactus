@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="650" viewBox="0 0 1440 650">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#d6dfdd" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1440" height="650" rx="24" fill="#f7f8f4"/>
+  <g font-family="Arial, sans-serif" fill="#193e39">
+    <text x="64" y="77" font-size="37" font-weight="700">Et felles utgangspunkt for ikonene</text>
+    <text x="64" y="120" font-size="23">Rutenettet hjelper deg å tegne. Øyet avgjør om familien henger sammen.</text>
+    <g transform="translate(64 175)">
+      <rect width="384" height="288" rx="12" fill="white"/>
+      <rect x="48" y="24" width="288" height="240" fill="url(#grid)"/>
+      <rect x="96" y="48" width="192" height="192" rx="8" fill="none" stroke="#246a5c" stroke-width="4" stroke-dasharray="8 6"/>
+      <path d="M72 144H312M192 24V264" stroke="#d18e40" stroke-width="3"/>
+      <text y="340" font-size="28" font-weight="700">1. Felles ramme</text>
+      <text y="380" font-size="22">Rutenett, senter og plass til luft.</text>
+    </g>
+    <g transform="translate(528 175)">
+      <rect width="384" height="288" rx="12" fill="white"/>
+      <circle cx="192" cy="144" r="102" fill="none" stroke="#246a5c" stroke-width="4"/>
+      <rect x="105" y="57" width="174" height="174" fill="none" stroke="#d18e40" stroke-width="4"/>
+      <rect x="75" y="81" width="234" height="126" fill="none" stroke="#6c72aa" stroke-width="4" stroke-dasharray="9 6"/>
+      <text y="340" font-size="28" font-weight="700">2. Grunnformer</text>
+      <text y="380" font-size="22">Start med enkle referanseformer.</text>
+    </g>
+    <g transform="translate(992 175)">
+      <rect width="384" height="288" rx="12" fill="white"/>
+      <path d="M48 198H336" stroke="#d6dfdd" stroke-width="2"/>
+      <circle cx="105" cy="144" r="57" fill="#246a5c"/>
+      <rect x="214" y="93" width="102" height="102" rx="8" fill="#246a5c"/>
+      <text x="59" y="241" font-size="19">sirkel</text><text x="226" y="241" font-size="19">firkant</text>
+      <text y="340" font-size="28" font-weight="700">3. Vurder sammen</text>
+      <text y="380" font-size="22">Lik opplevd tyngde, ulike mål.</text>
+    </g>
+    <text x="64" y="616" font-size="19" fill="#5f7068">Egen prinsippskisse for Fjærdinghage · Illustrative mål, ikke en plattformspesifikasjon</text>
+  </g>
+</svg>

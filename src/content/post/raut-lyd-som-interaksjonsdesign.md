@@ -25,7 +25,7 @@ The Sound of Software fra !Boring undersøker hvordan lyd kan gjøre digitale ha
 - Relaterte handlinger bør ha et sammenhengende lydspråk. Å åpne og lukke kan for eksempel være gjenkjennelige motsetninger.
 - Brukeren trenger kontroll. Test lydene på faktiske enheter og i omgivelsene de skal høres i.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Med interessen min for radio og lyd synes jeg dette er en spennende utvidelse av designverktøykassa. Jeg vil likevel begynne forsiktig: Hvilken informasjon tilfører lyden, og fungerer handlingen også uten den? En fin bekreftelse kan gi opplevelsen varme, men den må passe situasjonen. Det skal være lett å velge stillhet.
 

@@ -85,4 +85,8 @@ export interface Summary {
 	value: string;
 }
 
-export type AdmonitionType = "tip" | "note" | "important" | "caution" | "warning";
+export type GardenAdmonitionType = "spira" | "rosa" | "vipa" | "lova" | "tinsta";
+
+export type AdmonitionType =
+	| GardenAdmonitionType
+	| "tip" | "note" | "important" | "caution" | "warning";

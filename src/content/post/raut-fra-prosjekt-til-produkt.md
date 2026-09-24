@@ -25,7 +25,7 @@ Pål Habberstad bruker forskjellen mellom en bro og et levende system til å dis
 - Test både om dere løser riktig problem og om den valgte løsningen faktisk virker.
 - Varige, tverrfaglige team og mulighet til å endre retning gjør det mulig å omsette læring i forbedringer.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Hagemetaforen passer godt her. Å plante noe er begynnelsen, og det som trenger stell blir ikke borte fordi lanseringsdatoen er passert. Jeg synes dette gir en nyttig inngang til samtalen om design: Hvem skal følge med på hvordan løsningen brukes, og hvem kan endre den når behovene flytter på seg? Det ansvaret må ha en plass i planene.
 

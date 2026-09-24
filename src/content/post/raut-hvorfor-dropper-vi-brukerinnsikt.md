@@ -25,7 +25,7 @@ Laura Klein i Nielsen Norman Group går gjennom vanlige grunner til at organisas
 - A/B-tester kan vise hvilken variant som gjør det best på et mål, mens kvalitative undersøkelser kan forklare hvorfor.
 - Når team belønnes for leveranser fremfor nytte, kan ny kunnskap oppleves som et hinder. Da må også insentivene diskuteres.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg synes dette gjør argumentasjonen for innsikt mer presis. Jeg vil heller knytte en undersøkelse til en konkret beslutning enn å forsvare «mer research» generelt. Hva er vi usikre på, hva risikerer vi ved å gjette, og hva er vi faktisk villige til å endre? Hvis svaret på det siste er ingenting, har vi et større problem enn metodevalg.
 

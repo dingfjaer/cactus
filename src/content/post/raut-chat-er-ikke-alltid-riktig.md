@@ -25,7 +25,7 @@ Julian Lehr utfordrer forestillingen om at naturlig språk skal erstatte alle an
 - Samtaler kan være verdifulle når selve dialogen hjelper oss å utforske og strukturere tanker.
 - KI kan støtte en eksisterende arbeidsflyt uten at hele verktøyet må bli en chat.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg vil skille tydeligere mellom oppgaver der brukeren prøver å finne ut hva de vil, og oppgaver der de allerede vet det. I det første tilfellet kan samtalen være selve hjelpen. I det andre kan den bli en omvei. For meg er spørsmålet hvor mye arbeid grensesnittet legger på brukeren for å uttrykke en ganske enkel hensikt.
 

@@ -25,7 +25,7 @@ Arun Venkatesan utforsker hvordan begrensninger påvirker kreativitet, med eksem
 - For mange begrensninger kan på sin side gjøre resultatene ensartede. Balansen betyr mer enn antallet regler alene.
 - Designeren kan også lage egne begrensninger og omformulere oppdragets rammer, fremfor bare å akseptere dem passivt.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg liker å tenke på begrensninger som en måte å få ideene i bevegelse. I hagen kan én fast innleggsstruktur gjøre det enklere å skrive, mens innholdet fortsatt får være personlig. I designarbeid ville jeg prøvd en liten øvelse med én tydelig ramme, for eksempel bare tekst og to farger, og sett hvilke løsninger det tvinger frem.
 

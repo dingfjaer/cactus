@@ -25,7 +25,7 @@ Ash Mann beskriver hvordan tilsynelatende enighet kan skjule ulike mål, forvent
 - Synliggjør antakelser og definer suksess sammen. En gjennomgang av hva som kan gå galt kan avdekke skjulte motsetninger.
 - Forankring må vedlikeholdes underveis, og noen må ha ansvar og myndighet til å følge opp samtalen.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg tar med meg at et stille møte ikke er et særlig godt bevis på enighet. Jeg ville heller bedt hver deltaker beskrive hva de mener skal bli bedre for brukeren, og hva vi velger bort. Forskjeller i svarene kan være verdifulle. De er mye lettere å arbeide med før løsningen har fått både budsjett, prestisje og en lanseringsdato.
 

@@ -25,7 +25,7 @@ Sketchplanations forklarer curb-cut-effekten gjennom nedsenkede fortauskanter. E
 - Et tydelig behov hos en gruppe kan avdekke forbedringer som får bredere bruk enn man først så for seg.
 - Artikkelen bruker effekten til å vise hvordan målrettede inkluderingstiltak kan skape verdi for samfunnet som helhet.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg synes dette er en god inngang til å snakke om inkluderende design. Samtidig vil jeg passe på at vi ikke bare begrunner tilgjengelighet med gevinsten for flertallet. Den opprinnelige barrieren er viktig nok i seg selv. For meg er den ekstra lærdommen å undersøke krevende situasjoner nøye: De kan vise oss svakheter som ellers blir lette å overse.
 

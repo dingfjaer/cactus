@@ -25,7 +25,7 @@ Sarah Gibbons og Huei-Hsin Wang i Nielsen Norman Group nyanserer debatten om at 
 - Rask prototyping kan forkorte veien til læring. Den fjerner ikke usikkerheten rundt problemet eller konsekvensene av et dårlig valg.
 - Tilpass undersøkelsene til risiko, kontekst og tilgjengelig kunnskap. En kjent detalj og et nytt tjenesteområde trenger ulik tilnærming.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg synes dette gir et nyttig spørsmål når tempoet øker: Hvilken kunnskap gjør det forsvarlig å gå raskt akkurat her? Jeg vil gjerne korte ned veien til noe som kan prøves. Samtidig vil jeg kunne peke på hva vi bygger antakelsene på, og hva vi fortsatt må lære. En fungerende prototype er en mulighet til å undersøke, ikke automatisk en bekreftelse.
 

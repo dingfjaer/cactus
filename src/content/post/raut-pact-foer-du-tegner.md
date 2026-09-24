@@ -25,7 +25,7 @@ Pavel Samsonov beskriver PACT som en måte å skaffe oversikt i et ukjent fagomr
 - Spør hvordan dere vet det dere hevder. Gjentatte antakelser er ikke det samme som flere uavhengige observasjoner.
 - Uenighet og kunnskapshull gir retning for videre brukerinnsikt. Oppfølgingsspørsmål gjør samtaler mer nyttige enn et skjema med korte svar.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg liker at PACT gjør det legitimt å stille de tilsynelatende enkle spørsmålene. De er ofte akkurat det som forsvinner når alle vil raskt til en løsning. Jeg ville brukt rammeverket til å samle både det vi vet og det vi bare antar, før første skisse får for stor innflytelse på resten av arbeidet.
 

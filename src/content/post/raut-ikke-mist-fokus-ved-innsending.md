@@ -25,7 +25,7 @@ Chris Ferdinandi tar for seg et vanlig mønster: Send-knappen deaktiveres mens s
 - Artikkelen viser en innsendingstilstand på selve skjemaet, som kontrolleres før en ny handling starter.
 - Fortell at innsendingen pågår, og hva resultatet blir. Statusmeldinger må også være tilgjengelige for skjermlesere.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg vil se på ventetiden som en del av brukerreisen. Brukeren trenger svar på om handlingen ble registrert, om noe fortsatt skjer og hva neste steg er. En grå knapp sier lite om alt dette. I en gjennomgang av et skjema ville jeg derfor fulgt fokus og status fra før innsending til både vellykket svar og feil.
 

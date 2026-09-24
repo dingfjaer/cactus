@@ -25,7 +25,7 @@ Stéphanie Walter utfordrer myten om at tilgjengelighetskrav gir lite rom for fa
 - Test kombinasjonene i faktiske komponenter og i både lyst og mørkt tema.
 - Dokumenter hvilke par som fungerer til hva. Fargevariabler og en kontrastoversikt gjør valgene lettere å gjenbruke riktig.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Dette bygger fint videre på interessen min for fargeblindhet og UX. Jeg vil tenke mindre på «trygge farger» og mer på trygge måter å bruke dem på. En palett trenger bruksanvisning: tekst, flater, lenker og tilstander har ulike oppgaver. Jeg vil også kontrollere at mening ikke forsvinner når fargene blir vanskelige å skille, selv om kontrasten er god.
 

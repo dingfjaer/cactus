@@ -1,0 +1,228 @@
+{
+  "list": "https://medium.com/@dingchen_design/list/a-designer-should-know-238809d9a3d4",
+  "verified": "2026-09-24",
+  "total": 24,
+  "created": 19,
+  "pending": 5,
+  "source": "Leseliste og offentlig tilgjengelig artikkeltekst lest i nettleseren.",
+  "datePolicy": "Datoen på artikkelsiden brukes, ikke listen. Avvik: Tretina 6./7. mai 2024, Satpathy 11./10. juli 2020, Tudor 26./25. august 2020 (artikkel/liste).",
+  "reflections": "KI-formulerte refleksjoner på oppdrag fra Ding. Overskrift: Ding! 💡.",
+  "entries": [
+    {
+      "index": 0,
+      "title": "7 Principles of Icon Design",
+      "url": "https://medium.com/user-experience-design-1/7-principles-of-icon-design-e7187539e4a2",
+      "status": "created",
+      "file": "src/content/post/medium-ikoner-som-fungerer-sammen.md",
+      "author": "Helena Zhang",
+      "publishDate": "2020-01-29"
+    },
+    {
+      "index": 1,
+      "title": "Form validation user experiences: from worst to best (with React examples)",
+      "url": "https://medium.com/helpshift-engineering/form-validation-user-experiences-from-worst-to-best-with-react-examples-a8636164b1f2",
+      "status": "created",
+      "file": "src/content/post/medium-feilmeldinger-til-riktig-tid.md",
+      "author": "Saunved",
+      "publishDate": "2022-07-19"
+    },
+    {
+      "index": 2,
+      "title": "The Ugly Realities of the UI/UX Design Industry",
+      "url": "https://medium.com/ux-planet/the-ugly-realities-of-the-ui-ux-design-industry-3b2af009462c",
+      "status": "created",
+      "file": "src/content/post/medium-designarbeid-i-en-uryddig-virkelighet.md",
+      "author": "Path Unbound",
+      "publishDate": "2024-10-10"
+    },
+    {
+      "index": 3,
+      "title": "My life lessons after 14 years in UI/UX design",
+      "url": "https://medium.com/design-bootcamp/my-life-lessons-after-14-years-in-ui-ux-design-230f760e122e",
+      "status": "created",
+      "file": "src/content/post/medium-laering-gjennom-praksis-og-tilbakemelding.md",
+      "author": "Alexey Tretina",
+      "publishDate": "2024-05-06"
+    },
+    {
+      "index": 4,
+      "title": "Designing better data tables for enterprise UX",
+      "url": "https://medium.com/user-experience-design-1/data-table-for-enterprise-ux-cb48fb9fdf1e",
+      "status": "created",
+      "file": "src/content/post/medium-datatabeller-som-arbeidsflate.md",
+      "author": "Lalatendu Satpathy",
+      "publishDate": "2020-07-11"
+    },
+    {
+      "index": 5,
+      "title": "UI cheat sheet: dropdown field",
+      "url": "https://medium.com/user-experience-design-1/ui-cheat-sheet-dropdown-field-a30025c0f432",
+      "status": "member_only",
+      "file": null,
+      "publishDate": "2020-04-12",
+      "reason": "Kun innledningen var tilgjengelig; artikkelen er merket Member-only story. Ikke oppsummert."
+    },
+    {
+      "index": 6,
+      "title": "8 Best websites to help you practice UX",
+      "url": "https://medium.com/design-bootcamp/8-best-websites-to-help-you-practice-ux-96a360b790d",
+      "status": "created",
+      "file": "src/content/post/medium-fra-ux-lesing-til-oeving.md",
+      "author": "Saikrishna vanneldas",
+      "publishDate": "2022-02-14"
+    },
+    {
+      "index": 7,
+      "title": "Design bedre skjema så folk kan gjøre det de kom for",
+      "url": "https://medium.com/netlife/design-bedre-skjema-s%C3%A5-folk-kan-gj%C3%B8re-det-de-kom-for-aaddc706684c",
+      "status": "created",
+      "file": "src/content/post/medium-skjemaer-som-hjelper-folk-videre.md",
+      "author": "Daniel Hasan",
+      "publishDate": "2019-06-28"
+    },
+    {
+      "index": 8,
+      "title": "Digging deep in layout grids in mobile app design",
+      "url": "https://medium.com/user-experience-design-1/digging-deep-in-layout-grids-in-mobile-app-design-ef07ace5b291",
+      "status": "created",
+      "file": "src/content/post/medium-rutenett-som-foelger-innholdet.md",
+      "author": "Andrii Zhulidin",
+      "publishDate": "2019-10-09"
+    },
+    {
+      "index": 9,
+      "title": "UI cheat sheet: Accordions",
+      "url": "https://medium.com/user-experience-design-1/ui-cheat-sheet-accordions-3e88f0d4dfee",
+      "status": "member_only",
+      "file": null,
+      "publishDate": "2021-11-03",
+      "reason": "Kun innledningen var tilgjengelig; artikkelen er merket Member-only story. Ikke oppsummert."
+    },
+    {
+      "index": 10,
+      "title": "Observing the Double Diamond process in practice",
+      "url": "https://medium.com/user-experience-design-1/observing-the-double-diamond-process-in-practice-7c3c7c33a2ba",
+      "status": "created",
+      "file": "src/content/post/medium-double-diamond-i-virkeligheten.md",
+      "author": "Teisanu Tudor",
+      "publishDate": "2020-08-26"
+    },
+    {
+      "index": 11,
+      "title": "How to be a Diversity & Inclusion activist as a designer",
+      "url": "https://medium.com/design-bootcamp/how-to-be-a-diversity-inclusion-activist-as-a-designer-45fd16e3f855",
+      "status": "created",
+      "file": "src/content/post/medium-inkludering-i-daglige-designvalg.md",
+      "author": "Xindeling Pan",
+      "publishDate": "2020-12-18"
+    },
+    {
+      "index": 12,
+      "title": "2021 UI/UX Design Trends and How To Make Them Work For You",
+      "url": "https://medium.com/ux-planet/2021-ui-ux-design-trends-and-how-to-make-them-work-for-you-49d8a04fb09b",
+      "status": "created",
+      "file": "src/content/post/medium-designtrender-trenger-en-begrunnelse.md",
+      "author": "Kate Shokurova / Shakuro",
+      "publishDate": "2020-12-08"
+    },
+    {
+      "index": 13,
+      "title": "Chrome Extensions for Designers",
+      "url": "https://medium.com/muzli-design-inspiration/chrome-extensions-for-designers-69fabdbef792",
+      "status": "member_only",
+      "file": null,
+      "publishDate": "2020-12-31",
+      "reason": "Kun innledningen var tilgjengelig; artikkelen er merket Member-only story. Ikke oppsummert."
+    },
+    {
+      "index": 14,
+      "title": "Top UI/UX Design Works for Inspiration — #137",
+      "url": "https://medium.com/ux-planet/top-ui-ux-design-inspiration-137-bcb4075b9f0d",
+      "status": "created",
+      "file": "src/content/post/medium-inspirasjon-med-et-brukerperspektiv.md",
+      "author": "They Make Design",
+      "publishDate": "2021-01-11"
+    },
+    {
+      "index": 15,
+      "title": "Significant releases of 2020 on a design scene",
+      "url": "https://medium.com/prototypr/significant-releases-of-2020-on-a-design-scene-8dee1015f46b",
+      "status": "created",
+      "file": "src/content/post/medium-designverktoey-som-endrer-samarbeid.md",
+      "author": "Roman Kamushken",
+      "publishDate": "2021-01-09"
+    },
+    {
+      "index": 16,
+      "title": "Anatomy of design workshops",
+      "url": "https://medium.com/design-bridges/comprehensive-anatomy-of-all-ux-design-thinking-workshops-c416706cd3e2",
+      "status": "created",
+      "file": "src/content/post/medium-workshops-fra-enkle-byggeklosser.md",
+      "author": "Slava Shestopalov",
+      "publishDate": "2021-04-15"
+    },
+    {
+      "index": 17,
+      "title": "Dealing with frustration in Design",
+      "url": "https://medium.com/ux-planet/dealing-with-frustration-in-design-5982f468ca18",
+      "status": "member_only",
+      "file": null,
+      "publishDate": "2021-02-22",
+      "reason": "Kun innledningen var tilgjengelig; artikkelen er merket Member-only story. Ikke oppsummert."
+    },
+    {
+      "index": 18,
+      "title": "Lightning Decision Jam: A Workshop to Solve Any Problem",
+      "url": "https://medium.com/ux-planet/lightning-decision-jam-a-workshop-to-solve-any-problem-65bb42af41dc",
+      "status": "created",
+      "file": "src/content/post/medium-fra-diskusjon-til-et-lite-forsoek.md",
+      "author": "Jonathan Courtney",
+      "publishDate": "2018-10-26"
+    },
+    {
+      "index": 19,
+      "title": "How to Improve Design Skills by Viewing the Best Works",
+      "url": "https://medium.com/muzli-design-inspiration/how-to-improve-design-skills-by-viewing-the-best-works-c3e8330a5a90",
+      "status": "created",
+      "file": "src/content/post/medium-tren-blikket-med-aktiv-analyse.md",
+      "author": "Erik Messaki",
+      "publishDate": "2021-04-07"
+    },
+    {
+      "index": 20,
+      "title": "Essential Guides for a UX Design Presentation",
+      "url": "https://medium.com/ux-planet/essential-guides-for-a-ux-design-presentation-595f830ecff9",
+      "status": "created",
+      "file": "src/content/post/medium-presenter-begrunnelsen-bak-designet.md",
+      "author": "Dinh Huy Design / Huy Truong",
+      "publishDate": "2021-05-24"
+    },
+    {
+      "index": 21,
+      "title": "Designers, please stop presenting your work with rounded corners",
+      "url": "https://medium.com/design-bootcamp/designers-please-stop-presenting-your-work-with-rounded-corners-ab29d762b069",
+      "status": "member_only",
+      "file": null,
+      "publishDate": "2020-11-16",
+      "reason": "Kun innledningen var tilgjengelig; artikkelen er merket Member-only story. Ikke oppsummert."
+    },
+    {
+      "index": 22,
+      "title": "How “The Queen’s Gambit” inspired me to grow as a designer",
+      "url": "https://medium.com/user-experience-design-1/how-the-queens-gambit-inspired-me-to-grow-as-a-designer-5c15ceb52349",
+      "status": "created",
+      "file": "src/content/post/medium-faglig-utvikling-er-ikke-et-soloprosjekt.md",
+      "author": "Devin Ross",
+      "publishDate": "2020-11-17"
+    },
+    {
+      "index": 23,
+      "title": "10 Essential Skills for the Modern UI & UX Designer",
+      "url": "https://medium.com/user-experience-design-1/10-essential-skills-for-the-modern-ui-ux-designer-ee6e9b53fcf9",
+      "status": "created",
+      "file": "src/content/post/medium-grunnferdigheter-som-holder-designet-sammen.md",
+      "author": "Danny Sapio",
+      "publishDate": "2020-11-16"
+    }
+  ]
+}

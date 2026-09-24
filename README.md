@@ -29,6 +29,9 @@ pnpm dev
 
 Innstillingene for Markdown-lenker, bilder og synlige egenskaper er satt opp lokalt. Obsidian-innstillinger er fortsatt utelatt fra Git. På en ny maskin: slå av wikilenker, velg relative lenker og `images` som vedleggsmappe. Aktiver Templates og velg `Templates` som malmappe.
 
+Se [guiden til infobokser](scripts/admonitions.md) for `:::spira`, `:::rosa`,
+`:::vipa`, `:::lova` og `:::tinsta` i Markdown.
+
 ## Publisere
 
 1. Forhåndsvis med `pnpm dev` (eller VS Code → Terminal → Run Task → Forhåndsvis hagen).

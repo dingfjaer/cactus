@@ -25,7 +25,7 @@ Adam Silver tar opp et spørsmål som stadig kommer tilbake i grensesnitt: Skal 
 - «Dine saker» fungerer naturlig når tjenesten snakker til brukeren, også i veiledninger, varsler og kundestøtte.
 - «Mine» kan passe når valget uttrykker brukerens egen beskjed til systemet. Hvem som snakker, bør styre perspektivet.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg liker at en liten tekstbeslutning blir vurdert utenfor selve skjermbildet. Et navn må også fungere når noen forklarer det over telefon eller skriver om det i en e-post. Neste gang dette spørsmålet dukker opp, vil jeg prøve teksten i en hel setning. Da blir det ofte lettere å høre om perspektivet henger sammen.
 

@@ -25,7 +25,7 @@ Karri Saarinen argumenterer for at design handler om å få form og kontekst til
 - Å flytte, tegne og omarbeide elementer kan være en måte å tenke på. Verdien ligger også i forståelsen som vokser frem underveis.
 - KI kan bidra med prototyper og utforskning, men resultatet trenger fortsatt faglig vurdering og kontakt med den faktiske situasjonen.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg vil bruke dette som en påminnelse om å undersøke hva som skjer bak den pene overflaten. Hvilke vanskelige valg er tatt, og hvilke er bare skjøvet videre? Det er lett å kjenne fremdrift når noe blir synlig. Jeg vil også ta vare på den roligere fremdriften: et problem som blir klarere, en antakelse som faller og en sammenheng som endelig gir mening.
 

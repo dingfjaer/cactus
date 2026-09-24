@@ -1,5 +1,6 @@
 import type {} from "mdast-util-to-hast";
 import type { AdmonitionType } from "@/types";
+import { admonitionAliases, admonitionThemes } from "../data/admonitions";
 import { type Properties, h as _h } from "hastscript";
 import type { Node, Paragraph as P, Parent, PhrasingContent, Root } from "mdast";
 import type { Directives, LeafDirective, TextDirective } from "mdast-util-directive";
@@ -10,11 +11,11 @@ import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 
 // Supported admonition types
-const Admonitions = new Set<AdmonitionType>(["tip", "note", "important", "caution", "warning"]);
+const Admonitions = new Set<string>(Object.keys(admonitionAliases));
 
 /** Checks if a string is a supported admonition type. */
 function isAdmonition(s: string): s is AdmonitionType {
-	return Admonitions.has(s as AdmonitionType);
+	return Admonitions.has(s);
 }
 
 /** Checks if a node is a directive. */
@@ -71,8 +72,10 @@ export const remarkAdmonitions: Plugin<[], Root> = () => (tree) => {
 		const admonitionType = node.name;
 		if (!isAdmonition(admonitionType)) return;
 
-		let title: string = admonitionType;
-		let titleNode: PhrasingContent[] = [{ type: "text", value: title }];
+		const themeType = admonitionAliases[admonitionType];
+		let title: string = admonitionThemes[themeType].label;
+		// An empty title retains the icon without generating a visible type label.
+		let titleNode: PhrasingContent[] = [];
 
 		// Check if there's a custom title
 		const firstChild = node.children[0];
@@ -90,7 +93,7 @@ export const remarkAdmonitions: Plugin<[], Root> = () => (tree) => {
 
 		// Do not change prefix to AD, ADM, or similar, adblocks will block the content inside.
 		const aside = h("aside", { "aria-label": title, class: `aside aside-${admonitionType}` }, [
-			h("p", { class: "aside-title", "aria-hidden": "true" }, [...titleNode]),
+			h("p", { class: "aside-title", "aria-hidden": titleNode.length ? undefined : "true" }, titleNode),
 			h("div", { class: "aside-content" }, node.children),
 		]);
 

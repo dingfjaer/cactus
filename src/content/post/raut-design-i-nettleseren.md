@@ -25,7 +25,7 @@ Tyler Sticka i Cloud Four forklarer hvorfor han liker å designe direkte i nettl
 - En nettleserprototype kan deles og undersøkes uten at mottakeren trenger et bestemt designprogram.
 - Egne designverktøy er fortsatt nyttige for blant annet løse skisser, flyter og illustrasjoner. Arbeidsmåtene kan kombineres.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg ser hagen som et fint sted å utforske dette. Når jeg prøver et kort eller en tekstbredde i nettleseren, kan jeg samtidig kjenne på hva som skjer på mobil og ved større tekst. Det gjør prototypen til et redskap for å tenke. Jeg vil beholde friheten til å skissere løst, men komme tidligere til noe som faktisk kan brukes.
 

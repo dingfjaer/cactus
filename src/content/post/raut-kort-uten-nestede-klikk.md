@@ -25,7 +25,7 @@ Noah Liebman viser hvordan subgrid kan løse et vanlig kortproblem: Hele raden s
 - Grid og subgrid kan plassere elementene slik at de fortsatt oppleves som del av samme kort, uten at tekst og knapp overlapper.
 - Start med meningsfull struktur og legg på visuell plassering etterpå. Utseendet trenger ikke diktere en problematisk elementstruktur.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Dette er relevant når jeg samler artikler i hagen. Et kort med én oppgave kan være én lenke. Hvis jeg senere legger til lagring eller deling, må de få egne handlinger som er lette å nå og forstå. Jeg liker at eksemplet viser en vei til å beholde uttrykket uten å legge usynlig kompleksitet på tastaturbrukeren.
 

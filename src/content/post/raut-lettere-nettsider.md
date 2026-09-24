@@ -25,7 +25,7 @@ Smashing Magazine beskriver en praktisk tilnærming til mer ressurseffektive net
 - Vurder innhold, funksjoner og tunge ressurser opp mot verdien de gir. En mindre side er ikke bedre hvis nødvendig informasjon forsvinner.
 - Sett mål og følg utviklingen. Beregninger av utslipp er estimater, mens blant annet sidestørrelse og lastetid kan sammenlignes direkte.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 I hagen vil jeg at bilder og andre medier skal tilføre noe, og at teksten fortsatt skal være lett å nå på en treg forbindelse. Jeg ville startet med én vanlig vei inn til et innlegg og sett hva som lastes på veien. Det gjør arbeidet håndterlig, og kobler hensynet til ressursbruk til noe leseren faktisk merker.
 

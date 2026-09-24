@@ -25,7 +25,7 @@ Tempertemper viser at vanlig nettstedsnavigasjon kan ha ganske enkel tastaturbet
 - Når en undermeny åpnes, kan fokus bli på knappen. Brukeren går videre inn i menyen med Tab og kan lukke med Escape.
 - En hopp-til-innhold-lenke lar brukeren slippe å gå gjennom navigasjonen på hver side.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg synes dette er en nyttig påminnelse om at en meny ikke trenger å føles avansert for å være gjennomarbeidet. Forutsigbarheten er en kvalitet i seg selv. En konkret kontroll jeg vil ta med meg, er å legge bort musa og følge hele veien fra toppen av siden til innholdet. Da merker jeg fort om designet skaper unødvendige stopp.
 

@@ -25,7 +25,7 @@ Lea Verou foreslår å behandle brukerens innsats som en valuta. Et grensesnitt 
 - Unngå å be om den samme informasjonen flere ganger, eller om noe løsningen allerede kan utlede sikkert.
 - Observer hvor arbeidet faktisk oppstår. Friksjon kan være så innarbeidet at brukeren ikke selv beskriver den som et problem.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg liker dette som et konkret blikk på brukerreiser. I tillegg til å telle steg vil jeg se etter steder der folk må huske, oversette, kontrollere eller starte på nytt. Et ekstra klikk kan være greit hvis det skaper klarhet. Det vanskelige er innsatsen som ikke gir noe tilbake, særlig når den kommer som en overraskelse midt i oppgaven.
 

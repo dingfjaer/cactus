@@ -25,7 +25,7 @@ Limit the number of details undersøker sammenhengen mellom kompleksitet og hån
 - Et begrenset antall tydelige kontroller kan gi rom for mer gjennomarbeidet betjening.
 - Kompleksitet kan være nødvendig og verdifull. Den bør begrunnes i hva produktet skal hjelpe brukeren å gjøre, fremfor å vokse ved stadig nye små tillegg.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg vil ta med meg dette når det frister å legge enda en funksjon i hagen. Hvert tillegg kan virke uskyldig alene, men til slutt konkurrerer de om både min og leserens oppmerksomhet. Jeg vil heller være tydelig på hvilken oppgave noe løser, og gi de viktigste detaljene nok stell. Enkelhet må merkes i bruken, ikke bare i skjermbildet.
 

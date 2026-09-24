@@ -25,7 +25,7 @@ Page Laubheimer i Nielsen Norman Group beskriver hvordan troverdige, men feilakt
 - Et prosenttall modellen selv finner på, er ikke en statistisk pålitelig sikkerhetsvurdering.
 - Tiltak må tilpasses oppgaven og konsekvensene av feil. De erstatter ikke arbeidet med å forbedre og evaluere systemet.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg tar med meg at tillit ikke bør være noe grensesnittet bare forsøker å maksimere. Brukeren trenger et riktig bilde av hva løsningen kan og ikke kan. Jeg ville derfor undersøkt hvor lett det er å sjekke en påstand, se hva som mangler og overprøve forslaget. Et polert svar må ikke gjøre den jobben vanskeligere.
 

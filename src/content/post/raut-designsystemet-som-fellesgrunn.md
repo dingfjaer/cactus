@@ -25,7 +25,7 @@ Lanseringen av Designsystemet V1 viser hva flere offentlige virksomheter kan få
 - Komponentene legger vekt på universell utforming og følger innebygd HTML-oppførsel der det er mulig.
 - En stabil versjon er ikke slutten på arbeidet. Åpne tilbakemeldinger og videre forvaltning er en del av modellen.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg synes det mest interessante er muligheten for å bruke mindre tid på å løse de samme grunnproblemene hver for oss. Da kan mer av designarbeidet handle om innhold, sammenheng og de særlige behovene i tjenesten. Samtidig vil jeg ikke ta gode komponenter som bevis på at hele brukerreisen fungerer. Det må fortsatt undersøkes i konteksten de brukes i.
 

@@ -14,7 +14,7 @@ Kortene er vanlig HTML i Markdown og bruker `.raut-source-card`-stilene som er l
 
 ## Redaksjonelt
 
-Hovedpoengene er selvstendige, korte parafraser av de lenkede originalartiklene. «Hva Chatty tenker at Ding tenker» er KI-formulerte refleksjoner på oppdrag fra Ding, skrevet i jeg-form med utgangspunkt i hagens eksisterende interesser. De inneholder ikke påstander om oppdiktede prosjekter, tester eller arbeidserfaringer. Refleksjonene er skilt fra kildesammendraget.
+Hovedpoengene er selvstendige, korte parafraser av de lenkede originalartiklene. «Ding! 💡» er KI-formulerte refleksjoner på oppdrag fra Ding, skrevet i jeg-form med utgangspunkt i hagens eksisterende interesser. De inneholder ikke påstander om oppdiktede prosjekter, tester eller arbeidserfaringer. Refleksjonene er skilt fra kildesammendraget.
 
 Artikkelkortet lenker til kilden, mens fotnoten peker til Raut-utgaven som tipset om den. Sporingsparametere er fjernet fra artikkelkortene. `manifest.json` inneholder opprinnelig Raut-lenke, verifisert måladresse, utgave, dato, fil og kontrollgrunnlag.
 
@@ -58,4 +58,4 @@ Designsystemets V1-artikkel har flyttet fra `/bloggen/2025/V1` til `/no/blog/V1`
 
 Innleggene er flyttet fra den lokale prosjektkopien til `/Users/ding/Github/cactus/src/content/post/`. Kortstilene er lagt til i dette prosjektets `src/styles/global.css`.
 
-Alle 28 bruker overskriftene «Key takeaways» og «Hva Chatty tenker at Ding tenker». Kildelinjen har formatet `[Raut#182](https://raut.no/182), 24. mars 2026`.
+Alle 28 bruker overskriftene «Key takeaways» og «Ding! 💡». Kildelinjen har formatet `[Raut#182](https://raut.no/182), 24. mars 2026`.

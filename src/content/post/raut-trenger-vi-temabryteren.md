@@ -25,7 +25,7 @@ Lea Verou stiller spørsmål ved selve behovet for en permanent synlig bryter fo
 - Hva utviklere liker å bygge, er ikke i seg selv dokumentasjon på hva brukere trenger.
 - Forfatteren understreker at argumentasjonen ikke bygger på en egen observasjonsstudie av temabrytere. Forslaget må vurderes som en begrunnet hypotese.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Dette er interessant fordi hagen allerede har et slikt valg. Jeg leser ikke artikkelen som en ordre om å fjerne det, men som en grunn til å undersøke prioriteringen. Hvor mye plass gir jeg en innstilling sammenlignet med selve innholdet? Jeg vil at uttrykket skal passe leseren, samtidig som veien til tekstene forblir enkel.
 

@@ -25,7 +25,7 @@ Martijn Hols går gjennom tilgjengelighetsgrep som bør være en vanlig del av f
 - Synlig tastaturfokus, støtte for større tekst og respekt for redusert bevegelse må følge med det visuelle designet.
 - Semantisk HTML er et godt utgangspunkt. ARIA må brukes målrettet, og løsningen trenger fortsatt manuell testing.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 For meg er dette et godt argument for å diskutere oppførsel samtidig som utseende. En knapp er ikke ferdig beskrevet når farge og radius er bestemt. Jeg vil også vite hvordan den får fokus, hva den heter for hjelpemidler og hva som skjer etter aktivering. Det gjør samtalen mellom design og utvikling langt mer konkret.
 

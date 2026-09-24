@@ -25,7 +25,7 @@ Peter Merholz beskriver et gap mellom det designere gjør og det organisasjonen 
 - Utfordringen kan derfor ikke løses bare ved at designere presenterer arbeidet sitt litt bedre.
 - Designledelse må også bidra til at virksomheten anerkjenner utforskende arbeid og dets rolle i gode beslutninger.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Jeg vil prøve å dokumentere hva som endret seg i forståelsen, ikke bare hva som endret seg i skissen. Hva sluttet vi å tro på? Hvilket problem oppdaget vi før det nådde brukerne? Slike spor kan gjøre verdien lettere å diskutere. Samtidig må det være rom for arbeid der svaret ikke er kjent på forhånd, ellers blir dokumentasjonen bare pynt.
 

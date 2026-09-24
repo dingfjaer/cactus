@@ -25,7 +25,7 @@ Miriam Suzanne undersøker et dilemma i responsiv typografi: Teksten skal tilpas
 - Skriftstørrelser koblet til visningsbredden må testes med zoom og andre standardstørrelser i nettleseren.
 - Artikkelen utforsker mulige forbedringer, og presenterer dem ikke som en ferdig fasit for alle nettsteder.
 
-## Hva Chatty tenker at Ding tenker
+## Ding! 💡
 
 Dette treffer den digitale hagen ganske direkte. Jeg vil at teksten skal være god å lese, også når leseren trenger andre innstillinger enn mine. En typografisk skala kan se gjennomført ut på egen skjerm og likevel bli klønete ved forstørring. Neste gang jeg justerer typografien, vil jeg teste både nettleserens skriftstørrelse og vanlig sidezoom før jeg bestemmer meg.
 
