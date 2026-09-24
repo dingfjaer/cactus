@@ -24,6 +24,11 @@ export function sortMDByDate(posts: CollectionEntry<"post">[]) {
 	});
 }
 
+/** Place pinned posts first, preserving descending date order within each group. */
+export function sortPostsPinnedFirst(posts: CollectionEntry<"post">[]) {
+	return sortMDByDate(posts).sort((a, b) => Number(b.data.pinned) - Number(a.data.pinned));
+}
+
 /** groups posts by year (based on option siteConfig.sortPostsByUpdatedDate), using the year as the key
  *  Note: This function doesn't filter draft posts, pass it the result of getAllPosts above to do so.
  */

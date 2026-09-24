@@ -27,6 +27,7 @@ const post = defineCollection({
 				.optional(), 
 			description: z.string().max(160),
 			draft: z.boolean().default(false),
+			pinned: z.boolean().optional().default(false),
 			ogImage: z.string().optional(),
 			publishDate: z
 				.string()

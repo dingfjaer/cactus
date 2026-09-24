@@ -16,6 +16,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 
 <FormattedDate class="min-w-[120px] text-gray-600 dark:text-gray-400" date={postDate} />
 <Tag>
+	{post.data.pinned && <span class="mr-1 text-sm" role="img" aria-label="Festet innlegg" title="Festet innlegg">📌</span>}
 {post.data.draft && <span class="text-yellow-500">(Kladd) </span>}
 	<!-- fikset routing ved å legge til ${Astro.site} -->
 	<a class="cactus-link" data-astro-prefetch href={`${baseUrl}posts/${post.id}/`}>
