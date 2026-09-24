@@ -52,23 +52,23 @@ Så, Fjærdinghagen ble ikke like frodig og mangfoldig som jeg ønsket meg, men 
 Så hva er nytt? Hoho, jeg har gjort en del opprydding og små justeringer. Den største endringen er ["Alt som gror"](https://dingchen.no/posts/)har fått mer innhold, med flere undersider: Spira, Rosa, Vipa, Løva og Tinsta. 
 
 :::spira
-**Spira**: alle innleggene, inkludert en del oppsummeringer til Raut-nyhetsbrevene og Medium-artikler fra min leselister. Shoutout til RRRRRaut! Her har Chatty (ChatGPT) også hjulpet meg mye til å lese gjennom faglige stoff og oppsummere key takeaways på en nesten automatisert og effektiv måte. 
+[**Spira**](https://dingchen.no/posts/): alle innleggene, inkludert en del oppsummeringer til Raut-nyhetsbrevene og Medium-artikler fra mine leselister. Shoutout til RRRRRaut! Her har Chatty (ChatGPT) også hjulpet meg mye til å lese gjennom faglige stoff og oppsummere key takeaways på en nesten automatisert og effektiv måte. 
 :::
 
 :::rosa
-**Rosa**: planen er å bruke dette som mitt personlige fotogalleri. Ikke noe som er ment å være like sosial som Instagram, bare et sted jeg kan legge ut bilder som jeg synes er fine og morsomme. 
+[**Rosa**](https://dingchen.no/posts/rosa/): planen er å bruke dette som mitt personlige fotogalleri. Ikke noe som er ment å være like sosial som Instagram, bare et sted jeg kan legge ut bilder som jeg synes er fine og morsomme. 
 :::
 
 :::vipa
-**Vipa**: siden jeg har knekt koden om å vise bilder og videoer på denne siden på en enkel og "billig" måte uten å surre med masse tredjepartstjenester og avhengigheter, tenkte jeg å utnytte muligheten og ha et eget sted for å "lagre" og showcase noen designarbeid, spesielt de som er litt mer visuelle. 
+[**Vipa**](https://dingchen.no/posts/vipa/): siden jeg har knekt koden om å vise bilder og videoer på denne siden på en enkel og "billig" måte uten å surre med masse tredjepartstjenester og avhengigheter, tenkte jeg å utnytte muligheten og ha et eget sted for å "lagre" og showcase noen designarbeid, spesielt de som er litt mer visuelle. 
 :::
 
 :::lova
-**Løva**: galleriet for illustrasjoner, tegninger, og malerier 
+[**Løva**](https://dingchen.no/posts/lova/): galleriet for illustrasjoner, tegninger, og malerier 
 :::
 
 :::tinsta
-**Tinsta**: Egen insta for Tintin! Denne er jeg mest stolt av fordi det er et sted jeg "utstiller" bilder og videoer av verdens søteste hund - Tintin! - uten å være opptatt av views og likes. Den tilfredsstiller mitt (psykologisk) sosialt behov for å dele noe jeg synes er fint, men er fortsatt noe som er litt privat, og personlig. På denne siden kan jeg til enhver tid sjekke raskt hvor gammel Tintin er i dag. Hvert bilde viser også datoen da bildet ble tatt og alder til Tintin på akkurat denne dagen. Jeg får ikke nok av Tintin-bilder!
+[**Tinsta**](https://dingchen.no/posts/tinsta/): Egen insta for Tintin! Denne er jeg mest stolt av fordi det er et sted jeg "utstiller" bilder og videoer av verdens søteste hund - Tintin! - uten å være opptatt av views og likes. Den tilfredsstiller mitt (psykologisk) sosialt behov for å dele noe jeg synes er fint, men er fortsatt noe som er litt privat, og personlig. På denne siden kan jeg til enhver tid sjekke raskt hvor gammel Tintin er i dag. Hvert bilde viser også datoen da bildet ble tatt og alder til Tintin på akkurat denne dagen. Jeg får ikke nok av Tintin-bilder!
 :::
 
 Utover det har jeg også oppdatert litt ["Om Gartneren"-siden](https://dingchen.no/about/), og sidene til CV og portefølje, da jeg er i en jobbsøkingsmodus (igjen).
