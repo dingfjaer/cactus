@@ -9,7 +9,16 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 			href="https://www.figma.com/proto/dIULhitI3aG6HagQdU6cRC/dingchen.no?page-id=0%3A1&type=design&node-id=12-205&viewport=729%2C139%2C0.16&t=iMVKlHhdlVCH74Va-1&scaling=scale-down-width&starting-point-node-id=12%3A205"
 			class="text-accent sm:hover:underline"
 			target="_blank"
-			rel="noopener noreferrer">Portfolio i Figma</a
+			rel="noopener noreferrer">Portfolio i Figma: en interaktiv prototype bygget uten AI (2024)</a
+		>
+	</section>
+
+	<section class="mb-6 text-xl">
+		<a
+			href={`${baseUrl}dings-apps.pdf`}
+			class="text-accent sm:hover:underline"
+			target="_blank"
+			rel="noopener noreferrer">Hobbyprosjekter: iOS-apper bygget med AI (2026)</a
 		>
 	</section>
 
@@ -18,7 +27,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 			href={`${baseUrl}portfolio.pdf`}
 			class="text-accent sm:hover:underline"
 			target="_blank"
-			rel="noopener noreferrer">Portfolio PDF</a
+			rel="noopener noreferrer">Portfolio PDF (2024)</a
 		>
 	</section>
 
@@ -27,7 +36,14 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 			href={`${baseUrl}portfolio-nrk-radio.pdf`}
 			class="text-accent sm:hover:underline"
 			target="_blank"
-			rel="noopener noreferrer">Portfolio til NRK Radio PDF</a
+			rel="noopener noreferrer">Portfolio til NRK Radio PDF (2023)</a
 		>
+	</section>
+
+	<section class="text-muted-foreground mb-6 text-sm">
+		<p>
+			* Her får det visuelle mest plass. Prosess, samarbeid og kundeoppdrag forteller jeg gjerne mer
+			om over en kaffe ☕️.
+		</p>
 	</section>
 </PageLayout>
