@@ -292,11 +292,16 @@ Implementert lokalt 2026-09-27 på `main` i `/Users/ding/Github/cactus`:
   mens tilgjengelig Node 24.10.0 oppfyller `package.json` sitt krav `>=24 <25`.
   Lokal server på `127.0.0.1:4325` ble verifisert med arbeidsmappe i originalrepoet.
 
-Commit og publisering er bestilt av brukeren. Publisering skjer via eksisterende
-`.github/workflows/deploy.yml` ved push til `main` i `dingfjaer/cactus`.
-Deploy er ikke bekreftet ennå. Repoet hadde allerede en endret `AGENTS.md` og en
-usporet `PROJECT_CONTEXT.md` før implementasjonen. `AGENTS.md` er ikke endret av
-oppgaven og holdes utenfor commit; den oppdaterte prosjektkonteksten følger 3D-arbeidet.
+Publisert 2026-09-27 kl. 23:29 norsk tid fra commit
+`6beb28cf6d8d22b21f2b88ddd8cfe82b5791a4c4` til https://dingchen.no/about/.
+GitHub Actions-kjøring https://github.com/dingfjaer/cactus/actions/runs/36351772238
+fullførte både bygg og GitHub Pages-deploy med `success`. Den publiserte siden
+ble åpnet i nettleseren: 3D-modellen ble klar, ikonmenyen åpnet, og ingen
+konsollfeil ble observert. Eksisterende bilde og CV-/porteføljelenker er bevart.
+
+Publiseringsflyten er fortsatt `.github/workflows/deploy.yml` ved push til
+`main` i `dingfjaer/cactus`. Repoet hadde en eksisterende endring i `AGENTS.md`;
+den er bevart lokalt og holdt utenfor commit. Prosjektkonteksten følger arbeidet.
 
 ### 6.6 Skriving og publisering fra mobil
 
