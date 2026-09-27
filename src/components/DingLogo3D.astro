@@ -1,0 +1,372 @@
+---
+interface Props {
+	edgeToEdge?: boolean;
+}
+const { edgeToEdge = false } = Astro.props;
+
+// Assets extracted from the supplied standalone preview; the model is unchanged.
+const assetBase = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/logo-3d/`;
+---
+
+<ding-logo-3d
+	data-edge-to-edge={edgeToEdge || undefined}
+	data-model-src={`${assetBase}ding-logo.glb`}
+	data-depth="32"
+	data-angle="0"
+	data-state="static"
+	role="group"
+	aria-label="Ding Chen: reven og DC som interaktiv 3D-logo"
+>
+	<div data-stage>
+		<img
+			data-background
+			src={`${assetBase}background.svg`}
+			width="1728"
+			height="1146"
+			alt=""
+			aria-hidden="true"
+			draggable="false"
+			decoding="async"
+		/>
+		<img
+			data-poster
+			src={`${assetBase}poster.svg`}
+			width="1728"
+			height="1146"
+			alt="Reven og DC-logoen"
+			draggable="false"
+			decoding="async"
+		/>
+		<canvas
+			width="864"
+			height="573"
+			tabindex="-1"
+			role="img"
+			aria-label="Interaktiv 3D-logo med reven og DC. Bruk piltastene for å rotere, pluss og minus for zoom, og Home for å nullstille."
+		></canvas>
+	</div>
+	<details class="ding-settings" data-settings>
+		<summary aria-label="Innstillinger for 3D-logoen">
+			<svg
+				width="22"
+				height="22"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.6"
+				stroke-linecap="round"
+				aria-hidden="true"
+			>
+				<path d="M4 6h5m4 0h7M4 12h9m4 0h3M4 18h2m4 0h10"></path>
+				<circle cx="11" cy="6" r="2"></circle><circle cx="15" cy="12" r="2"></circle><circle
+					cx="8"
+					cy="18"
+					r="2"></circle>
+			</svg>
+		</summary>
+		<div data-controls role="group" aria-label="Innstillinger for 3D-logoen">
+			<div class="ding-button-group ding-presets" role="group" aria-label="Velg vinkel">
+				<button type="button" data-action="front" disabled>Forfra</button>
+				<button type="button" data-action="angle" disabled>3D-vinkel</button>
+				<button type="button" data-action="back" disabled>Bakfra</button>
+			</div>
+			<div class="ding-adjust">
+				<label class="ding-depth"
+					>Dybde <input
+						data-depth
+						type="range"
+						min="4"
+						max="64"
+						step="1"
+						value="32"
+						aria-label="Dybde på logoen"
+						disabled
+					/></label
+				>
+				<div class="ding-button-group" role="group" aria-label="Zoom">
+					<button type="button" data-action="zoom-out" aria-label="Zoom ut" disabled>−</button>
+					<span data-zoom-value>100 %</span>
+					<button type="button" data-action="zoom-in" aria-label="Zoom inn" disabled>+</button>
+				</div>
+			</div>
+			<div class="ding-button-group ding-session">
+				<button type="button" data-action="spin" aria-pressed="false" disabled
+					>Roter automatisk</button
+				>
+				<button type="button" data-action="reset" disabled>Nullstill</button>
+			</div>
+		</div>
+	</details>
+	<p data-status role="status" aria-live="polite">Logoen vises som SVG til 3D-visningen er klar.</p>
+</ding-logo-3d>
+
+<script>
+	import "../scripts/ding-logo-3d.js";
+</script>
+
+<style is:global>
+	ding-logo-3d {
+		--ding-surface: #181a1b;
+		--ding-line: rgba(255, 255, 255, 0.13);
+		--ding-ink: #f4f4f1;
+		--ding-muted: #c0c3c3;
+		position: relative;
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		isolation: isolate;
+		border: 1px solid var(--ding-line);
+		border-radius: 20px;
+		background: var(--ding-surface);
+		color: var(--ding-ink);
+		font-family: inherit;
+		font-size: 14px;
+		line-height: 1.5;
+		color-scheme: dark;
+		text-align: left;
+	}
+	ding-logo-3d *,
+	ding-logo-3d *::before,
+	ding-logo-3d *::after {
+		box-sizing: border-box;
+	}
+	ding-logo-3d [data-stage] {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 1728 / 1146;
+		min-height: var(--ding-logo-min-height, 360px);
+		overflow: hidden;
+		background: #181a1b;
+	}
+	ding-logo-3d [data-background],
+	ding-logo-3d [data-poster],
+	ding-logo-3d canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		display: block;
+		margin: 0;
+		border: 0;
+		border-radius: 0;
+		object-fit: cover;
+		object-position: center;
+	}
+	ding-logo-3d [data-background] {
+		z-index: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+	ding-logo-3d [data-poster] {
+		z-index: 1;
+		pointer-events: none;
+		user-select: none;
+	}
+	ding-logo-3d canvas {
+		z-index: 2;
+		opacity: 0;
+		cursor: grab;
+		touch-action: pan-y;
+	}
+	ding-logo-3d[data-state="ready"] canvas {
+		opacity: 1;
+	}
+	ding-logo-3d[data-state="ready"] [data-poster] {
+		visibility: hidden;
+	}
+	ding-logo-3d[data-dragging="true"] canvas {
+		cursor: grabbing;
+	}
+	ding-logo-3d canvas:focus-visible {
+		outline: 2px solid white;
+		outline-offset: -5px;
+	}
+	ding-logo-3d[data-edge-to-edge] {
+		border: 0;
+		border-radius: 0;
+	}
+	ding-logo-3d .ding-settings {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+		z-index: 3;
+	}
+	ding-logo-3d:not([data-state="ready"]) .ding-settings {
+		display: none;
+	}
+	ding-logo-3d .ding-settings summary {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		margin-left: auto;
+		list-style: none;
+		cursor: pointer;
+		border: 1px solid var(--ding-line);
+		border-radius: 50%;
+		background: rgba(24, 26, 27, 0.85);
+		color: var(--ding-ink);
+		backdrop-filter: blur(12px);
+	}
+	ding-logo-3d .ding-settings summary::-webkit-details-marker {
+		display: none;
+	}
+	ding-logo-3d .ding-settings summary:hover,
+	ding-logo-3d .ding-settings[open] summary {
+		background: #36393b;
+	}
+	ding-logo-3d .ding-settings summary:focus-visible {
+		outline: 2px solid white;
+		outline-offset: 3px;
+	}
+	ding-logo-3d [data-controls] {
+		position: absolute;
+		top: 52px;
+		right: 0;
+		width: min(320px, calc(100vw - 32px));
+		padding: 12px;
+		display: grid;
+		gap: 10px;
+		border: 1px solid var(--ding-line);
+		border-radius: 16px;
+		background: rgba(24, 26, 27, 0.96);
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+		backdrop-filter: blur(16px);
+	}
+	ding-logo-3d .ding-presets button {
+		flex: 1;
+	}
+	ding-logo-3d .ding-adjust,
+	ding-logo-3d .ding-session {
+		justify-content: space-between;
+	}
+	ding-logo-3d .ding-button-group {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+	ding-logo-3d button {
+		appearance: none;
+		padding: 0 12px;
+		margin: 0;
+		min-height: 44px;
+		min-width: 44px;
+		border: 1px solid transparent;
+		border-radius: 9px;
+		background: transparent;
+		color: var(--ding-ink);
+		font: inherit;
+		font-size: 12px;
+		line-height: 1.4;
+		font-weight: 500;
+		text-transform: none;
+		letter-spacing: 0;
+		box-shadow: none;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+	ding-logo-3d button:hover:not(:disabled) {
+		background: rgba(255, 255, 255, 0.09);
+	}
+	ding-logo-3d button[aria-pressed="true"] {
+		background: #ededeb;
+		color: #181a1b;
+	}
+	ding-logo-3d button:disabled,
+	ding-logo-3d input:disabled {
+		opacity: 0.38;
+		cursor: default;
+	}
+	ding-logo-3d button:focus-visible,
+	ding-logo-3d input:focus-visible {
+		outline: 2px solid white;
+		outline-offset: 3px;
+	}
+	ding-logo-3d .ding-presets {
+		padding: 2px;
+		border: 1px solid var(--ding-line);
+		border-radius: 12px;
+	}
+	ding-logo-3d .ding-adjust {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+	ding-logo-3d .ding-depth {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 12px;
+		color: var(--ding-muted);
+	}
+	ding-logo-3d input[type="range"] {
+		width: 84px;
+		height: 44px;
+		padding: 0;
+		margin: 0;
+		accent-color: #f0f0ed;
+		cursor: pointer;
+	}
+	ding-logo-3d [data-zoom-value] {
+		min-width: 42px;
+		font-size: 12px;
+		color: var(--ding-muted);
+		text-align: center;
+		font-variant-numeric: tabular-nums;
+	}
+	ding-logo-3d [data-action="zoom-in"],
+	ding-logo-3d [data-action="zoom-out"] {
+		padding: 0;
+		font-size: 19px;
+		font-weight: 400;
+	}
+	ding-logo-3d [data-action="reset"] {
+		color: var(--ding-muted);
+	}
+	ding-logo-3d [data-status] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
+	}
+	@media (max-width: 680px) {
+		ding-logo-3d:not([data-edge-to-edge]) {
+			border-radius: 16px;
+		}
+		ding-logo-3d [data-controls] {
+			gap: 8px 10px;
+			padding: 12px;
+		}
+		ding-logo-3d .ding-presets {
+			flex: 1 1 100%;
+			justify-content: space-between;
+		}
+		ding-logo-3d .ding-presets button {
+			flex: 1;
+		}
+		ding-logo-3d .ding-adjust {
+			justify-content: space-between;
+			flex: 1 1 100%;
+		}
+		ding-logo-3d .ding-session {
+			justify-content: space-between;
+			flex: 1 1 100%;
+		}
+		ding-logo-3d input[type="range"] {
+			width: clamp(64px, 20vw, 100px);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		ding-logo-3d *,
+		ding-logo-3d *::before,
+		ding-logo-3d *::after {
+			scroll-behavior: auto;
+		}
+	}
+</style>

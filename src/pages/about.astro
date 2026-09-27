@@ -1,4 +1,5 @@
 ---
+import DingLogo3D from "@/components/DingLogo3D.astro";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
@@ -8,6 +9,9 @@ const meta = {
 ---
 
 <PageLayout meta={meta}>
+	<div class="about-hero">
+		<DingLogo3D edgeToEdge />
+	</div>
 	<div class="about-image">
 		<img src="/images/about.png" alt="Om Ding Chen Fjær" />
 	</div>
@@ -20,6 +24,7 @@ const meta = {
 </PageLayout>
 
 <style>
+	.about-hero,
 	.about-image {
 		width: 100vw;
 		margin-left: calc(50% - 50vw);
