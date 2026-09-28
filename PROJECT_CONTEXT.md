@@ -1,12 +1,12 @@
 # Prosjektkontekst: Fjærdinghage / Digital hage med Astro / Cactus
 
-Sist endret i dokumentet: 2026-09-27  
+Sist endret i dokumentet: 2026-09-28  
 Dokumentversjon: 2 — samordnet med instruksjonspakken  
 Eier: Ding Chen / Ding Chen Fjær  
 Nettsted: `dingchen.no`  
 Autoritativ prosjektmappe: `/Users/ding/Github/cactus`  
 Plassering: `/Users/ding/Github/cactus/PROJECT_CONTEXT.md`  
-Kodebasen verifisert ved denne dokumentoppdateringen: Delvis – 3D-modellen og Om-siden, se §6.2 og §6.5
+Kodebasen verifisert ved denne dokumentoppdateringen: Delvis – 3D-modellen og Om-siden, se §6.2, §6.5, §6.7 og §6.8
 
 > Dokumentets bakgrunn bygger på samtaler og tidligere prosjektkontekst, ikke en
 > full teknisk revisjon. Historiske ønsker og rapporterte leveranser er ikke bevis
@@ -189,10 +189,14 @@ bekreftet her om løsningen henter ved bygging, i nettleseren eller på annen m�
 
 ### 6.2 Om-siden, CV og portefølje
 
-Verifisert 2026-09-27: `src/pages/about.astro` viser nå den interaktive
-3D-logoen øverst i innholdet, i full nettleserbredde uten ramme eller avrundede
-hjørner. Eksisterende header/navigasjon, `/images/about.png` og lenkene til
-CV og portefølje er bevart. Bildet står under modellen og skal bearbeides senere.
+Verifisert lokalt 2026-09-28: `src/pages/about.astro` viser den interaktive
+3D-logoen øverst i full nettleserbredde. Navnedelen følger som en interaktiv
+Radley-seksjon (§6.7), deretter et portrett med to bildelag og scrollstyrt
+avsløring (§6.8). `/images/about.png` er bevart som fil, men brukes ikke lenger
+på siden. Header, navigasjon og CV-/porteføljelenker er bevart. Navne- og
+portrettseksjonene deles nå også av `src/pages/portfolio.astro`, over de fire
+eksisterende porteføljelenkene og kaffeteksten. Begge sider bruker de samme
+komponentene og har identisk interaktivt innhold. Publiseringsstatus: se §6.9.
 
 Brukerens ønskede Om-side fra 2026-09-21 består av eksisterende header/layout,
 et stort `about.png`-bilde i full nettleserbredde og to lenker under bildet.
@@ -311,6 +315,112 @@ En god publiseringsflyt direkte fra mobilen kan komme senere.
 
 Ingen endelig mobilredaktør, CMS, Git-integrasjon eller automatisert flyt er
 bekreftet valgt. Ikke innfør en bestemt tjeneste som om den allerede var avtalt.
+
+### 6.7 Interaktiv navneseksjon på Om- og porteføljesiden
+
+Implementert og justert lokalt 2026-09-28 på `main`, etter `Navn.png` og
+brukerens føringer om leserekkefølge, tykke markeringer og enklere mobilvisning:
+
+- `src/components/AboutName.astro` og `src/scripts/about-name.js` viser ding,
+  chen og fjær etter 3D-modellen, før den interaktive portrettseksjonen.
+- Radley Regular er selvhostet i `public/about-name/` med OFL-lisens fra
+  https://github.com/google/fonts/tree/main/ofl/radley. Rev og fjær kommer fra
+  brukerens originale Desktop-SVG-er. Ingen nye pakkeavhengigheter.
+- 顶, 陈 og 羽 bruker Zhi Mang Xing fra Google Fonts, selvhostet som en
+  2680-byte fontfil med bare disse tegnene. Kilde:
+  https://fonts.google.com/specimen/Zhi+Mang+Xing. Egen OFL-lisens følger fonten.
+  Flere kinesiske tegn krever en utvidet tegnvariant; det trengs ikke tegn-SVG-er.
+- Alle tekstmarkeringer bruker samme tykke gule flate, med basisfargen fra
+  tegnsirklene. «Norge» markeres bare i Chen-teksten, ikke i siste avsnitt.
+  Det siste ordet «Fjær» er nå markert.
+- Animasjonene har 11 separate scrolltrinn, med små pauser mellom: rev + 顶,
+  «i toppen av et fjell», «what does the fox say», 陈, «1990», «Wuhan», «Norge»,
+  «2014», fjær + 羽, «gift med en norsk mann», «Fjær». Neste trinn starter
+  først når forrige er ferdig. Rev/fjær roer seg helt på plass i sitt eget trinn.
+  Den samme tidslinjen går nøyaktig baklengs ved scrolling oppover.
+- Fra 900 × 700 px står komposisjonen midlertidig fast, med 485svh ekstra
+  scrollrom. Hvert lesetrinn bruker 24svh og en pause på 4,5svh. Etter siste
+  markering og en kort pause krymper c loddrett opp i d. Formen står et øyeblikk
+  samlet før hele logoen løftes rett opp langs d-ens opprinnelige senterakse.
+  Den ender 16 px fra toppen; klikk/Enter går tilbake til 3D-seksjonen.
+- På smalere/lavere skjermer ruller teksten normalt, og bokstavmorphen er fjernet.
+  Bokstavene blir i navnene sine. Trinnene forankres til elementenes leseplassering
+  og ordnes uten overlapp, med 16svh per trinn før eventuell komprimering.
+  Hele tidslinjen komprimeres samlet hvis nødvendig for å fullføre navnedelen
+  før portrettet, uten å bryte rekkefølgen. Den ferdige
+  logoen vises fast først etter siste «Fjær»-markering og skjules når denne reverseres.
+  De tidligere ekstra mellomrommene rundt Chen for mobilmorphen er fjernet.
+- Scrollresponsen jevnes ut med ca. 320 ms tidskonstant. Native wheel/touch-scroll
+  avskjæres ikke, og rammeløkken stopper når visningen har tatt igjen scrollposisjonen.
+- `src/assets/about-name/type.json` inneholder d/c fra Radley og målkonturer fra
+  første/siste path i `public/logo-3d/poster.svg`. Konturene interpoleres under
+  desktop-sammensettingen. En liten inset på Chen stiller c rett under sluttposisjonen.
+  `public/about-name/monogram.svg` bruker originalgrafikken med tett viewBox.
+- Uten JavaScript er hele navneinnholdet synlig. Redusert bevegelse fjerner
+  ekstra scrollrom, innrulling og bokstavflytting; markeringene er fullt synlige
+  og den festede logoen vises ved seksjonens slutt.
+- Kontrollert lokalt ved 1280 × 720 og 390 × 844: ett aktivt lesetrinn om gangen,
+  reversering, tykke markeringer, korrekt siste avsnitt, desktop-morph etter
+  lesesekvensen, ingen bokstavflytting på mobil, og mobil-logo skjult før siste
+  markering/fullt synlig etterpå. Ingen horisontal overbredde ved disse størrelsene.
+  Eldre kontroll ved 320 × 740 fant ca. 15 px overbredde i eksisterende
+  footernavigasjon; denne er ikke endret.
+- Isolerte tester av faktisk tidslinje/renderlogikk bestod for 11 ordnede trinn
+  uten overlapp, motsatt scrolling, kort side, desktop-morph først etter lesing,
+  ingen mobilmorph, «Fjær» som utløser for logoen og redusert bevegelse.
+  Fysisk mobilberøring og OS-styrt redusert bevegelse er ikke testet.
+- Astro-kontrollen ga 0 feil, 0 advarsler og 3 eksisterende hint.
+  `pnpm build` fullførte med exit 0, inkludert Pagefind-søkeindeksen.
+  Preview på port 4325 er verifisert å kjøre fra originalrepoet.
+
+Publiseringsstatus for navne- og portrettseksjonene står i §6.9. Den eksisterende
+brukerendringen i `AGENTS.md` er bevart og holdes utenfor denne leveransen.
+
+### 6.8 Portrett med scrollstyrt avsløring
+
+Implementert lokalt 2026-09-28 i `src/components/AboutPortrait.astro` og
+`src/scripts/about-portrait.js`, etter beskrivelsen og de to bildene. Videoen
+brukeren nevnte fulgte ikke med meldingen; ingen video er undersøkt.
+
+- Originalene `/Users/ding/Desktop/portrait 1.png` og `portrait 2.png` er kopiert
+  uendret til `src/assets/about-portrait/portrait-1.png` og `portrait-2.png`.
+  Begge er 2048 × 2732. Astro lager responsive WebP-varianter; begge lag lastes
+  på forhånd for å unngå forsinkelse når den skjulte tegningen avsløres.
+- Det hvite bildet ligger under det røde. En horisontal avsløringskant går fra
+  toppen til bunnen med en svak skygge langs kanten. Bildene flyttes ikke
+  i forhold til hverandre. Hele tegningen er synlig uten beskjæring.
+- Seksjonen går helt ut til kantene. Bildet står midlertidig fast og sentrert
+  i høyden, med 180svh scrollrom. De første/siste 10 prosentene holder hvert
+  sluttbilde; mellom disse avsløres rødt med myk start/slutt og ca. 320 ms
+  utjevning. Scrolling oppover reverserer avsløringen. Native scrolling bevares.
+- Uten JavaScript eller med redusert bevegelse vises det ferdige røde portrettet
+  uten ekstra scrollrom. Scroll-, resize- og pageshow-lyttere ryddes ved avmontering,
+  og animasjonsløkken stopper når bildet har tatt igjen scrollposisjonen.
+- Kontrollert i lokal preview ved 1280 × 720 og 390 × 844: hvitt utgangspunkt,
+  delvis og full rød avsløring, reversering, samsvarende bilderektangler og ingen
+  horisontal overbredde. Mobilens logo forblir ferdig mens portrettet avsløres.
+  Begge originalkopier er sammenlignet byte for byte. Isolerte tester bestod for
+  sekvensrekkefølge, reversering, endepunkter og redusert bevegelse.
+  Fysisk touch og OS-styrt redusert bevegelse er ikke kontrollert.
+- Endelig `pnpm check`: 0 feil, 0 advarsler, 3 eksisterende hint. `pnpm build`
+  fullførte med exit 0, inkludert bildeoptimalisering og Pagefind. Endringen til
+  forhåndslasting ble deretter kontrollert i endelig Astro-sjekk og lokal preview.
+  Ingen nye konsollfeil observert. Preview kjører fra originalrepoet.
+
+### 6.9 Felles introduksjon på Om- og porteføljesiden
+
+2026-09-28: Etter brukerens bestilling viser både `/about/` og `/portfolio/`
+3D-logoen, navnehistorien og portrettavsløringen. `DingLogo3D`, `AboutName` og
+`AboutPortrait` gjenbrukes direkte. Det er ikke laget separate kopier av
+animasjonskode eller medier. Senere komponentendringer påvirker derfor begge
+sidene. Brukeren vil arbeide videre med porteføljelenkene senere; lenketekster,
+adresser og kaffetekst er beholdt. Den festede logoen går til toppen av siden
+brukeren er på. Lokal kontroll: Astro 0 feil/0 advarsler/3 eksisterende hint;
+tidslinjetestene bestod. Lenkeadresser og tekst er sammenlignet med forrige
+versjon og bevart. Desktop-preview bekrefter riktig rekkefølge, full
+portrettavsløring og lenkene under. Commit/push/deploy er bestilt; fullført
+status registreres etter verifisering. GitHub-workflowen kjører komplett
+produksjonsbygg og Pagefind før deploy.
 
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 

@@ -1,4 +1,6 @@
 ---
+import AboutPortrait from "@/components/AboutPortrait.astro";
+import AboutName from "@/components/AboutName.astro";
 import DingLogo3D from "@/components/DingLogo3D.astro";
 import PageLayout from "@/layouts/Base.astro";
 
@@ -9,12 +11,11 @@ const meta = {
 ---
 
 <PageLayout meta={meta}>
-	<div class="about-hero">
+	<div class="about-hero" id="about-top">
 		<DingLogo3D edgeToEdge />
 	</div>
-	<div class="about-image">
-		<img src="/images/about.png" alt="Om Ding Chen Fjær" />
-	</div>
+	<AboutName />
+	<AboutPortrait />
 
 	<div class="mt-12 flex flex-col items-center gap-3 text-xl">
 		<a href="/cv" class="text-accent sm:hover:underline"> CV </a>
@@ -24,15 +25,8 @@ const meta = {
 </PageLayout>
 
 <style>
-	.about-hero,
-	.about-image {
+	.about-hero {
 		width: 100vw;
 		margin-left: calc(50% - 50vw);
-	}
-
-	.about-image img {
-		display: block;
-		width: 100%;
-		height: auto;
 	}
 </style>

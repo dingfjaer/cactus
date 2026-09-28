@@ -1,0 +1,315 @@
+---
+import typeData from "@/assets/about-name/type.json";
+const { glyphs, widths } = typeData;
+---
+
+<about-name>
+	<section class="name-section" aria-label="Historien i navnet mitt">
+		<div class="name-scene">
+			<div class="name-grid">
+				<article class="name-ding">
+					<h2 class="name-word" aria-label="Ding">
+						<svg viewBox={`0 0 ${widths.chen} 1000`} aria-hidden="true">
+							<path data-letter="d" d={glyphs.d.path}></path>
+							<text x={glyphs.d.advance} y="760">ing</text>
+						</svg>
+						<img
+							class="name-fox"
+							data-reveal="0"
+							src="/about-name/fox.svg"
+							alt=""
+							width="160"
+							height="185"
+						/>
+					</h2>
+					<div class="name-copy">
+						<span class="name-seal" data-reveal="0" lang="zh" aria-label="Ding: topp">顶</span>
+						<p>
+							Ding er mitt kinesiske fornavn. Ordet betyr «topp» som «<span
+								class="name-highlight"
+								data-highlight="1">i toppen av et fjell</span
+							>». Det er også rykter om at «ding» er en onomatopoetisk lyd rever lager — <span
+								class="name-highlight"
+								data-highlight="2">what does the fox say</span
+							>?
+						</p>
+					</div>
+				</article>
+				<article class="name-chen">
+					<h2 class="name-word" aria-label="Chen">
+						<svg viewBox={`0 0 ${widths.chen} 1000`} aria-hidden="true">
+							<g data-chen-align>
+								<path data-letter="c" d={glyphs.c.path}></path>
+								<text x={glyphs.c.advance} y="760">hen</text>
+							</g>
+						</svg>
+					</h2>
+					<div class="name-copy">
+						<span class="name-seal" data-reveal="3" lang="zh" aria-label="Chen">陈</span>
+						<p>
+							Jeg ble født i <span class="name-highlight" data-highlight="4">1990</span>, og vokste
+							opp i <span class="name-highlight" data-highlight="5">Wuhan</span> i Kina.<br />Jeg
+							flyttet hjemmefra og reiste til <span class="name-highlight" data-highlight="6"
+								>Norge</span
+							> i <span class="name-highlight" data-highlight="7">2014</span>.
+						</p>
+					</div>
+				</article>
+				<article class="name-fjaer">
+					<h2 class="name-word" aria-label="Fjær">
+						<svg viewBox={`0 0 ${widths.chen} 1000`} aria-hidden="true"
+							><text x="0" y="760">fjær</text></svg
+						>
+						<img
+							class="name-feather"
+							data-reveal="8"
+							src="/about-name/feather.svg"
+							alt=""
+							width="99"
+							height="59"
+						/>
+					</h2>
+					<div class="name-copy">
+						<span class="name-seal" data-reveal="8" lang="zh" aria-label="Fjær">羽</span>
+						<p>
+							Selv om jeg har sterke røtter i Kina, har jeg etablert egen familie her i Norge. Jeg
+							er <span class="name-highlight" data-highlight="9">gift med en norsk mann</span>, som
+							heter <span class="name-highlight" data-highlight="10">Fjær</span>.
+						</p>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+	<svg class="name-flight" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+		<path data-flight="d" data-target={glyphs.d.target} fill-rule="evenodd"></path>
+		<path data-flight="c" data-target={glyphs.c.target} fill-rule="evenodd"></path>
+	</svg>
+	<a
+		class="name-mark"
+		href="#about-top"
+		aria-label="Til toppen av siden"
+		tabindex="-1"
+		aria-hidden="true"
+	>
+		<img src="/about-name/monogram.svg" width="416" height="721" alt="" />
+	</a>
+</about-name>
+
+<script>
+	import "../scripts/about-name.js";
+</script>
+
+<style>
+	@font-face {
+		font-family: "Zhi Mang Xing";
+		src: url("/about-name/ZhiMangXing-names.ttf") format("truetype");
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+	.name-highlight {
+		background: linear-gradient(
+				177deg,
+				transparent 48%,
+				#ffcc16b8 52%,
+				#ffcc16b8 88%,
+				transparent 93%
+			)
+			no-repeat 0 0 / calc(var(--ink, 0) * 100%) 100%;
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+		padding-inline: 0.04em;
+		margin-inline: -0.04em;
+	}
+
+	@font-face {
+		font-family: Radley;
+		src: url("/about-name/Radley-Regular.ttf") format("truetype");
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+	about-name {
+		display: block;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		color: #181a1b;
+		font-family: Radley, Georgia, serif;
+	}
+	.name-section {
+		background: #fff;
+		position: relative;
+	}
+	.name-scene {
+		padding: clamp(100px, 11vw, 180px) 6vw 80px;
+	}
+	.name-grid {
+		max-width: 1440px;
+		margin-inline: auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 48px 8%;
+	}
+	article {
+		min-width: 0;
+	}
+	.name-ding {
+		grid-column: 1 / -1;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 8%;
+		align-items: center;
+	}
+	.name-word {
+		position: relative;
+		margin: 0;
+		font-weight: 400;
+		line-height: 1;
+	}
+	.name-word svg {
+		display: block;
+		width: 100%;
+		overflow: visible;
+		fill: currentColor;
+	}
+	.name-word text {
+		font:
+			1000px Radley,
+			Georgia,
+			serif;
+	}
+	.name-copy {
+		font-size: clamp(20px, 2.3vw, 32px);
+		line-height: 1.32;
+	}
+	.name-copy p {
+		margin: 12px 0 0;
+	}
+	.name-fox,
+	.name-feather {
+		position: absolute;
+		height: auto;
+		transform-origin: center bottom;
+	}
+	.name-fox {
+		width: 21%;
+		left: 44%;
+		bottom: 65%;
+	}
+	.name-feather {
+		width: 18%;
+		left: 46%;
+		bottom: 68%;
+	}
+	.name-seal {
+		display: grid;
+		place-items: center;
+		width: 1.45em;
+		height: 1.45em;
+		border-radius: 50%;
+		background: #ffcc16;
+		color: #090909;
+		font:
+			400 1.08em/1 "Zhi Mang Xing",
+			serif;
+	}
+	.name-flight {
+		position: fixed;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		overflow: visible;
+		pointer-events: none;
+		z-index: 41;
+		fill: #181a1b;
+	}
+	.name-flight path {
+		opacity: 0;
+	}
+	.name-mark {
+		position: fixed;
+		top: max(12px, env(safe-area-inset-top));
+		left: max(12px, env(safe-area-inset-left));
+		width: 62px;
+		padding: 0;
+		border-radius: 12px;
+		background: transparent;
+
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		z-index: 40;
+	}
+	.name-mark img {
+		width: 100%;
+		height: auto;
+		opacity: 0;
+	}
+	.name-mark[data-active] {
+		visibility: visible;
+	}
+	.name-mark[data-complete] {
+		pointer-events: auto;
+	}
+	.name-mark:focus-visible {
+		outline: 2px solid #181a1b;
+		outline-offset: 3px;
+	}
+	@media (min-width: 900px) and (min-height: 700px) {
+		about-name[data-enhanced]:not([data-reduced]) .name-section::after {
+			content: "";
+			display: block;
+			height: 485svh;
+		}
+		about-name[data-enhanced]:not([data-reduced]) .name-scene {
+			position: sticky;
+			top: 0;
+			min-height: 100svh;
+			padding: 10svh 6vw 4svh;
+			display: grid;
+			align-content: center;
+		}
+		about-name[data-enhanced]:not([data-reduced]) .name-grid {
+			width: 100%;
+			max-width: min(1440px, 130svh);
+			row-gap: 3svh;
+		}
+		about-name[data-enhanced]:not([data-reduced]) .name-copy {
+			font-size: clamp(18px, 2.85svh, 28px);
+		}
+	}
+	@media (max-width: 699px) {
+		.name-scene {
+			padding: 116px 7vw 88px;
+		}
+		.name-grid,
+		.name-ding {
+			display: flex;
+			flex-direction: column;
+			gap: 80px;
+		}
+		.name-ding {
+			gap: 20px;
+		}
+		.name-word {
+			width: 100%;
+		}
+		.name-copy {
+			font-size: clamp(21px, 5.8vw, 28px);
+		}
+		.name-chen .name-copy,
+		.name-fjaer .name-copy {
+			margin-top: 14px;
+		}
+		.name-mark {
+			width: 52px;
+			padding: 0;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+	}
+</style>
