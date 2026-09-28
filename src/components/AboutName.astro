@@ -10,12 +10,18 @@ const { glyphs, widths } = typeData;
 				<article class="name-ding">
 					<h2 class="name-word" aria-label="Ding">
 						<svg viewBox={`0 0 ${widths.chen} 1000`} aria-hidden="true">
-							<path data-letter="d" d={glyphs.d.path}></path>
-							<text x={glyphs.d.advance} y="760">ing</text>
+							<path data-rainbow="0" data-letter="d" d={glyphs.d.path}></path>
+							<text x={glyphs.d.advance} y="760"
+								>{
+									["i", "n", "g"].map((letter, index) => (
+										<tspan data-rainbow={index + 1}>{letter}</tspan>
+									))
+								}</text
+							>
 						</svg>
 						<img
 							class="name-fox"
-							data-reveal="0"
+							data-reveal="2"
 							src="/about-name/fox.svg"
 							alt=""
 							width="160"
@@ -23,14 +29,14 @@ const { glyphs, widths } = typeData;
 						/>
 					</h2>
 					<div class="name-copy">
-						<span class="name-seal" data-reveal="0" lang="zh" aria-label="Ding: topp">顶</span>
+						<span class="name-seal" data-reveal="4" lang="zh" aria-label="Ding: topp">顶</span>
 						<p>
 							Ding er mitt kinesiske fornavn. Ordet betyr «topp» som «<span
 								class="name-highlight"
-								data-highlight="1">i toppen av et fjell</span
+								data-highlight="5">i toppen av et fjell</span
 							>». Det er også rykter om at «ding» er en onomatopoetisk lyd rever lager — <span
 								class="name-highlight"
-								data-highlight="2">what does the fox say</span
+								data-highlight="6">what does the fox say</span
 							>?
 						</p>
 					</div>
@@ -39,30 +45,42 @@ const { glyphs, widths } = typeData;
 					<h2 class="name-word" aria-label="Chen">
 						<svg viewBox={`0 0 ${widths.chen} 1000`} aria-hidden="true">
 							<g data-chen-align>
-								<path data-letter="c" d={glyphs.c.path}></path>
-								<text x={glyphs.c.advance} y="760">hen</text>
+								<path data-rainbow="7" data-letter="c" d={glyphs.c.path}></path>
+								<text x={glyphs.c.advance} y="760"
+									>{
+										["h", "e", "n"].map((letter, index) => (
+											<tspan data-rainbow={index + 8}>{letter}</tspan>
+										))
+									}</text
+								>
 							</g>
 						</svg>
 					</h2>
 					<div class="name-copy">
-						<span class="name-seal" data-reveal="3" lang="zh" aria-label="Chen">陈</span>
+						<span class="name-seal" data-reveal="11" lang="zh" aria-label="Chen">陈</span>
 						<p>
-							Jeg ble født i <span class="name-highlight" data-highlight="4">1990</span>, og vokste
-							opp i <span class="name-highlight" data-highlight="5">Wuhan</span> i Kina.<br />Jeg
-							flyttet hjemmefra og reiste til <span class="name-highlight" data-highlight="6"
+							Jeg ble født i <span class="name-highlight" data-highlight="12">1990</span>, og vokste
+							opp i <span class="name-highlight" data-highlight="13">Wuhan</span> i Kina.<br />Jeg
+							flyttet hjemmefra og reiste til <span class="name-highlight" data-highlight="14"
 								>Norge</span
-							> i <span class="name-highlight" data-highlight="7">2014</span>.
+							> i <span class="name-highlight" data-highlight="15">2014</span>.
 						</p>
 					</div>
 				</article>
 				<article class="name-fjaer">
 					<h2 class="name-word" aria-label="Fjær">
 						<svg viewBox={`0 0 ${widths.chen} 1000`} aria-hidden="true"
-							><text x="0" y="760">fjær</text></svg
+							><text x="0" y="760"
+								>{
+									["f", "j", "æ", "r"].map((letter, index) => (
+										<tspan data-rainbow={index + 16}>{letter}</tspan>
+									))
+								}</text
+							></svg
 						>
 						<img
 							class="name-feather"
-							data-reveal="8"
+							data-reveal="18"
 							src="/about-name/feather.svg"
 							alt=""
 							width="99"
@@ -70,17 +88,39 @@ const { glyphs, widths } = typeData;
 						/>
 					</h2>
 					<div class="name-copy">
-						<span class="name-seal" data-reveal="8" lang="zh" aria-label="Fjær">羽</span>
+						<span class="name-seal" data-reveal="18" lang="zh" aria-label="Fjær">羽</span>
 						<p>
 							Selv om jeg har sterke røtter i Kina, har jeg etablert egen familie her i Norge. Jeg
-							er <span class="name-highlight" data-highlight="9">gift med en norsk mann</span>, som
-							heter <span class="name-highlight" data-highlight="10">Fjær</span>.
+							er <span class="name-highlight" data-highlight="20">gift med en norsk mann</span>, som
+							heter <span class="name-highlight" data-highlight="21">Fjær</span>.
 						</p>
 					</div>
 				</article>
 			</div>
 		</div>
 	</section>
+	<nav class="name-shortcuts" aria-label="Snarveier på siden">
+		<button
+			type="button"
+			data-name-next
+			aria-label="Spill logo-animasjonen og gå til portrettet"
+			title="Spill logo-animasjonen og gå til portrettet"
+		>
+			<svg class="arrow-next" viewBox="0 0 32 40" aria-hidden="true"
+				><path d="M16 5v28M5 23l11 10 11-10"></path></svg
+			>
+		</button>
+		<button
+			type="button"
+			data-name-top
+			aria-label="Til toppen av siden"
+			title="Til toppen av siden"
+		>
+			<svg class="arrow-up" viewBox="0 0 32 40" aria-hidden="true"
+				><path d="M16 5v28M5 23l11 10 11-10"></path></svg
+			>
+		</button>
+	</nav>
 	<svg class="name-flight" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
 		<path data-flight="d" data-target={glyphs.d.target} fill-rule="evenodd"></path>
 		<path data-flight="c" data-target={glyphs.c.target} fill-rule="evenodd"></path>
@@ -213,6 +253,86 @@ const { glyphs, widths } = typeData;
 		font:
 			400 1.08em/1 "Zhi Mang Xing",
 			serif;
+	}
+	.name-shortcuts {
+		position: fixed;
+		right: max(20px, env(safe-area-inset-right));
+		bottom: max(20px, env(safe-area-inset-bottom));
+		z-index: 42;
+		display: flex;
+		gap: 8px;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 180ms ease,
+			visibility 180ms;
+	}
+	about-name[data-shortcuts] .name-shortcuts {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+	.name-shortcuts button {
+		display: grid;
+		place-items: center;
+		width: 96px;
+		height: 96px;
+		border: 0;
+		border-radius: 50%;
+		background: #fffffff0;
+		color: #000;
+		cursor: pointer;
+		box-shadow: 0 2px 12px #0000000d;
+	}
+	.name-shortcuts button[hidden] {
+		display: none;
+	}
+	.name-shortcuts button:focus-visible {
+		outline: 2px solid #000;
+		outline-offset: 4px;
+	}
+	.name-shortcuts button:hover {
+		background: #fff;
+	}
+	.name-shortcuts svg {
+		width: 52px;
+		height: 64px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 3.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	.arrow-up {
+		transform: rotate(180deg);
+	}
+	.arrow-next {
+		animation: next-nudge 1.9s ease-in-out infinite;
+		animation-play-state: paused;
+	}
+	about-name[data-shortcuts] .arrow-next {
+		animation-play-state: running;
+	}
+	@keyframes next-nudge {
+		0%,
+		100% {
+			transform: translateY(-3px);
+		}
+		50% {
+			transform: translateY(3px);
+		}
+	}
+	.name-section:focus {
+		outline: none;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.name-shortcuts {
+			transition: none;
+		}
+		.arrow-next {
+			animation: none;
+		}
 	}
 	.name-flight {
 		position: fixed;

@@ -333,19 +333,25 @@ brukerens føringer om leserekkefølge, tykke markeringer og enklere mobilvisnin
 - Alle tekstmarkeringer bruker samme tykke gule flate, med basisfargen fra
   tegnsirklene. «Norge» markeres bare i Chen-teksten, ikke i siste avsnitt.
   Det siste ordet «Fjær» er nå markert.
-- Animasjonene har 11 separate scrolltrinn, med små pauser mellom: rev + 顶,
-  «i toppen av et fjell», «what does the fox say», 陈, «1990», «Wuhan», «Norge»,
-  «2014», fjær + 羽, «gift med en norsk mann», «Fjær». Neste trinn starter
-  først når forrige er ferdig. Rev/fjær roer seg helt på plass i sitt eget trinn.
-  Den samme tidslinjen går nøyaktig baklengs ved scrolling oppover.
+- Lesesekvensen er lokalt utvidet til 22 scrolltrinn: d, i, n + rev, g, 顶,
+  «i toppen av et fjell», «what does the fox say», c, h, e, n, 陈, «1990»,
+  «Wuhan», «Norge», «2014», f, j, æ + fjær/羽, r, «gift med en norsk mann»,
+  «Fjær». Bokstavene får en regnbuebølge fra venstre til høyre i sitt eget trinn,
+  og beholder fargene etter at trinnet er passert. På desktop tones alle bokstavene
+  tilbake til svart i pausen på 16svh rett før morphen; på mobil beholdes fargene.
+  SVG-gradienter brukes på de eksisterende d/c-
+  konturene og separate tspans for resten, slik at Radley og morphen bevares.
+  Hele sekvensen reverseres med scrolling opp.
 - Fra 900 × 700 px står komposisjonen midlertidig fast, med 485svh ekstra
-  scrollrom. Hvert lesetrinn bruker 24svh og en pause på 4,5svh. Etter siste
+  scrollrom. Bokstaver bruker 8,5svh, øvrige trinn 18svh, med 2,5svh pause
+  mellom lesemomenter og ingen pause mellom sammenhengende bokstaver.
+  Lesesekvensen bruker samlet ca. 3,12 skjermhøyder, omtrent som før. Etter siste
   markering og en kort pause krymper c loddrett opp i d. Formen står et øyeblikk
   samlet før hele logoen løftes rett opp langs d-ens opprinnelige senterakse.
   Den ender 16 px fra toppen; klikk/Enter går tilbake til 3D-seksjonen.
 - På smalere/lavere skjermer ruller teksten normalt, og bokstavmorphen er fjernet.
   Bokstavene blir i navnene sine. Trinnene forankres til elementenes leseplassering
-  og ordnes uten overlapp, med 16svh per trinn før eventuell komprimering.
+  og ordnes uten overlapp, med 85 prosent av desktop-trinnlengden før eventuell komprimering.
   Hele tidslinjen komprimeres samlet hvis nødvendig for å fullføre navnedelen
   før portrettet, uten å bryte rekkefølgen. Den ferdige
   logoen vises fast først etter siste «Fjær»-markering og skjules når denne reverseres.
@@ -356,6 +362,44 @@ brukerens føringer om leserekkefølge, tykke markeringer og enklere mobilvisnin
   første/siste path i `public/logo-3d/poster.svg`. Konturene interpoleres under
   desktop-sammensettingen. En liten inset på Chen stiller c rett under sluttposisjonen.
   `public/about-name/monogram.svg` bruker originalgrafikken med tett viewBox.
+- Nye snarveispiler er implementert lokalt 2026-09-28 på begge sider, etter
+  brukerens videoreferanse: svarte, avrundede piler nederst til høyre, med rolig
+  bevegelse på ned-pilen. Begge knapper er nå 96 × 96 px med 52 × 64 px piler,
+  dobbelt tidligere størrelse. Ned-pilen står til venstre for opp-pilen.
+  Desktop-knappen hopper over lesesekvensen og spiller morphen automatisk
+  i ca. 2,2 sekunder til logoen er festet. Deretter flyttes viewporten mykt
+  til portrettet i ca. 0,9 sekunder, med 10 prosent av det røde bildet avslørt.
+  Landingen tar hensyn til avsløringens innledende pause og easing; videre
+  scrolling fortsetter samme reversible avsløring.
+  Egen scrolling, berøring, pekertrykk, navigasjonstaster eller resize avbryter
+  avspillingen. På mobil/lav skjerm går knappen direkte
+  til samme 10-prosentvisning, med ferdig logo. Redusert bevegelse beholder det
+  statiske røde portrettet uten avspilling. Opp-pilen går til dokumentets topp, inkludert
+  headeren, og blir tilgjengelig også etter navneseksjonen. Fokus følger hoppet.
+  Ned-pilen skjules ved bestemmelsesstedet; scrolling opp gjør den tilgjengelig
+  igjen. Redusert bevegelse slår av pilanimasjon og myk retur til toppen.
+  Kontrollert med klikk på desktop og mobilbredde 390 × 844: dobbel størrelse,
+  riktig rekkefølge, ferdig logo og fokus på portrettet ved landing.
+  Siste 10-prosentjustering er kontrollert på porteføljesiden (desktop) og
+  Om-siden (mobil): ca. 9,96 % / 10,00 % synlig rødt, innenfor avrunding til
+  hele scrollpiksler. Beregningen er også testet mot portrettets faktiske
+  avsløringsfunksjon. Wheel avbryter avspillingen. Begge ruter bruker samme komponent.
+  Isolert avspillingstest dekker faser, endepunkt, avbrudd, gjentatt aktivering,
+  fokus og direkte hopp på mobil/redusert bevegelse. Sekvenstesten og Astro
+  bestod også (0 feil/0 advarsler/3 eksisterende hint).
+  Pilendringen og regnbuesekvensen inngår i den bestilte lokale committen.
+  Disse justeringene er ikke publisert; push/deploy er ikke bestilt i denne runden.
+  Den nye 22-trinnssekvensen er kontrollert separat: riktig bokstavrekkefølge,
+  ett aktivt trinn om gangen, vedvarende bokstavfarger, reversering, kort
+  mobilside og morph innenfor eksisterende scrollrom. Nettleserkontroll ved
+  1280 × 720 og 390 × 844 bekreftet synlig regnbue, reversering og ingen overbredde.
+  Snarveien fullfører alle markeringer/farger før morph; d/c-morphen fungerer
+  fortsatt. Astro-kontroll: 0 feil, 0 advarsler, 3 eksisterende hint.
+  Justeringen til vedvarende farger er kontrollert i samme viewportstørrelser:
+  passerte bokstaver beholder regnbuen, desktop toner til svart før morph-start,
+  og scrolling opp gjenoppretter fargene. Mobil beholder fargene uten morph.
+  Tidslinjetest og Astro-kontroll bestod også etter justeringen.
+  Redusert bevegelse og JavaScript-fri visning beholder svarte bokstaver.
 - Uten JavaScript er hele navneinnholdet synlig. Redusert bevegelse fjerner
   ekstra scrollrom, innrulling og bokstavflytting; markeringene er fullt synlige
   og den festede logoen vises ved seksjonens slutt.
@@ -365,7 +409,7 @@ brukerens føringer om leserekkefølge, tykke markeringer og enklere mobilvisnin
   markering/fullt synlig etterpå. Ingen horisontal overbredde ved disse størrelsene.
   Eldre kontroll ved 320 × 740 fant ca. 15 px overbredde i eksisterende
   footernavigasjon; denne er ikke endret.
-- Isolerte tester av faktisk tidslinje/renderlogikk bestod for 11 ordnede trinn
+- Isolerte tester av faktisk tidslinje/renderlogikk bestod opprinnelig for 11 ordnede trinn
   uten overlapp, motsatt scrolling, kort side, desktop-morph først etter lesing,
   ingen mobilmorph, «Fjær» som utløser for logoen og redusert bevegelse.
   Fysisk mobilberøring og OS-styrt redusert bevegelse er ikke testet.

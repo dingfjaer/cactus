@@ -4,6 +4,19 @@ const smooth = (value) => {
 	return t * t * (3 - 2 * t);
 };
 const mix = (a, b, t) => a + (b - a) * t;
+const MORPH_START = 0.16;
+const RAINBOW_STEPS = new Set([0, 1, 2, 3, 7, 8, 9, 10, 16, 17, 18, 19]);
+let rainbowId = 0;
+
+// The rainbow enters from the left, then stays centred across the finished glyph.
+function rainbowBand(progress) {
+	const left = mix(-1.2, -0.1, clamp(progress));
+	return { left, right: left + 1.2 };
+}
+// Use the existing pause after the final highlight to restore black before morphing.
+function rainbowReset(afterReading, pinned, reduced) {
+	return reduced ? 1 : pinned ? smooth(afterReading / MORPH_START) : 0;
+}
 const SVG_NS = "http://www.w3.org/2000/svg";
 
 // Pair each closed contour of the font glyph with its contour in the original logo.
@@ -73,15 +86,17 @@ function prepareMorph(source, targetData, svg) {
 
 // Non-overlapping ranges keep the reading order identical in both directions.
 function readingSchedule({ pinned, sectionTop, height, anchors, maxScroll }) {
-	const duration = height * (pinned ? 0.24 : 0.16);
-	const gap = height * 0.045;
 	const ranges = [];
+	let cursor = sectionTop - height * 0.18;
 	for (let step = 0; step < anchors.length; step++) {
-		const desired = pinned
-			? sectionTop - height * 0.18 + step * (duration + gap)
-			: Math.max(0, anchors[step] - height * 0.78);
+		const letter = RAINBOW_STEPS.has(step);
+		const duration = height * (letter ? 0.085 : 0.18) * (pinned ? 1 : 0.85);
+		// Consecutive letters form one wave; pauses only separate reading beats.
+		const gap = step && !(letter && RAINBOW_STEPS.has(step - 1)) ? height * 0.025 : 0;
+		const desired = pinned ? cursor + gap : Math.max(0, anchors[step] - height * 0.78);
 		const start = Math.max(desired, step ? ranges[step - 1].end + gap : 0);
 		ranges.push({ start, end: start + duration });
+		cursor = start + duration;
 	}
 	// On short pages, compress the whole sequence uniformly, retaining every gap.
 	if (!pinned && ranges.at(-1).end > maxScroll) {
@@ -98,10 +113,31 @@ function readingSchedule({ pinned, sectionTop, height, anchors, maxScroll }) {
 // The complete reading sequence and a short pause precede the desktop morph.
 function nameTimeline(distance) {
 	return {
-		merge: smooth((distance - 0.16) / 0.6),
+		merge: smooth((distance - MORPH_START) / 0.6),
 		stamp: smooth((distance - 0.76) / 0.18),
 		lift: smooth((distance - 1.11) / 0.6),
 	};
+}
+
+// Finish the morph before moving the viewport to the portrait preview.
+function shortcutScroll(elapsed, from, morphEnd, destination) {
+	const morphDuration = from < morphEnd ? 2200 : 0;
+	if (elapsed < morphDuration) {
+		return { top: mix(from, morphEnd, smooth(elapsed / morphDuration)), done: false };
+	}
+	const progress = clamp((elapsed - morphDuration) / 900);
+	return {
+		top: mix(Math.max(from, morphEnd), destination, smooth(progress)),
+		done: progress === 1,
+	};
+}
+
+// Invert portraitProgress: account for its 10% lead-in and smoothstep easing.
+// This reveals 10% of the image, rather than advancing 10% of the scroll runway.
+function portraitPreviewOffset(distance) {
+	const reveal = 0.1;
+	const easedPosition = 0.5 - Math.sin(Math.asin(1 - 2 * reveal) / 3);
+	return Math.max(0, distance) * (0.1 + 0.8 * easedPosition);
 }
 
 const LOGO = { x: 657.38, y: 147.229, width: 415.69, height: 721.05 };
@@ -142,16 +178,99 @@ class AboutName extends HTMLElement {
 		);
 		this.reveals = [...this.querySelectorAll("[data-reveal]")];
 		this.highlights = [...this.querySelectorAll("[data-highlight]")];
-		this.steps = Array.from({ length: 11 }, (_, step) => {
-			const element = this.querySelector(`[data-reveal="${step}"], [data-highlight="${step}"]`);
-			return element.hasAttribute("data-reveal") ? element.parentElement : element;
+		this.steps = Array.from({ length: 22 }, (_, step) => {
+			const element = this.querySelector(
+				`[data-rainbow="${step}"], [data-reveal="${step}"], [data-highlight="${step}"]`,
+			);
+			return element.hasAttribute("data-rainbow")
+				? element.closest(".name-word")
+				: element.hasAttribute("data-reveal")
+					? element.parentElement
+					: element;
 		});
+		this.rainbow = [...this.querySelectorAll("[data-rainbow]")].map((element) => {
+			const svg = element.ownerSVGElement;
+			let defs = svg.querySelector("defs[data-rainbow-defs]");
+			if (!defs) {
+				defs = document.createElementNS(SVG_NS, "defs");
+				defs.setAttribute("data-rainbow-defs", "");
+				svg.prepend(defs);
+			}
+			const gradient = document.createElementNS(SVG_NS, "linearGradient");
+			gradient.id = `name-rainbow-${++rainbowId}`;
+			gradient.setAttribute("y1", "0");
+			gradient.setAttribute("y2", "0");
+			const stops = [
+				"#181a1b",
+				"#e53945",
+				"#f28c28",
+				"#edbd24",
+				"#45a765",
+				"#249dd8",
+				"#7652cc",
+				"#cd48a0",
+				"#181a1b",
+			].map((color, i, colors) => {
+				const stop = document.createElementNS(SVG_NS, "stop");
+				stop.setAttribute("offset", String(i / (colors.length - 1)));
+				stop.setAttribute("stop-color", color);
+				gradient.append(stop);
+				return {
+					stop,
+					channels: color.match(/[0-9a-f]{2}/gi).map((channel) => parseInt(channel, 16)),
+				};
+			});
+			defs.append(gradient);
+			element.style.fill = `url(#${gradient.id})`;
+			return { element, gradient, stops, step: Number(element.dataset.rainbow) };
+		});
+		this.rainbowReset = null;
+		this.nextButton = this.querySelector("[data-name-next]");
+		this.topButton = this.querySelector("[data-name-top]");
 		this.chenTail = this.querySelector(".name-chen text");
 		this.visualScroll = window.scrollY;
 		this.schedule = () => {
 			if (!this.frame) this.frame = requestAnimationFrame((time) => this.tick(time));
 		};
 		const options = { passive: true, signal: this.abort.signal };
+		this.nextButton.addEventListener("click", () => this.skipReading(), options);
+		this.topButton.addEventListener(
+			"click",
+			() => {
+				this.stopAutoplay();
+				window.scrollTo({ top: 0, behavior: this.reduced.matches ? "instant" : "smooth" });
+				const heading = document.querySelector("#main-header a");
+				heading?.focus({ preventScroll: true });
+			},
+			options,
+		);
+		const interrupt = () => this.stopAutoplay();
+		window.addEventListener("wheel", interrupt, options);
+		window.addEventListener("touchstart", interrupt, options);
+		window.addEventListener("pointerdown", interrupt, options);
+		window.addEventListener(
+			"keydown",
+			(event) => {
+				if (
+					[
+						"Escape",
+						"ArrowUp",
+						"ArrowDown",
+						"PageUp",
+						"PageDown",
+						"Home",
+						"End",
+						" ",
+						"Tab",
+					].includes(event.key)
+				)
+					interrupt();
+			},
+			options,
+		);
+		window.addEventListener("resize", interrupt, options);
+		this.reduced.addEventListener("change", interrupt, options);
+		this.pinned.addEventListener("change", interrupt, options);
 		window.addEventListener("scroll", this.schedule, options);
 		window.addEventListener("resize", this.schedule, options);
 		window.addEventListener("pageshow", this.schedule, options);
@@ -166,8 +285,108 @@ class AboutName extends HTMLElement {
 		this.schedule();
 	}
 
+	readingRanges() {
+		const section = this.section.getBoundingClientRect();
+		const height = window.innerHeight;
+		const pinned = this.pinned.matches && !this.reduced.matches;
+		return readingSchedule({
+			pinned,
+			sectionTop: section.top + window.scrollY,
+			height,
+			anchors: this.steps.map((element) => element.getBoundingClientRect().top + window.scrollY),
+			maxScroll: Math.max(
+				1,
+				Math.min(
+					document.documentElement.scrollHeight - height - 16,
+					section.bottom + window.scrollY - height * 0.35,
+				),
+			),
+		});
+	}
+
+	skipDestination(ranges = this.readingRanges()) {
+		const portrait = document.querySelector(".portrait-section");
+		const scene = portrait?.querySelector(".portrait-scene");
+		const inset = scene ? parseFloat(getComputedStyle(scene).top) || 0 : 0;
+		const previewOffset =
+			portrait && scene && !this.reduced.matches
+				? portraitPreviewOffset(
+						portrait.getBoundingClientRect().height - scene.getBoundingClientRect().height,
+					)
+				: 0;
+		return {
+			top: portrait
+				? portrait.getBoundingClientRect().top + window.scrollY - inset + previewOffset
+				: ranges.at(-1).end,
+			element: portrait ?? this.section,
+		};
+	}
+
+	stopAutoplay() {
+		if (!this.autoplay) return;
+		this.autoplay = null;
+		this.schedule();
+	}
+
+	focusDestination(element) {
+		element.setAttribute("tabindex", "-1");
+		element.focus({ preventScroll: true });
+	}
+
+	skipReading() {
+		if (this.autoplay) return;
+		const ranges = this.readingRanges();
+		const destination = this.skipDestination(ranges);
+		const top = Math.max(
+			0,
+			Math.min(destination.top, document.documentElement.scrollHeight - window.innerHeight),
+		);
+		const pinned = this.pinned.matches && !this.reduced.matches;
+		const from = pinned
+			? Math.min(
+					top,
+					Math.max(window.scrollY, ranges.at(-1).end + window.innerHeight * MORPH_START),
+				)
+			: top;
+		// Bypass reading immediately, then play only the morph and the journey to the portrait.
+		window.scrollTo({ top: from, behavior: "instant" });
+		this.visualScroll = window.scrollY;
+		this.lastTime = 0;
+		if (pinned) {
+			this.autoplay = {
+				from: window.scrollY,
+				morphEnd: Math.min(top, ranges.at(-1).end + window.innerHeight * 1.71),
+				top,
+				element: destination.element,
+				started: null,
+			};
+		} else this.focusDestination(destination.element);
+		this.render();
+		this.schedule();
+	}
+
 	tick(time) {
 		this.frame = 0;
+		if (this.autoplay) {
+			const playback = this.autoplay;
+			playback.started ??= time;
+			const position = shortcutScroll(
+				time - playback.started,
+				playback.from,
+				playback.morphEnd,
+				playback.top,
+			);
+			window.scrollTo({ top: position.top, behavior: "instant" });
+			this.visualScroll = window.scrollY;
+			if (position.done) {
+				this.autoplay = null;
+				this.focusDestination(playback.element);
+			}
+			this.render();
+			this.lastTime = 0;
+			if (this.autoplay) this.schedule();
+			return;
+		}
 		const dt = Math.min(64, this.lastTime ? time - this.lastTime : 16);
 		this.lastTime = time;
 		const difference = window.scrollY - this.visualScroll;
@@ -201,19 +420,19 @@ class AboutName extends HTMLElement {
 		};
 		const dSource = rect(d.source),
 			cSource = rect(c.source);
-		const schedule = readingSchedule({
-			pinned,
-			sectionTop: section.top + window.scrollY,
-			height,
-			anchors: this.steps.map((element) => element.getBoundingClientRect().top + window.scrollY),
-			maxScroll: Math.max(
-				1,
-				Math.min(
-					document.documentElement.scrollHeight - height - 16,
-					section.bottom + window.scrollY - height * 0.35,
-				),
-			),
-		});
+		const schedule = this.readingRanges();
+		const destination = this.skipDestination(schedule);
+		this.toggleAttribute(
+			"data-shortcuts",
+			section.top < height * 0.7 && window.scrollY > height * 0.3,
+		);
+		this.nextButton.hidden = window.scrollY >= destination.top - 2;
+		this.nextButton.disabled = Boolean(this.autoplay);
+		const nextLabel = pinned
+			? "Spill logo-animasjonen og gå til portrettet"
+			: "Hopp til portrettet";
+		this.nextButton.setAttribute("aria-label", nextLabel);
+		this.nextButton.title = nextLabel;
 		const progress = schedule.map(({ start, end }) =>
 			reduced ? 1 : smooth((this.visualScroll - start) / (end - start)),
 		);
@@ -276,6 +495,21 @@ class AboutName extends HTMLElement {
 			);
 		});
 
+		const reset = rainbowReset(afterReading, pinned, reduced);
+		this.rainbow.forEach(({ gradient, stops, step }) => {
+			const band = rainbowBand(progress[step]);
+			gradient.setAttribute("x1", String(band.left));
+			gradient.setAttribute("x2", String(band.right));
+			if (reset !== this.rainbowReset) {
+				stops.forEach(({ stop, channels }) => {
+					const color = channels.map((channel, i) =>
+						Math.round(mix(channel, [24, 26, 27][i], reset)),
+					);
+					stop.setAttribute("stop-color", `rgb(${color.join(", ")})`);
+				});
+			}
+		});
+		this.rainbowReset = reset;
 		this.reveals.forEach((element) => {
 			const p = progress[Number(element.dataset.reveal)];
 			const isSeal = element.classList.contains("name-seal");
@@ -290,6 +524,11 @@ class AboutName extends HTMLElement {
 	}
 
 	disconnectedCallback() {
+		this.autoplay = null;
+		this.rainbow?.forEach(({ element, gradient }) => {
+			element.style.removeProperty("fill");
+			gradient.remove();
+		});
 		this.abort?.abort();
 		this.resizeObserver?.disconnect();
 		cancelAnimationFrame(this.frame);
