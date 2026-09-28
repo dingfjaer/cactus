@@ -545,7 +545,7 @@ class DingLogo extends HTMLElement {
 		// Hover is a temporary offset; dragging and presets keep their own orientation.
 		this._hover = { yaw: 0, pitch: 0, x: 0, y: 0, lightX: 0, lightY: 0, strength: 0 };
 		this._hoverTarget = { ...this._hover };
-		this._spin = false;
+		this._spin = !this._motion.matches;
 		this._points.clear();
 		this._pinch = null;
 		this.dataset.state = "static";
