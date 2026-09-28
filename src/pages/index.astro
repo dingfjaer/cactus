@@ -1,4 +1,5 @@
 ---
+import NowWidget from "@/components/NowWidget.astro";
 import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import { getAllPosts, sortPostsPinnedFirst } from "@/data/post";
@@ -35,6 +36,7 @@ const cactusTech: { desc: string; href: string; title: string }[] = [
 		<p class="text-lg">så blir jeg ett med ordene.</p>
 	</section>
 	-->
+	<NowWidget />
 	<section aria-label="Blog post list" class="mt-0">
 		<!-- <h2 class="title mb-4 text-2xl">Posts</h2> -->
 		<ul class="space-y-4">

@@ -1,0 +1,91 @@
+---
+import Code from '@/assets/phosphor/code.svg';
+import Headphones from '@/assets/phosphor/headphones.svg';
+import Book from '@/assets/phosphor/book-open.svg';
+import Television from '@/assets/phosphor/television.svg';
+import Finished from '@/assets/phosphor/check-circle.svg';
+import Paw from '@/assets/phosphor/paw-print.svg';
+import Previous from '@/assets/phosphor/skip-back-fill.svg';
+import Next from '@/assets/phosphor/skip-forward-fill.svg';
+import Pause from '@/assets/phosphor/pause-fill.svg';
+import Play from '@/assets/phosphor/play-fill.svg';
+import { nowItems } from '@/data/now';
+import { nowCalendar } from '@/utils/now-calendar.mjs';
+const calendar = nowCalendar();
+const icons = { doing:Code, listening:Headphones, reading:Book, watching:Television, finished:Finished, tintin:Paw };
+---
+<now-widget aria-label="Hva skjer nå" class="now-widget">
+  <div class="now-glass">
+    <div class="now-heading"><h2>Hva skjer nå</h2><span class="now-count" aria-hidden="true" data-count>01 / 06</span></div>
+    <div class="now-slides">
+      {nowItems.map((item,index) => {
+        const TopicIcon = icons[item.key];
+        return <div class="now-slide" data-slide hidden={index !== 0}>
+          <div class="now-art" aria-hidden="true"><TopicIcon /></div>
+          <div class="now-copy">
+            <p class="now-label">{item.label}</p>
+            <h3 data-tintin-age={item.key === 'tintin' ? '' : undefined}>{item.key === 'tintin' ? calendar.age : item.title}</h3>
+            {'detail' in item && <p class="now-detail">{item.detail}</p>}
+          </div>
+        </div>;
+      })}
+    </div>
+    <div class="now-year">
+      <span data-year>{calendar.year}</span>
+      <div class="year-wrap">
+        <div class="year-track" role="progressbar" tabindex="0" aria-label={`Året ${calendar.year}`} aria-valuemin="0" aria-valuemax="100" aria-valuenow={Math.round(calendar.progress*100)} aria-valuetext={calendar.dateLabel} aria-describedby="now-date" title={calendar.dateLabel}>
+          <span class="year-fill" style={`width:${calendar.progress*100}%`}></span>
+        </div>
+        <time id="now-date" class="now-date" datetime={calendar.day}>{calendar.dateLabel}</time>
+      </div>
+      <span data-percent>{Math.round(calendar.progress*100)} %</span>
+    </div>
+    <div class="now-controls" data-controls hidden>
+      <button type="button" data-previous aria-label="Forrige tema"><Previous aria-hidden="true" /></button>
+      <button type="button" data-play aria-label="Sett automatisk bytte på pause"><span data-pause-icon><Pause aria-hidden="true" /></span><span data-play-icon hidden><Play aria-hidden="true" /></span></button>
+      <button type="button" data-next aria-label="Neste tema"><Next aria-hidden="true" /></button>
+    </div>
+    <p class="sr-only" data-announcement aria-live="polite" aria-atomic="true"></p>
+    <noscript><ul class="now-fallback">{nowItems.slice(1).map(item => <li>{item.label}: {item.key === 'tintin' ? calendar.age : item.title}{'detail' in item ? ` – ${item.detail}` : ''}</li>)}</ul></noscript>
+  </div>
+</now-widget>
+<script>
+import '../scripts/now-widget';
+</script>
+<style>
+.now-widget { display:block; position:relative; margin:0 0 2.75rem; isolation:isolate; }
+.now-widget::before { content:''; position:absolute; inset:8% 8% 2%; z-index:-1; background:radial-gradient(ellipse at 12% 35%,#e9b99785,transparent 65%),radial-gradient(ellipse at 90% 80%,#d6c77365,transparent 60%); filter:blur(26px); }
+.now-glass { position:relative; overflow:visible; padding:1.4rem 1.75rem 1rem; border-radius:2rem; border:1px solid #ffffff90; background:linear-gradient(125deg,#ffffffaf,#eee1d688 60%,#dfd7c980); backdrop-filter:blur(28px) saturate(145%); -webkit-backdrop-filter:blur(28px) saturate(145%); box-shadow:inset 0 1px 0 #fff,0 12px 36px #42332112,inset 0 -1px 0 #ffffff50; }
+:global([data-theme="dark"]) .now-glass { color:#f5eee6; background:linear-gradient(125deg,#61574ebb,#423c38b8 60%,#393c34b0); border-color:#ffffff36; box-shadow:inset 0 1px 0 #ffffff45,0 12px 36px #0003; }
+.now-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:.9rem; gap:1rem; }
+.now-heading h2 { font-size:.68rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; opacity:.75; }
+.now-count { font-size:.65rem; letter-spacing:.12em; font-variant-numeric:tabular-nums; opacity:.55; }
+.now-slides { min-height:110px; display:grid; align-items:center; }
+.now-slide { display:flex; align-items:center; gap:1.1rem; min-width:0; }
+.now-widget [hidden] { display:none !important; }
+.now-art { flex-shrink:0; width:72px; height:72px; display:grid; place-items:center; border:1px solid #ffffff50; border-radius:1.2rem; background:linear-gradient(145deg,#ffffff55,#ffffff08); box-shadow:inset 0 1px 0 #ffffff70,0 4px 14px #00000008; }
+.now-art :global(svg) { width:36px; height:36px; }
+.now-copy { min-width:0; }
+.now-label { font-size:.8rem; opacity:.7; margin-bottom:.25rem; }
+.now-copy h3 { font-size:clamp(1.05rem,3.3vw,1.4rem); line-height:1.3; font-weight:600; text-wrap:balance; }
+.now-detail { font-size:.9rem; line-height:1.4; opacity:.7; margin-top:.25rem; }
+.now-year { display:flex; align-items:center; gap:.7rem; margin-top:1rem; font-size:.7rem; font-variant-numeric:tabular-nums; opacity:.85; }
+.year-wrap { flex:1; position:relative; }
+.year-track { height:8px; background:currentColor; background:color-mix(in srgb,currentColor 15%,transparent); border-radius:99px; }
+.year-fill { display:block; height:100%; border-radius:inherit; background:currentColor; opacity:.58; }
+.now-date { position:absolute; left:50%; bottom:calc(100% + 10px); transform:translateX(-50%); white-space:nowrap; pointer-events:none; opacity:0; background:hsl(var(--theme-bg)); color:hsl(var(--theme-text)); padding:.4rem .65rem; border-radius:.5rem; box-shadow:0 3px 14px #0002; transition:opacity .15s; }
+.year-wrap:hover .now-date,.year-wrap:focus-within .now-date { opacity:1; }
+.now-controls { display:flex; align-items:center; justify-content:center; gap:1.8rem; margin-top:.7rem; }
+.now-controls button { display:grid; place-items:center; width:48px; height:48px; border-radius:50%; color:inherit; background:transparent; border:0; cursor:pointer; transition:background .15s,transform .15s; }
+.now-controls button:hover { background:#ffffff28; }
+.now-controls button:active { transform:scale(.92); }
+.now-controls :global(svg) { width:30px; height:30px; }
+.now-controls [data-play] :global(svg) { width:34px; height:34px; }
+.now-controls button:focus-visible,.year-track:focus-visible { outline:2px solid currentColor; outline-offset:4px; }
+.now-fallback { margin-top:1rem; font-size:.85rem; }
+@media(prefers-reduced-motion:no-preference) { .now-widget[data-enhanced] .now-slide:not([hidden]) { animation:now-reveal .5s ease both; } }
+@keyframes now-reveal { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:639px) { .now-glass { padding:1.1rem 1.15rem .7rem; border-radius:1.6rem; } .now-art { width:58px; height:58px; border-radius:1rem; } .now-art :global(svg) { width:30px; height:30px; } .now-slide { gap:.85rem; } .now-slides { min-height:124px; } .now-detail { font-size:.8rem; } }
+@media(prefers-reduced-transparency:reduce) { .now-glass, :global([data-theme="dark"]) .now-glass { backdrop-filter:none; -webkit-backdrop-filter:none; background:hsl(var(--theme-bg)); } }
+@media(forced-colors:active) { .now-glass { border:1px solid CanvasText; } .year-track { border:1px solid CanvasText; } .year-fill { background:Highlight; } }
+</style>

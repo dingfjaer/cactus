@@ -1,6 +1,7 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
 
+import Paginator from "@/components/Paginator.astro";
 import Masthead from "@/components/blog/Masthead.astro";
 import TOC from "@/components/blog/TOC.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
@@ -9,9 +10,12 @@ import BaseLayout from "./Base.astro";
 
 interface Props {
 	post: CollectionEntry<"post">;
+	previousPost?: CollectionEntry<"post">;
+	nextPost?: CollectionEntry<"post">;
 }
 
-const { post } = Astro.props;
+const { post, previousPost, nextPost } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 const {
 	data: { description, ogImage, publishDate, title, updatedDate },
 	id: slug,
@@ -34,6 +38,11 @@ const { headings } = await render(post);
 			</div>
 		</article>
 	</div>
+	<Paginator
+		label="Bla mellom innlegg"
+		prevUrl={previousPost ? { url: `${baseUrl}/posts/${previousPost.id}/`, text: "← Forrige", srLabel: `Forrige innlegg: ${previousPost.data.title}. ` } : undefined}
+		nextUrl={nextPost ? { url: `${baseUrl}/posts/${nextPost.id}/`, text: "Neste →", srLabel: `Neste innlegg: ${nextPost.data.title}. ` } : undefined}
+	/>
 	<button
 		aria-label="Back to Top"
 		class="z-90 fixed bottom-8 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all duration-300 hover:border-zinc-400 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 dark:bg-zinc-700 sm:end-8 sm:h-12 sm:w-12"

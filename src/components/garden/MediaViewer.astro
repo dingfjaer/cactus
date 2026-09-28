@@ -1,7 +1,16 @@
+---
+import CaretLeft from "@/assets/phosphor/caret-left.svg";
+import CaretRight from "@/assets/phosphor/caret-right.svg";
+---
 <div class="media-gallery">
   <slot />
   <dialog class="media-viewer" aria-label="Stor visning av bilde eller video">
     <div class="viewer-bar">
+      <div class="viewer-navigation" role="group" aria-label="Bla mellom bilder og videoer">
+        <button class="viewer-prev" type="button" aria-label="Forrige bilde eller video"><CaretLeft aria-hidden="true" /></button>
+        <span class="viewer-position" aria-live="polite" aria-atomic="true"></span>
+        <button class="viewer-next" type="button" aria-label="Neste bilde eller video"><CaretRight aria-hidden="true" /></button>
+      </div>
       <p class="viewer-status" role="status"></p>
       <button class="viewer-close" type="button" autofocus aria-label="Lukk stor visning">Lukk ×</button>
     </div>
@@ -17,6 +26,11 @@ function setupViewers() {
     const content = root.querySelector<HTMLElement>('.viewer-content')!;
     const status = root.querySelector<HTMLElement>('.viewer-status')!;
     const close = root.querySelector<HTMLButtonElement>('.viewer-close')!;
+    const previous = root.querySelector<HTMLButtonElement>('.viewer-prev')!;
+    const next = root.querySelector<HTMLButtonElement>('.viewer-next')!;
+    const position = root.querySelector<HTMLElement>('.viewer-position')!;
+    const items = () => [...root.querySelectorAll<HTMLElement>('[data-media-open]')]
+      .filter(item => !item.closest('figure')?.hidden && item.getClientRects().length > 0);
     let opener: HTMLElement | null = null;
     let generation = 0;
     let controller: AbortController | undefined;
@@ -34,22 +48,22 @@ function setupViewers() {
       const video = content.querySelector('video');
       if(video) { video.pause(); video.removeAttribute('src'); video.load(); }
       content.replaceChildren();
-      document.body.style.overflow = previousOverflow;
     };
     close.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('close', () => { cleanup(); opener?.focus({preventScroll:true}); });
-    // Escape closes the native dialog and restores focus through the same path.
-    root.addEventListener('click', async event => {
-      const trigger = (event.target as Element).closest<HTMLElement>('[data-media-open]');
-      if(!trigger || !root.contains(trigger) || dialog.open) return;
+    dialog.addEventListener('close', () => { cleanup(); document.body.style.overflow = previousOverflow; opener?.focus({preventScroll:true}); });
+    // Switching media tears down the old player/request before loading the next.
+    const showMedia = async (trigger: HTMLElement) => {
       const thumbnail = trigger.querySelector('img');
       if(!thumbnail) return;
+      cleanup();
       opener = trigger;
-      previousOverflow = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      const current = ++generation;
+      const visible = items();
+      const index = visible.indexOf(trigger);
+      previous.disabled = index <= 0;
+      next.disabled = index < 0 || index >= visible.length - 1;
+      position.textContent = `${index + 1} / ${visible.length}`;
+      const current = generation;
       status.textContent = '';
-      dialog.showModal();
       if(trigger.dataset.kind !== 'video') {
         const image = thumbnail.cloneNode(true) as HTMLImageElement;
         image.removeAttribute('class'); image.removeAttribute('style');
@@ -103,7 +117,28 @@ function setupViewers() {
           hls.on(Hls.Events.ERROR, (_: unknown, data: {fatal: boolean}) => { if(data.fatal) { fail(); hls.destroy(); } });
           hls.loadSource(source); hls.attachMedia(video);
         }
-      } catch { if(!controller?.signal.aborted) fail(); }
+      } catch { fail(); }
+    };
+    const move = (direction: number) => {
+      const visible = items();
+      const target = visible[visible.indexOf(opener!) + direction];
+      if (target) void showMedia(target);
+    };
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    dialog.addEventListener('keydown', event => {
+      if (event.altKey || event.ctrlKey || event.metaKey || (event.target as Element).closest('video')) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
+    root.addEventListener('click', event => {
+      const trigger = (event.target as Element).closest<HTMLElement>('[data-media-open]');
+      if (!trigger || !root.contains(trigger) || dialog.open) return;
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      dialog.showModal();
+      void showMedia(trigger);
     });
     document.addEventListener('astro:before-swap', () => { if(dialog.open) { dialog.close(); cleanup(); } }, {once:true});
   });
@@ -116,6 +151,13 @@ document.addEventListener('astro:page-load', setupViewers);
 .media-viewer[open] { display:flex; flex-direction:column; gap:.75rem; }
 .media-viewer::backdrop { background:#000d; }
 .viewer-bar { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-shrink:0; }
+.viewer-navigation { display:flex; align-items:center; gap:.5rem; flex-shrink:0; }
+.viewer-navigation button { display:grid; place-items:center; width:44px; height:44px; border:1px solid #ffffff40; border-radius:50%; background:#ffffff15; color:white; cursor:pointer; }
+.viewer-navigation button:disabled { opacity:.25; cursor:default; }
+.viewer-navigation button:focus-visible { outline:2px solid white; outline-offset:3px; }
+.viewer-navigation :global(svg) { width:24px; height:24px; fill:currentColor; }
+.viewer-position { min-width:4.5ch; text-align:center; font-size:.8rem; font-variant-numeric:tabular-nums; }
+@media(max-width:639px) { .viewer-bar { flex-wrap:wrap; } .viewer-status:not(:empty) { order:3; width:100%; } }
 .viewer-status { margin:0; font-size:.9rem; }
 .viewer-close { margin-left:auto; flex-shrink:0; min-width:88px; min-height:44px; padding:.5rem 1rem; border:1px solid #aaa; border-radius:.5rem; background:#222; color:white; cursor:pointer; font:inherit; }
 .viewer-close:focus-visible { outline:3px solid white; outline-offset:3px; }

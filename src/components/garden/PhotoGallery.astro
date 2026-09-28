@@ -3,12 +3,14 @@ import MediaViewer from "./MediaViewer.astro";
 import { Image } from "astro:assets";
 import { fetchAlbum } from "../../../scripts/jottacloud-poc.mjs";
 import { photoCalendarDate, tintinAge, formatPhotoDate } from "@/utils/tintin-age.mjs";
+import { masonryImageSizes, gridImageSizes } from "@/utils/gallery-layout";
 import type { GalleryKey } from "@/data/galleries";
 interface Props { shareId: string; kind: GalleryKey; title: string }
 const { shareId, kind, title } = Astro.props;
 const album = await fetchAlbum(shareId, { includeVideos: true });
 const photos = album.photos.sort((a, b) => (b.takenAt ?? "").localeCompare(a.takenAt ?? ""));
 const isTinsta = kind === "tinsta";
+const columns = Math.max(1, Math.min(3, photos.length));
 ---
 <section class="filterable-gallery" data-filter="all">
   <div class="media-filters" role="group" aria-label="Filtrer galleri">
@@ -19,7 +21,7 @@ const isTinsta = kind === "tinsta";
   <p class="filter-empty" role="status" hidden></p>
 <MediaViewer>
 {photos.length === 0 ? <p class="empty">Her spirer det snart noe nytt. Ingen bilder eller videoer ennå.</p> :
-  <div class:list={["photo-gallery", { tinsta: isTinsta }]}>
+  <div class:list={["photo-gallery", { tinsta: isTinsta, masonry: !isTinsta }]} style={!isTinsta ? `--columns: ${columns}; --tablet-columns: ${Math.min(2, columns)}` : undefined}>
     {photos.map((photo, index) => {
       const day = photoCalendarDate(photo.takenAt);
       return <figure data-media-kind={photo.kind}>
@@ -28,7 +30,7 @@ const isTinsta = kind === "tinsta";
           data-share={shareId} data-id={photo.id}
           aria-label={`${photo.kind === 'video' ? 'Spill video' : 'Åpne bilde'} ${index + 1} i stor visning`}>
           <Image src={photo.preview} inferSize widths={[480, 960, 1600]}
-            sizes="(min-width: 1200px) 347px, (min-width: 1024px) calc((100vw - 160px) / 3), (min-width: 640px) calc((100vw - 96px) / 2), 100vw"
+            sizes={isTinsta ? gridImageSizes : masonryImageSizes(photos.length)}
             format="webp" quality={85} alt={`${isTinsta ? "Tintin" : title}${day ? ` – ${formatPhotoDate(day)}` : ""}, ${photo.kind === "video" ? "video" : "bilde"} ${index + 1}`}
             loading={index < 3 ? "eager" : "lazy"} decoding="async" />
           {photo.kind === 'video' && <span class="video-label" aria-hidden="true">▶ Video {photo.duration}</span>}
@@ -40,6 +42,7 @@ const isTinsta = kind === "tinsta";
 </MediaViewer>
 </section>
 <script>
+  import { masonryImageSizes, gridImageSizes } from "@/utils/gallery-layout";
   function setupFilters() {
     document.querySelectorAll<HTMLElement>('.filterable-gallery').forEach(root => {
       if(root.dataset.ready) return;
@@ -47,11 +50,20 @@ const isTinsta = kind === "tinsta";
       const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-filter-choice]')];
       const figures = [...root.querySelectorAll<HTMLElement>('[data-media-kind]')];
       const empty = root.querySelector<HTMLElement>('.filter-empty')!;
+      const masonry = root.querySelector<HTMLElement>('.masonry');
       buttons.forEach(button => button.addEventListener('click', () => {
         const filter = button.dataset.filterChoice!;
         root.dataset.filter = filter;
         buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
         figures.forEach(f => { f.hidden = filter !== 'all' && f.dataset.mediaKind !== filter; });
+        if (masonry) {
+          const count = figures.filter(f => !f.hidden).length;
+          masonry.style.setProperty('--columns', String(Math.max(1, Math.min(3, count))));
+          masonry.style.setProperty('--tablet-columns', String(Math.max(1, Math.min(2, count))));
+          masonry.querySelectorAll('img').forEach(image => {
+            image.sizes = filter === 'video' ? gridImageSizes : masonryImageSizes(count);
+          });
+        }
         empty.hidden = figures.some(f => !f.hidden) || !figures.length;
         empty.textContent = filter === 'video' ? 'Ingen videoer i dette albumet ennå.' : 'Ingen bilder i dette albumet ennå.';
       }));
@@ -74,6 +86,10 @@ const isTinsta = kind === "tinsta";
   [data-filter="video"] .media-open::after { content:'▶'; position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:3.2rem; height:2.3rem; border-radius:.6rem; color:white; background:#000b; font-size:1.2rem; }
 
   .photo-gallery { display: grid; grid-template-columns: 1fr; align-items: start; gap: 2rem; }
+  /* Like photos.astro: stack natural-height images without fixed grid rows. */
+  [data-filter="all"] .masonry, [data-filter="image"] .masonry { display:block; columns:1; column-gap:16px; }
+  .masonry figure { break-inside:avoid; }
+  [data-filter="all"] .masonry figure, [data-filter="image"] .masonry figure { margin-bottom:16px; }
   figure { margin: 0; min-width: 0; }
   figcaption { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .5rem; font-size: .8rem; font-variant-numeric: tabular-nums; }
   time { white-space: nowrap; }
@@ -86,6 +102,12 @@ const isTinsta = kind === "tinsta";
     .tinsta { margin-inline: -1rem; gap: 2rem; }
     [data-filter="video"] .tinsta { margin-inline:0; }
     .tinsta figcaption { padding-inline: 1rem; }
+  }
+  @media (min-width: 640px) {
+    [data-filter="all"] .masonry, [data-filter="image"] .masonry { column-count:var(--tablet-columns); }
+  }
+  @media (min-width: 1024px) {
+    [data-filter="all"] .masonry, [data-filter="image"] .masonry { column-count:var(--columns); }
   }
   @media (min-width: 640px) { .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 1024px) { .photo-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; } }

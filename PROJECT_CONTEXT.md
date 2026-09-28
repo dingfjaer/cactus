@@ -187,6 +187,13 @@ Ikke anta en bestemt API-kontrakt, varige direkte medie-URL-er eller umiddelbar
 publisering bare fordi et delt album fungerer i nettleseren. Det er ikke
 bekreftet her om løsningen henter ved bygging, i nettleseren eller på annen måte.
 
+Verifisert layoutjustering lokalt 2026-09-28: Rosa, Vipa og Løva bruker nå
+naturlige bildehøyder i CSS-kolonner som `photos.astro`, med 1/2/3 kolonner etter
+skjermbredde og antall synlige medier. Tinstas rutenett er beholdt. Endringen ligger
+i `PhotoGallery.astro` og `src/utils/gallery-layout.ts`; detaljer finnes i
+`scripts/gallery-ui.md` og eksisterende albumdokumentasjon i
+`scripts/garden-galleries.md`. Ikke committet/publisert i denne oppgaven.
+
 ### 6.2 Om-siden, CV og portefølje
 
 Verifisert lokalt 2026-09-28: `src/pages/about.astro` viser den interaktive
@@ -476,6 +483,37 @@ og de opprinnelige lenkene under. Mobilbredde 390 px er kontrollert lokalt uten
 horisontal overbredde. Dokumentasjonsoppfølgingen endrer bare denne filen og
 publiseres med `[skip ci]`; koden på nettsiden forblir den verifiserte committen.
 
+### 6.10 Innleggsnavigasjon og «Hva skjer nå»
+
+Implementert lokalt 2026-09-28, ikke committet/publisert i denne oppgaven:
+
+- Enkeltinnlegg får samme `Paginator.astro` som `/posts/`, med Forrige/Neste
+  under artikkelen. `posts/[...slug].astro` bruker `sortPostsPinnedFirst`:
+  festede innlegg først og gjeldende dato-/oppdateringssortering innad i gruppene.
+  Første/siste innlegg får bare lenken som finnes. Produksjon utelater kladder
+  gjennom eksisterende `getAllPosts`. Skjermleserlenkene inkluderer artikkeltittel.
+- Fullskjermgallerienes chevroner følger det aktive filteret og håndterer begge
+  ender. Video og HLS ryddes ved bytte. Se `scripts/gallery-ui.md`.
+- `NowWidget.astro` ligger over artikkellisten på forsiden. Den viser seks temaer
+  fra `src/data/now.ts`: Driver med, Hører på, Leser, Ser på, Sett ferdig og Tintin.
+  Uttrykket er et responsivt glasskort inspirert av brukerens musikkspillerbilde.
+  Originale Phosphor-SVG-er ligger i `src/assets/phosphor/`, med MIT-lisens og kilde.
+- Temaene byttes hvert sjuende sekund, med Forrige, Pause/Play og Neste.
+  Hover, tastaturfokus og skjult fane pauser timeren midlertidig. Redusert bevegelse
+  starter uten automatisk bytte. Uten JavaScript vises temaene som statisk innhold.
+  Kontroller og fokus har skjermleseretiketter; automatisk bytte leses ikke opp.
+- Årsindikatoren viser kalenderdagsbasert fremdrift i inneværende år. Hover/fokus
+  viser dagens dato. `now-calendar.mjs` bruker Europe/Oslo, håndterer skuddår og
+  deler Tintins eksisterende aldersberegning. Dato og alder oppdateres hvert minutt
+  og når fanen blir synlig igjen, uten å kreve nytt bygg.
+- Astro-kontroll bestod med 0 feil, 0 advarsler og 3 eksisterende hint. 11 kalender-
+  og galleritester bestod, inkludert Oslo-årsskifte, sommertid og skuddår.
+  Separat test av faktisk innleggsrute/datamodul bekreftet pinned-sortering,
+  oppdateringsdato, produksjonsfiltrering av kladder, første/siste og ett/ingen innlegg.
+  Nettleseren bekreftet første, mellomliggende og siste artikkel, samt widgetens
+  innhold, temabytte, pause, datovisning og mobilbredde 390 px uten overbredde.
+  Fysisk mobil og OS-styrt redusert bevegelse er ikke testet.
+
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 
 I idédumpen 2026-09-26 sa brukeren uttrykkelig at ideene skulle samles, men at
@@ -484,9 +522,6 @@ en prioritert utviklingsplan. Fullføringsstatus er ikke kontrollert i repoet.
 
 | Idé / behov | Rammer og uavklarte punkter |
 | --- | --- |
-| Forrige/neste i hvert innlegg | Håndter første og siste innlegg og ta hensyn til festede artikler. Om rekkefølgen skal følge dato eller den visuelt sorterte listen, er ikke avklart. |
-| Forrige/neste i fullskjerm for bilder og video | Kun ikoner er ønsket. Brukeren skrev «Accordions-ikon»; konkret ikonvalg må bekreftes i design/kode. |
-| «Hva skjer nå»-seksjon | Kan ligge på forsiden eller Om-siden. Kan vise bok, artist, serie eller det Ding holder på med. Plassering og oppdateringsmåte er ikke bestemt. |
 | Porteføljeinspirasjon | Helena Zhang ble nevnt som referanse. Ingen presis referanselenke er lagret i dette dokumentet. |
 | Animert illustrasjon | RedNote ble nevnt som inspirasjon; konkret eksempel må finnes igjen ved arbeid. |
 | Hobbyprosjekter med webapper | Erling ble nevnt som inspirasjon; ikke en ferdig funksjonsbeskrivelse. |

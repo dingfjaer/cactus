@@ -2,15 +2,16 @@
 import type { PaginationLink } from "@/types";
 
 interface Props {
+	label?: string;
 	nextUrl?: PaginationLink;
 	prevUrl?: PaginationLink;
 }
-const { nextUrl, prevUrl } = Astro.props;
+const { nextUrl, prevUrl, label = "Bla mellom sider" } = Astro.props;
 ---
 
 {
 	(prevUrl || nextUrl) && (
-		<nav class="mt-8 flex items-center gap-x-4">
+		<nav aria-label={label} class="mt-8 flex items-center gap-x-4">
 			{prevUrl && (
 				<a class="me-auto py-2 sm:hover:text-accent" data-astro-prefetch href={prevUrl.url}>
 					{prevUrl.srLabel && <span class="sr-only">{prevUrl.srLabel}</span>}
