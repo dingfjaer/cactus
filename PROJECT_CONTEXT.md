@@ -12,7 +12,7 @@ Kodebasen verifisert ved denne dokumentoppdateringen: Delvis – 3D-modellen og 
 > full teknisk revisjon. Historiske ønsker og rapporterte leveranser er ikke bevis
 > på implementasjon. Originalrepoet og instruksjonsfilene er nå lest lokalt;
 > verifisert implementasjon og kontroll av 3D-modellen på Om-siden er beskrevet i §6.5.
-> Øvrige funksjonsstatuser er ikke revidert. Publiseringsstatus står i §6.5.
+> Øvrige funksjonsstatuser er ikke revidert. Publiseringsstatus står i §6.5 og §6.9.
 
 ## 1. Start her i en ny samtale
 
@@ -419,8 +419,18 @@ brukeren er på. Lokal kontroll: Astro 0 feil/0 advarsler/3 eksisterende hint;
 tidslinjetestene bestod. Lenkeadresser og tekst er sammenlignet med forrige
 versjon og bevart. Desktop-preview bekrefter riktig rekkefølge, full
 portrettavsløring og lenkene under. Commit/push/deploy er bestilt; fullført
-status registreres etter verifisering. GitHub-workflowen kjører komplett
-produksjonsbygg og Pagefind før deploy.
+status er nå verifisert. GitHub-workflowen kjørte komplett produksjonsbygg
+og Pagefind før deploy.
+
+Publisert 2026-09-28: kodecommit `1ff2f1ef785698a9aed5c2453df2918606e45c42`.
+GitHub Pages-kjøring https://github.com/dingfjaer/cactus/actions/runs/36413347975
+fullførte med `success` for både build og deploy. `/about/` og `/portfolio/`
+på https://dingchen.no svarte HTTP 200, og HTML for navne- og portrettkomponentene
+er identisk på de to offentlige sidene. Nettleserkontroll på porteføljesiden
+bekreftet innlastet 3D-modell, aktive animasjonskomponenter, begge portrettbildene
+og de opprinnelige lenkene under. Mobilbredde 390 px er kontrollert lokalt uten
+horisontal overbredde. Dokumentasjonsoppfølgingen endrer bare denne filen og
+publiseres med `[skip ci]`; koden på nettsiden forblir den verifiserte committen.
 
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 
