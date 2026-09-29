@@ -219,10 +219,19 @@ Navigasjonen er implementert lokalt, ikke committet/publisert i denne oppgaven:
   350 ms. Nebula-effekten ligger i PNG-eksporten, ikke i en ny animert shader.
   Samtidig får d/c, lenkene og pilene prosjektets aksentfarge. Bakgrunn og
   tekst følger eksisterende temavariabler: mørk/lys flate, gul/lilla aksent.
+- Pilene er skjult i standardtilstanden på enheter med hover og tones inn/ut
+  over 450 ms ved hover på navigasjonen eller tastaturfokus.
+- På enheter uten hover starter navigasjonen i standardtilstanden. Etter 1,5 s
+  tones portrett, aksentfarger og piler inn over 600 ms med ease-in-out. Den ferdige
+  tilstanden blir stående. CSS-animasjonene starter ved hver ny sideinnlasting,
+  inkludert refresh; en pageshow-lytter starter dem på nytt ved retur fra nettleserens
+  sidecache (bfcache). Lenker virker også før animasjonen er ferdig.
 - Tastaturfokus gir samme tilstand og en synlig fokusramme rundt lenken.
-  Enheter uten hover viser den detaljerte illustrasjonen og aksentfargene direkte;
-  lenkene krever ikke et ekstra trykk. Redusert bevegelse slår av overgangene.
-  Ingen ny JavaScript-kode, pakker eller endringer i headeren.
+  Redusert bevegelse viser den ferdige mobiltilstanden direkte uten ventetid eller
+  animasjon. Ingen nye pakker eller endringer i headeren.
+  Mobilautostart er kontrollert med Astro-sjekken (0 feil/0 advarsler), og desktop
+  er kontrollert uten automatisk animasjon eller konsollfeil. Selve touch-avspillingen
+  og retur via bfcache er ikke prøvd på en fysisk mobil.
 - Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hint. Begge bildekopier er
   sammenlignet byte for byte. Nettlesertest ved 1280 × 900 i lyst og mørkt tema
   bekreftet standard/hover, Radley, temafarger og begge lenkemål. Tab-fokus og Enter

@@ -50,6 +50,23 @@ const baseUrl = import.meta.env.BASE_URL;
 	</svg>
 </nav>
 
+<script>
+	// Browser Back can restore the page without recreating its CSS animations.
+	window.addEventListener("pageshow", (event) => {
+		if (
+			!event.persisted ||
+			!window.matchMedia("(hover: none) and (prefers-reduced-motion: no-preference)").matches
+		)
+			return;
+		document.querySelectorAll(".about-navigation .navigation-art").forEach((art) => {
+			art.getAnimations({ subtree: true }).forEach((animation) => {
+				animation.currentTime = 0;
+				animation.play();
+			});
+		});
+	});
+</script>
+
 <style>
 	@font-face {
 		font-family: Radley;
@@ -90,6 +107,7 @@ const baseUrl = import.meta.env.BASE_URL;
 		stroke-width: 3.5;
 		stroke-linecap: round;
 		stroke-linejoin: round;
+		transition: opacity 450ms ease-in-out;
 	}
 	.link-target {
 		fill: transparent;
@@ -123,23 +141,74 @@ const baseUrl = import.meta.env.BASE_URL;
 		--nav-accent: hsl(var(--theme-accent));
 	}
 	@media (hover: hover) {
+		.nav-arrow {
+			opacity: 0;
+		}
+		.navigation-art:hover .nav-arrow,
+		.navigation-art:focus-within .nav-arrow {
+			opacity: 1;
+		}
 		.navigation-art:hover {
 			--portrait-active: 1;
 			--nav-accent: hsl(var(--theme-accent));
 		}
 	}
-	/* Touch visitors get the detailed illustration without an extra tap to unlock a link. */
+	/* Play once after a short pause on touch devices; links stay usable throughout. */
 	@media (hover: none) {
 		.navigation-art {
 			--portrait-active: 1;
 			--nav-accent: hsl(var(--theme-accent));
 		}
+		.nav-accent {
+			animation: intro-accent 600ms ease-in-out 1.5s both;
+		}
+		.portrait-default {
+			animation: intro-fade-out 600ms ease-in-out 1.5s both;
+		}
+		.portrait-hover,
+		.nav-arrow {
+			animation: intro-fade-in 600ms ease-in-out 1.5s both;
+		}
+		.navigation-art:has(.nav-link:focus-visible) .nav-accent,
+		.navigation-art:has(.nav-link:focus-visible) .nav-arrow,
+		.navigation-art:has(.nav-link:focus-visible) .portrait-default,
+		.navigation-art:has(.nav-link:focus-visible) .portrait-hover {
+			animation: none;
+		}
+	}
+	@keyframes intro-accent {
+		from {
+			color: hsl(var(--theme-accent-2));
+			fill: hsl(var(--theme-accent-2));
+		}
+		to {
+			color: hsl(var(--theme-accent));
+			fill: hsl(var(--theme-accent));
+		}
+	}
+	@keyframes intro-fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	@keyframes intro-fade-out {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
 	}
 	@media (prefers-reduced-motion: reduce) {
+		.nav-arrow,
 		.nav-accent,
 		.portrait-default,
 		.portrait-hover {
 			transition: none;
+			animation: none;
 		}
 	}
 </style>
