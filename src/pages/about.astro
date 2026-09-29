@@ -1,7 +1,7 @@
 ---
+import AboutNavigation from "@/components/AboutNavigation.astro";
 import AboutPortrait from "@/components/AboutPortrait.astro";
 import AboutName from "@/components/AboutName.astro";
-import DingLogo3D from "@/components/DingLogo3D.astro";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
@@ -11,8 +11,8 @@ const meta = {
 ---
 
 <PageLayout meta={meta}>
-	<div class="about-hero" id="about-top">
-		<DingLogo3D edgeToEdge />
+	<div id="about-top">
+		<AboutNavigation />
 	</div>
 	<AboutName />
 	<AboutPortrait />
@@ -23,10 +23,3 @@ const meta = {
 		<a href="/portfolio" class="text-accent sm:hover:underline"> Portfolio </a>
 	</div>
 </PageLayout>
-
-<style>
-	.about-hero {
-		width: 100vw;
-		margin-left: calc(50% - 50vw);
-	}
-</style>

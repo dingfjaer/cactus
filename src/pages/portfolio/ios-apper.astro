@@ -1,0 +1,293 @@
+---
+import MediaViewer from "@/components/garden/MediaViewer.astro";
+import PageLayout from "@/layouts/Base.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
+const apps = [
+	{
+		id: "ding-ding",
+		name: "Ding Ding!",
+		platform: "Native iOS / SwiftUI",
+		paragraphs: [
+			"Matplanlegger utviklet for å gjøre ukesmeny, handleliste og matlaging enklere i hverdagen.",
+			"Bygget iterativt med AI-assistert utvikling, med blant annet oppskriftsimport, favoritter, Cook Mode og handlelisteflyt.",
+			"Utforsker også fysisk/digital handel med en skanner ved kjøleskapet og ideer rundt pris, tilgjengelighet og butikkvalg.",
+		],
+		images: [
+			{
+				file: "ding-ding-hjem",
+				caption: "Dagens middag",
+				alt: "Ding Ding! i lyst tema med dagens rett, lammeform, og snarveier til ukemeny og handleliste.",
+			},
+			{
+				file: "ding-ding-ukemeny",
+				caption: "Ukemeny",
+				alt: "Ukemenyen i Ding Ding! med valg for å generere retter og legge til ingredienser i handlelisten.",
+			},
+			{
+				file: "ding-ding-handleliste",
+				caption: "Handleliste",
+				alt: "Handlelisten i Ding Ding! med ingredienser og avkryssing for varer som er handlet.",
+			},
+		],
+	},
+	{
+		id: "pa-tur",
+		name: "På tur",
+		platform: "iPhone + Apple Watch / SwiftUI",
+		paragraphs: [
+			"Personlig hundefokusert turapp med ruter, navigasjon, turhistorikk og kobling til helse- og treningsdata.",
+			"Et kontinuerlig produktlaboratorium for native interaksjonsmønstre, prototyping, AI-assistert utvikling og testing i reell bruk.",
+		],
+		images: [
+			{
+				file: "pa-tur-hjem",
+				caption: "På eventyr med Tintin",
+				alt: "På tur med illustrasjon av Tintin, startknapp for en ny tur og liste over tidligere turer.",
+			},
+			{
+				file: "pa-tur-tur",
+				caption: "En tur, i detalj",
+				alt: "En registrert tur med Tintin: kart over ruten, distanse, varighet, puls og skritt.",
+			},
+			{
+				file: "pa-tur-kart",
+				caption: "Alle turene på kartet",
+				alt: "Utforskningskartet i På tur med tidligere turruter tegnet i ulike farger.",
+			},
+		],
+	},
+	{
+		id: "pa-tide",
+		name: "På tide",
+		platform: "iPhone + Apple Watch / SwiftUI",
+		paragraphs: [
+			"Sanntids avgangsapp for en fast pendlerute, bygget rundt spørsmålet man faktisk har på perrongen: hvilket spor, og hvor lenge til.",
+			"Bygget AI-assistert, fra WebView-innpakning til et eget datalag mot Enturs JourneyPlanner-API — med retningsfiltrering, hurtigtogfilter og håndtering av forsinkelser, innstillinger og sporbytte.",
+			"Utvidet med widgets, Live Activity i Dynamic Island og en Watch-app med Smart Stack-widget som finner nærmeste stasjon via posisjon.",
+		],
+		images: [
+			{
+				file: "pa-tide-her-og-na",
+				caption: "Her og nå",
+				alt: "På tide i lyst tema med kommende avganger fra Langhus, spor og minutter til avgang.",
+			},
+			{
+				file: "pa-tide-ski",
+				caption: "Avganger fra Ski",
+				alt: "På tide i mørkt tema med sporvalg og avganger fra Ski mot Oslo S.",
+			},
+			{
+				file: "pa-tide-spor",
+				caption: "Hvilket spor?",
+				alt: "Detaljvisning av avganger fra spor 17 på Oslo S med linje, destinasjon og avgangstid.",
+			},
+		],
+	},
+];
+---
+
+<PageLayout
+	wide
+	meta={{
+		title: "iOS-apper",
+		description:
+			"Ding Ding!, På tur og På tide — tre personlige iOS-prosjekter bygget med AI-assistert utvikling.",
+	}}
+>
+	<article class="apps-page">
+		<header class="intro">
+			<a class="back-link" href={`${baseUrl}portfolio/`}>← Portfolio</a>
+			<p class="eyebrow">Hobbyprosjekter · 2026</p>
+			<h1>iOS-apper bygget med AI</h1>
+			<p class="lead">Tre apper, fra egne behov i hverdagen.</p>
+		</header>
+		<img
+			class="app-overview"
+			src={`${baseUrl}ios-apper/oversikt-1280.webp`}
+			srcset={`${baseUrl}ios-apper/oversikt-640.webp 640w, ${baseUrl}ios-apper/oversikt-1280.webp 1280w, ${baseUrl}ios-apper/oversikt-2080.webp 2080w`}
+			sizes="(min-width: 1104px) 1040px, (min-width: 640px) calc(100vw - 64px), calc(100vw - 32px)"
+			width="4192"
+			height="1704"
+			alt="Oversikt over Ding Ding!, På tur og På tide, med appskjermer på iPhone og Apple Watch."
+			decoding="async"
+		/>
+		{
+			apps.map((app) => (
+				<section class="app-section" aria-labelledby={app.id}>
+					<div class="app-copy">
+						<h2 id={app.id}>{app.name}</h2>
+						<p class="platform">{app.platform}</p>
+						{app.paragraphs.map((paragraph) => (
+							<p>{paragraph}</p>
+						))}
+						{app.id === "pa-tur" && (
+							<a class="case-link" href={`${baseUrl}portfolio/pa-tur/`}>
+								Mer om På tur →
+							</a>
+						)}
+					</div>
+					<MediaViewer>
+						<div
+							class="screenshots"
+							role="region"
+							aria-label={`Skjermbilder fra ${app.name}`}
+							tabindex="0"
+						>
+							{app.images.map((image) => (
+								<figure>
+									<button
+										type="button"
+										data-media-open
+										data-kind="image"
+										aria-label={`Åpne ${image.caption} fra ${app.name} i stor visning`}
+									>
+										<img
+											src={`${baseUrl}ios-apper/${image.file}-960.webp`}
+											srcset={`${baseUrl}ios-apper/${image.file}-480.webp 480w, ${baseUrl}ios-apper/${image.file}-960.webp 960w`}
+											sizes="(min-width: 768px) 320px, 76vw"
+											width="960"
+											height="2081"
+											alt={image.alt}
+											loading="lazy"
+											decoding="async"
+										/>
+									</button>
+									<figcaption>{image.caption}</figcaption>
+								</figure>
+							))}
+						</div>
+					</MediaViewer>
+				</section>
+			))
+		}
+	</article>
+</PageLayout>
+
+<style>
+	.apps-page {
+		max-width: 1040px;
+		margin-inline: auto;
+	}
+	.intro,
+	.app-copy {
+		max-width: 704px;
+		margin-inline: auto;
+	}
+	.intro {
+		margin-bottom: 2rem;
+	}
+	.app-overview {
+		margin-bottom: 4rem;
+		border: 0;
+		border-radius: 0;
+	}
+	a {
+		color: hsl(var(--theme-accent));
+		text-underline-offset: 0.2em;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+	.back-link {
+		display: inline-block;
+		padding-block: 0.75rem;
+		margin-bottom: 2rem;
+		font-size: 0.9rem;
+	}
+	.eyebrow,
+	.platform {
+		font-size: 0.85rem;
+	}
+	.eyebrow {
+		margin-bottom: 0.8rem;
+	}
+	h1,
+	h2 {
+		color: hsl(var(--theme-accent-2));
+		font-weight: 700;
+		letter-spacing: -0.035em;
+		line-height: 1.15;
+	}
+	h1 {
+		font-size: clamp(2rem, 5vw, 3rem);
+		text-wrap: balance;
+	}
+	.lead {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+	}
+	.app-section {
+		border-top: 1px solid hsl(var(--theme-text) / 0.18);
+		padding-top: 3rem;
+		margin-bottom: 5rem;
+	}
+	h2 {
+		font-size: 2rem;
+	}
+	.platform {
+		margin-block: 0.6rem 1.5rem;
+	}
+	.app-copy p:not(.platform) {
+		line-height: 1.75;
+		margin-bottom: 0.85rem;
+	}
+	.case-link {
+		display: inline-block;
+		margin-top: 0.5rem;
+	}
+	.screenshots {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 3vw, 2rem);
+		margin-top: 2rem;
+	}
+	figure {
+		margin: 0;
+		min-width: 0;
+	}
+	button {
+		display: block;
+		width: 100%;
+		cursor: zoom-in;
+		border-radius: 1rem;
+	}
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 1rem;
+		border: 1px solid hsl(var(--theme-text) / 0.15);
+	}
+	figcaption {
+		margin-top: 0.75rem;
+		font-size: 0.8rem;
+		text-align: center;
+	}
+	a:focus-visible,
+	button:focus-visible,
+	.screenshots:focus-visible {
+		outline: 2px solid hsl(var(--theme-accent));
+		outline-offset: 4px;
+	}
+	@media (max-width: 767px) {
+		.app-overview {
+			margin-bottom: 2.5rem;
+		}
+		.app-section {
+			padding-top: 2rem;
+			margin-bottom: 3.5rem;
+		}
+		.screenshots {
+			grid-template-columns: none;
+			grid-auto-flow: column;
+			grid-auto-columns: 80%;
+			overflow-x: auto;
+			scroll-snap-type: x proximity;
+			padding: 0.3rem 0.3rem 1rem;
+		}
+		figure {
+			scroll-snap-align: start;
+		}
+	}
+</style>

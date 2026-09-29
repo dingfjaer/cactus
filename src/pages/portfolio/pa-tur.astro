@@ -32,6 +32,15 @@ import PaTurCase from "@/components/pa-tur/PaTurCase.astro";
 		</p>
 	</aside>
 	<PaTurCase />
+	<aside class="case-note case-note--after" aria-label="Fun fact om kodegjennomgangen">
+		<p>Fun fact:</p>
+		<p>
+			<a href={`${import.meta.env.BASE_URL}portfolio/pa-tur-gjennomgang/`}
+				>Jeg ba Claude gjennomgå kode Codex(ChatGPT) har laget.</a
+			>
+			Det var fortsatt i tidlig fase da jeg begynte prosjektet. Lurer på hva Claude synes om den nå?
+		</p>
+	</aside>
 </PageLayout>
 
 <style>
@@ -43,6 +52,18 @@ import PaTurCase from "@/components/pa-tur/PaTurCase.astro";
 		border-radius: 0.5rem;
 		font-size: 0.9375rem;
 		line-height: 1.6;
+	}
+	.case-note--after {
+		margin-top: clamp(2.5rem, 5vw, 4rem);
+	}
+	.case-note a {
+		color: hsl(var(--theme-accent));
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+	.case-note a:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 3px;
 	}
 	.case-note p + p {
 		margin-top: 0.75rem;

@@ -1,0 +1,145 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<nav class="about-navigation" aria-label="CV og portfolio">
+	<svg
+		class="navigation-art"
+		viewBox="0 0 620 430"
+		width="620"
+		height="430"
+		role="group"
+		aria-label="Ding Chen — CV og portfolio"
+	>
+		<g aria-hidden="true">
+			<text x="145" y="105" transform="rotate(-22 145 105)"
+				><tspan class="nav-accent">d</tspan><tspan>ing</tspan></text
+			>
+			<text x="162" y="280" transform="rotate(-90 162 280)"
+				><tspan class="nav-accent">c</tspan><tspan>hen</tspan></text
+			>
+		</g>
+		<a href={`${baseUrl}portfolio/`} aria-label="Portfolio" class="nav-link nav-accent">
+			<rect class="link-target" x="175" y="77" width="440" height="96" rx="8"></rect>
+			<text x="180" y="135">portfolio</text>
+			<path class="nav-arrow" d="M470 121H590m-14-13 14 13-14 13"></path>
+		</a>
+		<a href={`${baseUrl}cv/`} aria-label="CV" class="nav-link nav-accent">
+			<rect class="link-target" x="5" y="265" width="199" height="100" rx="8"></rect>
+			<text x="122" y="323">cv</text>
+			<path class="nav-arrow" d="M112 310H12m14-13-14 13 14 13"></path>
+		</a>
+		<g class="nav-portrait" role="img" aria-label="Profilillustrasjon av Ding">
+			<svg x="211" y="172" width="240" height="240" viewBox="0 0 700 700" aria-hidden="true">
+				<image
+					class="portrait-default"
+					href={`${baseUrl}about-navigation/profile-default.png`}
+					width="700"
+					height="700"
+				/>
+				<image
+					class="portrait-hover"
+					href={`${baseUrl}about-navigation/profile-hover.png`}
+					width="700"
+					height="700"
+				/>
+			</svg>
+			<circle cx="331" cy="292" r="120" fill="none" stroke="currentColor" stroke-width="3.5"
+			></circle>
+		</g>
+	</svg>
+</nav>
+
+<style>
+	@font-face {
+		font-family: Radley;
+		src: url("/about-name/Radley-Regular.ttf") format("truetype");
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+	.about-navigation {
+		display: grid;
+		place-items: center;
+		padding-block: 24px 40px;
+		color: hsl(var(--theme-accent-2));
+		background: hsl(var(--theme-bg));
+	}
+	.navigation-art {
+		--portrait-active: 0;
+		--nav-accent: hsl(var(--theme-accent-2));
+		display: block;
+		width: min(100%, 500px);
+		height: auto;
+		overflow: visible;
+		font-family: Radley, Georgia, serif;
+		font-size: 72px;
+		font-weight: 400;
+		fill: currentColor;
+	}
+	.nav-accent {
+		color: var(--nav-accent);
+		fill: var(--nav-accent);
+		transition:
+			color 350ms ease-in-out,
+			fill 350ms ease-in-out;
+	}
+	.nav-arrow {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 3.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	.link-target {
+		fill: transparent;
+		stroke: transparent;
+		stroke-width: 2;
+	}
+	.nav-link:focus {
+		outline: none;
+	}
+	.nav-link:focus-visible .link-target {
+		stroke: hsl(var(--theme-accent));
+		stroke-dasharray: 4 5;
+	}
+	.nav-portrait {
+		isolation: isolate;
+	}
+	.portrait-default {
+		filter: grayscale(1);
+		mix-blend-mode: luminosity;
+		opacity: calc(1 - var(--portrait-active));
+	}
+	.portrait-hover {
+		opacity: var(--portrait-active);
+	}
+	.portrait-default,
+	.portrait-hover {
+		transition: opacity 350ms ease-in-out;
+	}
+	.navigation-art:focus-within {
+		--portrait-active: 1;
+		--nav-accent: hsl(var(--theme-accent));
+	}
+	@media (hover: hover) {
+		.navigation-art:hover {
+			--portrait-active: 1;
+			--nav-accent: hsl(var(--theme-accent));
+		}
+	}
+	/* Touch visitors get the detailed illustration without an extra tap to unlock a link. */
+	@media (hover: none) {
+		.navigation-art {
+			--portrait-active: 1;
+			--nav-accent: hsl(var(--theme-accent));
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.nav-accent,
+		.portrait-default,
+		.portrait-hover {
+			transition: none;
+		}
+	}
+</style>

@@ -1,0 +1,834 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-language" content="nb-NO">
+<title>På tur under panseret</title>
+<script>document.documentElement.setAttribute("lang", "nb");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --ground: #FAF7F2;
+    --surface: #FFFFFF;
+    --surface-sunk: #F2EDE4;
+    --ink: #17120F;
+    --ink-soft: #4A423B;
+    --ink-mute: #7A7067;
+    --rule: #E2D9CB;
+    --rule-soft: #EDE6DA;
+    --accent: #E56B00;
+    --accent-soft: #FCEFE0;
+    --accent-ink: #9C4A00;
+    --teal: #0E7A76;
+    --teal-soft: #E2F1F0;
+    --green: #2C7346;
+    --plum: #8A2F63;
+    --shadow: 0 1px 2px rgba(23,18,15,.05), 0 8px 24px -16px rgba(23,18,15,.18);
+
+    --step--1: .8125rem;
+    --step-0: 1rem;
+    --step-1: 1.1875rem;
+    --step-2: 1.4375rem;
+    --step-3: 1.875rem;
+    --step-4: 2.5rem;
+    --step-5: 3.25rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0B0908;
+      --surface: #16120F;
+      --surface-sunk: #1E1815;
+      --ink: #FAF7F2;
+      --ink-soft: #D3C9BE;
+      --ink-mute: #968A7E;
+      --rule: #2E2621;
+      --rule-soft: #241D19;
+      --accent: #FF8A2B;
+      --accent-soft: #2B1B0B;
+      --accent-ink: #FFB877;
+      --teal: #3FBDB6;
+      --teal-soft: #0E2422;
+      --green: #63BC85;
+      --plum: #DE7CB3;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0B0908;
+    --surface: #16120F;
+    --surface-sunk: #1E1815;
+    --ink: #FAF7F2;
+    --ink-soft: #D3C9BE;
+    --ink-mute: #968A7E;
+    --rule: #2E2621;
+    --rule-soft: #241D19;
+    --accent: #FF8A2B;
+    --accent-soft: #2B1B0B;
+    --accent-ink: #FFB877;
+    --teal: #3FBDB6;
+    --teal-soft: #0E2422;
+    --green: #63BC85;
+    --plum: #DE7CB3;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--step-0);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
+  .prose { max-width: 68ch; }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: clamp(40px, 7vw, 84px) 0 clamp(28px, 4vw, 44px);
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: var(--step--1);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .masthead h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
+    font-size: var(--step-5);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+    margin: 18px 0 0;
+  }
+  .masthead h1 .amp { color: var(--accent); }
+  .masthead .standfirst {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 20px 0 0;
+  }
+
+  .paw {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(160deg, var(--accent), color-mix(in srgb, var(--accent) 78%, #000));
+    color: #fff; flex: none;
+  }
+  .paw svg { width: 21px; height: 21px; }
+
+  /* ---------- spec strip ---------- */
+
+  .spec {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: clamp(28px, 4vw, 40px);
+  }
+  .spec div { background: var(--surface); padding: 16px 18px; }
+  .spec dt {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .6875rem; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--ink-mute); margin: 0 0 6px;
+  }
+  .spec dd {
+    margin: 0; font-size: var(--step-0); font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- nav ---------- */
+
+  nav.toc {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.toc ol {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; gap: 22px; overflow-x: auto;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .75rem; letter-spacing: .04em;
+    scrollbar-width: none;
+  }
+  nav.toc ol::-webkit-scrollbar { display: none; }
+  nav.toc a {
+    display: block; padding: 13px 0; color: var(--ink-mute);
+    text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ---------- sections ---------- */
+
+  section { padding: clamp(48px, 7vw, 84px) 0 0; }
+  section > .wrap > .sec-head { border-top: 1px solid var(--rule); padding-top: 14px; margin-bottom: 28px; }
+  section:first-of-type > .wrap > .sec-head { border-top: 0; }
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600; font-variation-settings: "SOFT" 0, "WONK" 0;
+    font-size: var(--step-3); line-height: 1.14; letter-spacing: -.015em;
+    margin: 10px 0 0; text-wrap: balance;
+  }
+  h3 {
+    font-size: var(--step-1); font-weight: 600; letter-spacing: -.005em;
+    margin: 40px 0 10px;
+  }
+  h4 {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 500; margin: 32px 0 10px;
+  }
+  p { margin: 0 0 1.05em; }
+  a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  strong { font-weight: 600; }
+  code, .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .875em;
+  }
+  code { background: var(--surface-sunk); padding: .12em .35em; border-radius: 2px; }
+  ul, ol { padding-left: 1.15em; margin: 0 0 1.05em; }
+  li { margin-bottom: .45em; }
+  li::marker { color: var(--ink-mute); }
+  .lead { font-size: var(--step-1); color: var(--ink-soft); }
+
+  /* ---------- tables ---------- */
+
+  .tablewrap { overflow-x: auto; margin: 22px 0 26px; border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: var(--step--1); }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  thead th {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .6875rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 500;
+    border-bottom: 1px solid var(--rule); background: var(--surface-sunk);
+    position: sticky; top: 0;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td .mono { color: var(--ink-soft); }
+
+  /* ---------- cards ---------- */
+
+  .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); margin: 24px 0 8px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 3px; padding: 20px 22px; box-shadow: var(--shadow);
+  }
+  .card h5 {
+    margin: 0 0 8px; font-size: var(--step-0); font-weight: 600;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .card p { font-size: var(--step--1); color: var(--ink-soft); margin: 0 0 .7em; }
+  .card p:last-child { margin-bottom: 0; }
+
+  .tag {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .625rem; letter-spacing: .08em; text-transform: uppercase;
+    padding: 3px 7px; border-radius: 2px; white-space: nowrap;
+    background: var(--surface-sunk); color: var(--ink-mute);
+  }
+  .tag.on { background: var(--accent-soft); color: var(--accent-ink); }
+  .tag.watch { background: var(--teal-soft); color: var(--teal); }
+  .tag.ok { background: color-mix(in srgb, var(--green) 14%, transparent); color: var(--green); }
+  .tag.part { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent-ink); }
+  .tag.no { background: color-mix(in srgb, var(--plum) 15%, transparent); color: var(--plum); }
+
+  /* ---------- diagram ---------- */
+
+  figure { margin: 26px 0 30px; }
+  .figbox {
+    overflow-x: auto; background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 3px; padding: 22px;
+  }
+  .figbox svg { display: block; min-width: 640px; width: 100%; height: auto; }
+  figcaption { font-size: var(--step--1); color: var(--ink-mute); margin-top: 10px; max-width: 62ch; }
+
+  /* ---------- timeline ---------- */
+
+  .flow { list-style: none; padding: 0; margin: 24px 0 8px; counter-reset: st; }
+  .flow > li {
+    position: relative; padding: 0 0 22px 46px; counter-increment: st;
+    border-left: 1px solid var(--rule); margin: 0 0 0 12px;
+  }
+  .flow > li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .flow > li::before {
+    content: counter(st, decimal-leading-zero);
+    position: absolute; left: -13px; top: 0;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--rule);
+    color: var(--ink-mute);
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .625rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .flow strong { display: block; font-size: var(--step-0); }
+  .flow p { font-size: var(--step--1); color: var(--ink-soft); margin: 3px 0 0; }
+  .flow .where {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .625rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent-ink); margin-left: 8px;
+  }
+
+  /* ---------- swatches ---------- */
+
+  .swatches { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 22px 0 10px; }
+  .sw { border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; background: var(--surface); }
+  .sw i { display: block; height: 62px; }
+  .sw span { display: block; padding: 9px 12px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .6875rem; line-height: 1.5; }
+  .sw span b { display: block; font-weight: 500; color: var(--ink); letter-spacing: .02em; }
+  .sw span em { font-style: normal; color: var(--ink-mute); }
+
+  /* ---------- callout ---------- */
+
+  .note {
+    border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    background: var(--surface); border-radius: 3px;
+    padding: 18px 22px; margin: 26px 0;
+  }
+  .note h4 { margin-top: 0; color: var(--accent-ink); }
+  .note p:last-child { margin-bottom: 0; }
+  .note.cool { border-left-color: var(--teal); }
+  .note.cool h4 { color: var(--teal); }
+
+  footer.end {
+    margin-top: clamp(56px, 8vw, 96px);
+    border-top: 1px solid var(--rule);
+    padding: 26px 0 60px;
+    font-size: var(--step--1); color: var(--ink-mute);
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span class="paw" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.4c2.9 0 5.6 2.3 5.6 4.6 0 1.6-1.2 2.6-2.9 2.6-1 0-1.9-.4-2.7-.4s-1.7.4-2.7.4c-1.7 0-2.9-1-2.9-2.6 0-2.3 2.7-4.6 5.6-4.6Zm-6.6-1.2c1.2 0 2.1 1.1 2.1 2.4S6.6 17 5.4 17 3.3 15.9 3.3 14.6s.9-2.4 2.1-2.4Zm13.2 0c1.2 0 2.1 1.1 2.1 2.4S19.8 17 18.6 17s-2.1-1.1-2.1-2.4.9-2.4 2.1-2.4ZM9 5.5c1.2 0 2.2 1.2 2.2 2.7S10.2 10.9 9 10.9 6.8 9.7 6.8 8.2 7.8 5.5 9 5.5Zm6 0c1.2 0 2.2 1.2 2.2 2.7S16.2 10.9 15 10.9s-2.2-1.2-2.2-2.7S13.8 5.5 15 5.5Z"/></svg>
+      </span>
+      <span class="eyebrow">PaTur-main · gjennomgang av kodebasen</span>
+    </div>
+
+    <h1>På tur <span class="amp">&amp;</span> Tintin: hele appen, fra klokke til kart</h1>
+
+    <p class="standfirst">En SwiftUI-app i tre mål — iPhone, Apple&nbsp;Watch og en Live&nbsp;Activity — bygget rundt én idé: klokka eier turen, telefonen forteller historien om den. Under er arkitekturen, funksjonaliteten, designet og brukerscenarioene, slik de faktisk står i koden i versjon 0.3 (build 17).</p>
+
+    <dl class="spec">
+      <div><dt>Språk</dt><dd>Swift · SwiftUI</dd></div>
+      <div><dt>Omfang</dt><dd>34 filer · 10 360 linjer</dd></div>
+      <div><dt>Mål</dt><dd>3 (iOS, watchOS, widget)</dd></div>
+      <div><dt>Versjon</dt><dd>0.3 (17)</dd></div>
+      <div><dt>Min. OS</dt><dd>iOS 26 · watchOS</dd></div>
+      <div><dt>Region</dt><dd>nb — norsk først</dd></div>
+    </dl>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Innhold">
+  <div class="wrap">
+    <ol>
+      <li><a href="#hva">Hva det er</a></li>
+      <li><a href="#arkitektur">Arkitektur</a></li>
+      <li><a href="#datamodell">Datamodell</a></li>
+      <li><a href="#klokke">Apple Watch</a></li>
+      <li><a href="#iphone">iPhone</a></li>
+      <li><a href="#mekanismer">Signaturmekanismer</a></li>
+      <li><a href="#design">Design</a></li>
+      <li><a href="#scenarioer">Brukerscenarioer</a></li>
+      <li><a href="#krav">Krav vs. levert</a></li>
+      <li><a href="#gap">Løse tråder</a></li>
+    </ol>
+  </div>
+</nav>
+
+<section id="hva">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">01</span><h2>Hva prosjektet er</h2></div>
+    <div class="prose">
+      <p class="lead">«På tur» er en personlig treningsapp for turer med hunden Tintin. Den er ikke en generisk løpeapp med hundetema — hele datamodellen, statistikken og til og med kjøringsdeteksjonen er formet av hva en hundetur faktisk er: uforutsigbar, oppdelt i etapper, full av snusepauser, og av og til avbrutt av en biltur til turområdet.</p>
+
+      <p>Prosjektet startet 22. august 2026 som en 22-minutters MVP generert i en kodeagent-økt (skjermbildene i <code>Tidslinje_og_Logg/</code> dokumenterer kjøringen), og har siden vokst betydelig: GPX-import, live navigasjon, flerarts-etapper, kjøringsdeteksjon, utforskningskart, Live Activity og et eget diagnoseverktøy for HealthKit-ruter er alt kommet etterpå.</p>
+
+      <p>Appen distribueres via TestFlight (fire <code>ExportOptions</code>-varianter ligger i repoet), og <code>AGENTS.md</code> fastsetter arbeidsflyten: brukervendt navn er alltid <strong>«På tur»</strong>, tekniske identifikatorer er <code>PaTur</code>, og <code>CURRENT_PROJECT_VERSION</code> skal bumpes for hver TestFlight-build mens <code>MARKETING_VERSION</code> bare endres på faktiske releaser.</p>
+
+      <div class="note">
+        <h4>Den bærende arkitekturbeslutningen</h4>
+        <p>Apple Watch er <em>eneste eier</em> av en pågående tur. Telefonen muterer aldri treningstilstand — den sender kommandoer med UUID og venter på at klokka bekrefter dem tilbake i neste snapshot. Det gir én skriver, ingen flettekonflikter, og en telefonapp som kan miste kontakten uten at turen påvirkes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="arkitektur">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">02</span><h2>Arkitektur</h2></div>
+    <div class="prose">
+      <p>Xcode-prosjektet (<code>objectVersion 71</code>, Xcode 27) bruker <code>PBXFileSystemSynchronizedRootGroup</code> — mappene <em>er</em> byggekonfigurasjonen, det finnes ingen manuelle fillister. Tre mål deler kode gjennom to bevisst atskilte «shared»-mapper.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Mål</th><th>Bundle&nbsp;ID</th><th>Kildemapper</th><th>Rolle</th></tr></thead>
+        <tbody>
+          <tr><td><strong>På tur</strong></td><td class="mono">com.ding.patur</td><td class="mono">iOS + Shared + LiveActivityShared</td><td>Arkiv, statistikk, rutebibliotek, speiling av klokka</td></tr>
+          <tr><td><strong>På tur Watch App</strong></td><td class="mono">com.ding.patur.watchkitapp</td><td class="mono">Watch + Shared</td><td>Selve opptaket: HealthKit, GPS, etapper</td></tr>
+          <tr><td><strong>PaTurLiveActivity</strong></td><td class="mono">com.ding.patur.liveactivity</td><td class="mono">LiveActivity + LiveActivityShared</td><td>Låseskjerm og Dynamic Island</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p><code>Shared/</code> går til telefon og klokke, men <em>ikke</em> til widgeten. Det er derfor <code>WalkActivityAttributes</code> bruker rå <code>String</code> for aktivitet og fase i stedet for enum-typene: widget-utvidelsen skal ikke trenge domenemodellen. Prisen er at koblingen bare håndheves av strengliteralen <code>phase == "paused"</code>.</p>
+    </div>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 700 330" role="img" aria-label="Dataflyt mellom Apple Watch, iPhone, HealthKit og Live Activity">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="var(--ink-mute)"/>
+            </marker>
+            <marker id="aro" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
+            </marker>
+          </defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-mute)" letter-spacing="0.06em">
+
+            <rect x="18" y="54" width="176" height="120" rx="4" fill="var(--surface-sunk)" stroke="var(--teal)" stroke-width="1.5"/>
+            <text x="34" y="78" font-size="11" fill="var(--teal)">APPLE WATCH — EIER</text>
+            <text x="34" y="98" fill="var(--ink-soft)">HKWorkoutSession</text>
+            <text x="34" y="114" fill="var(--ink-soft)">HKLiveWorkoutBuilder</text>
+            <text x="34" y="130" fill="var(--ink-soft)">HKWorkoutRouteBuilder</text>
+            <text x="34" y="146" fill="var(--ink-soft)">CLLocationManager</text>
+            <text x="34" y="162" fill="var(--ink-soft)">DrivingDetectionEngine</text>
+
+            <rect x="300" y="18" width="176" height="86" rx="4" fill="var(--surface-sunk)" stroke="var(--rule)"/>
+            <text x="316" y="42" font-size="11" fill="var(--ink)">HEALTHKIT</text>
+            <text x="316" y="62" fill="var(--ink-soft)">Workouts + ruter</text>
+            <text x="316" y="78" fill="var(--ink-soft)">com.ding.patur.*</text>
+            <text x="316" y="94" fill="var(--ink-soft)">routeSchema 3</text>
+
+            <rect x="300" y="130" width="176" height="112" rx="4" fill="var(--surface-sunk)" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="316" y="154" font-size="11" fill="var(--accent-ink)">IPHONE — SPEIL</text>
+            <text x="316" y="174" fill="var(--ink-soft)">WalkStore (JSON)</text>
+            <text x="316" y="190" fill="var(--ink-soft)">PlannedRouteStore</text>
+            <text x="316" y="206" fill="var(--ink-soft)">MirrorManager</text>
+            <text x="316" y="222" fill="var(--ink-soft)">HealthRecovery</text>
+
+            <rect x="546" y="146" width="136" height="80" rx="4" fill="var(--surface-sunk)" stroke="var(--rule)"/>
+            <text x="562" y="170" font-size="11" fill="var(--ink)">LIVE ACTIVITY</text>
+            <text x="562" y="190" fill="var(--ink-soft)">ActivityKit</text>
+            <text x="562" y="206" fill="var(--ink-soft)">Dynamic Island</text>
+
+            <rect x="18" y="242" width="176" height="66" rx="4" fill="var(--surface-sunk)" stroke="var(--rule)"/>
+            <text x="34" y="266" font-size="11" fill="var(--ink)">APPLE MOSJON</text>
+            <text x="34" y="286" fill="var(--ink-soft)">leser ruten fra Helse</text>
+
+            <path d="M194 92 L296 60" stroke="var(--ink-mute)" fill="none" marker-end="url(#ar)"/>
+            <text x="206" y="70" fill="var(--ink-mute)">lagrer</text>
+
+            <path d="M194 130 L296 168" stroke="var(--accent)" stroke-width="1.5" fill="none" marker-end="url(#aro)"/>
+            <text x="200" y="152" fill="var(--accent-ink)">snapshot 2 s</text>
+            <path d="M296 196 L194 158" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 3" fill="none" marker-end="url(#aro)"/>
+            <text x="200" y="186" fill="var(--accent-ink)">kommando</text>
+
+            <path d="M388 104 L388 126" stroke="var(--ink-mute)" fill="none" marker-end="url(#ar)"/>
+            <text x="396" y="120" fill="var(--ink-mute)">gjenoppretting</text>
+
+            <path d="M476 186 L542 186" stroke="var(--ink-mute)" fill="none" marker-end="url(#ar)"/>
+
+            <path d="M106 174 L106 238" stroke="var(--ink-mute)" stroke-dasharray="4 3" fill="none"/>
+            <path d="M300 104 L300 116 L106 116" stroke="var(--ink-mute)" fill="none"/>
+            <path d="M106 116 L106 236" stroke="var(--ink-mute)" fill="none" marker-end="url(#ar)"/>
+
+            <text x="216" y="292" fill="var(--ink-mute)">WatchConnectivity: "walk" ← klokke · "plannedRouteLibrary" → klokke</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Turen går tre veier ut av klokka samtidig: til HealthKit som en ekte trening, til telefonen som live-snapshot over HealthKit-speilingen, og som ferdig <code>TintinWalk</code> over WatchConnectivity. Telefonen har i tillegg en fjerde vei inn — den kan rekonstruere tapte turer direkte fra Helse.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>Tre uavhengige overføringskanaler</h3>
+      <p>Redundansen er ikke tilfeldig. Hver kanal dekker en annen feilmodus:</p>
+      <ul>
+        <li><strong>HealthKit workout mirroring</strong> (<code>sendToRemoteWorkoutSession</code>) bærer live-trafikken: snapshot hvert 2. sekund, rutepunkter i biter på 120, kommandoer med UUID-kvittering og de-duplisering av de siste 32 ID-ene. Speilingen forsøkes gjenopprettet maks hvert 20. sekund, og en død speiling påvirker aldri selve turen.</li>
+        <li><strong>WatchConnectivity</strong> bærer det holdbare: ferdig tur som <code>transferUserInfo(["walk": Data])</code> fra klokka, og rutebiblioteket motsatt vei som <code>applicationContext</code> + <code>sendMessage</code>. Rutevalg er bevisst utelatt fra nyttelasten — klokka velger rute selv, uten telefonen.</li>
+        <li><strong>HealthKit som sannhetskilde</strong>: <code>HealthRecoveryCoordinator</code> kjører ved oppstart og hver gang appen blir aktiv, spør etter alt merket <code>com.ding.patur.tintin</code> pluss alt fra egen bundle-ID de siste 90 dagene, og rekonstruerer turer som aldri kom over.</li>
+      </ul>
+
+      <h3>Lagring</h3>
+      <p>Ingen Core Data, ingen SwiftData, ingen iCloud. Alt er <code>ObservableObject</code> + <code>@Published</code> + <code>@EnvironmentObject</code>, og persistens er atomiske JSON-filer.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Data</th><th>Sted</th><th>Format</th></tr></thead>
+        <tbody>
+          <tr><td>Turer</td><td class="mono">Application Support/PaTur/walks.json</td><td>JSON, atomisk skriving</td></tr>
+          <tr><td>Planlagte ruter</td><td class="mono">…/planned-routes.json</td><td>JSON, atomisk skriving</td></tr>
+          <tr><td>Hundeprofil</td><td class="mono">UserDefaults["dogProfile"]</td><td>JSON</td></tr>
+          <tr><td>Aktiv økt på klokka</td><td class="mono">UserDefaults activeTintin*</td><td>7 nøkler for krasjgjenoppretting</td></tr>
+          <tr><td>Kartlag, turnumre</td><td class="mono">@AppStorage</td><td>String / Bool</td></tr>
+          <tr><td>Turnumre («Tur 12»)</td><td>—</td><td><strong>Aldri lagret</strong>, alltid utledet</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>Det siste punktet er en fin detalj: det synlige turnummeret regnes ut fra kronologi hver gang, med <code>id.uuidString</code> som deterministisk tie-break. Sletter du tur 4, lukkes hullet — men ingen permanent ID i HealthKit eller statistikken flytter seg.</p>
+    </div>
+  </div>
+</section>
+
+<section id="datamodell">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">03</span><h2>Datamodellen: turen som etapper</h2></div>
+    <div class="prose">
+      <p>Kjernen er <code>TintinWalk</code> — en hel utflukt med permanent UUID — som inneholder én eller flere kronologiske <code>TintinTripSegment</code>-etapper, hver med sin egen permanente UUID. En etappe er <strong>gåtur</strong>, <strong>løpetur</strong>, <strong>biltur</strong> eller <strong>pause</strong>. En vanlig énaktivitetstur lagres som én tur med én etappe, og gamle poster migreres automatisk til samme form.</p>
+
+      <p><code>TintinWalk</code> holder samtidig en <em>denormalisert oppsummering</em> på toppnivå (total distanse, sluttid, hele ruten) for det eldre enkeltaktivitets-brukergrensesnittet. <code>segments</code> er <code>private(set)</code> — tidslinjen er autoritativ, oppsummeringen er avledet.</p>
+
+      <h4>Avledningene som er verdt å merke seg</h4>
+      <ul>
+        <li><strong>Varighet</strong> er summen av etappene, ikke <code>endedAt − startedAt</code>. Dødtid mens HealthKit lagrer mellom to etapper telles bevisst ikke — ellers ville hver aktivitetsbytte blåst opp turtiden.</li>
+        <li><strong>Snittpuls</strong> er et varighetsvektet gjennomsnitt over etappene som faktisk har puls, med 1-sekunds gulv per vekt.</li>
+        <li><strong>Distanse for hundesteg</strong> bruker <code>pedestrianDistanceMeters</code> — bare gå- og løpeetapper. En biltur skal ikke gi Tintin-steg.</li>
+        <li><strong>Aktivitetstittel</strong> følger norsk listegrammatikk: «Gåtur», «Gåtur og løpetur», «Gåtur, Løpetur og biltur».</li>
+      </ul>
+
+      <p>Innstillingene <em>fryses</em> ved opptak: steglengde, snusefaktor og hundenavn kopieres inn i hver tur, så en senere justering i profilen endrer ikke historiske estimat. <code>Codable</code> er håndskrevet med skjemaversjon, og alle valgfrie nøkler har defaults (<code>"Tintin"</code>, 0,32 m, 1,12) slik at gamle filer alltid leses.</p>
+
+      <div class="note cool">
+        <h4>Tintin-steg</h4>
+        <p><code>estimatedDogSteps = pedestrianDistanceMeters × wanderingFactor ÷ dogStepLengthMeters</code></p>
+        <p>Standard: 0,32 m steglengde (justerbar 18–60 cm) og 1,12 i «snusefaktor» (justerbar 1,00–1,50), altså +12 % for at Tintin beveger seg mer enn GPS-sporet til mennesket. En 3 km gåtur blir ≈ 10 500 hundesteg. Appen kaller det selv «et lekent estimat, ikke en helsemåling».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="klokke">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">04</span><h2>Apple Watch: der turen skjer</h2></div>
+    <div class="prose">
+      <p><code>WatchWorkoutManager</code> er prosjektets tyngste fil (1 730 linjer) og inneholder hele opptaksmotoren. Tilstandsmaskinen er <code>ready → requesting → active ⇄ paused → finishing → finished | failed</code>.</p>
+
+      <h3>Én HealthKit-økt per etappe</h3>
+      <p>Dette er det mest uvanlige designvalget: hver pause, hvert aktivitetsbytte og hver avslutning <em>avslutter</em> HealthKit-økten og starter en ny. Det gir separate, korrekt typede treninger i Helse (gåturen som gåtur, løpeturen som løpetur) mens «På tur» holder dem sammen gjennom felles <code>tripID</code> i metadataene. Pauser lagres som egne <code>.pause</code>-etapper. Bilturer er rene GPS-etapper uten HealthKit i det hele tatt.</p>
+
+      <h4>Metadata skrevet på hver trening</h4>
+      <p><code>HKMetadataKeyWorkoutBrandName = "På tur"</code>, <code>IndoorWorkout = false</code>, og et eget navnerom: <code>com.ding.patur.tintin</code>, <code>.routeSchema = 3</code>, <code>.tripID</code>, <code>.walkID</code> (legacy-alias), <code>.segmentID</code>, <code>.segmentKind</code>, <code>.activity</code>, <code>.recoveredSession</code>. Rutesamplet får i tillegg punkttelling, avviste punkter, største råluke og maks nøyaktighet — telemetri som diagnoseverktøyet senere leser.</p>
+
+      <h3>GPS-håndtering</h3>
+      <p><code>kCLLocationAccuracyBest</code>, <code>distanceFilter = 2</code>, <code>headingFilter = 2</code>, <code>activityType = .fitness</code> (byttes til <code>.automotiveNavigation</code> for bilturer). Punkter forkastes utenfor 0–50 m nøyaktighet eller utenfor etappens tidsvindu.</p>
+      <p>GPS-lås krever <strong>minst 3 av de 5 siste</strong> kandidatene, beste nøyaktighet ≤ 12 m, og at de tre siste ligger innenfor 15 m av den beste. Før det får du «Venter på GPS» i stedet for en tilfeldig strek over kartet.</p>
+
+      <h3>Skjermene</h3>
+      <p>I tur vises tre sider i en <code>TabView</code>: <strong>Kontroller → Måltall → Kart</strong>.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h5>Klar <span class="tag watch">start</span></h5>
+        <p>«Gå med Tintin», «Løpe med Tintin», «Kjøre med Tintin» — og «Velg rute» med navn og distanse på valgt GPX-rute.</p>
+      </div>
+      <div class="card">
+        <h5>Måltall</h5>
+        <p>Varighet i 43 pt, distanse, og puls — eller bilikon og «BILTUR» i turkis når etappen er en biltur.</p>
+      </div>
+      <div class="card">
+        <h5>Kontroller</h5>
+        <p>Pause/Fortsett og Fullfør øverst; deretter «Bytt til …», «Marker», «Rute» og «Mål» (destinasjonssøk).</p>
+      </div>
+      <div class="card">
+        <h5>Kart</h5>
+        <p>Planlagt rute, navigasjonsrute i cyan, eget spor i oransje, potemarkør med retningskjegle. Tre kameramoduser, 420 m kamerahøyde.</p>
+      </div>
+      <div class="card">
+        <h5>Ferdig</h5>
+        <p>«Gåturen er lagret», «≈ N Tintin-steg 🐾», og en advarsel hvis ruten ikke nådde Helse.</p>
+      </div>
+      <div class="card">
+        <h5>Feilet</h5>
+        <p>«Noe gikk galt» med konkret melding og «Prøv igjen» — ingen tapt tilstand, økten kan gjenopprettes.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Haptikk brukes gjennomgående og med mening: <code>.click</code> ved valg, <code>.success</code> ved markering, <code>.failure</code> når GPS mangler, <code>.notification</code> når kjøring oppdages.</p>
+
+      <h3>Krasjgjenoppretting</h3>
+      <p><code>recoverActiveWorkoutSession</code> kalles fra <code>init</code>, ved <code>applicationDidBecomeActive</code> og i egen håndterer. Bygger, datakilde og rutebygger kobles på igjen, og tur-ID, etappe-ID, starttider og ferdige etapper leses tilbake fra <code>UserDefaults</code>. Den gjenopprettede økten merkes med <code>recoveredSession: true</code>.</p>
+
+      <h3>Live Activity</h3>
+      <p>Låseskjermen viser potemerke, «Gåtur med Tintin», «Live fra Apple Watch» og tid + distanse. I Dynamic Island: potepote og kort distanse kompakt, tid og puls utvidet. Tidsvisningen bruker <code>Text(timerInterval:)</code> så den tikker selv uten oppdateringer. Oppdateringer sendes bare ved faseendring, ≥ 10 m distanseendring, ≥ 4 slag pulsendring, eller etter 8 sekunder — med <code>staleDate</code> på 15 s og avvisning 30 s etter slutt.</p>
+    </div>
+  </div>
+</section>
+
+<section id="iphone">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">05</span><h2>iPhone: arkivet og analysen</h2></div>
+    <div class="prose">
+      <p>Fire faner, hver med egen <code>NavigationStack</code>.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Fane</th><th>Tittel</th><th>Innhold</th></tr></thead>
+        <tbody>
+          <tr><td><strong>På tur</strong></td><td>På tur</td><td>Live-kort fra klokka med fjernkontroll, siste tur med kart, hundeprofil i verktøylinjen</td></tr>
+          <tr><td><strong>Turer</strong></td><td>Turene våre</td><td>Kronologisk liste, sveip for å slette, «Fjern eksempel»</td></tr>
+          <tr><td><strong>Ruter</strong></td><td>Planlagte ruter</td><td>GPX-import, høydeprofil, «Kjør til start», offline-status for klokka</td></tr>
+          <tr><td><strong>Oversikt</strong></td><td>Våre eventyr</td><td>Utforskningskart, filtre, søylediagram, siste etapper</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h3>Live-speilet</h3>
+      <p>Når klokka starter en tur dukker den opp av seg selv på telefonen. Kortet ekstrapolerer forløpt tid mellom snapshotene, viser statusprikk (oransje = live, gul = kobler til igjen), og gir fjernkontroll: pause, marker sted, bytt gå/løp, fullfør — hver med sin egen «Setter turen på pause …»-tilstand til klokka kvitterer. Kartet kan følge kompassretningen, med kurs beregnet som storsirkelretning fra det siste punktet minst 10 m bak.</p>
+
+      <h3>Turdetaljer</h3>
+      <p>Kart med fargekodede etapper (gåtur oransje, løpetur blå, biltur turkis, pause grå), åtte måltall i rutenett, en <strong>etappe-tidslinje</strong> med klokkeslett, varighet, distanse og tempo per etappe, «Lagre som fast rute», hundesteg-kort og «Turminne» — et fritekstnotat som skrives til disk for hvert tastetrykk.</p>
+
+      <h3>Utforskningskartet</h3>
+      <p>Den mest ambisiøse iOS-skjermen (1 230 linjer) og direkte svar på ønsket om å «se hvor vi går oftest». Alle turer tegnes samtidig, fargelagt <strong>etter ukedag</strong> — mandag blå, lørdag rosa, søndag lilla — med filtre for ukedag/hverdag/helg, periode (30 dager, i år, alle år), aktivitetstype og tre kartlag (Minimal, Standard, Satellitt).</p>
+      <p>Tre detaljer gjør det brukbart i praksis: turnummer-etikettene plasseres 55 % inn i ruten (ikke ved start, der alle turer overlapper), de klustres i tre zoomnivåer (4×4-rutenett med maks 8 grupper langt ute, opptil 18×18 med 40 grupper nært), og trykk treffer nærmeste polylinje med toleranse skalert etter zoom — ligger flere turer oppå hverandre får du dialogen «Velg tur».</p>
+
+      <h3>Rutebiblioteket</h3>
+      <p>GPX importeres med <code>XMLParser</code> (med <code>shouldResolveExternalEntities = false</code> mot XXE), tynnes til 2 m mellom punkter og maks 5 000 punkter, og parses på en detached task. Rutedetaljen viser høydeprofil som Swift Charts-areal, «Kjør til start» via Apple Kart med kjøreanvisning og trafikk, og et offline-kort. Eksempelfilen i repoet — <em>Ramstad Terrasse 15 til Langhus stasjon</em>, 134 punkter — er en planlagt rute uten tidsstempler.</p>
+
+      <h4>Budsjettet mot klokka</h4>
+      <p>Hele GPX-en blir på telefonen. Til klokka sendes maks 560 punkter totalt, fordelt likt (2–180 per rute), og hvis JSON-en likevel passerer 48 000 byte krympes den i runder på 0,72 til punkttallet treffer gulvet på 12.</p>
+
+      <h3>Statistikk</h3>
+      <p>Kategori (Alle / Gå / Løp / Bil) × periode (Måned / I år / Alle) med månedstepper. I «Alle» aggregeres hele turer; ellers aggregeres <em>etapper</em>, så «utflukter med løping» og «separate etapper» rapporteres hver for seg. Snittempo krever minst 10 m distanse; for bil vises snittfart i km/t i stedet.</p>
+    </div>
+  </div>
+</section>
+
+<section id="mekanismer">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">06</span><h2>Fire signaturmekanismer</h2></div>
+    <div class="prose">
+      <p class="lead">Dette er delene som ikke finnes i andre treningsapper, og som forklarer hvorfor kodebasen er så stor for en «MVP».</p>
+
+      <h3>1 · Kjøringsdeteksjon med tilbakedatert kutt</h3>
+      <p>Problemet: du går tur, setter deg i bilen, og turen fortsetter å registrere 60 km/t som «gåing». <code>DrivingDetectionEngine</code> er en liten, plattformuavhengig verdi-type med tre terskler: <strong>8,5 m/s</strong> (≈ 31 km/t, trygt over løpshastighet), <strong>12 sekunder</strong> vedvarende på GPS-fart alene, eller <strong>8 sekunder</strong> hvis CoreMotion samtidig melder <code>automotive</code>. Ett raskt punkt utløser aldri noe, og et enkelt saktepunkt nullstiller hele timeren.</p>
+      <p>Det elegante er <code>cutoff</code>: den peker på <em>siste tidspunkt du plausibelt gikk</em>, ikke da mistanken startet. Når kjøring bekreftes trunkeres gåetappen dit, så akselerasjonen fra ganghastighet til bilfart aldri havner i gådataene. Punktene i mellomtiden holdes i karantene — ikke forkastet — så de kan spilles tilbake hvis mistanken var feil.</p>
+      <p>Deretter får du tre valg, både på klokka og telefonen: <strong>Avslutt</strong>, <strong>Biltur</strong> (karantenen blir en <code>.driving</code>-etappe) eller <strong>Fortsett</strong>. Merk at klokka alltid sender <code>automotive: false</code> — bare iPhone har bevegelsesklassifisering, og bare iPhone kan derfor bekrefte på 8 sekunder.</p>
+
+      <h3>2 · Rutefortetting for Apple Mosjon</h3>
+      <p>Apple Mosjon avviser ruter med tidsluker. Derfor genererer klokka syntetiske punkter med <strong>2 sekunders</strong> mellomrom gjennom hele økten — interpolert mellom faktiske GPS-fikser, og gjentatt der du står stille — pluss «pre-roll» fra etappestart og «post-roll» til etappeslutt. Punktene skrives i batcher på 150 gjennom <code>insertRouteData</code>, med flush hvert 12. sekund eller ved 10 køede jobber. Innkommende punkter avvises hvis nøyaktigheten er over 50 m eller distansen overgår <code>max(60, tid × maksfart + nøyaktighet)</code>, med maksfart 12 m/s løping og 7 m/s gåing.</p>
+      <p><code>routeSchema = 3</code> markerer at ruten er skrevet av denne fortettende versjonen — informasjon <code>RouteDiagnostics</code> bruker for å vite om tidsluker er en feil eller bare gammel modell.</p>
+
+      <h3>3 · Kartdiagnostikk</h3>
+      <p>Et helt verktøy bygget for å feilsøke Apples egne apper. Det leser siste «På tur»-økt fra Helse og rapporterer punkter utenfor økten, nøyaktighet over 50 m, ugyldige koordinater, største tidsluke, luker over 3,25 s, duplikate tidsstempler og hopp over 15 m/s — og gir en konkret konklusjon, for eksempel: «Den nye rutemodellen skulle ha fylt pausene, men ruten har fortsatt tidsluker.»</p>
+      <p>Det kan også lage en <strong>syntetisk testtur</strong>: to minutter, 61 punkter med 2 sekunders mellomrom på en sirkel med 25 m radius, der punkt 16–45 står <em>helt stille et helt minutt</em> — nettopp for å teste om Mosjon aksepterer gjentatte stillestående punkter. Testturer merkes <code>routeTest: true</code> og kan slettes samlet.</p>
+
+      <h3>4 · Idempotent kommandoprotokoll</h3>
+      <p>Seks kommandoer: <code>pause</code>, <code>resume</code>, <code>finish</code>, <code>markPlace</code>, <code>switchToWalking</code>, <code>switchToRunning</code>. Alle er absolutte, ingen er en toggle — en dobbeltlevert <code>pause</code> på en pauset tur er en no-op, mens en dobbeltlevert toggle ville ødelagt tilstanden. Hver kommando har en UUID, klokka ekker den tilbake i <code>acknowledgedCommandID</code> sammen med en norsk melding, og telefonen slutter først da å vise spinneren. Ingen egen svarmeldingstype er nødvendig.</p>
+    </div>
+
+    <h4 style="margin-top:44px">Tallene, samlet</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Mekanisme</th><th class="num">Terskel</th><th>Hvorfor</th></tr></thead>
+        <tbody>
+          <tr><td>Kjøring bekreftes</td><td class="num">8,5 m/s i 12 s (8 s m/CoreMotion)</td><td>Over all løpsfart; krever varighet, ikke enkeltpunkt</td></tr>
+          <tr><td>GPS-punkt godtas</td><td class="num">≤ 50 m nøyaktighet</td><td>Filtrerer bytunnel-fikser</td></tr>
+          <tr><td>GPS-lås</td><td class="num">3 av 5 · ≤ 12 m · innen 15 m</td><td>Unngår villstrek ved turstart</td></tr>
+          <tr><td>Rutefortetting</td><td class="num">2 s mellomrom, batch 150</td><td>Mosjon avviser tidsluker</td></tr>
+          <tr><td>Snapshot til telefon</td><td class="num">hvert 2. s, 120 punkter per bit</td><td>Nok til live-UI, lite nok for kanalen</td></tr>
+          <tr><td>Live Activity</td><td class="num">10 m / 4 bpm / 8 s</td><td>Sparer budsjett for oppdateringer</td></tr>
+          <tr><td>Rutebibliotek til klokka</td><td class="num">560 punkter / 48 kB</td><td>WatchConnectivity-nyttelast</td></tr>
+          <tr><td>Duplikat-tur</td><td class="num">±15 s start, ±90 s slutt</td><td>Samme tur via WC og Helse skal flettes</td></tr>
+          <tr><td>Rutegjenbruk</td><td class="num">2,5 m tynning, maks 5 000 punkter</td><td>Fjerner stillestående jitter</td></tr>
+          <tr><td>Tempo beregnes</td><td class="num">≥ 10 m distanse</td><td>Ellers absurde min/km-verdier</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="design">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">07</span><h2>Design og merkevare</h2></div>
+    <div class="prose">
+      <p>Systemet er strengt: <strong>én aksentfarge</strong>, og et semantisk par som snus i mørk modus. <code>TintinPrimary</code> og <code>TintinCanvas</code> er eksakte inverser av hverandre, så en visning kan skrives én gang og snu seg selv. Oransjen holdes konstant i begge utseender for gjenkjennelse, med <code>TintinOnOrange</code> som garantert lesbar forgrunn.</p>
+    </div>
+
+    <div class="swatches">
+      <div class="sw"><i style="background:#E56B00"></i><span><b>#E56B00</b><em>TintinOrange · også aksent</em></span></div>
+      <div class="sw"><i style="background:#FAF7F2"></i><span><b>#FAF7F2</b><em>Canvas lys / Primary mørk</em></span></div>
+      <div class="sw"><i style="background:#17120F"></i><span><b>#17120F</b><em>Primary lys / OnOrange mørk</em></span></div>
+      <div class="sw"><i style="background:#050403"></i><span><b>#050403</b><em>Canvas mørk</em></span></div>
+    </div>
+
+    <div class="prose">
+      <p>I tillegg finnes et konsekvent fargespråk for etapper, gjentatt i tre visninger: <span style="color:var(--accent-ink);font-weight:600">gåtur oransje</span>, <span style="color:#2E5FE0;font-weight:600">løpetur blå</span>, <span style="color:var(--teal);font-weight:600">biltur turkis</span>, pause grå. Utforskningskartet har sitt eget sett med syv ukedagsfarger.</p>
+
+      <h3>Potemerket</h3>
+      <p><code>PawBadge</code> er hele appens visuelle signatur: <code>pawprint.fill</code> i en sirkel med automatisk gradient, der glyfen alltid er <strong>0,46 × diameteren</strong>. Samme komponent brukes fra 34 pt i kartannotasjoner til 58 pt i hjemmeskjermens hero. Den er <code>accessibilityHidden</code> — rent dekorativ.</p>
+
+      <h3>Appikonet</h3>
+      <p>Ikonet bygges av et Swift-skript (<code>Design/build_app_icons.swift</code>) som komponerer en gradient-PNG med en vektor-SVG av en person som går med hund, skalert 1,20 så motivet blør 20 % utenfor kanten. To render: 1024 px for iPhone, 1088 px for Watch.</p>
+      <p><code>Design/AppIcon.svg</code> er det <em>opprinnelige</em> ikonet fra første MVP — grønn gradient (#426F4B → #123C2B), kremhvit pote, terrakotta-smil — synlig i skjermbildet fra 22. august. Det er nå foreldet i forhold til byggeskriptet.</p>
+
+      <h3>Språk som designmateriale</h3>
+      <p>Alt er norsk, og tonen er gjennomført varm og konkret: «Ut på eventyr?», «Turene våre», «Våre eventyr», «Turminne», «Fint sted», «Husk dette», «Rolig runde med en lang snusepause ved vannet». Feilmeldinger forklarer: «Turen har ikke nok brukbare GPS-punkter.» Strengene ligger direkte i koden, også i modell-laget — <code>developmentRegion = nb</code>, men ingen strengkatalog.</p>
+    </div>
+  </div>
+</section>
+
+<section id="scenarioer">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">08</span><h2>Brukerscenarioer</h2></div>
+    <div class="prose"><p>Slik flytene faktisk henger sammen i koden.</p></div>
+
+    <h4>A · Den vanlige turen</h4>
+    <ol class="flow">
+      <li><strong>Trykk «Gå med Tintin» på klokka<span class="where">watch</span></strong><p>HealthKit-autorisasjon, økt startes med <code>.walking</code> utendørs, GPS og retning slås på. «Gjør klar …» til låsen er god.</p></li>
+      <li><strong>Turen dukker opp på telefonen av seg selv<span class="where">iphone</span></strong><p>Speilingen kobler seg på, live-kortet vises på hjemmeskjermen, og Live Activity tar plass på låseskjermen.</p></li>
+      <li><strong>Snusepause<span class="where">watch</span></strong><p>«Pause» avslutter HealthKit-økten og starter en <code>.pause</code>-etappe. Kan også utløses fra telefonen eller fra sidetast-kommandoen.</p></li>
+      <li><strong>«Marker» ved vannet<span class="where">begge</span></strong><p>Et <code>WalkMarker</code> med siste GPS-punkt, hapisk kvittering, og toast i 1,6 s.</p></li>
+      <li><strong>«Fullfør»<span class="where">watch</span></strong><p>Økt avsluttes, skritt hentes med en <code>HKStatisticsQuery</code>, ruten fortettes og skrives, <code>TintinWalk</code> bygges av alle etappene og sendes til telefonen.</p></li>
+      <li><strong>«Gåturen er lagret · ≈ 9 800 Tintin-steg 🐾»<span class="where">watch</span></strong><p>Hvis ruten ikke nådde Helse, sier klokka det eksplisitt her.</p></li>
+      <li><strong>Turen ligger i «Turene våre»<span class="where">iphone</span></strong><p>Kart, etappe-tidslinje, åtte måltall, notatfelt — og en ny linje i utforskningskartet.</p></li>
+    </ol>
+
+    <h4>B · Planlagt rute fra GPX</h4>
+    <ol class="flow">
+      <li><strong>Importer GPX i «Ruter»<span class="where">iphone</span></strong><p>Fra Filer eller en annen turapp. Navn foreslås fra filen, høydeprofil og distanse vises før lagring.</p></li>
+      <li><strong>Ruten synkroniseres automatisk<span class="where">iphone → watch</span></strong><p>Punktbudsjettet krymper den til klokkestørrelse. «N ruter synkroniseres automatisk».</p></li>
+      <li><strong>«Kjør til start»<span class="where">iphone</span></strong><p>Apple Kart åpnes med kjøreanvisning og trafikk til rutens startpunkt.</p></li>
+      <li><strong>«Velg rute» før eller under turen<span class="where">watch</span></strong><p>Offline. Under tur sorteres rutene etter avstand fra deg, med «X unna» som undertekst.</p></li>
+      <li><strong>Ruten tegnes under sporet ditt<span class="where">watch</span></strong><p>Svart/hvit stiplet planlagt linje under din egen oransje strek, så avvik er synlig med ett blikk.</p></li>
+    </ol>
+
+    <h4>C · Bilturen midt i turen</h4>
+    <ol class="flow">
+      <li><strong>Du setter deg i bilen — turen går fortsatt<span class="where">watch</span></strong><p>Farten passerer 8,5 m/s. Punktene går i karantene, men ingenting skjer utad ennå.</p></li>
+      <li><strong>12 sekunder senere: «Kjøring oppdaget»<span class="where">begge</span></strong><p>Haptisk varsel, gåetappen kuttes ved siste plausible gåpunkt, turen tvangspauses. «Registrert fart: opptil 47 km/t».</p></li>
+      <li><strong>Du velger<span class="where">begge</span></strong><p><strong>Biltur</strong> gjør karantenen til en <code>.driving</code>-etappe og fortsetter opptaket i bilmodus. <strong>Fortsett</strong> spiller punktene tilbake. <strong>Avslutt</strong> lagrer det som finnes.</p></li>
+      <li><strong>Resultatet i Helse<span class="where">iphone</span></strong><p>Gåturen står som gåtur uten bilfart. Bilturen er registrert i «På tur», men gir aldri Tintin-steg og er alltid utelatt fra kjøredistansen i statistikken.</p></li>
+    </ol>
+
+    <h4>D · Navigasjon hjem</h4>
+    <ol class="flow">
+      <li><strong>«Mål» / «Finn destinasjon»<span class="where">begge</span></strong><p>Søk med <code>MKLocalSearchCompleter</code>, begrenset til 0,22° rundt deg, maks 12 forslag.</p></li>
+      <li><strong>Gårute beregnes<span class="where">begge</span></strong><p><code>MKDirections</code> med <code>.walking</code>, polylinjen komprimeres til 220 punkter og sendes over speilingen — begge veier, så telefonen kan sette et mål på klokka.</p></li>
+      <li><strong>Cyan linje på klokkekartet<span class="where">watch</span></strong><p>Med «Mål»-markør. Telefonen viser gjenstående distanse og tid, regnet fra nærmeste navigasjonspunkt til der du faktisk er.</p></li>
+      <li><strong>«Avslutt navigasjon»<span class="where">begge</span></strong><p>En <code>LiveNavigationUpdate</code> med <code>route: nil</code>. Turen fortsetter uendret.</p></li>
+    </ol>
+
+    <h4>E · Når noe går galt</h4>
+    <ol class="flow">
+      <li><strong>Klokkeappen krasjer midt i turen<span class="where">watch</span></strong><p><code>recoverActiveWorkoutSession</code> kobler på igjen ved neste oppstart; tur-ID, etappe-ID og ferdige etapper leses fra <code>UserDefaults</code>. Turen fortsetter.</p></li>
+      <li><strong>Turen kom aldri over til telefonen<span class="where">iphone</span></strong><p>Ved hver aktivering spør telefonen Helse etter alt merket med appens metadata (og alt fra egen bundle siste 90 dager) og rekonstruerer turen med etapper og rute.</p></li>
+      <li><strong>Samme tur kommer to veier<span class="where">iphone</span></strong><p>Duplikatvinduet ±15 s / ±90 s fletter dem: lengste rute vinner, tomme felt fylles, ingenting overskrives destruktivt.</p></li>
+      <li><strong>Mosjon viser ikke kartet<span class="where">iphone</span></strong><p>«Kartdiagnostikk» under hundeprofilen leser siste økt, peker på hva som er galt, og kan lage en 61-punkts testtur for å isolere om feilen er appens eller Apples.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="krav">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">09</span><h2>Krav vs. levert</h2></div>
+    <div class="prose">
+      <p>Kravene ligger som et designark i <code>Tidslinje_og_Logg/KRAV.png</code>, under tittelen «Tur med Tintin». Status målt mot koden:</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Krav (Apple Watch)</th><th>Status</th><th>Hvor</th></tr></thead>
+        <tbody>
+          <tr><td>Velg rute — importert GPX eller tidligere tur</td><td><span class="tag ok">Levert</span></td><td>Rutevelger + «Lagre som fast rute»</td></tr>
+          <tr><td>Starte turen nå</td><td><span class="tag ok">Levert</span></td><td>Gå / løp / kjør fra klar-skjermen</td></tr>
+          <tr><td>Spore tid, puls, kart, skritt, avstand</td><td><span class="tag ok">Levert</span></td><td>Live builder + <code>HKStatisticsQuery</code> for skritt</td></tr>
+          <tr><td>Vise vær og temperatur</td><td><span class="tag no">Mangler</span></td><td>Ingen WeatherKit i kodebasen</td></tr>
+          <tr><td>Navigere med eller uten planlagt rute</td><td><span class="tag ok">Levert</span></td><td>Destinasjonssøk + <code>MKDirections</code></td></tr>
+          <tr><td>Pause og fortsett</td><td><span class="tag ok">Levert</span></td><td>Egne <code>.pause</code>-etapper</td></tr>
+          <tr><td>Lagre et sted underveis</td><td><span class="tag ok">Levert</span></td><td><code>WalkMarker</code>, 4 typer</td></tr>
+          <tr><td>Synkronisere til Helse og Mosjon</td><td><span class="tag part">Delvis</span></td><td>Skriving er på plass; Mosjon-visning er nettopp derfor diagnoseverktøyet finnes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Krav (iPhone)</th><th>Status</th><th>Hvor</th></tr></thead>
+        <tbody>
+          <tr><td>Se turdata og kart i appen</td><td><span class="tag ok">Levert</span></td><td>Turdetalj med 8 måltall og etappe-tidslinje</td></tr>
+          <tr><td>Tydelig hundeaktig UI</td><td><span class="tag ok">Levert</span></td><td>Potemerke, potespor på kart, «Tintin-steg», hundeprofil</td></tr>
+          <tr><td>Administrere turer: importere, planlegge, historikk</td><td><span class="tag ok">Levert</span></td><td>Rutebibliotek + historikk + rutegjenbruk</td></tr>
+          <tr><td>God statistikk: skritt, puls, kart over hvor vi går oftest</td><td><span class="tag part">Delvis</span></td><td>Utforskningskart med ukedagsfarger og filtre; puls og skritt i turdetaljen</td></tr>
+          <tr><td>… inkludert vær og musikk/medier</td><td><span class="tag no">Mangler</span></td><td>Ingen WeatherKit, ingen MediaPlayer/MusicKit</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>Verdt å merke: i den opprinnelige MVP-en var «vær, GPX-import og navigasjon» eksplisitt utenfor omfanget. To av de tre er nå levert.</p>
+    </div>
+  </div>
+</section>
+
+<section id="gap">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">10</span><h2>Løse tråder</h2></div>
+    <div class="prose">
+      <p>Observasjoner fra gjennomgangen, ikke feilrapporter — flere er bevisste valg.</p>
+
+      <h4>Konfigurasjon</h4>
+      <ul>
+        <li><code>WATCHOS_DEPLOYMENT_TARGET = 10.0</code> mens iOS-målet er 26.0. Klokkekoden bruker API-er som er nyere enn watchOS 10, så tallet er sannsynligvis bare aldri oppdatert.</li>
+        <li>iOS-målet erklærer <strong>ingen <code>UIBackgroundModes</code></strong>. Det stemmer med at telefonopptak er merket «Kun for simulator og testing», men <code>PhoneWalkRecorder</code> ber likevel om <code>requestAlwaysAuthorization</code>.</li>
+        <li>Ingen app-gruppe, tross innebygd widget-utvidelse. Live Activity oppdateres i stedet direkte fra appprosessen via ActivityKit, så det fungerer — men utvidelsen kan ikke lese delt data.</li>
+        <li>De to <code>ExportOptions</code>-filene med manuell signering mangler profil for <code>com.ding.patur.liveactivity</code>.</li>
+        <li><code>SWIFT_VERSION = 5.0</code>, altså ingen Swift 6-språkmodus, selv om koden er gjennomført <code>Sendable</code>- og <code>@MainActor</code>-annotert.</li>
+      </ul>
+
+      <h4>Kode</h4>
+      <ul>
+        <li><strong>Tre ulike desimeringsformler</strong> for samme problem: <code>ceil(n/maks)</code> i <code>watchOptimized</code> (240), <code>ceil((n−1)/(maks−1))</code> i navigasjonspolylinjen (220), og <code>ceil((n−1)/4999)</code> i rutegjenbruk. Alle tre legger endepunktet tilbake til slutt.</li>
+        <li>Nesten all disk- og HealthKit-feilhåndtering er stille (<code>try?</code>, tomme callbacks). Unntaket er den syntetiske testturen, som rapporterer hvert steg presist — nyttig mønster som kunne vært brukt bredere.</li>
+        <li><code>LiveWorkoutMirrorManager</code> fanger hundenavnet ved oppstart, så navneendring i profilen slår ikke inn i Live Activity før appen restartes.</li>
+        <li>Ingen tester i prosjektet. <code>DrivingDetectionEngine</code> er skrevet som en ren, plattformuavhengig verdi-type nettopp for å være enhetstestbar — den er det åpenbare stedet å begynne.</li>
+        <li><code>Design/AppIcon.svg</code> er foreldet i forhold til <code>build_app_icons.swift</code>.</li>
+      </ul>
+
+      <h4>Naturlige neste steg</h4>
+      <ul>
+        <li><strong>Vær</strong> er det eneste helt urørte kravet: WeatherKit ved turstart, lagret på turen, vist i turdetaljen og som filter i statistikken.</li>
+        <li><strong>Medier</strong> — hva du hørte på turen — krever <code>MPMusicPlayerController</code> eller ShazamKit-lignende avlesning, og passer som et felt på etappen.</li>
+        <li><strong>Frekvenskart</strong>: utforskningskartet viser hvor du har gått, men ikke hvor <em>ofte</em>. En rutenettbasert heatmap over de samme dataene ville svart direkte på kravet «hvor er der vi går oftest».</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="end">
+  <div class="wrap">
+    <p>Gjennomgang av <code>PaTur-main</code> · versjon 0.3 (build 17) · 34 Swift-filer, 10 360 linjer · lest 1. september 2026.</p>
+  </div>
+</footer>

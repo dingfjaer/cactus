@@ -196,14 +196,40 @@ i `PhotoGallery.astro` og `src/utils/gallery-layout.ts`; detaljer finnes i
 
 ### 6.2 Om-siden, CV og portefølje
 
-Verifisert lokalt 2026-09-28: `src/pages/about.astro` viser den interaktive
-3D-logoen øverst i full nettleserbredde. Navnedelen følger som en interaktiv
-Radley-seksjon (§6.7), deretter et portrett med to bildelag og scrollstyrt
-avsløring (§6.8). `/images/about.png` er bevart som fil, men brukes ikke lenger
-på siden. Header, navigasjon og CV-/porteføljelenker er bevart. Navne- og
-portrettseksjonene deles nå også av `src/pages/portfolio.astro`, over de fire
-eksisterende porteføljelenkene og kaffeteksten. Begge sider bruker de samme
-komponentene og har identisk interaktivt innhold. Publiseringsstatus: se §6.9.
+Verifisert lokalt 2026-09-29: `src/pages/about.astro` starter med
+`AboutNavigation.astro`, en navigasjonskomposisjon til CV og portfolio. Deretter
+følger navneseksjonen (§6.7) og portrettavsløringen (§6.8). 3D-seksjonen er fjernet
+fra Om-siden etter bestilling 2026-09-29; `#about-top` ligger nå rundt navigasjonen.
+De tidligere CV-/porteføljelenkene nederst er beholdt. `/images/about.png` er
+bevart som fil, men brukes ikke lenger på siden. Porteføljesiden beholder
+3D-modellen og deler navne- og portrettkomponentene med Om-siden. Den nye
+navigasjonen er bare på Om-siden. Appoversikten er beskrevet i §6.12.
+
+Navigasjonen er implementert lokalt, ikke committet/publisert i denne oppgaven:
+
+- Grunnlag: fire referansebilder, de to originale profilillustrasjonene og ni
+  avleste rammer fra den 17,8 sekunder lange prototypevideoen i brukerens mappe
+  `navigasjon til cv og portfolio i about`. Illustrasjonene er kopiert uendret til
+  `public/about-navigation/profile-default.png` og `profile-hover.png`.
+- SVG-komposisjonen bruker selvhostet Radley, skrå «ding», loddrett «chen»,
+  «cv» med venstrepil, «portfolio» med høyrepil og et rundt portrett.
+  Faktiske lenker bruker BASE_URL og går til `/cv/` og `/portfolio/`.
+- Standardportrettet får `grayscale(1)` og `mix-blend-mode: luminosity` i CSS.
+  Ved hover kryssoppløses det til eksporten med nebula, rev og DC-logo over
+  350 ms. Nebula-effekten ligger i PNG-eksporten, ikke i en ny animert shader.
+  Samtidig får d/c, lenkene og pilene prosjektets aksentfarge. Bakgrunn og
+  tekst følger eksisterende temavariabler: mørk/lys flate, gul/lilla aksent.
+- Tastaturfokus gir samme tilstand og en synlig fokusramme rundt lenken.
+  Enheter uten hover viser den detaljerte illustrasjonen og aksentfargene direkte;
+  lenkene krever ikke et ekstra trykk. Redusert bevegelse slår av overgangene.
+  Ingen ny JavaScript-kode, pakker eller endringer i headeren.
+- Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hint. Begge bildekopier er
+  sammenlignet byte for byte. Nettlesertest ved 1280 × 900 i lyst og mørkt tema
+  bekreftet standard/hover, Radley, temafarger og begge lenkemål. Tab-fokus og Enter
+  til CV er prøvd. 390 og 320 px er kontrollert; ingen overbredde i navigasjonen,
+  og lenkenes trykkflater er minst 44 px høye ved 320 px. Fysisk touch, skjermleser
+  og OS-styrt redusert bevegelse er ikke testet. Eksisterende mørkt tema gjenopprettes
+  etter kontrollen. Publiseringshistorikk for tidligere seksjoner står i §6.9.
 
 Brukerens ønskede Om-side fra 2026-09-21 består av eksisterende header/layout,
 et stort `about.png`-bilde i full nettleserbredde og to lenker under bildet.
@@ -241,6 +267,10 @@ fugl som endelig valgte løsninger. Bevar eventuell eksisterende lenkefunksjon
 på logoen når interaksjonen undersøkes.
 
 ### 6.5 Interaktiv 3D-logo: rev + DC
+
+Nåstatus 2026-09-29: 3D-seksjonen er fjernet lokalt fra Om-siden (§6.2), men
+beholdt på porteføljesiden og `/logo-test/`. Det følgende beskriver den tidligere
+integrasjonen og kontrollen av selve komponenten.
 
 Dette er det siste konkrete visuelle eksperimentet, diskutert 2026-09-27.
 Brukeren leverte en SVG som grunnlag etter at tidligere visninger ikke viste
@@ -352,7 +382,7 @@ publisert i denne oppgaven. Begge sider bruker samme `AboutName.astro`,
 - Videre scrolling krymper c loddrett opp i d. Deretter løftes den samlede logoen
   rett opp langs d-ens senterakse til 16 px fra toppen. Morphen reverseres ved
   scrolling opp; den ferdige navneavspillingen beholdes. Når hele navneseksjonen
-  er nedenfor viewporten igjen, klargjøres en ny inngang fra 3D-seksjonen.
+  er nedenfor viewporten igjen, klargjøres en ny inngang ovenfra.
 - På mobil/lav skjerm ruller teksten normalt. Hver av de tre navnedelene spiller
   automatisk når den blir synlig; deler utenfor skjermen venter. Ingen bokstavmorph
   på mobil: den ferdige logoen vises etter siste markering ved seksjonens slutt.
@@ -422,7 +452,8 @@ brukeren nevnte fulgte ikke med meldingen; ingen video er undersøkt.
 
 ### 6.9 Felles introduksjon på Om- og porteføljesiden
 
-2026-09-28: Etter brukerens bestilling viser både `/about/` og `/portfolio/`
+Historikk 2026-09-28 (Om-siden er senere endret lokalt, se §6.2):
+Etter brukerens bestilling viste både `/about/` og `/portfolio/`
 3D-logoen, navnehistorien og portrettavsløringen. `DingLogo3D`, `AboutName` og
 `AboutPortrait` gjenbrukes direkte. Det er ikke laget separate kopier av
 animasjonskode eller medier. Senere komponentendringer påvirker derfor begge
@@ -510,6 +541,64 @@ som del av denne oppgaven. Kilden er brukerens leveranse i
   footer har fortsatt ca. 15 px overbredde. Den er ikke endret her. Kontrollen brukte
   nettstedets mørke tema. Fysisk mobil, OS-styrt redusert bevegelse, skjermleser og
   fullt produksjonsbygg er ikke testet i denne integrasjonen.
+
+### Claudes gjennomgang av På tur
+
+Integrert lokalt 2026-09-29 på `/portfolio/pa-tur-gjennomgang/`. Kilden er den
+brukerleverte `PaTur-gjennomgang.html` fra iCloud-mappen `CoDing`. Den beskriver
+versjon 0.3 (build 17), lest 1. september 2026; påstandene i rapporten er bevart
+som historisk innhold, ikke kontrollert mot dagens separate app-repo.
+
+- `src/components/pa-tur-review/index.html` er en byte-identisk originalkopi.
+  `PaTurReview.astro` henter innholdet etter style-blokken; dokumentmetadata og
+  originalens lang-script kjøres ikke. `review.css` inneholder originalstilene
+  avgrenset til komponenten, med liste-/lenkestiler tilpasset Tailwind-reset,
+  egen klasse i stedet for Tailwinds `prose` og tilpasning til smale skjermer.
+- Sidefilen bruker eksisterende `Base.astro` med `wide`. Rapporten beholder
+  Fraunces, Archivo og IBM Plex Mono fra Google Fonts, egne temafarger, ti
+  seksjoner, fast innholdsmeny og SVG-diagram. Nettstedets temavalg styrer også
+  rapporten. Returlenker går til På tur-casen.
+- Nederst på `/portfolio/pa-tur/` ligger brukerens «Fun fact»-tekst med samme
+  `case-note`-klasse og stiplede gullramme som boksen øverst. Setningen «Jeg ba
+  Claude gjennomgå kode Codex(ChatGPT) har laget.» lenker til gjennomgangen.
+- Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hint (89 filer). Originalen
+  er sammenlignet byte for byte; unike ID-er og alle ti ankermål er kontrollert.
+  Lokal nettleserkontroll i lyst/mørkt tema, desktop 1280 × 900 og mobil 390 × 844:
+  ingen overbredde på gjennomgangssiden, tabeller og diagram ruller internt,
+  innholdsanker via Enter og lenkene mellom case/gjennomgang fungerer. Begge
+  tekstbokser har identisk ramme/padding, og bunnboksen er visuelt kontrollert.
+  Fysisk touch, skjermleser og fullt produksjonsbygg er ikke testet. Mørkt tema
+  gjenopprettet. Ingen commit, push eller deploy utført i denne oppgaven.
+
+### 6.12 Enkel oversikt over iOS-appene
+
+Implementert lokalt 2026-09-29 på `/portfolio/ios-apper/`, ikke committet eller
+publisert i denne oppgaven. `src/pages/portfolio/ios-apper.astro` bruker eksisterende
+`Base.astro` med `wide` og nettstedets lyse/mørke temafarger.
+
+- Beskrivelsene av Ding Ding!, På tur og På tide er hentet fra originalens én-sides
+  `dings-apps.pdf` i brukerens `ios-apper`-mappe. PDF-en er både tekstlest og visuelt
+  kontrollert. Innholdet presenteres som korte avsnitt uten nye funksjonspåstander.
+- Oversiktsbildet fra `ios-apper/oversikt.png` ligger rett under ingressen og
+  over første skillelinje, i full innholdsbredde og uten beskjæring. Responsive
+  WebP-varianter i 640/1280/2080 px ligger i `public/ios-apper/`.
+- Tre skjermbilder per app er valgt fra undermappene: Ding Ding! 1287/1284/1285,
+  På tur 1257/1259/1268, På tide 1282/1278/1280. WebP-varianter i bredde 480/960 px
+  ligger i `public/ios-apper/`, med srcset, lazy loading og beskrivende alt-tekster.
+  Originalene er uendret; ingen nye pakker.
+- Desktop viser tre bilder ved siden av hverandre. Mobil viser en horisontal,
+  skrollbar bilderekke med neste bilde delvis synlig. Eksisterende `MediaViewer`
+  gir bildeforstørrelse, neste/forrige og Escape per app. På tur har også lenke
+  til den eksisterende casen. Tilbakelenken går til portfolio.
+- «Hobbyprosjekter: iOS-apper bygget med AI (2026)» på `portfolio.astro` går nå
+  til den interne siden i samme fane. PDF-filen er beholdt.
+- Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hint (87 filer). Lokal preview
+  på port 4325 er bekreftet å kjøre fra originalrepoet. Desktop 1280 × 900 og
+  mobil 390 × 844 er visuelt kontrollert i lyst/mørkt tema. Alle ni bilder lastet;
+  ingen horisontal overbredde ved 390 px. Porteføljelenke og retur, bildeblaing,
+  siste-bilde-grense, Enter, Escape og fokusretur er prøvd. Om-siden er kontrollert
+  uten modell/canvas og med bevart `#about-top`. Fysisk touch, skjermleser og fullt
+  produksjonsbygg er ikke testet. Mørkt tema er gjenopprettet etter kontrollen.
 
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 

@@ -1,0 +1,322 @@
+/* Original review styles, scoped to preserve the site's header and footer. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+  .patur-review {
+    --ground: #FAF7F2;
+    --surface: #FFFFFF;
+    --surface-sunk: #F2EDE4;
+    --ink: #17120F;
+    --ink-soft: #4A423B;
+    --ink-mute: #7A7067;
+    --rule: #E2D9CB;
+    --rule-soft: #EDE6DA;
+    --accent: #E56B00;
+    --accent-soft: #FCEFE0;
+    --accent-ink: #9C4A00;
+    --teal: #0E7A76;
+    --teal-soft: #E2F1F0;
+    --green: #2C7346;
+    --plum: #8A2F63;
+    --shadow: 0 1px 2px rgba(23,18,15,.05), 0 8px 24px -16px rgba(23,18,15,.18);
+
+    --step--1: .8125rem;
+    --step-0: 1rem;
+    --step-1: 1.1875rem;
+    --step-2: 1.4375rem;
+    --step-3: 1.875rem;
+    --step-4: 2.5rem;
+    --step-5: 3.25rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .patur-review {
+      --ground: #0B0908;
+      --surface: #16120F;
+      --surface-sunk: #1E1815;
+      --ink: #FAF7F2;
+      --ink-soft: #D3C9BE;
+      --ink-mute: #968A7E;
+      --rule: #2E2621;
+      --rule-soft: #241D19;
+      --accent: #FF8A2B;
+      --accent-soft: #2B1B0B;
+      --accent-ink: #FFB877;
+      --teal: #3FBDB6;
+      --teal-soft: #0E2422;
+      --green: #63BC85;
+      --plum: #DE7CB3;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+
+  :root[data-theme="dark"] .patur-review {
+    --ground: #0B0908;
+    --surface: #16120F;
+    --surface-sunk: #1E1815;
+    --ink: #FAF7F2;
+    --ink-soft: #D3C9BE;
+    --ink-mute: #968A7E;
+    --rule: #2E2621;
+    --rule-soft: #241D19;
+    --accent: #FF8A2B;
+    --accent-soft: #2B1B0B;
+    --accent-ink: #FFB877;
+    --teal: #3FBDB6;
+    --teal-soft: #0E2422;
+    --green: #63BC85;
+    --plum: #DE7CB3;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  .patur-review * { box-sizing: border-box; }
+
+  .patur-review {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--step-0);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .patur-review .wrap { max-width: 1040px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
+  .patur-review .review-prose { max-width: 68ch; }
+
+  /* ---------- masthead ---------- */
+
+  .patur-review header.masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: clamp(40px, 7vw, 84px) 0 clamp(28px, 4vw, 44px);
+  }
+  .patur-review .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: var(--step--1);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .patur-review .masthead h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
+    font-size: var(--step-5);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+    margin: 18px 0 0;
+  }
+  .patur-review .masthead h1 .amp { color: var(--accent); }
+  .patur-review .masthead .standfirst {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 20px 0 0;
+  }
+
+  .patur-review .paw {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(160deg, var(--accent), color-mix(in srgb, var(--accent) 78%, #000));
+    color: #fff; flex: none;
+  }
+  .patur-review .paw svg { width: 21px; height: 21px; }
+
+  /* ---------- spec strip ---------- */
+
+  .patur-review .spec {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: clamp(28px, 4vw, 40px);
+  }
+  .patur-review .spec div { background: var(--surface); padding: 16px 18px; }
+  .patur-review .spec dt {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .6875rem; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--ink-mute); margin: 0 0 6px;
+  }
+  .patur-review .spec dd {
+    margin: 0; font-size: var(--step-0); font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- nav ---------- */
+
+  .patur-review nav.toc {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .patur-review nav.toc ol {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; gap: 22px; overflow-x: auto;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .75rem; letter-spacing: .04em;
+    scrollbar-width: none;
+  }
+  .patur-review nav.toc ol::-webkit-scrollbar { display: none; }
+  .patur-review nav.toc a {
+    display: block; padding: 13px 0; color: var(--ink-mute);
+    text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+  }
+  .patur-review nav.toc a:hover, .patur-review nav.toc a:focus-visible { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ---------- sections ---------- */
+
+  .patur-review section { padding: clamp(48px, 7vw, 84px) 0 0; }
+  .patur-review section > .wrap > .sec-head { border-top: 1px solid var(--rule); padding-top: 14px; margin-bottom: 28px; }
+  .patur-review section:first-of-type > .wrap > .sec-head { border-top: 0; }
+  .patur-review h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600; font-variation-settings: "SOFT" 0, "WONK" 0;
+    font-size: var(--step-3); line-height: 1.14; letter-spacing: -.015em;
+    margin: 10px 0 0; text-wrap: balance;
+  }
+  .patur-review h3 {
+    font-size: var(--step-1); font-weight: 600; letter-spacing: -.005em;
+    margin: 40px 0 10px;
+  }
+  .patur-review h4 {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 500; margin: 32px 0 10px;
+  }
+  .patur-review p { margin: 0 0 1.05em; }
+  .patur-review a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .patur-review strong { font-weight: 600; }
+  .patur-review code, .patur-review .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .875em;
+  }
+  .patur-review code { background: var(--surface-sunk); padding: .12em .35em; border-radius: 2px; }
+  .patur-review ul, .patur-review ol { padding-left: 1.15em; margin: 0 0 1.05em; }
+  .patur-review li { margin-bottom: .45em; }
+  .patur-review li::marker { color: var(--ink-mute); }
+  .patur-review .lead { font-size: var(--step-1); color: var(--ink-soft); }
+
+  /* ---------- tables ---------- */
+
+  .patur-review .tablewrap { overflow-x: auto; margin: 22px 0 26px; border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); }
+  .patur-review table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: var(--step--1); }
+  .patur-review th, .patur-review td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  .patur-review thead th {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .6875rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 500;
+    border-bottom: 1px solid var(--rule); background: var(--surface-sunk);
+    position: sticky; top: 0;
+  }
+  .patur-review tbody tr:last-child td { border-bottom: 0; }
+  .patur-review td.num, .patur-review th.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .patur-review td .mono { color: var(--ink-soft); }
+
+  /* ---------- cards ---------- */
+
+  .patur-review .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); margin: 24px 0 8px; }
+  .patur-review .card {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 3px; padding: 20px 22px; box-shadow: var(--shadow);
+  }
+  .patur-review .card h5 {
+    margin: 0 0 8px; font-size: var(--step-0); font-weight: 600;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .patur-review .card p { font-size: var(--step--1); color: var(--ink-soft); margin: 0 0 .7em; }
+  .patur-review .card p:last-child { margin-bottom: 0; }
+
+  .patur-review .tag {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .625rem; letter-spacing: .08em; text-transform: uppercase;
+    padding: 3px 7px; border-radius: 2px; white-space: nowrap;
+    background: var(--surface-sunk); color: var(--ink-mute);
+  }
+  .patur-review .tag.on { background: var(--accent-soft); color: var(--accent-ink); }
+  .patur-review .tag.watch { background: var(--teal-soft); color: var(--teal); }
+  .patur-review .tag.ok { background: color-mix(in srgb, var(--green) 14%, transparent); color: var(--green); }
+  .patur-review .tag.part { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent-ink); }
+  .patur-review .tag.no { background: color-mix(in srgb, var(--plum) 15%, transparent); color: var(--plum); }
+
+  /* ---------- diagram ---------- */
+
+  .patur-review figure { margin: 26px 0 30px; }
+  .patur-review .figbox {
+    overflow-x: auto; background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 3px; padding: 22px;
+  }
+  .patur-review .figbox svg { display: block; min-width: 640px; width: 100%; height: auto; }
+  .patur-review figcaption { font-size: var(--step--1); color: var(--ink-mute); margin-top: 10px; max-width: 62ch; }
+
+  /* ---------- timeline ---------- */
+
+  .patur-review .flow { list-style: none; padding: 0; margin: 24px 0 8px; counter-reset: st; }
+  .patur-review .flow > li {
+    position: relative; padding: 0 0 22px 46px; counter-increment: st;
+    border-left: 1px solid var(--rule); margin: 0 0 0 12px;
+  }
+  .patur-review .flow > li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .patur-review .flow > li::before {
+    content: counter(st, decimal-leading-zero);
+    position: absolute; left: -13px; top: 0;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--rule);
+    color: var(--ink-mute);
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .625rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .patur-review .flow strong { display: block; font-size: var(--step-0); }
+  .patur-review .flow p { font-size: var(--step--1); color: var(--ink-soft); margin: 3px 0 0; }
+  .patur-review .flow .where {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .625rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent-ink); margin-left: 8px;
+  }
+
+  /* ---------- swatches ---------- */
+
+  .patur-review .swatches { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 22px 0 10px; }
+  .patur-review .sw { border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; background: var(--surface); }
+  .patur-review .sw i { display: block; height: 62px; }
+  .patur-review .sw span { display: block; padding: 9px 12px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .6875rem; line-height: 1.5; }
+  .patur-review .sw span b { display: block; font-weight: 500; color: var(--ink); letter-spacing: .02em; }
+  .patur-review .sw span em { font-style: normal; color: var(--ink-mute); }
+
+  /* ---------- callout ---------- */
+
+  .patur-review .note {
+    border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    background: var(--surface); border-radius: 3px;
+    padding: 18px 22px; margin: 26px 0;
+  }
+  .patur-review .note h4 { margin-top: 0; color: var(--accent-ink); }
+  .patur-review .note p:last-child { margin-bottom: 0; }
+  .patur-review .note.cool { border-left-color: var(--teal); }
+  .patur-review .note.cool h4 { color: var(--teal); }
+
+  .patur-review footer.end {
+    margin-top: clamp(56px, 8vw, 96px);
+    border-top: 1px solid var(--rule);
+    padding: 26px 0 60px;
+    font-size: var(--step--1); color: var(--ink-mute);
+  }
+
+  .patur-review :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) { .patur-review * { transition: none !important; animation: none !important; } }
+
+
+/* Adapt the standalone document to the site's reset and narrow viewports. */
+.patur-review ul { list-style-type: disc; }
+.patur-review ol { list-style-type: decimal; }
+.patur-review .toc ol, .patur-review .flow { list-style: none; }
+.patur-review a { text-decoration-line: underline; }
+.patur-review .toc a { text-decoration-line: none; }
+.patur-review .cards { grid-template-columns: repeat(auto-fit, minmax(min(258px, 100%), 1fr)); }
+.patur-review .review-prose { overflow-wrap: anywhere; }
+.patur-review section[id] { scroll-margin-top: 5rem; }
+.patur-review .review-return { display: inline-block; margin-top: 1.5rem; padding-block: .75rem; }
