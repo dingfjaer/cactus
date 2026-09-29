@@ -1,6 +1,6 @@
 # Prosjektkontekst: Fjærdinghage / Digital hage med Astro / Cactus
 
-Sist endret i dokumentet: 2026-09-28  
+Sist endret i dokumentet: 2026-09-29
 Dokumentversjon: 2 — samordnet med instruksjonspakken  
 Eier: Ding Chen / Ding Chen Fjær  
 Nettsted: `dingchen.no`  
@@ -325,107 +325,69 @@ bekreftet valgt. Ikke innfør en bestemt tjeneste som om den allerede var avtalt
 
 ### 6.7 Interaktiv navneseksjon på Om- og porteføljesiden
 
-Implementert og justert lokalt 2026-09-28 på `main`, etter `Navn.png` og
-brukerens føringer om leserekkefølge, tykke markeringer og enklere mobilvisning:
+Navneanimasjonen er justert lokalt 2026-09-29. Endringen er ikke committet eller
+publisert i denne oppgaven. Begge sider bruker samme `AboutName.astro`,
+`src/scripts/about-name.js` og den nye tidsmodulen `src/scripts/name-reading.mjs`.
 
-- `src/components/AboutName.astro` og `src/scripts/about-name.js` viser ding,
-  chen og fjær etter 3D-modellen, før den interaktive portrettseksjonen.
-- Radley Regular er selvhostet i `public/about-name/` med OFL-lisens fra
+- Radley Regular ligger selvhostet i `public/about-name/` med OFL-lisens fra
   https://github.com/google/fonts/tree/main/ofl/radley. Rev og fjær kommer fra
-  brukerens originale Desktop-SVG-er. Ingen nye pakkeavhengigheter.
-- 顶, 陈 og 羽 bruker Zhi Mang Xing fra Google Fonts, selvhostet som en
-  2680-byte fontfil med bare disse tegnene. Kilde:
-  https://fonts.google.com/specimen/Zhi+Mang+Xing. Egen OFL-lisens følger fonten.
-  Flere kinesiske tegn krever en utvidet tegnvariant; det trengs ikke tegn-SVG-er.
-- Alle tekstmarkeringer bruker samme tykke gule flate, med basisfargen fra
-  tegnsirklene. «Norge» markeres bare i Chen-teksten, ikke i siste avsnitt.
-  Det siste ordet «Fjær» er nå markert.
-- Lesesekvensen er lokalt utvidet til 22 scrolltrinn: d, i, n + rev, g, 顶,
-  «i toppen av et fjell», «what does the fox say», c, h, e, n, 陈, «1990»,
-  «Wuhan», «Norge», «2014», f, j, æ + fjær/羽, r, «gift med en norsk mann»,
-  «Fjær». Bokstavene får en regnbuebølge fra venstre til høyre i sitt eget trinn,
-  og beholder fargene etter at trinnet er passert. På desktop tones alle bokstavene
-  tilbake til svart i pausen på 16svh rett før morphen; på mobil beholdes fargene.
-  SVG-gradienter brukes på de eksisterende d/c-
-  konturene og separate tspans for resten, slik at Radley og morphen bevares.
-  Hele sekvensen reverseres med scrolling opp.
-- Fra 900 × 700 px står komposisjonen midlertidig fast, med 485svh ekstra
-  scrollrom. Bokstaver bruker 8,5svh, øvrige trinn 18svh, med 2,5svh pause
-  mellom lesemomenter og ingen pause mellom sammenhengende bokstaver.
-  Lesesekvensen bruker samlet ca. 3,12 skjermhøyder, omtrent som før. Etter siste
-  markering og en kort pause krymper c loddrett opp i d. Formen står et øyeblikk
-  samlet før hele logoen løftes rett opp langs d-ens opprinnelige senterakse.
-  Den ender 16 px fra toppen; klikk/Enter går tilbake til 3D-seksjonen.
-- På smalere/lavere skjermer ruller teksten normalt, og bokstavmorphen er fjernet.
-  Bokstavene blir i navnene sine. Trinnene forankres til elementenes leseplassering
-  og ordnes uten overlapp, med 85 prosent av desktop-trinnlengden før eventuell komprimering.
-  Hele tidslinjen komprimeres samlet hvis nødvendig for å fullføre navnedelen
-  før portrettet, uten å bryte rekkefølgen. Den ferdige
-  logoen vises fast først etter siste «Fjær»-markering og skjules når denne reverseres.
-  De tidligere ekstra mellomrommene rundt Chen for mobilmorphen er fjernet.
-- Scrollresponsen jevnes ut med ca. 320 ms tidskonstant. Native wheel/touch-scroll
-  avskjæres ikke, og rammeløkken stopper når visningen har tatt igjen scrollposisjonen.
+  brukerens originale SVG-er. 顶, 陈 og 羽 bruker en selvhostet tegnvariant av
+  Zhi Mang Xing med OFL-lisens fra Google Fonts. Ingen nye avhengigheter.
+- Den tidligere 22-trinns scrollsekvensen er erstattet av automatisk avspilling.
+  På desktop starter den når navneseksjonen nærmer seg toppen (18 % av viewporten).
+  Ding, Chen og Fjær starter med omtrent 2,3 sekunders mellomrom. Hver bokstav,
+  illustrasjon og markering beveger seg over 1,8 sekunder med ease-in/ease-out;
+  detaljene overlapper. Hele avspillingen tar ca. 8,5 sekunder uten videre scrolling.
+- Leseretningen og innholdet er beholdt: regnbue gjennom ding med rev og 顶,
+  «i toppen av et fjell», «what does the fox say», chen med 陈, «1990», «Wuhan»,
+  «Norge», «2014», fjær med fjærillustrasjon/羽, «gift med en norsk mann», «Fjær».
+  Alle tekstmarkeringer bruker den samme tykke gule flaten. Bokstavene beholder
+  regnbuen frem til desktop-morphen, der fargen tones til svart før sammensetting.
+- Fra 900 × 700 px står komposisjonen midlertidig fast. Den gamle lesestrekningen
+  på flere skjermhøyder er fjernet; det gjenstår 195svh til morph og overgang.
+  Morphen blir tilgjengelig først når siste «Fjær»-markering er ferdig. Starten
+  forankres til scrollposisjonen på dette tidspunktet, med tilsvarende ekstra
+  plass hvis brukeren allerede har scrollet. Dermed starter ikke morphen av seg
+  selv ved slutten av avspillingen. Native scrolling avskjæres ikke.
+- Videre scrolling krymper c loddrett opp i d. Deretter løftes den samlede logoen
+  rett opp langs d-ens senterakse til 16 px fra toppen. Morphen reverseres ved
+  scrolling opp; den ferdige navneavspillingen beholdes. Når hele navneseksjonen
+  er nedenfor viewporten igjen, klargjøres en ny inngang fra 3D-seksjonen.
+- På mobil/lav skjerm ruller teksten normalt. Hver av de tre navnedelene spiller
+  automatisk når den blir synlig; deler utenfor skjermen venter. Ingen bokstavmorph
+  på mobil: den ferdige logoen vises etter siste markering ved seksjonens slutt.
+  Rask scrolling forbi en del fullfører den, slik at oversprungne animasjoner
+  ikke forsinker senere innhold. Skjult fane pauser navneavspillingen.
+- Scrollstyrt morph beholder ca. 320 ms utjevning. Animasjonsløkken stopper når
+  avspillingen er ferdig og scrollvisningen har tatt igjen posisjonen, eller når
+  avspillingen venter på neste synlige del. Lyttere/observer ryddes ved avmontering.
 - `src/assets/about-name/type.json` inneholder d/c fra Radley og målkonturer fra
-  første/siste path i `public/logo-3d/poster.svg`. Konturene interpoleres under
-  desktop-sammensettingen. En liten inset på Chen stiller c rett under sluttposisjonen.
-  `public/about-name/monogram.svg` bruker originalgrafikken med tett viewBox.
-- Nye snarveispiler er implementert lokalt 2026-09-28 på begge sider, etter
-  brukerens videoreferanse: svarte, avrundede piler nederst til høyre, med rolig
-  bevegelse på ned-pilen. Begge knapper er nå 96 × 96 px med 52 × 64 px piler,
-  dobbelt tidligere størrelse. Ned-pilen står til venstre for opp-pilen.
-  Desktop-knappen hopper over lesesekvensen og spiller morphen automatisk
-  i ca. 2,2 sekunder til logoen er festet. Deretter flyttes viewporten mykt
-  til portrettet i ca. 0,9 sekunder, med 10 prosent av det røde bildet avslørt.
-  Landingen tar hensyn til avsløringens innledende pause og easing; videre
-  scrolling fortsetter samme reversible avsløring.
-  Egen scrolling, berøring, pekertrykk, navigasjonstaster eller resize avbryter
-  avspillingen. På mobil/lav skjerm går knappen direkte
-  til samme 10-prosentvisning, med ferdig logo. Redusert bevegelse beholder det
-  statiske røde portrettet uten avspilling. Opp-pilen går til dokumentets topp, inkludert
-  headeren, og blir tilgjengelig også etter navneseksjonen. Fokus følger hoppet.
-  Ned-pilen skjules ved bestemmelsesstedet; scrolling opp gjør den tilgjengelig
-  igjen. Redusert bevegelse slår av pilanimasjon og myk retur til toppen.
-  Kontrollert med klikk på desktop og mobilbredde 390 × 844: dobbel størrelse,
-  riktig rekkefølge, ferdig logo og fokus på portrettet ved landing.
-  Siste 10-prosentjustering er kontrollert på porteføljesiden (desktop) og
-  Om-siden (mobil): ca. 9,96 % / 10,00 % synlig rødt, innenfor avrunding til
-  hele scrollpiksler. Beregningen er også testet mot portrettets faktiske
-  avsløringsfunksjon. Wheel avbryter avspillingen. Begge ruter bruker samme komponent.
-  Isolert avspillingstest dekker faser, endepunkt, avbrudd, gjentatt aktivering,
-  fokus og direkte hopp på mobil/redusert bevegelse. Sekvenstesten og Astro
-  bestod også (0 feil/0 advarsler/3 eksisterende hint).
-  Pilendringen og regnbuesekvensen inngår i den bestilte lokale committen.
-  Disse justeringene er ikke publisert; push/deploy er ikke bestilt i denne runden.
-  Den nye 22-trinnssekvensen er kontrollert separat: riktig bokstavrekkefølge,
-  ett aktivt trinn om gangen, vedvarende bokstavfarger, reversering, kort
-  mobilside og morph innenfor eksisterende scrollrom. Nettleserkontroll ved
-  1280 × 720 og 390 × 844 bekreftet synlig regnbue, reversering og ingen overbredde.
-  Snarveien fullfører alle markeringer/farger før morph; d/c-morphen fungerer
-  fortsatt. Astro-kontroll: 0 feil, 0 advarsler, 3 eksisterende hint.
-  Justeringen til vedvarende farger er kontrollert i samme viewportstørrelser:
-  passerte bokstaver beholder regnbuen, desktop toner til svart før morph-start,
-  og scrolling opp gjenoppretter fargene. Mobil beholder fargene uten morph.
-  Tidslinjetest og Astro-kontroll bestod også etter justeringen.
-  Redusert bevegelse og JavaScript-fri visning beholder svarte bokstaver.
-- Uten JavaScript er hele navneinnholdet synlig. Redusert bevegelse fjerner
-  ekstra scrollrom, innrulling og bokstavflytting; markeringene er fullt synlige
-  og den festede logoen vises ved seksjonens slutt.
-- Kontrollert lokalt ved 1280 × 720 og 390 × 844: ett aktivt lesetrinn om gangen,
-  reversering, tykke markeringer, korrekt siste avsnitt, desktop-morph etter
-  lesesekvensen, ingen bokstavflytting på mobil, og mobil-logo skjult før siste
-  markering/fullt synlig etterpå. Ingen horisontal overbredde ved disse størrelsene.
-  Eldre kontroll ved 320 × 740 fant ca. 15 px overbredde i eksisterende
-  footernavigasjon; denne er ikke endret.
-- Isolerte tester av faktisk tidslinje/renderlogikk bestod opprinnelig for 11 ordnede trinn
-  uten overlapp, motsatt scrolling, kort side, desktop-morph først etter lesing,
-  ingen mobilmorph, «Fjær» som utløser for logoen og redusert bevegelse.
-  Fysisk mobilberøring og OS-styrt redusert bevegelse er ikke testet.
-- Astro-kontrollen ga 0 feil, 0 advarsler og 3 eksisterende hint.
-  `pnpm build` fullførte med exit 0, inkludert Pagefind-søkeindeksen.
-  Preview på port 4325 er verifisert å kjøre fra originalrepoet.
+  `public/logo-3d/poster.svg`. Konturene interpoleres under sammensetting, og en
+  liten inset stiller c rett under målet. `public/about-name/monogram.svg` bruker
+  originalgrafikken med tett viewBox.
+- Snarveispilene er beholdt: 96 × 96 px, ned til venstre for opp. Ned hopper over
+  gjenværende navneavspilling, spiller desktop-morphen i ca. 2,2 sekunder og flytter
+  til portrettet over ca. 0,9 sekunder, med 10 % av det røde bildet avslørt.
+  Mobil går direkte til samme portrettposisjon med ferdig logo. Egen scrolling,
+  berøring, pekertrykk, navigasjonstaster eller resize avbryter snarveiavspillingen.
+  Opp går til dokumentets topp. Fokus følger hoppet; pilene har skjermleseretiketter.
+- Redusert bevegelse viser ferdige markeringer og svarte bokstaver uten automatisk
+  avspilling, sticky scrollrom eller bokstavflytting. Innholdet finnes også uten JS.
+- Kontroll 2026-09-29: seks automatiserte tester i `tests/name-reading.test.mjs`
+  dekker overlapp/easing, ferdig avspilling uten scrolling, mobilens synlighetsstyring,
+  pause, morph etter siste markering, reversering, ny inngang, rask scrolling,
+  redusert bevegelse og snarveiens morph/10-prosentlanding. Astro-kontrollen bestod
+  med 0 feil, 0 advarsler og 3 eksisterende hint. Nettlesertest på Om-siden ved
+  1280 × 720 bekreftet full avspilling uten videre scrolling, ventende morph,
+  scrollstyrt sammensetting og reversering. Porteføljesiden ved 390 × 844 bekreftet
+  at Fjær venter utenfor viewporten, deretter fullfører avspilling og viser ferdig
+  logo uten bokstavflytting. Snarveien lander fortsatt på 10 % portrettavsløring.
+  Ingen nye konsollfeil ble observert. Preview på port 4325 er bekreftet å kjøre
+  fra originalrepoet. Fysisk mobil, OS-styrt redusert bevegelse og produksjonsbygg
+  er ikke testet i denne justeringen.
 
-Publiseringsstatus for navne- og portrettseksjonene står i §6.9. Den eksisterende
-brukerendringen i `AGENTS.md` er bevart og holdes utenfor denne leveransen.
+Publiseringshistorikk for de delte seksjonene står i §6.9. Brukerens eksisterende
+endring i `AGENTS.md` er bevart. Denne justeringen omfatter ikke commit eller deploy.
 
 ### 6.8 Portrett med scrollstyrt avsløring
 

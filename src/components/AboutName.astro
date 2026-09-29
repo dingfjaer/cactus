@@ -380,7 +380,7 @@ const { glyphs, widths } = typeData;
 		about-name[data-enhanced]:not([data-reduced]) .name-section::after {
 			content: "";
 			display: block;
-			height: 485svh;
+			height: calc(195svh + var(--name-reading-scroll, 0px));
 		}
 		about-name[data-enhanced]:not([data-reduced]) .name-scene {
 			position: sticky;

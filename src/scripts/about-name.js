@@ -1,3 +1,5 @@
+import { readingDurations, readingProgress, advanceReading } from "./name-reading.mjs";
+
 const clamp = (value) => Math.max(0, Math.min(1, value));
 const smooth = (value) => {
 	const t = clamp(value);
@@ -5,7 +7,6 @@ const smooth = (value) => {
 };
 const mix = (a, b, t) => a + (b - a) * t;
 const MORPH_START = 0.16;
-const RAINBOW_STEPS = new Set([0, 1, 2, 3, 7, 8, 9, 10, 16, 17, 18, 19]);
 let rainbowId = 0;
 
 // The rainbow enters from the left, then stays centred across the finished glyph.
@@ -84,32 +85,6 @@ function prepareMorph(source, targetData, svg) {
 	};
 }
 
-// Non-overlapping ranges keep the reading order identical in both directions.
-function readingSchedule({ pinned, sectionTop, height, anchors, maxScroll }) {
-	const ranges = [];
-	let cursor = sectionTop - height * 0.18;
-	for (let step = 0; step < anchors.length; step++) {
-		const letter = RAINBOW_STEPS.has(step);
-		const duration = height * (letter ? 0.085 : 0.18) * (pinned ? 1 : 0.85);
-		// Consecutive letters form one wave; pauses only separate reading beats.
-		const gap = step && !(letter && RAINBOW_STEPS.has(step - 1)) ? height * 0.025 : 0;
-		const desired = pinned ? cursor + gap : Math.max(0, anchors[step] - height * 0.78);
-		const start = Math.max(desired, step ? ranges[step - 1].end + gap : 0);
-		ranges.push({ start, end: start + duration });
-		cursor = start + duration;
-	}
-	// On short pages, compress the whole sequence uniformly, retaining every gap.
-	if (!pinned && ranges.at(-1).end > maxScroll) {
-		const origin = Math.min(ranges[0].start, Math.max(0, maxScroll - height));
-		const scale = Math.max(1, maxScroll - origin) / (ranges.at(-1).end - origin);
-		return ranges.map(({ start, end }) => ({
-			start: origin + (start - origin) * scale,
-			end: origin + (end - origin) * scale,
-		}));
-	}
-	return ranges;
-}
-
 // The complete reading sequence and a short pause precede the desktop morph.
 function nameTimeline(distance) {
 	return {
@@ -178,16 +153,9 @@ class AboutName extends HTMLElement {
 		);
 		this.reveals = [...this.querySelectorAll("[data-reveal]")];
 		this.highlights = [...this.querySelectorAll("[data-highlight]")];
-		this.steps = Array.from({ length: 22 }, (_, step) => {
-			const element = this.querySelector(
-				`[data-rainbow="${step}"], [data-reveal="${step}"], [data-highlight="${step}"]`,
-			);
-			return element.hasAttribute("data-rainbow")
-				? element.closest(".name-word")
-				: element.hasAttribute("data-reveal")
-					? element.parentElement
-					: element;
-		});
+		this.readingGroups = [...this.querySelectorAll(".name-grid article")];
+		this.readingElapsed = [0, 0, 0];
+		this.morphOffset = null;
 		this.rainbow = [...this.querySelectorAll("[data-rainbow]")].map((element) => {
 			const svg = element.ownerSVGElement;
 			let defs = svg.querySelector("defs[data-rainbow-defs]");
@@ -274,6 +242,7 @@ class AboutName extends HTMLElement {
 		window.addEventListener("scroll", this.schedule, options);
 		window.addEventListener("resize", this.schedule, options);
 		window.addEventListener("pageshow", this.schedule, options);
+		document.addEventListener("visibilitychange", this.schedule, options);
 		this.reduced.addEventListener("change", this.schedule, options);
 		this.pinned.addEventListener("change", this.schedule, options);
 		this.resizeObserver = new ResizeObserver(this.schedule);
@@ -285,26 +254,68 @@ class AboutName extends HTMLElement {
 		this.schedule();
 	}
 
-	readingRanges() {
-		const section = this.section.getBoundingClientRect();
-		const height = window.innerHeight;
-		const pinned = this.pinned.matches && !this.reduced.matches;
-		return readingSchedule({
-			pinned,
-			sectionTop: section.top + window.scrollY,
-			height,
-			anchors: this.steps.map((element) => element.getBoundingClientRect().top + window.scrollY),
-			maxScroll: Math.max(
-				1,
-				Math.min(
-					document.documentElement.scrollHeight - height - 16,
-					section.bottom + window.scrollY - height * 0.35,
-				),
-			),
-		});
+	readingComplete() {
+		return this.readingElapsed.every((elapsed, i) => elapsed >= readingDurations[i]);
 	}
 
-	skipDestination(ranges = this.readingRanges()) {
+	morphStart() {
+		return (
+			this.section.getBoundingClientRect().top +
+			window.scrollY +
+			(this.morphOffset ?? 0) * window.innerHeight
+		);
+	}
+
+	anchorMorph(continueHere) {
+		if (this.morphOffset !== null) return;
+		const sectionTop = this.section.getBoundingClientRect().top + window.scrollY;
+		this.morphOffset = continueHere
+			? Math.max(0, (window.scrollY - sectionTop) / window.innerHeight)
+			: 0;
+		// Preserve a full morph runway after reading, even if the visitor scrolled during playback.
+		this.section.style.setProperty("--name-reading-scroll", `${this.morphOffset * 100}svh`);
+	}
+
+	finishReading(continueHere = false) {
+		this.readingElapsed = [...readingDurations];
+		this.anchorMorph(continueHere);
+	}
+
+	advanceReading(dt) {
+		const section = this.section.getBoundingClientRect();
+		const height = window.innerHeight;
+		if (this.reduced.matches) {
+			this.finishReading();
+			return false;
+		}
+		// Returning fully to the 3D section prepares a fresh entrance, not a reverse playback.
+		if (section.top >= height) {
+			this.readingElapsed = [0, 0, 0];
+			this.morphOffset = null;
+			this.section.style.removeProperty("--name-reading-scroll");
+			return false;
+		}
+		// Fast scrolling and restored deep links must never leave an unfinished overlay behind.
+		if (section.bottom <= 0) {
+			this.finishReading();
+			return false;
+		}
+		if (document.hidden || this.readingComplete()) return false;
+		const pinned = this.pinned.matches;
+		const visible = this.readingGroups.map((group, i) => {
+			const bounds = group.getBoundingClientRect();
+			if (!pinned && bounds.bottom <= 0) this.readingElapsed[i] = readingDurations[i];
+			return pinned
+				? section.top <= height * 0.18
+				: bounds.top < height * 0.75 && bounds.bottom > 0;
+		});
+		const playback = advanceReading(this.readingElapsed, dt, visible);
+		this.readingElapsed = playback.elapsed;
+		if (this.readingComplete()) this.anchorMorph(pinned);
+		return playback.running;
+	}
+
+	skipDestination() {
 		const portrait = document.querySelector(".portrait-section");
 		const scene = portrait?.querySelector(".portrait-scene");
 		const inset = scene ? parseFloat(getComputedStyle(scene).top) || 0 : 0;
@@ -317,7 +328,7 @@ class AboutName extends HTMLElement {
 		return {
 			top: portrait
 				? portrait.getBoundingClientRect().top + window.scrollY - inset + previewOffset
-				: ranges.at(-1).end,
+				: this.morphStart() + window.innerHeight * 1.95,
 			element: portrait ?? this.section,
 		};
 	}
@@ -335,8 +346,8 @@ class AboutName extends HTMLElement {
 
 	skipReading() {
 		if (this.autoplay) return;
-		const ranges = this.readingRanges();
-		const destination = this.skipDestination(ranges);
+		this.finishReading(this.pinned.matches && !this.reduced.matches);
+		const destination = this.skipDestination();
 		const top = Math.max(
 			0,
 			Math.min(destination.top, document.documentElement.scrollHeight - window.innerHeight),
@@ -345,7 +356,7 @@ class AboutName extends HTMLElement {
 		const from = pinned
 			? Math.min(
 					top,
-					Math.max(window.scrollY, ranges.at(-1).end + window.innerHeight * MORPH_START),
+					Math.max(window.scrollY, this.morphStart() + window.innerHeight * MORPH_START),
 				)
 			: top;
 		// Bypass reading immediately, then play only the morph and the journey to the portrait.
@@ -355,7 +366,7 @@ class AboutName extends HTMLElement {
 		if (pinned) {
 			this.autoplay = {
 				from: window.scrollY,
-				morphEnd: Math.min(top, ranges.at(-1).end + window.innerHeight * 1.71),
+				morphEnd: Math.min(top, this.morphStart() + window.innerHeight * 1.71),
 				top,
 				element: destination.element,
 				started: null,
@@ -395,8 +406,9 @@ class AboutName extends HTMLElement {
 			this.reduced.matches || Math.abs(difference) < 0.25
 				? window.scrollY
 				: mix(this.visualScroll, window.scrollY, 1 - Math.exp(-dt / 320));
+		const reading = this.advanceReading(dt);
 		this.render();
-		if (this.visualScroll !== window.scrollY) this.schedule();
+		if (reading || this.visualScroll !== window.scrollY) this.schedule();
 		else this.lastTime = 0;
 	}
 
@@ -420,8 +432,7 @@ class AboutName extends HTMLElement {
 		};
 		const dSource = rect(d.source),
 			cSource = rect(c.source);
-		const schedule = this.readingRanges();
-		const destination = this.skipDestination(schedule);
+		const destination = this.skipDestination();
 		this.toggleAttribute(
 			"data-shortcuts",
 			section.top < height * 0.7 && window.scrollY > height * 0.3,
@@ -433,11 +444,13 @@ class AboutName extends HTMLElement {
 			: "Hopp til portrettet";
 		this.nextButton.setAttribute("aria-label", nextLabel);
 		this.nextButton.title = nextLabel;
-		const progress = schedule.map(({ start, end }) =>
-			reduced ? 1 : smooth((this.visualScroll - start) / (end - start)),
-		);
-		const afterReading = (this.visualScroll - schedule.at(-1).end) / height;
-		let complete = afterReading >= 0;
+		const progress = reduced ? Array(22).fill(1) : readingProgress(this.readingElapsed);
+		const afterReading = this.readingComplete()
+			? (this.visualScroll - this.morphStart()) / height
+			: -1;
+		let complete =
+			this.readingComplete() &&
+			this.highlights.at(-1).getBoundingClientRect().bottom < height * 0.9;
 		if (reduced) {
 			const after = document.documentElement.scrollHeight - (window.scrollY + section.bottom);
 			complete = section.bottom <= Math.max(0, height - after) + 24;
@@ -513,7 +526,7 @@ class AboutName extends HTMLElement {
 		this.reveals.forEach((element) => {
 			const p = progress[Number(element.dataset.reveal)];
 			const isSeal = element.classList.contains("name-seal");
-			// The flourish settles completely before the next reading step begins.
+			// Overlapping flourishes settle gently while the next detail starts.
 			const sway = reduced || isSeal ? 0 : Math.sin(p * Math.PI) * 10;
 			element.style.opacity = String(p);
 			element.style.transform = `translateY(${(1 - p) * (isSeal ? -38 : 108) + sway * 0.8}px) rotate(${(1 - p) * (isSeal ? -16 : -25) + sway}deg) scale(${0.78 + p * 0.22})`;
