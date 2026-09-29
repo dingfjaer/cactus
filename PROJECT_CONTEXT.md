@@ -476,6 +476,41 @@ Implementert lokalt 2026-09-28, ikke committet/publisert i denne oppgaven:
   innhold, temabytte, pause, datovisning og mobilbredde 390 px uten overbredde.
   Fysisk mobil og OS-styrt redusert bevegelse er ikke testet.
 
+### 6.11 På tur-case i porteføljen
+
+Integrert lokalt 2026-09-29 på `/portfolio/pa-tur/`, ikke committet eller publisert
+som del av denne oppgaven. Kilden er brukerens leveranse i
+`/Users/ding/Jottacloud/DingApps/Fjaerdinghage/filer for dingchenno Astro/pa-tur/`.
+
+- `src/pages/portfolio/pa-tur.astro` bruker eksisterende `Base.astro` med `wide`.
+  Nettstedets header, navigasjon, tema og footer er beholdt. Case-designet beholder
+  sitt mørke prosjektpanel og lyse leseflate, også når nettstedet bruker mørkt tema.
+- Over casen ligger et sentrert tekstkort med stiplet gullramme og brukerens
+  fire avsnitt om AI-generert design. Kortet ligger i sidefilen, uten å endre
+  den leverte case-komponenten.
+- `src/components/pa-tur/` inneholder levert `index.html`, `case.css`, `case.js`
+  og Astro-komponenten `PaTurCase.astro`. HTML/CSS/JS er kopiert uendret.
+  Adapteren henter innhold mellom CASE-markørene, erstatter indre main med article,
+  og tilpasser mediestier og retur til portfolio gjennom BASE_URL. Et lokalt
+  stiltillegg gjenoppretter originale h3-vekter etter Tailwinds reset.
+- Alle 15 ferdige WebP-bilder og MP4-opptaket ligger byte-identisk i
+  `public/pa-tur/`. Ingen nye pakker. Video lastes på forespørsel, uten autoplay.
+  Brukerens eksisterende originalmappe `public/images/På tur case Portfolio/`
+  er ikke endret, fjernet eller brukt som ekstra mediekopi i siden.
+- `portfolio.astro` har ny intern lenke over de tidligere lenkene:
+  «Showcase av På tur-appen. Gjett hvem som laget den?» Eksisterende innhold er bevart.
+- Kontroll: Astro 0 feil, 0 advarsler og 3 eksisterende hint. Original HTML/CSS/JS,
+  alle 16 medier, unike ID-er, mediereferanser og ankermål er kontrollert. Lokal
+  preview på port 4325 kjører fra originalrepoet. Desktop 1280 × 720 er sammenlignet
+  med den leverte frittstående siden. Fast prosjektpanel, ankerlenker, bildeforstørrelse,
+  fokusretur/Escape, kartvalg, porteføljelenke og retur er prøvd. MP4-videoen ble
+  avspilt helt til slutt (ca. 8,9 sekunder) uten avspillingsfeil.
+- Mobilbredde 390 px er inspisert med kartvalg og bildeforstørrelse uten overbredde.
+  Ved 320 px holder case-innholdet seg innenfor viewporten; nettstedets eksisterende
+  footer har fortsatt ca. 15 px overbredde. Den er ikke endret her. Kontrollen brukte
+  nettstedets mørke tema. Fysisk mobil, OS-styrt redusert bevegelse, skjermleser og
+  fullt produksjonsbygg er ikke testet i denne integrasjonen.
+
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 
 I idédumpen 2026-09-26 sa brukeren uttrykkelig at ideene skulle samles, men at

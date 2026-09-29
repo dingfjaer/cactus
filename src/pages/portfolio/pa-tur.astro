@@ -1,0 +1,50 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+import PaTurCase from "@/components/pa-tur/PaTurCase.astro";
+---
+
+<PageLayout
+	wide
+	meta={{
+		title: "På tur — små turer, store eventyr",
+		description:
+			"Et personlig app-prosjekt for turene med Tintin. Produktdesign, prosess og AI-assistert utvikling for iPhone og Apple Watch.",
+	}}
+>
+	<aside class="case-note" aria-label="Mine tanker om denne AI-lagde siden">
+		<p>
+			Jeg ba AI lage en side som viser frem På tur-appen vi har jobbet med sammen. Den kjenner jo
+			bakgrunnen, historiene og hele prosessen – så den har nesten bedre kontroll på hva vi har
+			gjort enn jeg selv har.
+		</p>
+		<p>
+			Et par minutter senere: voilà, ferdig side. Og jeg liker den! Men jeg ser også med én gang at
+			den har det samme uttrykket som så mange andre AI-genererte nettsider.
+		</p>
+		<p>
+			Akkurat det gjør meg faktisk litt mindre bekymret for designerjobben min. Så lenge jeg
+			fortsatt kan tenke «jepp, dette er AI» ved første øyekast, er det vel fortsatt noe vi
+			designere kan bidra med.
+		</p>
+		<p>
+			Kanskje jeg lager min egen versjon når jeg får tid. Så får vi se: Klarer jeg egentlig å lage
+			noe bedre?
+		</p>
+	</aside>
+	<PaTurCase />
+</PageLayout>
+
+<style>
+	.case-note {
+		max-width: 48rem;
+		margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+		padding: clamp(1rem, 2vw, 1.25rem);
+		border: 1px dashed #ad8923;
+		border-radius: 0.5rem;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+	}
+	.case-note p + p {
+		margin-top: 0.75rem;
+	}
+</style>

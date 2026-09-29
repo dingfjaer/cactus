@@ -1,0 +1,32 @@
+---
+// The HTML is the single content source for both the standalone demo and Astro.
+import document from "./index.html?raw";
+import "./case.css";
+interface Props {
+	assetBase?: string;
+}
+const { assetBase = `${import.meta.env.BASE_URL}pa-tur/` } = Astro.props;
+const base = assetBase.endsWith("/") ? assetBase : `${assetBase}/`;
+const body = document.split("<!-- CASE START -->")[1].split("<!-- CASE END -->")[0];
+// Base.astro already supplies the page's main landmark.
+const content = body
+	.replaceAll("./assets/", base)
+	.replaceAll("https://dingchen.no/portfolio/", `${import.meta.env.BASE_URL}portfolio/`)
+	.replace('<main class="pt-story"', '<article class="pt-story"')
+	.replace("</main>", "</article>");
+---
+
+<div class="patur-case" set:html={content} />
+<script>
+	import "./case.js";
+</script>
+
+<style is:global>
+	/* Restore the standalone heading weights after Tailwind's base reset. */
+	.patur-case h3 {
+		font-weight: 700;
+	}
+	.patur-case .pt-large-heading {
+		font-weight: 400;
+	}
+</style>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102638">
+  <meta name="description" content="På tur — en personlig iPhone- og Apple Watch-app for turene med Tintin. En case om produktdesign, AI-assistert utvikling og små eventyr i hverdagen.">
+  <title>På tur — små turer, store eventyr · Ding Chen Fjær</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23102638'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='72'%3E🐾%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./case.css">
+  <script src="./case.js" defer></script>
+</head>
+<body class="patur-standalone">
+<div class="patur-case">
+<!-- CASE START -->
+<a class="pt-skip" href="#pt-content">Hopp til case-innhold</a>
+<div class="pt-layout" id="pt-top">
+  <aside class="pt-cover" aria-label="Om prosjektet">
+    <a class="pt-back" href="https://dingchen.no/portfolio/" aria-label="Til Dings portfolio"><span aria-hidden="true">↖</span> Ding Chen Fjær <span class="pt-back-label">/ Portfolio</span></a>
+    <div class="pt-cover-main">
+      <p class="pt-eyebrow">Et personlig app-prosjekt <span>2026</span></p>
+      <h1>På tur<span class="pt-title-dot">.</span></h1>
+      <p class="pt-cover-subtitle">Små turer.<br>Store eventyr.</p>
+      <p class="pt-cover-intro">En turapp for meg og Tintin.<br>Og alt det fine som skjer underveis.</p>
+      <div class="pt-cover-trail" aria-hidden="true">
+        <svg viewBox="0 0 340 100" fill="none"><path d="M4 78C35 75 39 23 78 30S96 97 134 78 121 15 167 18 176 91 224 67 265 4 309 28" stroke="currentColor" stroke-width="2" stroke-dasharray="3 7" stroke-linecap="round"/><circle cx="5" cy="78" r="4" fill="currentColor"/><circle cx="310" cy="28" r="7" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Én designer. Fire poter.</span>
+      </div>
+      <dl class="pt-facts">
+        <div><dt>Min rolle</dt><dd>Idé, produktdesign<br>og AI-assistert utvikling</dd></div>
+        <div><dt>Plattform</dt><dd>iPhone + Apple Watch<br>SwiftUI · HealthKit · MapKit</dd></div>
+        <div><dt>Periode</dt><dd>August–september 2026</dd></div>
+        <div><dt>Prosjekt</dt><dd>Personlig app i utvikling</dd></div>
+      </dl>
+    </div>
+    <nav class="pt-toc" aria-label="Innhold i casen">
+      <a href="#pt-bakgrunn"><span>01</span> Bakgrunn</a>
+      <a href="#pt-opplevelsen"><span>02</span> Opplevelsen</a>
+      <a href="#pt-prosess"><span>03</span> Prosessen</a>
+      <a href="#pt-tidslinje"><span>04</span> Tidslinjen</a>
+      <a href="#pt-refleksjon"><span>05</span> Refleksjoner</a>
+    </nav>
+    <p class="pt-cover-footer">Laget med nysgjerrighet. Og turfølge. <span aria-hidden="true">↗</span></p>
+  </aside>
+
+  <main class="pt-story" id="pt-content">
+    <header class="pt-opening">
+      <div class="pt-running-head"><span>På tur / Produktdesign & utvikling</span><span>01 — 05</span></div>
+      <p class="pt-eyebrow">Fra hverdagsbehov til egen app</p>
+      <h2>Det begynte med<br>en helt vanlig luftetur.</h2>
+      <p class="pt-lead">Hvor går vi egentlig? Hvor langt har vi gått sammen? Og hvor mange ganger stoppet Tintin for å snuse?</p>
+      <p>På tur samler turene, stedene og de små øyeblikkene i én personlig app. Bygget rundt livet med hund — med rom for både treningsdata og tull.</p>
+      <a class="pt-text-link" href="#pt-demo">Se appen i bruk <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <figure class="pt-hero-figure">
+      <div class="pt-hero-stage">
+        <span class="pt-stage-label">PÅ EVENTUR MED TINTIN</span>
+        <a class="pt-shot pt-hero-back" href="./assets/turdetaljer.webp" data-zoom><img src="./assets/turdetaljer.webp" width="900" height="1951" alt="Turdetaljer med kart, etapper, distanse og puls." fetchpriority="high"></a>
+        <a class="pt-shot pt-hero-front" href="./assets/hjem.webp" data-zoom><img src="./assets/hjem.webp" width="900" height="1951" alt="Appens startside med illustrasjon av Tintin, turstart og turhistorikk." fetchpriority="high"></a>
+        <span class="pt-stage-note">Hverdagen, sett fra potehøyde.</span>
+      </div>
+      <figcaption><span>01 / Et eget lite univers for turene våre.</span><span>Trykk på bildene for å se nærmere ↗</span></figcaption>
+    </figure>
+
+    <section class="pt-section" id="pt-bakgrunn" aria-labelledby="pt-bakgrunn-title">
+      <p class="pt-section-index">01 / Bakgrunn</p>
+      <h2 id="pt-bakgrunn-title">Mer enn kilometer.</h2>
+      <p>Utgangspunktet var enkelt: Jeg ville ha en app for turene med Tintin. Klokken kunne registrere turen, mens telefonen kunne samle historikken og vise hvor vi hadde vært. Men opplevelsen skulle også ha et tydelig hundepreg.</p>
+      <p>En tur med hund følger sjelden én aktivitet fra start til slutt. Vi går, løper litt, stopper opp og går videre. Noen ganger begynner utflukten med en biltur. Jeg ville beholde hele historien, samtidig som målingene fortsatt ga mening.</p>
+      <blockquote>Hvordan kan en turapp ta vare på både aktiviteten og opplevelsen?</blockquote>
+      <div class="pt-principles">
+        <div><span>01</span><h3>Hele turen</h3><p>La aktivitetene skifte uten at sammenhengen forsvinner.</p></div>
+        <div><span>02</span><h3>Personlighet</h3><p>La Tintin, språket og de små detaljene sette tonen.</p></div>
+        <div><span>03</span><h3>Noe å se tilbake på</h3><p>Gjør turdata til minner, mønstre og små oppdagelser.</p></div>
+      </div>
+    </section>
+
+    <section class="pt-section" id="pt-opplevelsen" aria-labelledby="pt-opplevelsen-title">
+      <p class="pt-section-index">02 / Opplevelsen</p>
+      <h2 id="pt-opplevelsen-title">Én tur. Mange små historier.</h2>
+      <p>Turen kan starte på iPhone eller Apple Watch. På klokken registreres blant annet tid, puls, distanse og GPS-rute. Etterpå samles turen på telefonen, med kart, etapper og stedene vi markerte underveis.</p>
+      <p>Gåtur, løpetur, bil og pause får egne etapper i samme tur. Det gjør det mulig å vise både hele utflukten og hva som faktisk var aktivitet.</p>
+      <figure class="pt-figure">
+        <div class="pt-phone-pair pt-blue-stage">
+          <a class="pt-shot" href="./assets/etapper.webp" data-zoom><img src="./assets/etapper.webp" width="900" height="1951" loading="lazy" alt="En tur delt i gåtur, pause og løpetur, med egne tider og distanser."></a>
+          <a class="pt-shot" href="./assets/oyeblikk.webp" data-zoom><img src="./assets/oyeblikk.webp" width="900" height="1951" loading="lazy" alt="Tidslinje over etapper og markerte øyeblikk: snusing, lek og andre stopp."></a>
+        </div>
+        <figcaption>02 / Etapper gir struktur. Emoji gir turen hukommelse.</figcaption>
+      </figure>
+      <h3 class="pt-subheading">Små markeringer. Stor personlighet.</h3>
+      <p>Et morsomt møte, en snusepause eller et nødvendig stopp kan merkes med emoji. Markeringene dukker opp igjen i turdetaljene og på kartet. De gir tallene en sammenheng — og gjør det litt morsommere å se tilbake.</p>
+      <div class="pt-note"><span aria-hidden="true">🐾</span><p><strong>Et bevisst skille:</strong> Tintin-steg er et estimat basert på distanse, steglengde og snusefaktor. De er en leken tolkning av turen, ikke skritt målt på hunden.</p></div>
+
+      <div class="pt-chapter-break"><span>Fra tur til innsikt</span><span aria-hidden="true">↓</span></div>
+      <h3 class="pt-large-heading">Tinnsikt.<br>Data med et glimt i øyet.</h3>
+      <p>Statistikken fikk sitt eget navn og sin egen plass. I Tinnsikt kan jeg bytte mellom uke, måned, år og hele historikken — og se distanse, tid, antall turer eller estimerte Tintin-steg.</p>
+      <p>Ukentlige og månedlige wraps trekker frem de små historiene: turdager, gjengangere blant emoji og den lengste snuserunden. Bil og pauser holdes utenfor bevegelsestallene i oppsummeringene.</p>
+      <figure class="pt-figure">
+        <div class="pt-phone-pair pt-orange-stage">
+          <a class="pt-shot" href="./assets/tinnsikt.webp" data-zoom><img src="./assets/tinnsikt.webp" width="900" height="1951" loading="lazy" alt="Tinnsikt med månedsstatistikk, oransje søyler og sammenligning med forrige periode."></a>
+          <a class="pt-shot" href="./assets/ukesoppsummering.webp" data-zoom><img src="./assets/ukesoppsummering.webp" width="900" height="1951" loading="lazy" alt="Ukentlig wrap for 21.–27. september med 18 turer og 41,75 kilometer for potene."></a>
+        </div>
+        <figcaption>03 / Fra oversikt over aktiviteten til en oppsummering av uken.</figcaption>
+      </figure>
+      <div class="pt-mini-gallery" aria-label="Flere skjermbilder fra Tinnsikt">
+        <figure><a class="pt-shot" href="./assets/wraps.webp" data-zoom><img src="./assets/wraps.webp" width="900" height="1951" loading="lazy" alt="Oversikt over ukentlige og månedlige wraps."></a><figcaption>Uker og måneder</figcaption></figure>
+        <figure><a class="pt-shot" href="./assets/turdager.webp" data-zoom><img src="./assets/turdager.webp" width="900" height="1951" loading="lazy" alt="Syv turdager og periodens emoji, vist som små visuelle oppsummeringer."></a><figcaption>Turer fortalt i emoji</figcaption></figure>
+        <figure><a class="pt-shot" href="./assets/snuserunden.webp" data-zoom><img src="./assets/snuserunden.webp" width="900" height="1951" loading="lazy" alt="Statistikk over små stopp og en grønn rutetegning av den lengste snuserunden."></a><figcaption>De små høydepunktene</figcaption></figure>
+      </div>
+
+      <div class="pt-chapter-break"><span>Et kart over hverdagen</span><span aria-hidden="true">↓</span></div>
+      <h3 class="pt-large-heading">Her har vi satt spor.</h3>
+      <p>Når mange turer legges oppå hverandre, blir nærmiljøet et personlig kart. Utforskningskartet kan filtreres etter ukedag, hverdager og helg. Turgalleriet viser hver rute som en liten tegning — et visuelt minne om hvor vi har vært.</p>
+      <figure class="pt-figure pt-map-figure">
+        <div class="pt-map-stage">
+          <div class="pt-map-copy"><span class="pt-eyebrow">Utforskningskart</span><h4>Samme sted.<br>Nye mønstre.</h4><p>Bytt skjermbilde og se forskjellen mellom alle turer, hverdager og mandager.</p>
+            <div class="pt-map-controls" role="group" aria-label="Velg skjermbilde av kartet" hidden>
+              <button type="button" aria-pressed="true" data-map="utforskning" data-label="Alle turer">Alle turer</button>
+              <button type="button" aria-pressed="false" data-map="hverdager" data-label="Hverdager">Hverdager</button>
+              <button type="button" aria-pressed="false" data-map="mandag" data-label="Mandager">Mandager</button>
+            </div>
+            <noscript><p><a href="./assets/hverdager.webp">Se hverdager</a> · <a href="./assets/mandag.webp">Se mandager</a></p></noscript>
+            <p class="pt-map-status" aria-live="polite">Viser: Alle turer</p>
+          </div>
+          <a class="pt-shot pt-map-shot" href="./assets/utforskning.webp" data-zoom><img src="./assets/utforskning.webp" width="900" height="1951" loading="lazy" alt="Utforskningskart med alle turer tegnet i ulike farger rundt Langhus."></a>
+        </div>
+        <figcaption>04 / Faktiske skjermbilder fra appen. Kartet på denne siden er en bildevisning.</figcaption>
+      </figure>
+      <div class="pt-mini-gallery" aria-label="Kart og ruter">
+        <figure><a class="pt-shot" href="./assets/shitmap.webp" data-zoom><img src="./assets/shitmap.webp" width="900" height="1951" loading="lazy" alt="ShitMap viser registrerte bæsjestopp som emoji på kartet."></a><figcaption>ShitMap. Ja, faktisk.</figcaption></figure>
+        <figure><a class="pt-shot" href="./assets/turgalleri.webp" data-zoom><img src="./assets/turgalleri.webp" width="900" height="1951" loading="lazy" alt="Turgalleriet viser turene som grønne rutetegninger på mørk bakgrunn."></a><figcaption>Hver tur har sin form</figcaption></figure>
+        <figure><a class="pt-shot" href="./assets/ruter.webp" data-zoom><img src="./assets/ruter.webp" width="900" height="1951" loading="lazy" alt="Rutebibliotek med GPX-import, lagrede ruter og veibeskrivelse til start."></a><figcaption>Planlegg neste eventyr</figcaption></figure>
+      </div>
+      <p>Under Ruter kan jeg importere GPX-filer og finne tilbake til planlagte turer. Og ShitMap? Det samler akkurat de stoppene navnet lover. Et lite eksempel på hvordan et personlig prosjekt kan få lov til å være personlig.</p>
+    </section>
+
+    <section class="pt-section" id="pt-prosess" aria-labelledby="pt-prosess-title">
+      <p class="pt-section-index">03 / Prosessen</p>
+      <h2 id="pt-prosess-title">Fra «kan vi lage dette?»<br>til noe vi tar med ut.</h2>
+      <p>Jeg startet med en kravskisse for iPhone og Apple Watch. Første mål var en liten, brukbar kjerne: starte en tur, registrere den, lagre den og se den igjen. Derfra vokste prosjektet gjennom konkrete designvalg og tekniske iterasjoner.</p>
+      <div class="pt-process-list">
+        <div><span>01</span><div><h3>Definere det personlige behovet</h3><p>Klokken skulle være med på turen. Telefonen skulle samle minnene. Tintin skulle prege både funksjoner og uttrykk.</p></div></div>
+        <div><span>02</span><div><h3>Bygge med AI som medutvikler</h3><p>Jeg brukte AI til å omsette ideer og tilbakemeldinger til SwiftUI-kode. Min rolle var å gi retning, vurdere resultatet og konkretisere neste forbedring.</p></div></div>
+        <div><span>03</span><div><h3>Finne formen underveis</h3><p>Startsiden ble et lite eventyrunivers. Turdetaljene fikk tydeligere etapper og markeringer. Tinnsikt og kart fikk egne områder da innholdet vokste.</p></div></div>
+        <div><span>04</span><div><h3>Ta det usynlige på alvor</h3><p>Synkronisering, pauser og lagring av GPS-ruter krevde egne runder. Et hyggelig grensesnitt må følges av data som henger sammen.</p></div></div>
+      </div>
+      <h3 class="pt-subheading">Det vanskelige lå mellom skjermene.</h3>
+      <p>En tur kunne skifte aktivitet, pauses og flyttes mellom klokken, telefonen og Helse. Derfor fikk både turen og etappene permanente ID-er. Sammenhengen måtte overleve også når data kom inn på ulike tidspunkt.</p>
+      <p>Arbeidet med HealthKit og Watch-synkronisering ble en viktig del av produktutviklingen: håndtere forsinkede hendelser, fullføre treningsøkter og hente tilbake ruter. Det er lite synlig i et skjermbilde, men helt sentralt for opplevelsen.</p>
+      <div class="pt-tech-line"><span>SwiftUI</span><span>HealthKit</span><span>MapKit</span><span>WatchConnectivity</span><span>GPX</span></div>
+      <h3 class="pt-subheading">Et uttrykk som hører til Tintin.</h3>
+      <p>Den illustrerte Tintin, den blå kveldsstemningen og de oransje detaljene gir appen et eget uttrykk. Navn som «På eventur», «Tinnsikt» og «den lengste snuserunden» gjør den mindre høytidelig. Personligheten ligger like mye i ordene som i bildene.</p>
+      <div class="pt-palette" aria-label="Farger fra appens designsystem"><div style="--swatch:#09254F"><span>Kveldsblå</span><code>#09254F</code></div><div style="--swatch:#1F4F8F"><span>Eventyrblå</span><code>#1F4F8F</code></div><div style="--swatch:#E56B00"><span>Turoransje</span><code>#E56B00</code></div></div>
+    </section>
+
+    <section class="pt-section" id="pt-tidslinje" aria-labelledby="pt-tidslinje-title">
+      <p class="pt-section-index">04 / Tidslinjen</p>
+      <h2 id="pt-tidslinje-title">Små steg, mange runder.</h2>
+      <p>Prosjektet tok form gjennom sensommeren og september. Fra den første kravskissen til en app med sitt eget språk, turhistorikk og kart over hverdagen.</p>
+      <ol class="pt-timeline">
+        <li><time datetime="2026-08-22">22. august</time><h3>Behovet blir konkret</h3><p>Kravskisse for telefon og klokke. Den tidlige samtaleloggen beskriver arbeidet med første SwiftUI-MVP.</p></li>
+        <li><time datetime="2026-08-31">31. august–1. september</time><h3>Hele turen får en modell</h3><p>Første Git-versjon. Etapper, aktivitetsskifte, pauser og bilkjøring får en tydeligere plass i turen.</p></li>
+        <li><time datetime="2026-09-03">3.–6. september</time><h3>Tintin flytter inn</h3><p>Ny startside, profil og turdetaljer. Animerte potespor, fleksible emoji og flere forbedringer i kartene.</p></li>
+        <li><time datetime="2026-09-09">9.–10. september</time><h3>Mer arbeid under panseret</h3><p>Forbedringer i avslutning av HealthKit-økter og tryggere gjenoppretting av eldre GPS-ruter.</p></li>
+        <li><time datetime="2026-09-21">21. september</time><h3>Turene blir til Tinnsikt</h3><p>Uke- og månedswraps, statistikk og en egen kartfane med ShitMap, turer og ruter.</p></li>
+        <li><time datetime="2026-09-29">29. september</time><h3>Et øyeblikksbilde av prosjektet</h3><p>Skjermbildene i denne casen viser appen slik den ser ut nå. Prosjektet er fortsatt i utvikling.</p></li>
+      </ol>
+      <p class="pt-small">Tidslinjen bygger på prosjektets tidlige skisser og samtalelogg, samt datert Git-historikk. Datoene angir dokumentert arbeid, ikke App Store-lanseringer.</p>
+    </section>
+
+    <section class="pt-section" id="pt-demo" aria-labelledby="pt-demo-title">
+      <p class="pt-section-index">Et lite innblikk</p>
+      <h2 id="pt-demo-title">Bli med inn i appen.</h2>
+      <figure class="pt-video-figure">
+        <div class="pt-video-stage"><video controls playsinline preload="none" poster="./assets/hjem.webp" aria-label="Skjermopptak fra På tur-appen"><source src="./assets/pa-tur-demo.mp4" type="video/mp4">Nettleseren støtter ikke video. <a href="./assets/pa-tur-demo.mp4">Åpne skjermopptaket.</a></video><div><span class="pt-eyebrow">Fra telefonen</span><p>På eventur<br>med Tintin.</p><span>Skjermopptak · 29. september 2026</span></div></div>
+        <figcaption>Start opptaket med videokontrollene. Skjermbildene og teksten over beskriver appens sentrale funksjoner.</figcaption>
+      </figure>
+    </section>
+
+    <section class="pt-section pt-reflection" id="pt-refleksjon" aria-labelledby="pt-refleksjon-title">
+      <p class="pt-section-index">05 / Refleksjoner</p>
+      <h2 id="pt-refleksjon-title">En liten app.<br>Et stort rom for å lære.</h2>
+      <p>På tur er et personlig produktprosjekt: en mulighet til å utforske hele veien fra behov og grensesnitt til en app som samler turdata. Verdien ligger både i det vi kan bruke, og i det jeg lærer av å bygge det.</p>
+      <div class="pt-learnings"><h3>Personlighet kan være funksjonelt</h3><p>Emoji, navn og rutetegninger gjør historikken lettere å kjenne igjen og morsommere å utforske.</p><h3>AI gjør veien til kode kortere</h3><p>Men produktretningen, prioriteringene og vurderingen av hva som fungerer, trenger fortsatt en designer.</p><h3>Enkelhet krever arbeid bak kulissene</h3><p>«Lagre turen» er en enkel handling i grensesnittet. Under ligger etapper, GPS, Helse-data og synkronisering som må være enige.</p></div>
+      <p class="pt-small">Casen viser design og implementerte funksjoner i et personlig prosjekt. Den er ikke en måling av brukereffekt eller dokumentasjon på en offentlig lansering.</p>
+      <div class="pt-ending"><p>Fortsettelse følger.<br><em>Tintin må uansett ut.</em></p><span aria-hidden="true">🐾</span></div>
+      <a class="pt-text-link" href="#pt-top">Tilbake til start <span aria-hidden="true">↑</span></a>
+    </section>
+    <footer class="pt-footer"><span>På tur · Ding Chen Fjær · 2026</span><span>Idé, design og utvikling — med Tintin som turfølge.</span></footer>
+  </main>
+</div>
+<dialog class="pt-lightbox" aria-label="Forstørret skjermbilde"><button class="pt-close" type="button" aria-label="Lukk forstørret skjermbilde">Lukk <span aria-hidden="true">×</span></button><figure><img alt=""><figcaption></figcaption></figure></dialog>
+<!-- CASE END -->
+</div>
+</body>
+</html>
