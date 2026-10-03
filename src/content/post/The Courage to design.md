@@ -54,9 +54,9 @@ I rollen som designdirektør i ThoughtSpot var Baxley frustrert over at resten a
 4. Steve Jobs og de tre linjene i sanden for Keynote  
 Baxley hørte historien om da ingeniørleder Roger Rosner skulle utvikle den første versjonen av presentasjonsverktøyet Keynote for Apple ([20:56](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1256s)). Steve Jobs ga teamet tre kompromissløse design-dogmer ([21:30](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1290s)):
 
-5. Det skal være vanskelig å lage stygge presentasjoner ([21:40](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1300s)).
-6. Prioriter filmatiske overganger (_cinematic quality transitions_) ([21:40](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1300s)).
-7. Prioriter fokus og innovasjon over kompatibilitet med PowerPoint ([21:45](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1305s)).  
+- Det skal være vanskelig å lage stygge presentasjoner ([21:40](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1300s)).
+-  Prioriter filmatiske overganger (_cinematic quality transitions_) ([21:40](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1300s)).
+- Prioriter fokus og innovasjon over kompatibilitet med PowerPoint ([21:45](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1305s)).  
     Dette var ikke milde retningslinjer, men absolutte kjøreregler som sparte teamet for tiår med interne diskusjoner ([21:53](https://www.youtube.com/watch?v=cxCBFqIti-s&t=1313s)).
 
 ---
