@@ -665,14 +665,17 @@ publisering er ikke utført for denne endringen.
 ### 6.15 Spira: innholdstyper, Underveis og Dingo i hagefanene
 
 Implementert lokalt 2026-10-03. Spira på `/posts/` har filtrene **Alle**,
-**DingaLing** og **KI-oppsummert**, med synlig forklaring for de to siste. Filteret er en enkel tekstrad med
+**NerDing** og **KI-oppsummert**, med synlig forklaring for de to siste. Filteret er en enkel tekstrad med
 strek i aksentfargen under aktivt valg, uten boks eller fylt bakgrunn.
 Innholdstype beskriver hva teksten tilbyr leseren, ikke om KI har vært involvert
 i språkvask. Emneknaggene og de andre hagefanene er beholdt.
+NerDing har beskrivelsen «Egne tanker, små oppdagelser og notater i vekst.»
+Det interne feltet og URL-filteret heter fortsatt `dingaling`, slik at eksisterende
+innlegg, lenker og lagrede utvalg fungerer etter navneendringen.
 
 - Frontmatter: `contentType: dingaling` (standard) eller
   `contentType: ki-oppsummert`. De 63 publiserte innleggene er klassifisert:
-  7 personlige tekster/notater i DingaLing; 54 Raut-/Medium-lesetips, «The Courage
+  7 personlige tekster/notater i NerDing; 54 Raut-/Medium-lesetips, «The Courage
   to design» og «Fargeblind og UX» i KI-oppsummert. Bare metadata er endret.
   Nye lesetips/sammendrag skal få eksplisitt `contentType: ki-oppsummert`.
 - `inProgress: true` gir **🌱 Underveis** ved datoen i alle innleggsoversikter,

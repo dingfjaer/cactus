@@ -67,7 +67,7 @@ class SpiraExplorer extends HTMLElement {
 			);
 			const copy =
 				filter === "dingaling"
-					? ["DingaLing", "Mine tanker og notater. Noen ferdigtenkte, andre fortsatt i vekst."]
+					? ["NerDing", "Egne tanker, små oppdagelser og notater i vekst."]
 					: ["KI-oppsummert", "Fagstoff jeg har utforsket, lest og oppsummert med hjelp av KI."];
 			get("[data-description]").hidden = filter === "alle";
 			get("[data-filter-title]").textContent = copy[0];
