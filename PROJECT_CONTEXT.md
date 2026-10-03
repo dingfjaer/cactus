@@ -712,6 +712,9 @@ Lokal nettleserkontroll bekreftet begge filtre, fem tilfeldige funn, ny trekning
 retur fra artikkel via historikk og meny, oppdatering, paginering, festet innlegg,
 Underveis-forklaring og titler uten understreking på forsiden/Spira.
 Desktop og 390/320 px er kontrollert, uten sideveis overbredde i Spira.
+Terningkastet er kontrollert sentrert på desktop og ved 390 px: begge knapper,
+nytt utvalg etter animasjonen, tilbakeført tastaturfokus og avbrudd med Escape.
+Redusert bevegelse er implementert, men ikke kontrollert i nettleseren.
 Lyst/mørkt tema og tastatur er prøvd. Førstegangsvalg er testet mot selve
 ThemeProvider-scriptet; fysisk mobil og fullt produksjonsbygg er ikke testet.
 Preview på port 4325 kjører fra originalrepoet. Astros utdaterte utviklingscache
