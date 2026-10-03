@@ -7,6 +7,7 @@ tags:
   - faglig-utvikling
   - visuell-design
 draft: false
+contentType: ki-oppsummert
 ---
 
 Erik Messaki skiller mellom å bla gjennom fine arbeider og å studere dem. Læringen ligger i å undersøke hvorfor løsningen er bygget som den er.

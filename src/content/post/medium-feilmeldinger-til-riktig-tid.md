@@ -7,6 +7,7 @@ tags:
   - skjemadesign
   - interaksjonsdesign
 draft: false
+contentType: ki-oppsummert
 ---
 
 Saunved sammenligner ulike måter å validere skjemaer på. Det interessante er når tilbakemeldingen kommer, og hvor lett det blir å rette en feil.

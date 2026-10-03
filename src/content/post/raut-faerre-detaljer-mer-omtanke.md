@@ -7,6 +7,7 @@ tags:
   - interaksjonsdesign
   - produktutvikling
 draft: false
+contentType: ki-oppsummert
 ---
 
 Limit the number of details undersøker sammenhengen mellom kompleksitet og håndverk. «Detaljer» omfatter her funksjoner, tilstander og oppførsel, langt utover det rent visuelle.

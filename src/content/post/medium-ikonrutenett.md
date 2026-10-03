@@ -7,6 +7,7 @@ tags:
   - ikoner
   - designsystemer
 draft: false
+contentType: ki-oppsummert
 ---
 
 Helena Zhang forklarer hvordan ikonrutenett gir designere et felles utgangspunkt, samtidig som øyet må få siste ord.

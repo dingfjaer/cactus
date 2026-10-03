@@ -7,6 +7,7 @@ tags:
   - design
   - kreativitet
 draft: false
+contentType: ki-oppsummert
 ---
 
 Arun Venkatesan utforsker hvordan begrensninger påvirker kreativitet, med eksempler fra grafisk design, 3D-kunst og arkitektur. Felles rammer kan gi svært forskjellige uttrykk.

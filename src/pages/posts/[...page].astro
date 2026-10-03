@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import SpiraExplorer from "@/components/garden/SpiraExplorer.astro";
 import GardenTabs from "@/components/garden/GardenTabs.astro";
 import Pagination from "@/components/Paginator.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
@@ -9,18 +10,22 @@ import type { GetStaticPaths, Page } from "astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const MAX_POSTS_PER_PAGE = 10;
-	const allPosts = await getAllPosts();
+	const allPosts = (await getAllPosts()).filter((post) => !post.data.draft);
 	const sortedPosts = sortPostsPinnedFirst(allPosts);
 	const uniqueTags = getUniqueTags(allPosts);
-	return paginate(sortedPosts, { pageSize: MAX_POSTS_PER_PAGE, props: { uniqueTags } });
+	return paginate(sortedPosts, {
+		pageSize: MAX_POSTS_PER_PAGE,
+		props: { uniqueTags, allPosts: sortedPosts },
+	});
 }) satisfies GetStaticPaths;
 
 interface Props {
 	page: Page<CollectionEntry<"post">>;
 	uniqueTags: string[];
+	allPosts: CollectionEntry<"post">[];
 }
 
-const { page, uniqueTags } = Astro.props;
+const { page, uniqueTags, allPosts } = Astro.props;
 
 const meta = {
 	description: "Les samlingen min av innlegg og det som inspirerer meg",
@@ -53,32 +58,34 @@ const descYearKeys = Object.keys(groupedByYear).sort((a, b) => +b - +a);
 	<!-- <h1 class="title mb-6">Posts</h1> -->
 	<div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
 		<section aria-label="Liste over blogginnlegg">
-			{
-				pinnedPosts.length > 0 && (
-					<ul class="mb-8 mt-6 space-y-8 text-start">
-						{pinnedPosts.map((p) => (
-							<li class="grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
-								<PostPreview post={p} />
-							</li>
-						))}
-					</ul>
-				)
-			}
-			{
-				descYearKeys.map((yearKey) => (
-					<>
-						<h2 class="title text-lg">{yearKey}</h2>
+			<SpiraExplorer posts={allPosts} currentPage={page.currentPage}>
+				{
+					pinnedPosts.length > 0 && (
 						<ul class="mb-8 mt-6 space-y-8 text-start">
-							{groupedByYear[yearKey]?.map((p) => (
+							{pinnedPosts.map((p) => (
 								<li class="grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
 									<PostPreview post={p} />
 								</li>
 							))}
 						</ul>
-					</>
-				))
-			}
-			<Pagination {...paginationProps} />
+					)
+				}
+				{
+					descYearKeys.map((yearKey) => (
+						<>
+							<h2 class="title text-lg">{yearKey}</h2>
+							<ul class="mb-8 mt-6 space-y-8 text-start">
+								{groupedByYear[yearKey]?.map((p) => (
+									<li class="grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
+										<PostPreview post={p} />
+									</li>
+								))}
+							</ul>
+						</>
+					))
+				}
+				<Pagination {...paginationProps} />
+			</SpiraExplorer>
 		</section>
 		{
 			!!uniqueTags.length && (

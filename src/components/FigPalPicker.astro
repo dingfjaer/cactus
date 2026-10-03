@@ -199,6 +199,36 @@ const figures = [
 	html[data-figpal-cursor] * {
 		cursor: none !important;
 	}
+	/* Clickable controls keep the native hand, including their nested artwork. */
+	html
+		:is(
+			a[href],
+			button,
+			summary,
+			[role="button"],
+			[role="link"],
+			[role="tab"],
+			[role="switch"],
+			[role="menuitem"],
+			[data-media-open],
+			.cursor-pointer
+		):not(:disabled):not([aria-disabled="true"]),
+	html
+		:is(
+			a[href],
+			button,
+			summary,
+			[role="button"],
+			[role="link"],
+			[role="tab"],
+			[role="switch"],
+			[role="menuitem"],
+			[data-media-open],
+			.cursor-pointer
+		):not(:disabled):not([aria-disabled="true"])
+		* {
+		cursor: pointer !important;
+	}
 	@keyframes figpal-stamp {
 		0% {
 			opacity: 0;

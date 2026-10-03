@@ -7,6 +7,7 @@ tags:
   - designsystemer
   - uu
 draft: false
+contentType: ki-oppsummert
 ---
 
 Lanseringen av Designsystemet V1 viser hva flere offentlige virksomheter kan få til sammen. Digdir, Mattilsynet, Udir og Brønnøysundregistrene står bak arbeidet som beskrives.

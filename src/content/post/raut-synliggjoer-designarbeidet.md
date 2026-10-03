@@ -7,6 +7,7 @@ tags:
   - designledelse
   - samarbeid
 draft: false
+contentType: ki-oppsummert
 ---
 
 Peter Merholz beskriver et gap mellom det designere gjør og det organisasjonen klarer å gjenkjenne som verdifullt arbeid. Utforskning og problemforståelse blir lett usynlig når oppmerksomheten ligger på skjermbilder.

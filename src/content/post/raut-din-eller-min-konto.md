@@ -7,6 +7,7 @@ tags:
   - innholdsdesign
   - ux
 draft: false
+contentType: ki-oppsummert
 ---
 
 Adam Silver tar opp et spørsmål som stadig kommer tilbake i grensesnitt: Skal vi skrive «min» eller «din»? Ofte er den beste starten å undersøke om pronomenet trengs.

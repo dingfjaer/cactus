@@ -7,6 +7,7 @@ tags:
   - uu
   - design
 draft: false
+contentType: ki-oppsummert
 ---
 
 Sketchplanations forklarer curb-cut-effekten gjennom nedsenkede fortauskanter. Et tiltak for rullestolbrukere gjør også fremkommeligheten bedre for mange andre.

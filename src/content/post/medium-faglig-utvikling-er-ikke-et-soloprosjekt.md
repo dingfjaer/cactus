@@ -7,6 +7,7 @@ tags:
   - faglig-utvikling
   - samarbeid
 draft: false
+contentType: ki-oppsummert
 ---
 
 Devin Ross bruker The Queen’s Gambit som utgangspunkt for refleksjoner om å utvikle seg som designer. Poengene handler særlig om læring og menneskene rundt oss.

@@ -9,6 +9,7 @@ tags:
   - arbeidsliv
   - foredrag
 draft: false
+contentType: ki-oppsummert
 ---
 Jeg fikk tips av kollegaer som var på Hatch Konferanse i Berlin om foredraget til Bob. På en lørdags ettermiddag, sitter jeg i sofaen, ble inspirert og rørt. 
 Det er gull i hele foredraget, så det er verdt å se fra start til slutt. Men her er et sammendrag oppsummert av Google sin AI-modus uansett. 

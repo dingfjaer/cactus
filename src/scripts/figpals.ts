@@ -4,6 +4,10 @@ const MAX_STICKERS = 30;
 const nativeArea =
 	'figpal-picker, input, textarea, select, [contenteditable]:not([contenteditable="false"]), canvas, video, iframe, dialog, [role="slider"], astro-dev-toolbar';
 
+// Keep familiar click affordances, including SVGs/images nested inside a control.
+const clickableArea =
+	'a[href], button, summary, [role="button"], [role="link"], [role="tab"], [role="switch"], [role="menuitem"], [data-media-open], .cursor-pointer';
+
 type Sticker = { image: HTMLImageElement; x: number; y: number; timer: number };
 
 class FigPalPicker extends HTMLElement {
@@ -155,7 +159,7 @@ class FigPalPicker extends HTMLElement {
 					event.pointerType !== "mouse" ||
 					event.buttons ||
 					panel.matches(":popover-open") ||
-					(event.target as Element).closest(nativeArea)
+					(event.target as Element).closest(`${nativeArea}, ${clickableArea}`)
 				) {
 					hidePointer();
 					return;

@@ -85,3 +85,14 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 		</div>
 	)
 }
+
+{
+	data.inProgress && (
+		<aside class="mt-6 rounded-lg border border-accent/25 bg-accent/5 p-4 text-sm">
+			<strong class="text-accent">🌱 Underveis</strong>
+			<p class="mt-1">
+				Dette er et notat i vekst. Jeg oppdaterer det etter hvert som jeg tenker videre.
+			</p>
+		</aside>
+	)
+}

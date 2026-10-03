@@ -7,6 +7,7 @@ tags:
   - kunstig-intelligens
   - ux
 draft: false
+contentType: ki-oppsummert
 ---
 
 Julian Lehr utfordrer forestillingen om at naturlig språk skal erstatte alle andre grensesnitt. Han argumenterer for at samtaler fungerer best når de utfyller andre måter å arbeide på.

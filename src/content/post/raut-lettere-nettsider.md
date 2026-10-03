@@ -7,6 +7,7 @@ tags:
   - baerekraft
   - frontend
 draft: false
+contentType: ki-oppsummert
 ---
 
 Smashing Magazine beskriver en praktisk tilnærming til mer ressurseffektive nettsteder: Begynn med en viktig brukerreise, mål utgangspunktet og forbedre den systematisk.

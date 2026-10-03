@@ -7,6 +7,7 @@ tags:
   - samarbeid
   - kunstig-intelligens
 draft: false
+contentType: ki-oppsummert
 ---
 
 Erlend Sogge Heggen skriver om hvordan det å dele åpen programvare har blitt mer konfliktfylt. Essayet handler særlig om fellesskapet rundt arbeidet og mistilliten KI-debatten kan skape.

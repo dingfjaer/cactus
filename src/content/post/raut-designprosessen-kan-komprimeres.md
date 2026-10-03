@@ -7,6 +7,7 @@ tags:
   - designprosess
   - kunstig-intelligens
 draft: false
+contentType: ki-oppsummert
 ---
 
 Sarah Gibbons og Huei-Hsin Wang i Nielsen Norman Group nyanserer debatten om at KI gjør designprosessen overflødig. Erfarne designere kan gjennomføre deler av arbeidet raskt fordi de har mye kunnskap fra før.

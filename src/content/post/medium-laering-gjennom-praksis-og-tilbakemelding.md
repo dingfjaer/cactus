@@ -7,6 +7,7 @@ tags:
   - faglig-utvikling
   - arbeidsliv
 draft: false
+contentType: ki-oppsummert
 ---
 
 Alexey Tretina deler erfaringer fra veien inn i design og videre som frilanser. Rådene handler om å bygge ferdigheter gjennom konkret arbeid og respons fra andre.

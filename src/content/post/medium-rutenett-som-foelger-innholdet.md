@@ -7,6 +7,7 @@ tags:
   - visuell-design
   - responsivt-design
 draft: false
+contentType: ki-oppsummert
 ---
 
 Andrii Zhulidin beskriver praktiske valg når man lager rutenett for mobilgrensesnitt. Rådene er ment som utgangspunkt for utforskning, ikke ufravikelige regler.

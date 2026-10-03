@@ -7,6 +7,7 @@ tags:
   - designledelse
   - samarbeid
 draft: false
+contentType: ki-oppsummert
 ---
 
 Kieran Snyder beskriver en verdiøvelse som ga et team tre flotte, men motstridende prinsipper. Poenget hennes er at verdier må forklare prioriteringer når hensyn kolliderer.

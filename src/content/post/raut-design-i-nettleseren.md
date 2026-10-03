@@ -7,6 +7,7 @@ tags:
   - design
   - frontend
 draft: false
+contentType: ki-oppsummert
 ---
 
 Tyler Sticka i Cloud Four forklarer hvorfor han liker å designe direkte i nettleseren. Det handler om å undersøke ideene i det samme mediet som brukeren møter dem i.

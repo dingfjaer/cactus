@@ -7,6 +7,7 @@ tags:
   - ux
   - interaksjonsdesign
 draft: false
+contentType: ki-oppsummert
 ---
 
 Lea Verou foreslår å behandle brukerens innsats som en valuta. Et grensesnitt bør gi en rimelig sammenheng mellom det brukeren prøver å få til, og arbeidet løsningen krever.

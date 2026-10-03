@@ -7,6 +7,7 @@ tags:
   - faglig-utvikling
   - designprosess
 draft: false
+contentType: ki-oppsummert
 ---
 
 Saikrishna vanneldas samlet i 2022 nettsteder med designoppgaver og øvingsopplegg. Det mest interessante for meg er overgangen fra å samle fagstoff til å bruke det.

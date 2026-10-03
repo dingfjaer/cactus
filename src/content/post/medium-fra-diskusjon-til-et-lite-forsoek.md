@@ -7,6 +7,7 @@ tags:
   - fasilitering
   - prioritering
 draft: false
+contentType: ki-oppsummert
 ---
 
 Jonathan Courtney beskriver Lightning Decision Jam som en workshop med tydelige trinn. Deltakerne arbeider mye individuelt før gruppen prioriterer.

@@ -5,4 +5,6 @@ publishDate: {{date:YYYY-MM-DD}}
 updatedDate: {{date:YYYY-MM-DD}}
 tags: []
 draft: true
+contentType: dingaling
+inProgress: false
 ---

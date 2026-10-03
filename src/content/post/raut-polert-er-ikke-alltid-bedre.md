@@ -7,6 +7,7 @@ tags:
   - visuell-design
   - kunstig-intelligens
 draft: false
+contentType: ki-oppsummert
 ---
 
 Joshua Leigh skiller mellom mennesker som trenger designhjelp, dem som allerede kommuniserer godt med enkle midler, og virksomheter som velger å kutte hjørner. De trenger ikke samme løsning.

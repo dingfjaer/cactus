@@ -7,6 +7,7 @@ tags:
   - designverktoey
   - samarbeid
 draft: false
+contentType: ki-oppsummert
 ---
 
 Roman Kamushken oppsummerer lanseringer fra 2020. Listen er historisk, men viser hvordan samarbeid og gjenbruk fikk større plass i designverktøyene.

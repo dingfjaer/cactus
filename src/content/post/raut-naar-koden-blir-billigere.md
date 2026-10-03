@@ -7,6 +7,7 @@ tags:
   - produktutvikling
   - kunstig-intelligens
 draft: false
+contentType: ki-oppsummert
 ---
 
 Laurie Voss tegner et framtidsbilde der KI overtar stadig mer av programvarearbeidet. For designere er det interessante spørsmålet hvor verdien flytter seg når selve kodeproduksjonen blir billigere.

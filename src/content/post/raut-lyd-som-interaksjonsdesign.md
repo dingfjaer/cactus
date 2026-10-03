@@ -7,6 +7,7 @@ tags:
   - interaksjonsdesign
   - lyd
 draft: false
+contentType: ki-oppsummert
 ---
 
 The Sound of Software fra !Boring undersøker hvordan lyd kan gjøre digitale handlinger mer merkbare og uttrykksfulle. Dårlig bruk av lyd er ikke et argument for at lyd alltid er feil.

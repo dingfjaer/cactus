@@ -6,6 +6,7 @@ tags:
   - Medium
   - uu
 draft: false
+contentType: ki-oppsummert
 ---
 
 Xindeling Pan gjør mangfold og inkludering konkret gjennom valg designere kan påvirke. Perspektivet strekker seg fra hvem som deltar til hvordan en løsning blir vurdert.

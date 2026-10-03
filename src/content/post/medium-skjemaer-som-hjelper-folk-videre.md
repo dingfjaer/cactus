@@ -7,6 +7,7 @@ tags:
   - skjemadesign
   - uu
 draft: false
+contentType: ki-oppsummert
 ---
 
 Daniel Hasan viser hvordan et skjema kan forenkles trinnvis. Utgangspunktet er at folk kommer for å få gjort noe, og at skjemaet bare er en del av veien dit.

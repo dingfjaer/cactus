@@ -7,6 +7,7 @@ tags:
   - formidling
   - designprosess
 draft: false
+contentType: ki-oppsummert
 ---
 
 Dinh Huy Design beskriver hvordan en UX-presentasjon kan bygges opp. Kjernen er å gi mottakerne nok sammenheng til å vurdere løsningen.

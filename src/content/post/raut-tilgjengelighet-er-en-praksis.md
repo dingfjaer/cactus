@@ -7,6 +7,7 @@ tags:
   - uu
   - design
 draft: false
+contentType: ki-oppsummert
 ---
 
 Heydon Pickering samler prinsipper som flytter oppmerksomheten fra feilretting på slutten til hvordan vi faktisk lager digitale tjenester. Tilgjengelighet begynner med de grunnleggende valgene.

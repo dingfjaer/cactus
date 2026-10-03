@@ -7,6 +7,7 @@ tags:
   - fasilitering
   - samarbeid
 draft: false
+contentType: ki-oppsummert
 ---
 
 Slava Shestopalov bryter workshops ned i grunnleggende aktiviteter. Det gjør det lettere å forstå et format og tilpasse det til et konkret behov.

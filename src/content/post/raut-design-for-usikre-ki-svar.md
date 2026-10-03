@@ -7,6 +7,7 @@ tags:
   - kunstig-intelligens
   - ux
 draft: false
+contentType: ki-oppsummert
 ---
 
 Page Laubheimer i Nielsen Norman Group beskriver hvordan troverdige, men feilaktige KI-svar skaper et designproblem. Måten svaret presenteres på påvirker hvor lett vi stoler på det.

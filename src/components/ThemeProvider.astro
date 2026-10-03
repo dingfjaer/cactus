@@ -1,10 +1,11 @@
 {/* Inlined to avoid FOUC. This is a parser blocking script. */}
 <script is:inline>
-	const lightModePref = window.matchMedia("(prefers-color-scheme: light)");
-
 	function getUserPref() {
-		const storedTheme = typeof localStorage !== "undefined" && localStorage.getItem("theme");
-		return storedTheme || (lightModePref.matches ? "light" : "dark");
+		try {
+			return localStorage.getItem("theme") === "light" ? "light" : "dark";
+		} catch {
+			return "dark";
+		}
 	}
 
 	function setTheme(newTheme) {
@@ -26,8 +27,10 @@
 		const colorThemeMetaTag = document.querySelector("meta[name='theme-color']");
 		const bgColour = getComputedStyle(document.body).getPropertyValue("--theme-bg");
 		colorThemeMetaTag.setAttribute("content", `hsl(${bgColour})`);
-		if (typeof localStorage !== "undefined") {
+		try {
 			localStorage.setItem("theme", newTheme);
+		} catch {
+			/* Theme still works without storage. */
 		}
 	}
 
@@ -41,7 +44,4 @@
 	document.addEventListener("theme-change", (e) => {
 		setTheme(e.detail.theme);
 	});
-
-	// listen for prefers-color-scheme change.
-	lightModePref.addEventListener("change", (e) => setTheme(e.matches ? "light" : "dark"));
 </script>

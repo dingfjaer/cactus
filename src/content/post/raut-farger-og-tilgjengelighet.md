@@ -7,6 +7,7 @@ tags:
   - uu
   - design
 draft: false
+contentType: ki-oppsummert
 ---
 
 Stéphanie Walter utfordrer myten om at tilgjengelighetskrav gir lite rom for farger. Hun viser hvordan varianter, kontrasttesting og dokumentasjon kan gi både særpreg og lesbarhet.

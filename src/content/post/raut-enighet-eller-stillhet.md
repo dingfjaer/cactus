@@ -7,6 +7,7 @@ tags:
   - samarbeid
   - produktutvikling
 draft: false
+contentType: ki-oppsummert
 ---
 
 Ash Mann beskriver hvordan tilsynelatende enighet kan skjule ulike mål, forventninger og prioriteringer. Uenigheten dukker gjerne opp senere, forkledd som endrede krav eller dårlig fremdrift.

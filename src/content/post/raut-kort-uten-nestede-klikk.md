@@ -7,6 +7,7 @@ tags:
   - frontend
   - uu
 draft: false
+contentType: ki-oppsummert
 ---
 
 Noah Liebman viser hvordan subgrid kan løse et vanlig kortproblem: Hele raden skal være en lenke, men den har også en egen handlingsknapp.

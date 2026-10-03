@@ -7,6 +7,7 @@ tags:
   - uu
   - interaksjonsdesign
 draft: false
+contentType: ki-oppsummert
 ---
 
 Uu-tilsynets oppsummering av sektortilsynet i 2025–2026 viser at digitale barrierer får praktiske konsekvenser. Det hjelper lite at en tjeneste finnes på nett hvis brukeren ikke kommer gjennom oppgaven.

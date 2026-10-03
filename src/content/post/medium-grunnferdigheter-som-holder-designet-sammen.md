@@ -7,6 +7,7 @@ tags:
   - designhaandverk
   - faglig-utvikling
 draft: false
+contentType: ki-oppsummert
 ---
 
 Danny Sapio samler ferdigheter fra avstander og typografi til brukertesting og samarbeid med utviklere. Oversikten minner om bredden i godt designarbeid.

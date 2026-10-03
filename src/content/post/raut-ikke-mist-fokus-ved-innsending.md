@@ -7,6 +7,7 @@ tags:
   - uu
   - ux
 draft: false
+contentType: ki-oppsummert
 ---
 
 Chris Ferdinandi tar for seg et vanlig mønster: Send-knappen deaktiveres mens skjemaet venter på svar. Et grep som virker ryddig visuelt, kan gjøre betjeningen vanskeligere.

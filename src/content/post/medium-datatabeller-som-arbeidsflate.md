@@ -7,6 +7,7 @@ tags:
   - interaksjonsdesign
   - datavisualisering
 draft: false
+contentType: ki-oppsummert
 ---
 
 Lalatendu Satpathy samler vanlige behov i datatabeller for virksomhetssystemer. Tabellen er mer enn et sted å vise verdier; den er ofte stedet der arbeidet skjer.

@@ -7,6 +7,7 @@ tags:
   - frontend
   - uu
 draft: false
+contentType: ki-oppsummert
 ---
 
 Chris Burnell samler interaktive eksempler på hva HTML kan gjøre. Oversikten er også tydelig på at innebygde funksjoner kan ha mangler i nettleserstøtte og tilgjengelighet.

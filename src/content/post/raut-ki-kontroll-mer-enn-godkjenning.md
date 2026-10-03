@@ -7,6 +7,7 @@ tags:
   - kunstig-intelligens
   - interaksjonsdesign
 draft: false
+contentType: ki-oppsummert
 ---
 
 I et debattinnlegg i Stavanger Aftenblad spør Tobias Kvaslerud hva menneskelig kontroll betyr når KI-systemene blir vanskeligere å forstå. Argumentene gir også et nyttig utgangspunkt for å tenke om grensesnitt.

@@ -7,6 +7,7 @@ tags:
   - frontend
   - uu
 draft: false
+contentType: ki-oppsummert
 ---
 
 Miriam Suzanne undersøker et dilemma i responsiv typografi: Teksten skal tilpasse seg plassen, samtidig som leserens egne innstillinger faktisk får virkning.

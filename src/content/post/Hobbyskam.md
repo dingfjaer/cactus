@@ -5,6 +5,8 @@ publishDate: 2025-01-09
 tags:
   - RandomThoughts
 draft: false
+contentType: dingaling
+inProgress: true
 ---
 
 ## Hvem er du og hva er hobbyen din

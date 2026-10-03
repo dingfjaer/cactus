@@ -7,6 +7,7 @@ tags:
   - uu
   - frontend
 draft: false
+contentType: ki-oppsummert
 ---
 
 Tempertemper viser at vanlig nettstedsnavigasjon kan ha ganske enkel tastaturbetjening. Problemene kommer fort når vi legger til spesialoppførsel som brukeren ikke forventer.

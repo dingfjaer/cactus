@@ -7,6 +7,7 @@ tags:
   - uu
   - frontend
 draft: false
+contentType: ki-oppsummert
 ---
 
 Martijn Hols går gjennom tilgjengelighetsgrep som bør være en vanlig del av frontendarbeidet. Mange av dem handler om å bruke funksjonalitet nettleseren allerede har.

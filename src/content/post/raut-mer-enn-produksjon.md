@@ -7,6 +7,7 @@ tags:
   - designprosess
   - produktutvikling
 draft: false
+contentType: ki-oppsummert
 ---
 
 Karri Saarinen argumenterer for at design handler om å få form og kontekst til å passe sammen. Verktøy som raskt produserer et grensesnitt, løser ikke nødvendigvis den oppgaven.

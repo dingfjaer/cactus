@@ -6,6 +6,7 @@ tags:
   - design
   - notat
 draft: false
+contentType: ki-oppsummert
 ---
 Dette er svar fra ChatGPT da jeg spurte om fargeblind og UX ifm. et prosjekt på jobb. Dumper den her bare for rask oppslag til neste gang. 
 

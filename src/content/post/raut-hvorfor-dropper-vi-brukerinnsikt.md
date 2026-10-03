@@ -7,6 +7,7 @@ tags:
   - brukerinnsikt
   - produktutvikling
 draft: false
+contentType: ki-oppsummert
 ---
 
 Laura Klein i Nielsen Norman Group går gjennom vanlige grunner til at organisasjoner hopper over brukerinnsikt. Hun utfordrer både praktiske innvendinger og det som ligger under dem.

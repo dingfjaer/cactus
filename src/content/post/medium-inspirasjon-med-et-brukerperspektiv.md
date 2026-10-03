@@ -7,6 +7,7 @@ tags:
   - inspirasjon
   - designkritikk
 draft: false
+contentType: ki-oppsummert
 ---
 
 They Make Design samler grensesnitt og bevegelseseksempler i en inspirasjonsutgave fra 2021. De avsluttende rådene knytter det visuelle arbeidet til forståelse av brukerne.

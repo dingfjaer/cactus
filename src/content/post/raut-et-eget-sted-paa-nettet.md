@@ -7,6 +7,7 @@ tags:
   - digital-hage
   - design
 draft: false
+contentType: ki-oppsummert
 ---
 
 The Internet Review løfter frem Dave Ruperts kritikk av at faglige blogger blir visuelt like på store publiseringsplattformer. Teksten er en liten påminnelse om verdien av en egen hjemmeside.

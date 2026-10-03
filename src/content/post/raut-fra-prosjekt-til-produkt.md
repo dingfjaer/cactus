@@ -7,6 +7,7 @@ tags:
   - produktutvikling
   - design
 draft: false
+contentType: ki-oppsummert
 ---
 
 Pål Habberstad bruker forskjellen mellom en bro og et levende system til å diskutere produktutvikling. Poenget er at digitale løsninger må styres for fortsatt relevans.

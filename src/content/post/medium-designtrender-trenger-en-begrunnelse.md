@@ -7,6 +7,7 @@ tags:
   - visuell-design
   - designkritikk
 draft: false
+contentType: ki-oppsummert
 ---
 
 Shakuros trendoversikt for 2021 kombinerer muligheter med motforestillinger. Jeg leser den som et tidsbilde og en øvelse i å spørre hva en visuell retning faktisk bidrar med.

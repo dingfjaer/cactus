@@ -6,7 +6,7 @@ Eier: Ding Chen / Ding Chen Fjær
 Nettsted: `dingchen.no`  
 Autoritativ prosjektmappe: `/Users/ding/Github/cactus`  
 Plassering: `/Users/ding/Github/cactus/PROJECT_CONTEXT.md`  
-Verifisering er avgrenset per funksjonsområde nedenfor. Siste tillegg gjelder FigPal-peker og midlertidige stickers, se §6.14.
+Verifisering er avgrenset per funksjonsområde nedenfor. Siste tillegg gjelder Spira-filtre, Dingo og Underveis-merker, se §6.15.
 
 > Dokumentets bakgrunn bygger på samtaler og tidligere prosjektkontekst, ikke en
 > full teknisk revisjon. Historiske ønsker og rapporterte leveranser er ikke bevis
@@ -646,7 +646,9 @@ Mushroom er standard; valgt figur eller «Vanlig peker» huskes i localStorage.
 Velgeren bruker nettstedets temafarger og kan betjenes med tastatur.
 
 `src/scripts/figpals.ts` viser figuren som peker ved musebruk og legger en sticker
-på klikkstedet. Stickers følger dokumentets scrollposisjon, animeres mykt inn/ut
+på klikkstedet. Over lenker, knapper og andre klikkbare kontroller skjules
+FigPal-pekeren og vanlig håndpeker vises, også over ikoner inni kontrollene.
+Stickers følger dokumentets scrollposisjon, animeres mykt inn/ut
 og fjernes etter fem sekunder; maksimalt 30 er aktive samtidig. På berøring
 brukes bare stickers, uten en svevende musepeker. Tekstmarkering, dragging,
 inputfelter, canvas og dialoger unngår stickers. Lenker beholder normal oppførsel.
@@ -659,6 +661,62 @@ femsekundersgrense, scrollforankring, lys/mørk meny og header/velger ved deskto
 Astro-sjekk: null feil, tre eksisterende hints. Fysisk berøringsenhet og
 redusert-bevegelse-innstilling er ikke nettlesertestet. Full produksjonsbuild og
 publisering er ikke utført for denne endringen.
+
+### 6.15 Spira: innholdstyper, Underveis og Dingo
+
+Implementert lokalt 2026-10-03. Spira på `/posts/` har filtrene **Alle**,
+**DingaLing** og **KI-oppsummert**, med synlig forklaring for de to siste. Filteret er en enkel tekstrad med
+strek i aksentfargen under aktivt valg, uten boks eller fylt bakgrunn.
+Innholdstype beskriver hva teksten tilbyr leseren, ikke om KI har vært involvert
+i språkvask. Emneknaggene og de andre hagefanene er beholdt.
+
+- Frontmatter: `contentType: dingaling` (standard) eller
+  `contentType: ki-oppsummert`. De 63 publiserte innleggene er klassifisert:
+  7 personlige tekster/notater i DingaLing; 54 Raut-/Medium-lesetips, «The Courage
+  to design» og «Fargeblind og UX» i KI-oppsummert. Bare metadata er endret.
+  Nye lesetips/sammendrag skal få eksplisitt `contentType: ki-oppsummert`.
+- `inProgress: true` gir **🌱 Underveis** ved datoen i alle innleggsoversikter,
+  og en forklaring i artikkelhodet. Brukeren valgte «Hobbyskam» og
+  «Hva abonnerer jeg på og hvor mye jeg betaler hver måned». Dette er uavhengig
+  av innholdstype og `draft`; kladder blir ikke publisert av dette merket.
+  Begge vanlige innleggsmalene viser de nye feltene.
+- `SpiraExplorer.astro` og `src/scripts/spira.ts` forbedrer den eksisterende
+  serverrenderte, paginerte oversikten. Uten JavaScript finnes fortsatt den
+  vanlige listen og sidelenkene. Med JavaScript filtreres hele det publiserte
+  arkivet, med ti innlegg per side, festede først og eksisterende datosortering.
+- **🎲 Dingo** og «Trekk på nytt» viser først en stor, sentrert 3D-terning
+  i omtrent 1,3 sekunder, før det nye utvalget vises. Terningen bruker
+  temafargene. Redusert bevegelse gir en kort, statisk visning; Escape avbryter
+  uten å endre utvalget. Doble klikk starter ikke flere samtidige trekninger.
+  Dingo trekker opptil fem unike innlegg fra valgt filter, lik sjanse
+  for hvert innlegg. Festede får verken prioritert plass eller knappenål i
+  Dingo. «Trekk på nytt» trekker igjen; «Tilbake til nyeste» gjenoppretter
+  den vanlige rekkefølgen innenfor filteret. `src/utils/spira.ts` har trekningen
+  og valideringen av lagrede utvalg.
+- Filter, sidenummer og Dingo-modus ligger i URL-en. Utvalget ligger i
+  nettleserhistorikken og sessionStorage, og beholdes ved tilbakeknapp,
+  oppdatering og retur via Spira/Alt som gror i samme fane. Utgåtte eller
+  feilaktige lagrede utvalg valideres mot det aktive, publiserte utvalget.
+- `ThemeProvider.astro` bruker mørkt tema ved første besøk eller utilgjengelig
+  lagring. Et eksplisitt lagret lyst/mørkt valg respekteres; OS-temabytte
+  overstyrer ikke brukerens valg. Innleggstitler i `PostPreview.astro` har
+  understreking og fargeendring ved hover, men ingen understreking i standardtilstanden.
+  Tastaturfokus har egen markering. Artikkelens vanlige lenker
+  beholder sin tidligere stil.
+
+Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hints. Fire tester i
+`scripts/spira.test.ts` verifiserer trekning, små/tomme utvalg, lagret utvalg og
+førstegangs-/lagret tema (også når lagring blokkeres). Kjør med Node 24:
+`node --experimental-strip-types --test scripts/spira.test.ts`.
+Lokal nettleserkontroll bekreftet begge filtre, fem tilfeldige funn, ny trekning,
+retur fra artikkel via historikk og meny, oppdatering, paginering, festet innlegg,
+Underveis-forklaring og titler uten understreking på forsiden/Spira.
+Desktop og 390/320 px er kontrollert, uten sideveis overbredde i Spira.
+Lyst/mørkt tema og tastatur er prøvd. Førstegangsvalg er testet mot selve
+ThemeProvider-scriptet; fysisk mobil og fullt produksjonsbygg er ikke testet.
+Preview på port 4325 kjører fra originalrepoet. Astros utdaterte utviklingscache
+måtte regenereres etter schema-endringen. Ingen commit, push eller deploy er
+utført for denne oppgaven.
 
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 

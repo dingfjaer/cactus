@@ -7,6 +7,7 @@ tags:
   - designprosess
   - samarbeid
 draft: false
+contentType: ki-oppsummert
 ---
 
 Teisanu Tudor undersøker hvordan Double Diamond forandres når den møter virksomheters beslutninger, begrensninger og leveransepress.

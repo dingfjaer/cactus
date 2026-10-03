@@ -7,6 +7,7 @@ tags:
   - brukerinnsikt
   - ux
 draft: false
+contentType: ki-oppsummert
 ---
 
 Pavel Samsonov beskriver PACT som en måte å skaffe oversikt i et ukjent fagområde. Rammeverket hjelper også teamet å oppdage at det ikke nødvendigvis deler samme problemforståelse.

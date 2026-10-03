@@ -7,6 +7,7 @@ tags:
   - ux
   - interaksjonsdesign
 draft: false
+contentType: ki-oppsummert
 ---
 
 Lea Verou stiller spørsmål ved selve behovet for en permanent synlig bryter for lyst og mørkt tema. Diskusjonen handler like mye om prioritering som om utformingen av bryteren.

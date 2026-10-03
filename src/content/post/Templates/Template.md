@@ -4,4 +4,6 @@ description: "Kort beskrivelse av innlegget (maks 160 tegn)."
 publishDate: {{date:YYYY-MM-DD}}
 tags: []
 draft: true
+contentType: dingaling
+inProgress: false
 ---

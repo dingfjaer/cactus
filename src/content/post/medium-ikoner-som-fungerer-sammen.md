@@ -7,6 +7,7 @@ tags:
   - ikoner
   - designsystemer
 draft: false
+contentType: ki-oppsummert
 ---
 
 Helena Zhang vurderer ikoner som både kommunikasjon og håndverk. Et pent symbol er bare begynnelsen; hele familien må være forståelig og enkel å ta i bruk.

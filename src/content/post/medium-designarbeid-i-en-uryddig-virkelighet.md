@@ -7,6 +7,7 @@ tags:
   - designledelse
   - arbeidsliv
 draft: false
+contentType: ki-oppsummert
 ---
 
 Path Unbound beskriver et gap mellom designprosessen man lærer og hverdagen i virksomheter. Jeg leser teksten som et erfaringsinnlegg om arbeidsvilkår, ikke en fasit om hele bransjen.
