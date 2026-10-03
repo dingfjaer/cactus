@@ -5,7 +5,7 @@ description: Vipe er en fugl i lofamilien. Fjærtoppen deres er det som skiller 
 publishDate: 2026-09-16
 tags: [bilde]
 draft: false
-contentType: dingaling
+contentType: nerding
 ---
 
 Tegnet denne kule fuglen. Jeg synes den har en kul fjærtopp. 

@@ -6,7 +6,7 @@ updatedDate: 2026-09-24
 tags:
   - digital-hage
 draft: false
-contentType: dingaling
+contentType: nerding
 pinned: true
 ---
 

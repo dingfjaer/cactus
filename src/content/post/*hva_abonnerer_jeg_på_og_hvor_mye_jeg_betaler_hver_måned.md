@@ -5,7 +5,7 @@ publishDate: 2025-02-08
 tags:
   - notat
 draft: false
-contentType: dingaling
+contentType: nerding
 inProgress: true
 updatedDate: 2025-11-05
 ---

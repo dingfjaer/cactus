@@ -1,6 +1,9 @@
-export type ContentFilter = "alle" | "dingaling" | "ki-oppsummert";
+export type ContentFilter = "alle" | "nerding" | "ki-oppsummert";
+// Read-only compatibility alias for links and session data created before the rename.
+export const legacyNerdingFilter = "dingaling";
 export function contentFilter(value: unknown): ContentFilter {
-	return value === "dingaling" || value === "ki-oppsummert" ? value : "alle";
+	if (value === legacyNerdingFilter) return "nerding";
+	return value === "nerding" || value === "ki-oppsummert" ? value : "alle";
 }
 
 /** Partial Fisher–Yates: every post, including pinned posts, has equal odds. */

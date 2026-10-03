@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
 import { runInNewContext } from "node:vm";
-import { contentFilter, drawPosts, restoreDraw } from "../src/utils/spira.ts";
+import { contentFilter, legacyNerdingFilter, drawPosts, restoreDraw } from "../src/utils/spira.ts";
 
 test("Dingo handles empty and small archives without duplicates or mutating the source", () => {
 	for (const pool of [[], ["a"], ["a", "b", "c"], ["a", "b", "c", "d", "e", "f"]]) {
@@ -32,6 +32,12 @@ test("Restored draws reject duplicates, missing/unpublished IDs and wrong counts
 	);
 	assert.equal(contentFilter("unknown"), "alle");
 	assert.equal(contentFilter("ki-oppsummert"), "ki-oppsummert");
+});
+test("NerDing accepts the canonical key and upgrades old links and history filters", () => {
+	assert.equal(contentFilter("nerding"), "nerding");
+	assert.equal(contentFilter(legacyNerdingFilter), "nerding");
+	assert.equal(contentFilter("ki-oppsummert"), "ki-oppsummert");
+	assert.equal(contentFilter(null), "alle");
 });
 const themeScript = readFileSync(
 	new URL("../src/components/ThemeProvider.astro", import.meta.url),

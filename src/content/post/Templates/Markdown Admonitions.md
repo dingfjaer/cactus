@@ -4,7 +4,7 @@ description: "This post showcases using the markdown admonition feature in Astro
 publishDate: "05.19.2018"
 tags: ["markdown"]
 draft: true
-contentType: dingaling
+contentType: nerding
 inProgress: false
 ---
 

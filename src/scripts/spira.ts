@@ -1,6 +1,12 @@
 import { createDingoRoll } from "./dingo-roll";
 import { rollDie } from "../utils/dingo";
-import { contentFilter, drawPosts, restoreDraw, type ContentFilter } from "../utils/spira";
+import {
+	legacyNerdingFilter,
+	contentFilter,
+	drawPosts,
+	restoreDraw,
+	type ContentFilter,
+} from "../utils/spira";
 
 class SpiraExplorer extends HTMLElement {
 	private cleanup?: () => void;
@@ -32,11 +38,22 @@ class SpiraExplorer extends HTMLElement {
 			}
 		};
 		const readDraw = () => {
-			try {
-				return JSON.parse(sessionStorage.getItem(key()) || "null");
-			} catch {
-				return null;
+			const keys = [key()];
+			if (filter === "nerding")
+				keys.push(`spira-dingo-v1:${this.dataset.base}:${legacyNerdingFilter}`);
+			const available = pool().map((row) => row.dataset.id!);
+			for (const storageKey of keys) {
+				try {
+					const saved = restoreDraw(
+						JSON.parse(sessionStorage.getItem(storageKey) || "null"),
+						available,
+					);
+					if (saved) return saved;
+				} catch {
+					/* Try the older key if the current value is unavailable or corrupt. */
+				}
 			}
+			return null;
 		};
 		const remember = (push: boolean) => {
 			const url = new URL(this.dataset.base!, location.origin);
@@ -45,7 +62,12 @@ class SpiraExplorer extends HTMLElement {
 			else if (page > 1) url.searchParams.set("side", String(page));
 			const state = { ...history.state, spira: { filter, ids: dingo ? ids : [] } };
 			if (push) history.pushState(state, "", url);
-			else history.replaceState(state, "", location.href);
+			else {
+				const current = new URL(location.href);
+				if (current.searchParams.get("type") === legacyNerdingFilter)
+					current.searchParams.set("type", "nerding");
+				history.replaceState(state, "", current);
+			}
 			try {
 				sessionStorage.setItem(
 					viewKey,
@@ -66,7 +88,7 @@ class SpiraExplorer extends HTMLElement {
 				button.setAttribute("aria-pressed", String(button.dataset.filter === filter)),
 			);
 			const copy =
-				filter === "dingaling"
+				filter === "nerding"
 					? ["NerDing", "Egne tanker, små oppdagelser og notater i vekst."]
 					: ["KI-oppsummert", "Fagstoff jeg har utforsket, lest og oppsummert med hjelp av KI."];
 			get("[data-description]").hidden = filter === "alle";
@@ -130,7 +152,10 @@ class SpiraExplorer extends HTMLElement {
 				const available = pool().map((row) => row.dataset.id!);
 				const saved = history.state?.spira;
 				ids =
-					restoreDraw(saved?.filter === filter ? saved.ids : null, available) ||
+					restoreDraw(
+						saved && contentFilter(saved.filter) === filter ? saved.ids : null,
+						available,
+					) ||
 					restoreDraw(readDraw(), available) ||
 					drawPosts(available, Math.random, rollDie());
 				saveDraw();

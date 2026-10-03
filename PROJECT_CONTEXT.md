@@ -670,10 +670,15 @@ strek i aksentfargen under aktivt valg, uten boks eller fylt bakgrunn.
 Innholdstype beskriver hva teksten tilbyr leseren, ikke om KI har vært involvert
 i språkvask. Emneknaggene og de andre hagefanene er beholdt.
 NerDing har beskrivelsen «Egne tanker, små oppdagelser og notater i vekst.»
-Det interne feltet og URL-filteret heter fortsatt `dingaling`, slik at eksisterende
-innlegg, lenker og lagrede utvalg fungerer etter navneendringen.
+Navnet brukes også internt: `contentType: nerding` i schema, innlegg og maler,
+og `?type=nerding` i URL-er. `src/utils/spira.ts` har ett eksplisitt alias for
+det tidligere filternavnet, slik at eldre lenker og lagrede utvalg fortsatt kan
+leses. Nye URL-er og lagrede filtre bruker `nerding`. Nettleserkontroll
+bekreftet sju NerDing-innlegg, oppdatering av eldre filterlenke til ny URL og
+bevaring av et gyldig lagret utvalg. Preview-cachen ble regenerert etter
+schema-endringen. Innleggenes brødtekst er uendret.
 
-- Frontmatter: `contentType: dingaling` (standard) eller
+- Frontmatter: `contentType: nerding` (standard) eller
   `contentType: ki-oppsummert`. De 63 publiserte innleggene er klassifisert:
   7 personlige tekster/notater i NerDing; 54 Raut-/Medium-lesetips, «The Courage
   to design» og «Fargeblind og UX» i KI-oppsummert. Bare metadata er endret.
@@ -720,9 +725,10 @@ innlegg, lenker og lagrede utvalg fungerer etter navneendringen.
   Tastaturfokus har egen markering. Artikkelens vanlige lenker
   beholder sin tidligere stil.
 
-Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hints (99 filer). Sju tester i
+Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hints (101 filer). Åtte tester i
 `scripts/spira.test.ts` og `scripts/dingo.test.ts` verifiserer alle seks kast,
-rettferdig talltrekning, små/tomme utvalg, ingen duplikater, lagret utvalg og
+rettferdig talltrekning, små/tomme utvalg, ingen duplikater, lagret utvalg,
+overgang fra eldre filternavn til NerDing og
 førstegangs-/lagret tema (også når lagring blokkeres). Kjør med Node 24:
 `node --experimental-strip-types --test scripts/spira.test.ts scripts/dingo.test.ts`.
 Lokal nettleserkontroll bekreftet begge filtre, terningstyrt antall funn, ny trekning,

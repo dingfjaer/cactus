@@ -5,7 +5,7 @@ publishDate: 2025-01-09
 tags:
   - RandomThoughts
 draft: false
-contentType: dingaling
+contentType: nerding
 inProgress: true
 ---
 

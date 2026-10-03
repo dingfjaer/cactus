@@ -5,7 +5,7 @@ publishDate: 2025-02-08
 tags:
   - notat
 draft: false
-contentType: dingaling
+contentType: nerding
 ---
 [Litterære sjangre](https://kublakan.no/sjangre/)
 
