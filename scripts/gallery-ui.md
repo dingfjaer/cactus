@@ -42,3 +42,26 @@ og video til bilde under lasting. To videoer ble klare for avspilling; bytte
 mellom videoer og mobilkontroller ved 390 px er kontrollert. Lukking fjerner
 videoelementet, gjenoppretter scrolling og fokuserer siste åpnete medieknapp.
 Ingen publisering utført i denne oppgaven.
+
+
+## Dingo i galleriene (2026-10-03)
+
+Rosa, Vipa, Løva og Tinsta deler Dingo gjennom `PhotoGallery.astro` og
+`src/scripts/gallery-dingo.ts`. Et tilfeldig terningkast fra 1–6 bestemmer
+antall unike medier fra aktivt Alle/Bilder/Videoer-filter. Finnes færre,
+vises alle tilgjengelige med en kort forklaring. Tomme filtre deaktiverer Dingo.
+
+`DingoRoll.astro` og `src/scripts/dingo-roll.ts` deles med Spira. Den store,
+sentrerte terningen lander på riktig forside og viser tallet før utvalget
+oppdateres. Escape avbryter, og doble klikk gir ikke parallelle kast.
+Redusert bevegelse viser et statisk resultat. «Trekk på nytt» gjentar kastet,
+og «Tilbake til alle» gjenoppretter det aktive filterets vanlige rekkefølge.
+Utvalg/filter huskes per galleri i sessionStorage i samme fane. Fullskjermens
+forrige/neste følger bare utvalget. Eksisterende figurer flyttes, uten kloning.
+
+Kontrollert lokalt: kast og antall i alle fire gallerier og Spira, ny trekning,
+Escape, refresh, fullskjermblaing i utvalget, tomt videofilter og tilbake til
+hele galleriet. Desktop og mobilbredde 390 px, terningen i lyst/mørkt tema,
+Tinstas dato/alder og Vipas videofilter er prøvd. Astro: 0 feil, 3 eksisterende
+hint. Sju tester bestod. Fysisk touch, redusert bevegelse i nettleseren og full
+produksjonsbuild er ikke testet. GitHub Pages-deploy er ikke verifisert for dette tillegget.

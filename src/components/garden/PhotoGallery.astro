@@ -1,114 +1,329 @@
 ---
+import DingoRoll from "./DingoRoll.astro";
 import MediaViewer from "./MediaViewer.astro";
 import { Image } from "astro:assets";
 import { fetchAlbum } from "../../../scripts/jottacloud-poc.mjs";
 import { photoCalendarDate, tintinAge, formatPhotoDate } from "@/utils/tintin-age.mjs";
 import { masonryImageSizes, gridImageSizes } from "@/utils/gallery-layout";
 import type { GalleryKey } from "@/data/galleries";
-interface Props { shareId: string; kind: GalleryKey; title: string }
+interface Props {
+	shareId: string;
+	kind: GalleryKey;
+	title: string;
+}
 const { shareId, kind, title } = Astro.props;
 const album = await fetchAlbum(shareId, { includeVideos: true });
 const photos = album.photos.sort((a, b) => (b.takenAt ?? "").localeCompare(a.takenAt ?? ""));
 const isTinsta = kind === "tinsta";
 const columns = Math.max(1, Math.min(3, photos.length));
 ---
-<section class="filterable-gallery" data-filter="all">
-  <div class="media-filters" role="group" aria-label="Filtrer galleri">
-    <button type="button" data-filter-choice="all" aria-pressed="true">Alle</button>
-    <button type="button" data-filter-choice="image" aria-pressed="false">Bilder</button>
-    <button type="button" data-filter-choice="video" aria-pressed="false">Videoer</button>
-  </div>
-  <p class="filter-empty" role="status" hidden></p>
-<MediaViewer>
-{photos.length === 0 ? <p class="empty">Her spirer det snart noe nytt. Ingen bilder eller videoer ennå.</p> :
-  <div class:list={["photo-gallery", { tinsta: isTinsta, masonry: !isTinsta }]} style={!isTinsta ? `--columns: ${columns}; --tablet-columns: ${Math.min(2, columns)}` : undefined}>
-    {photos.map((photo, index) => {
-      const day = photoCalendarDate(photo.takenAt);
-      return <figure data-media-kind={photo.kind}>
-        {isTinsta && <figcaption><span>{tintinAge(day)}</span><time datetime={day ?? undefined}>{formatPhotoDate(day)}</time></figcaption>}
-        <button class="media-open" type="button" data-media-open data-kind={photo.kind}
-          data-share={shareId} data-id={photo.id}
-          aria-label={`${photo.kind === 'video' ? 'Spill video' : 'Åpne bilde'} ${index + 1} i stor visning`}>
-          <Image src={photo.preview} inferSize widths={[480, 960, 1600]}
-            sizes={isTinsta ? gridImageSizes : masonryImageSizes(photos.length)}
-            format="webp" quality={85} alt={`${isTinsta ? "Tintin" : title}${day ? ` – ${formatPhotoDate(day)}` : ""}, ${photo.kind === "video" ? "video" : "bilde"} ${index + 1}`}
-            loading={index < 3 ? "eager" : "lazy"} decoding="async" />
-          {photo.kind === 'video' && <span class="video-label" aria-hidden="true">▶ Video {photo.duration}</span>}
-        </button>
-      </figure>;
-    })}
-  </div>
-}
-</MediaViewer>
-</section>
+
+<dingo-gallery class="filterable-gallery" data-filter="all" data-gallery={kind}>
+	<div class="gallery-toolbar">
+		<div class="media-filters" role="group" aria-label="Filtrer galleri">
+			<button type="button" data-filter-choice="all" aria-pressed="true">Alle</button>
+			<button type="button" data-filter-choice="image" aria-pressed="false">Bilder</button>
+			<button type="button" data-filter-choice="video" aria-pressed="false">Videoer</button>
+		</div>
+		<button
+			class="dingo"
+			type="button"
+			data-draw
+			hidden
+			aria-label="Dingo – trekk bilder og videoer"><span aria-hidden="true">🎲</span> Dingo</button
+		>
+	</div>
+	<div class="dingo-heading" data-dingo hidden>
+		<h2 data-dingo-title></h2>
+		<div class="dingo-actions">
+			<button type="button" data-again>Trekk på nytt</button><span aria-hidden="true">·</span
+			><button type="button" data-latest>Tilbake til alle</button>
+		</div>
+	</div>
+	<p class="sr-only" role="status" aria-live="polite" data-status></p>
+	<DingoRoll />
+	<p class="filter-empty" role="status" hidden></p>
+	<MediaViewer>
+		{
+			photos.length === 0 ? (
+				<p class="empty">Her spirer det snart noe nytt. Ingen bilder eller videoer ennå.</p>
+			) : (
+				<div
+					class:list={["photo-gallery", { tinsta: isTinsta, masonry: !isTinsta }]}
+					style={
+						!isTinsta
+							? `--columns: ${columns}; --tablet-columns: ${Math.min(2, columns)}`
+							: undefined
+					}
+				>
+					{photos.map((photo, index) => {
+						const day = photoCalendarDate(photo.takenAt);
+						return (
+							<figure data-media-kind={photo.kind} data-media-id={photo.id}>
+								{isTinsta && (
+									<figcaption>
+										<span>{tintinAge(day)}</span>
+										<time datetime={day ?? undefined}>{formatPhotoDate(day)}</time>
+									</figcaption>
+								)}
+								<button
+									class="media-open"
+									type="button"
+									data-media-open
+									data-kind={photo.kind}
+									data-share={shareId}
+									data-id={photo.id}
+									aria-label={`${photo.kind === "video" ? "Spill video" : "Åpne bilde"} ${index + 1} i stor visning`}
+								>
+									<Image
+										src={photo.preview}
+										inferSize
+										widths={[480, 960, 1600]}
+										sizes={isTinsta ? gridImageSizes : masonryImageSizes(photos.length)}
+										format="webp"
+										quality={85}
+										alt={`${isTinsta ? "Tintin" : title}${day ? ` – ${formatPhotoDate(day)}` : ""}, ${photo.kind === "video" ? "video" : "bilde"} ${index + 1}`}
+										loading={index < 3 ? "eager" : "lazy"}
+										decoding="async"
+									/>
+									{photo.kind === "video" && (
+										<span class="video-label" aria-hidden="true">
+											▶ Video {photo.duration}
+										</span>
+									)}
+								</button>
+							</figure>
+						);
+					})}
+				</div>
+			)
+		}
+	</MediaViewer>
+</dingo-gallery>
 <script>
-  import { masonryImageSizes, gridImageSizes } from "@/utils/gallery-layout";
-  function setupFilters() {
-    document.querySelectorAll<HTMLElement>('.filterable-gallery').forEach(root => {
-      if(root.dataset.ready) return;
-      root.dataset.ready = 'true';
-      const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-filter-choice]')];
-      const figures = [...root.querySelectorAll<HTMLElement>('[data-media-kind]')];
-      const empty = root.querySelector<HTMLElement>('.filter-empty')!;
-      const masonry = root.querySelector<HTMLElement>('.masonry');
-      buttons.forEach(button => button.addEventListener('click', () => {
-        const filter = button.dataset.filterChoice!;
-        root.dataset.filter = filter;
-        buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
-        figures.forEach(f => { f.hidden = filter !== 'all' && f.dataset.mediaKind !== filter; });
-        if (masonry) {
-          const count = figures.filter(f => !f.hidden).length;
-          masonry.style.setProperty('--columns', String(Math.max(1, Math.min(3, count))));
-          masonry.style.setProperty('--tablet-columns', String(Math.max(1, Math.min(2, count))));
-          masonry.querySelectorAll('img').forEach(image => {
-            image.sizes = filter === 'video' ? gridImageSizes : masonryImageSizes(count);
-          });
-        }
-        empty.hidden = figures.some(f => !f.hidden) || !figures.length;
-        empty.textContent = filter === 'video' ? 'Ingen videoer i dette albumet ennå.' : 'Ingen bilder i dette albumet ennå.';
-      }));
-    });
-  }
-  setupFilters();
-  document.addEventListener('astro:page-load', setupFilters);
+	import "../../scripts/gallery-dingo";
 </script>
 <style>
-  [hidden] { display:none !important; }
-  .media-filters { display:flex; justify-content:center; gap:.4rem; margin:0 0 2rem; }
-  .media-filters button { min-height:40px; padding:.4rem 1.1rem; border:1px solid hsl(var(--theme-text) / .18); border-radius:999px; background:transparent; color:inherit; font:inherit; font-size:.85rem; cursor:pointer; }
-  .media-filters button[aria-pressed="true"] { background:hsl(var(--theme-text)); color:hsl(var(--theme-bg)); }
-  .media-filters button:focus-visible { outline:2px solid hsl(var(--theme-accent)); outline-offset:3px; }
-  .filter-empty { text-align:center; padding:2rem; }
-  [data-filter="video"] .photo-gallery { gap:1rem; }
-  [data-filter="video"] figcaption, [data-filter="video"] .video-label { display:none; }
-  [data-filter="video"] .media-open { aspect-ratio:16 / 9; overflow:hidden; border-radius:.75rem; background:#111; cursor:pointer; }
-  [data-filter="video"] img { width:100%; height:100%; object-fit:contain; }
-  [data-filter="video"] .media-open::after { content:'▶'; position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:3.2rem; height:2.3rem; border-radius:.6rem; color:white; background:#000b; font-size:1.2rem; }
+	dingo-gallery {
+		display: block;
+	}
+	.gallery-toolbar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-bottom: 2rem;
+	}
+	.dingo {
+		min-height: 42px;
+		padding: 0.5rem 0.75rem;
+		border: 1px dashed hsl(var(--theme-accent) / 0.55);
+		border-radius: 0.6rem;
+		color: hsl(var(--theme-accent));
+		font-size: 0.85rem;
+	}
+	.dingo-heading {
+		margin-bottom: 1.6rem;
+		padding: 1rem;
+		border-radius: 0.8rem;
+		background: hsl(var(--theme-accent) / 0.06);
+		border-inline-start: 2px solid hsl(var(--theme-accent));
+	}
+	.dingo-heading h2 {
+		font-weight: 600;
+		color: hsl(var(--theme-accent-2));
+	}
+	.dingo-actions {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.3rem;
+		margin: 0.4rem 0 -0.4rem -0.5rem;
+		color: hsl(var(--theme-accent));
+		font-size: 0.85rem;
+	}
+	.dingo-actions button {
+		min-height: 42px;
+		padding: 0.5rem;
+	}
+	.dingo:hover:not(:disabled),
+	.dingo-actions button:hover {
+		background: hsl(var(--theme-text) / 0.08);
+	}
+	.dingo:focus-visible,
+	.dingo-actions button:focus-visible {
+		outline: 2px solid hsl(var(--theme-accent));
+		outline-offset: 3px;
+	}
+	.dingo:disabled {
+		opacity: 0.35;
+	}
+	[hidden] {
+		display: none !important;
+	}
+	.media-filters {
+		display: flex;
+		justify-content: center;
+		gap: 0.4rem;
+	}
+	.media-filters button {
+		min-height: 40px;
+		padding: 0.4rem 1.1rem;
+		border: 1px solid hsl(var(--theme-text) / 0.18);
+		border-radius: 999px;
+		background: transparent;
+		color: inherit;
+		font: inherit;
+		font-size: 0.85rem;
+		cursor: pointer;
+	}
+	.media-filters button[aria-pressed="true"] {
+		background: hsl(var(--theme-text));
+		color: hsl(var(--theme-bg));
+	}
+	.media-filters button:focus-visible {
+		outline: 2px solid hsl(var(--theme-accent));
+		outline-offset: 3px;
+	}
+	.filter-empty {
+		text-align: center;
+		padding: 2rem;
+	}
+	[data-filter="video"] .photo-gallery {
+		gap: 1rem;
+	}
+	[data-filter="video"] figcaption,
+	[data-filter="video"] .video-label {
+		display: none;
+	}
+	[data-filter="video"] .media-open {
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		border-radius: 0.75rem;
+		background: #111;
+		cursor: pointer;
+	}
+	[data-filter="video"] img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+	[data-filter="video"] .media-open::after {
+		content: "▶";
+		position: absolute;
+		inset: 50% auto auto 50%;
+		transform: translate(-50%, -50%);
+		display: grid;
+		place-items: center;
+		width: 3.2rem;
+		height: 2.3rem;
+		border-radius: 0.6rem;
+		color: white;
+		background: #000b;
+		font-size: 1.2rem;
+	}
 
-  .photo-gallery { display: grid; grid-template-columns: 1fr; align-items: start; gap: 2rem; }
-  /* Like photos.astro: stack natural-height images without fixed grid rows. */
-  [data-filter="all"] .masonry, [data-filter="image"] .masonry { display:block; columns:1; column-gap:16px; }
-  .masonry figure { break-inside:avoid; }
-  [data-filter="all"] .masonry figure, [data-filter="image"] .masonry figure { margin-bottom:16px; }
-  figure { margin: 0; min-width: 0; }
-  figcaption { display: flex; justify-content: space-between; gap: .5rem; margin-bottom: .5rem; font-size: .8rem; font-variant-numeric: tabular-nums; }
-  time { white-space: nowrap; }
-  img { display: block; width: 100%; height: auto; }
-  .media-open { display:block; position:relative; width:100%; padding:0; border:0; background:transparent; cursor:zoom-in; color:inherit; }
-  .media-open:focus-visible { outline:3px solid currentColor; outline-offset:4px; }
-  .video-label { position:absolute; bottom:.75rem; left:.75rem; padding:.35rem .65rem; border-radius:.4rem; background:#000c; color:white; font-size:.85rem; }
-  .empty { padding-block: 3rem; }
-  @media (max-width: 639px) {
-    .tinsta { margin-inline: -1rem; gap: 2rem; }
-    [data-filter="video"] .tinsta { margin-inline:0; }
-    .tinsta figcaption { padding-inline: 1rem; }
-  }
-  @media (min-width: 640px) {
-    [data-filter="all"] .masonry, [data-filter="image"] .masonry { column-count:var(--tablet-columns); }
-  }
-  @media (min-width: 1024px) {
-    [data-filter="all"] .masonry, [data-filter="image"] .masonry { column-count:var(--columns); }
-  }
-  @media (min-width: 640px) { .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 1024px) { .photo-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; } }
+	.photo-gallery {
+		display: grid;
+		grid-template-columns: 1fr;
+		align-items: start;
+		gap: 2rem;
+	}
+	/* Like photos.astro: stack natural-height images without fixed grid rows. */
+	[data-filter="all"] .masonry,
+	[data-filter="image"] .masonry {
+		display: block;
+		columns: 1;
+		column-gap: 16px;
+	}
+	.masonry figure {
+		break-inside: avoid;
+	}
+	[data-filter="all"] .masonry figure,
+	[data-filter="image"] .masonry figure {
+		margin-bottom: 16px;
+	}
+	figure {
+		margin: 0;
+		min-width: 0;
+	}
+	figcaption {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+		font-size: 0.8rem;
+		font-variant-numeric: tabular-nums;
+	}
+	time {
+		white-space: nowrap;
+	}
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.media-open {
+		display: block;
+		position: relative;
+		width: 100%;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: zoom-in;
+		color: inherit;
+	}
+	.media-open:focus-visible {
+		outline: 3px solid currentColor;
+		outline-offset: 4px;
+	}
+	.video-label {
+		position: absolute;
+		bottom: 0.75rem;
+		left: 0.75rem;
+		padding: 0.35rem 0.65rem;
+		border-radius: 0.4rem;
+		background: #000c;
+		color: white;
+		font-size: 0.85rem;
+	}
+	.empty {
+		padding-block: 3rem;
+	}
+	@media (max-width: 639px) {
+		.tinsta {
+			margin-inline: -1rem;
+			gap: 2rem;
+		}
+		[data-filter="video"] .tinsta {
+			margin-inline: 0;
+		}
+		.tinsta figcaption {
+			padding-inline: 1rem;
+		}
+	}
+	@media (min-width: 640px) {
+		[data-filter="all"] .masonry,
+		[data-filter="image"] .masonry {
+			column-count: var(--tablet-columns);
+		}
+	}
+	@media (min-width: 1024px) {
+		[data-filter="all"] .masonry,
+		[data-filter="image"] .masonry {
+			column-count: var(--columns);
+		}
+	}
+	@media (min-width: 640px) {
+		.photo-gallery {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+	@media (min-width: 1024px) {
+		.photo-gallery {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 3rem;
+		}
+	}
 </style>

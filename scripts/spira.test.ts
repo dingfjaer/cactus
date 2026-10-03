@@ -22,9 +22,14 @@ test("Dingo can select every member, without giving the first/pinned item prefer
 test("Restored draws reject duplicates, missing/unpublished IDs and wrong counts", () => {
 	const pool = ["a", "b", "c"];
 	assert.deepEqual(restoreDraw(["c", "a", "b"], pool), ["c", "a", "b"]);
-	for (const invalid of [null, {}, ["a"], ["a", "a", "b"], ["a", "b", "draft"]])
+	for (const invalid of [null, {}, [], ["a", "a", "b"], ["a", "b", "draft"]])
 		assert.equal(restoreDraw(invalid, pool), null);
 	assert.deepEqual(restoreDraw([], []), []);
+	assert.deepEqual(restoreDraw(["a"], pool), ["a"]);
+	assert.equal(
+		restoreDraw(["a", "b", "c", "d", "e", "f", "g"], ["a", "b", "c", "d", "e", "f", "g"]),
+		null,
+	);
 	assert.equal(contentFilter("unknown"), "alle");
 	assert.equal(contentFilter("ki-oppsummert"), "ki-oppsummert");
 });

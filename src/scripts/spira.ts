@@ -1,3 +1,5 @@
+import { createDingoRoll } from "./dingo-roll";
+import { rollDie } from "../utils/dingo";
 import { contentFilter, drawPosts, restoreDraw, type ContentFilter } from "../utils/spira";
 
 class SpiraExplorer extends HTMLElement {
@@ -11,24 +13,7 @@ class SpiraExplorer extends HTMLElement {
 		const template = get<HTMLTemplateElement>("template[data-posts]");
 		const rows = [...template.content.querySelectorAll<HTMLLIElement>("li[data-id]")];
 		const results = get("[data-results]");
-		const rollDialog = get<HTMLDialogElement>("[data-roll]");
-		let rollTimer: number | undefined;
-		const cancelRoll = () => {
-			window.clearTimeout(rollTimer);
-			rollTimer = undefined;
-			if (rollDialog.open) rollDialog.close();
-			results.removeAttribute("aria-busy");
-		};
-		rollDialog.addEventListener(
-			"cancel",
-			(event) => {
-				event.preventDefault();
-				cancelRoll();
-				get("[data-status]").textContent = "Trekningen er avbrutt.";
-			},
-			{ signal },
-		);
-		window.addEventListener("pagehide", cancelRoll, { signal });
+		const roll = createDingoRoll(this, results, get("[data-status]"), signal);
 		const filters = [...this.querySelectorAll<HTMLButtonElement>("[data-filter]")];
 		const initialPath = location.pathname;
 		const initialPage = Number(this.dataset.page) || 1;
@@ -88,8 +73,9 @@ class SpiraExplorer extends HTMLElement {
 			get("[data-filter-title]").textContent = copy[0];
 			get("[data-filter-description]").textContent = copy[1];
 			get("[data-dingo]").hidden = !dingo;
-			const count = selected.length === 5 ? "Fem" : String(selected.length);
-			get("[data-dingo-title]").textContent = `Dingo! ${count} tilfeldige funn fra hagen.`;
+			const count = String(selected.length);
+			get("[data-dingo-title]").textContent =
+				`Dingo! ${count} ${selected.length === 1 ? "tilfeldig funn" : "tilfeldige funn"} fra hagen.`;
 			get("[data-pagination]").hidden = dingo || pages <= 1;
 			get<HTMLButtonElement>("[data-prev]").disabled = page <= 1;
 			get<HTMLButtonElement>("[data-next]").disabled = page >= pages;
@@ -132,7 +118,7 @@ class SpiraExplorer extends HTMLElement {
 				: `${available.length} innlegg. Side ${page} av ${pages}.`;
 		};
 		const readLocation = () => {
-			cancelRoll();
+			roll.cancel();
 			const params = new URLSearchParams(location.search);
 			filter = contentFilter(params.get("type"));
 			dingo = params.get("dingo") === "1";
@@ -146,7 +132,7 @@ class SpiraExplorer extends HTMLElement {
 				ids =
 					restoreDraw(saved?.filter === filter ? saved.ids : null, available) ||
 					restoreDraw(readDraw(), available) ||
-					drawPosts(available);
+					drawPosts(available, Math.random, rollDie());
 				saveDraw();
 			}
 			render();
@@ -169,23 +155,19 @@ class SpiraExplorer extends HTMLElement {
 			),
 		);
 		const draw = () => {
-			if (rollTimer !== undefined || !pool().length) return;
-			const drawn = drawPosts(pool().map((row) => row.dataset.id!));
-			const trigger = document.activeElement as HTMLElement | null;
-			results.setAttribute("aria-busy", "true");
-			get("[data-status]").textContent = "Terningen ruller. Trekker innlegg …";
-			rollDialog.showModal();
-			rollTimer = window.setTimeout(
-				() => {
-					cancelRoll();
-					ids = drawn;
-					dingo = true;
-					saveDraw();
-					update();
-					trigger?.focus({ preventScroll: true });
-				},
-				matchMedia("(prefers-reduced-motion: reduce)").matches ? 250 : 1300,
+			if (roll.busy || !pool().length) return;
+			const value = rollDie();
+			const drawn = drawPosts(
+				pool().map((row) => row.dataset.id!),
+				Math.random,
+				value,
 			);
+			roll.start(value, () => {
+				ids = drawn;
+				dingo = true;
+				saveDraw();
+				update();
+			});
 		};
 		get("[data-draw]").addEventListener("click", draw, { signal });
 		get("[data-again]").addEventListener("click", draw, { signal });
@@ -225,7 +207,7 @@ class SpiraExplorer extends HTMLElement {
 		get("[data-enhanced]").hidden = false;
 		get("[data-fallback]").hidden = true;
 		this.cleanup = () => {
-			cancelRoll();
+			roll.cancel();
 			controller.abort();
 		};
 	}

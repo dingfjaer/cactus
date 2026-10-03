@@ -6,7 +6,7 @@ Eier: Ding Chen / Ding Chen Fjær
 Nettsted: `dingchen.no`  
 Autoritativ prosjektmappe: `/Users/ding/Github/cactus`  
 Plassering: `/Users/ding/Github/cactus/PROJECT_CONTEXT.md`  
-Verifisering er avgrenset per funksjonsområde nedenfor. Siste tillegg gjelder Spira-filtre, Dingo og Underveis-merker, se §6.15.
+Verifisering er avgrenset per funksjonsområde nedenfor. Siste tillegg gjelder Dingo med terningstyrt antall i alle hagefanene, se §6.15.
 
 > Dokumentets bakgrunn bygger på samtaler og tidligere prosjektkontekst, ikke en
 > full teknisk revisjon. Historiske ønsker og rapporterte leveranser er ikke bevis
@@ -662,7 +662,7 @@ Astro-sjekk: null feil, tre eksisterende hints. Fysisk berøringsenhet og
 redusert-bevegelse-innstilling er ikke nettlesertestet. Full produksjonsbuild og
 publisering er ikke utført for denne endringen.
 
-### 6.15 Spira: innholdstyper, Underveis og Dingo
+### 6.15 Spira: innholdstyper, Underveis og Dingo i hagefanene
 
 Implementert lokalt 2026-10-03. Spira på `/posts/` har filtrene **Alle**,
 **DingaLing** og **KI-oppsummert**, med synlig forklaring for de to siste. Filteret er en enkel tekstrad med
@@ -685,14 +685,27 @@ i språkvask. Emneknaggene og de andre hagefanene er beholdt.
   vanlige listen og sidelenkene. Med JavaScript filtreres hele det publiserte
   arkivet, med ti innlegg per side, festede først og eksisterende datosortering.
 - **🎲 Dingo** og «Trekk på nytt» viser først en stor, sentrert 3D-terning
-  i omtrent 1,3 sekunder, før det nye utvalget vises. Terningen bruker
+  i omtrent 1,6 sekunder, før det nye utvalget vises. Terningen bruker
   temafargene. Redusert bevegelse gir en kort, statisk visning; Escape avbryter
   uten å endre utvalget. Doble klikk starter ikke flere samtidige trekninger.
-  Dingo trekker opptil fem unike innlegg fra valgt filter, lik sjanse
-  for hvert innlegg. Festede får verken prioritert plass eller knappenål i
+  Dingo kaster nå en rettferdig sekssidet terning (nettleserens kryptografiske
+  tilfeldighetskilde med rejection sampling) og trekker 1–6 unike innlegg fra
+  valgt filter. Antallet følger terningens faktiske forside ved landing. Alle
+  innlegg har lik sjanse; finnes færre enn kastet, vises alle tilgjengelige. Festede får verken prioritert plass eller knappenål i
   Dingo. «Trekk på nytt» trekker igjen; «Tilbake til nyeste» gjenoppretter
   den vanlige rekkefølgen innenfor filteret. `src/utils/spira.ts` har trekningen
   og valideringen av lagrede utvalg.
+- Rosa, Vipa, Løva og Tinsta har samme Dingo-knapp, animasjon og 1–6-regel.
+  `PhotoGallery.astro` / `src/scripts/gallery-dingo.ts` trekker innenfor
+  Alle/Bilder/Videoer. «Trekk på nytt» kaster på nytt, «Tilbake til alle» viser
+  det aktive filterets komplette innhold. Tomme filtre deaktiverer trekning.
+  Utvalget og filteret huskes per galleri i sessionStorage i samme fane;
+  filterbytte avslutter Dingo. Mediefremviseren blar bare i utvalget, i trukket
+  rekkefølge. Tinstas dato/alder og galleriutforming er bevart.
+- Felles `DingoRoll.astro` / `src/scripts/dingo-roll.ts` viser kastet, lar den
+  valgte siden lande vendt mot leseren og viser «Du kastet N!». `src/utils/dingo.ts`
+  har terningkast og tilfeldig utvalg uten duplikater. Redusert bevegelse viser
+  resultatet statisk i 0,5 sekunder. Sidebytte og Escape avbryter ventende trekning.
 - Filter, sidenummer og Dingo-modus ligger i URL-en. Utvalget ligger i
   nettleserhistorikken og sessionStorage, og beholdes ved tilbakeknapp,
   oppdatering og retur via Spira/Alt som gror i samme fane. Utgåtte eller
@@ -704,22 +717,27 @@ i språkvask. Emneknaggene og de andre hagefanene er beholdt.
   Tastaturfokus har egen markering. Artikkelens vanlige lenker
   beholder sin tidligere stil.
 
-Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hints. Fire tester i
-`scripts/spira.test.ts` verifiserer trekning, små/tomme utvalg, lagret utvalg og
+Kontroll: Astro 0 feil, 0 advarsler, 3 eksisterende hints (99 filer). Sju tester i
+`scripts/spira.test.ts` og `scripts/dingo.test.ts` verifiserer alle seks kast,
+rettferdig talltrekning, små/tomme utvalg, ingen duplikater, lagret utvalg og
 førstegangs-/lagret tema (også når lagring blokkeres). Kjør med Node 24:
-`node --experimental-strip-types --test scripts/spira.test.ts`.
-Lokal nettleserkontroll bekreftet begge filtre, fem tilfeldige funn, ny trekning,
+`node --experimental-strip-types --test scripts/spira.test.ts scripts/dingo.test.ts`.
+Lokal nettleserkontroll bekreftet begge filtre, terningstyrt antall funn, ny trekning,
 retur fra artikkel via historikk og meny, oppdatering, paginering, festet innlegg,
 Underveis-forklaring og titler uten understreking på forsiden/Spira.
 Desktop og 390/320 px er kontrollert, uten sideveis overbredde i Spira.
 Terningkastet er kontrollert sentrert på desktop og ved 390 px: begge knapper,
 nytt utvalg etter animasjonen, tilbakeført tastaturfokus og avbrudd med Escape.
+Alle fire gallerier er kontrollert med kast som samsvarer med synlig antall;
+Vipas videofilter, Rosas tomme videofilter, refresh, gjenoppretting av hele
+galleriet og fullskjermblaing bare i utvalget er prøvd. Tinstas dato/alder er
+bevart, uten overbredde ved 390 px. Terningen er visuelt kontrollert i begge temaer.
 Redusert bevegelse er implementert, men ikke kontrollert i nettleseren.
 Lyst/mørkt tema og tastatur er prøvd. Førstegangsvalg er testet mot selve
 ThemeProvider-scriptet; fysisk mobil og fullt produksjonsbygg er ikke testet.
 Preview på port 4325 kjører fra originalrepoet. Astros utdaterte utviklingscache
-måtte regenereres etter schema-endringen. Ingen commit, push eller deploy er
-utført for denne oppgaven.
+måtte regenereres etter schema-endringen. Kontrollene ovenfor gjelder lokal
+implementasjon; GitHub Pages-deploy er ikke verifisert for Dingo-utvidelsen.
 
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 
