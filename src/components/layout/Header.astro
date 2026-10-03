@@ -1,6 +1,7 @@
 ---
 import { menuLinks } from "@/site-config";
 import Search from "../Search.astro";
+import FigPalPicker from "../FigPalPicker.astro";
 import ThemeToggle from "../ThemeToggle.astro";
 
 const url = new URL(Astro.request.url);
@@ -132,6 +133,7 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 			}
 		</nav>
 	</div>
+	<FigPalPicker />
 	<Search />
 	<ThemeToggle />
 	<mobile-button>
@@ -195,3 +197,24 @@ const baseUrl = import.meta.env.BASE_URL || Astro.site?.toString() || "";
 		customElements.define("mobile-button", MobileNavBtn);
 	</script>
 </header>
+
+<style>
+	#main-header :global(#search) {
+		margin-inline-start: 0;
+		flex: none;
+	}
+	@media (max-width: 380px) {
+		#main-header > div > a > span {
+			font-size: 1rem;
+		}
+		#main-header :global(theme-toggle) {
+			margin-inline-start: 0;
+		}
+		#toggle-navigation-menu {
+			margin-inline-start: 0;
+		}
+		#main-header :global(#search > button) {
+			width: 32px;
+		}
+	}
+</style>

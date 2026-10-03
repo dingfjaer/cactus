@@ -1,0 +1,234 @@
+---
+import CursorClick from "@/assets/phosphor/cursor-click.svg";
+const base = `${import.meta.env.BASE_URL}figpals/`;
+const figures = [
+	{ id: "mushroom", name: "Mushroom" },
+	{ id: "bird", name: "Fugl" },
+	{ id: "dog", name: "Hund" },
+	{ id: "aubergine", name: "Aubergine" },
+	{ id: "mango", name: "Mango" },
+	{ id: "carrot", name: "Gulrot" },
+	{ id: "pak-choi", name: "Pak choi" },
+	{ id: "chilli", name: "Chili" },
+	{ id: "poo", name: "Poo" },
+];
+---
+
+<figpal-picker>
+	<button
+		class="figpal-toggle"
+		type="button"
+		aria-label="Velg FigPal"
+		aria-expanded="false"
+		aria-controls="figpal-panel"
+		aria-haspopup="dialog"
+		disabled
+	>
+		<CursorClick aria-hidden="true" />
+	</button>
+	<div id="figpal-panel" class="figpal-panel" popover="auto" role="dialog" aria-label="Velg FigPal">
+		<div class="figpal-panel-heading">
+			<strong>Velg en FigPal</strong><button
+				class="figpal-close"
+				type="button"
+				aria-label="Lukk figurvelger">×</button
+			>
+		</div>
+		<p class="figpal-hint">Klikk i hagen og sett et lite spor. Det forsvinner etter 5 sekunder.</p>
+		<div class="figpal-options" role="group" aria-label="Figurer">
+			{
+				figures.map((figure) => (
+					<button
+						class="figpal-option"
+						type="button"
+						data-figpal={figure.id}
+						data-src={`${base}${figure.id}.svg`}
+						aria-pressed={figure.id === "mushroom"}
+					>
+						<img src={`${base}${figure.id}.svg`} width="48" height="55" alt="" decoding="async" />
+						<span>{figure.name}</span>
+					</button>
+				))
+			}
+		</div>
+		<button class="figpal-off" type="button" data-figpal="off" aria-pressed="false"
+			>Vanlig peker</button
+		>
+	</div>
+</figpal-picker>
+<script>
+	import "../scripts/figpals";
+</script>
+<style is:global>
+	figpal-picker {
+		display: block;
+		flex: none;
+		margin-inline-start: auto;
+	}
+	.figpal-toggle {
+		display: grid;
+		place-items: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 6px;
+		color: inherit;
+	}
+	.figpal-toggle svg {
+		width: 27px;
+		height: 27px;
+	}
+	.figpal-toggle:hover,
+	.figpal-toggle[aria-expanded="true"] {
+		color: hsl(var(--theme-accent));
+		background: hsl(var(--theme-text) / 0.08);
+	}
+	.figpal-toggle:disabled {
+		opacity: 0.5;
+	}
+	.figpal-panel {
+		position: fixed;
+		inset: auto;
+		margin: 0;
+		width: min(304px, calc(100vw - 24px));
+		max-height: calc(100dvh - 24px);
+		overflow-y: auto;
+		padding: 16px;
+		border: 1px solid hsl(var(--theme-text) / 0.18);
+		border-radius: 18px;
+		background: hsl(var(--theme-bg));
+		color: hsl(var(--theme-text));
+		box-shadow: 0 14px 45px #0003;
+	}
+	.figpal-panel-heading {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		color: hsl(var(--theme-accent-2));
+	}
+	.figpal-close {
+		width: 32px;
+		height: 32px;
+		font-size: 24px;
+		border-radius: 50%;
+	}
+	.figpal-hint {
+		margin: 4px 0 14px;
+		font-size: 12px;
+		line-height: 1.5;
+	}
+	.figpal-options {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 6px;
+	}
+	.figpal-option {
+		display: grid;
+		justify-items: center;
+		padding: 4px;
+		border: 1px solid transparent;
+		border-radius: 12px;
+		font-size: 11px;
+		min-height: 80px;
+	}
+	.figpal-option img {
+		width: 48px;
+		height: 55px;
+		object-fit: contain;
+		transition: transform 180ms ease;
+	}
+	.figpal-option:hover img {
+		transform: translateY(-3px) rotate(-5deg);
+	}
+	.figpal-option:hover,
+	.figpal-close:hover,
+	.figpal-off:hover {
+		background: hsl(var(--theme-text) / 0.07);
+	}
+	.figpal-option[aria-pressed="true"],
+	.figpal-off[aria-pressed="true"] {
+		background: hsl(var(--theme-accent) / 0.12);
+		border-color: hsl(var(--theme-accent));
+	}
+	.figpal-off {
+		display: block;
+		width: 100%;
+		min-height: 40px;
+		margin-top: 12px;
+		border: 1px solid hsl(var(--theme-text) / 0.18);
+		border-radius: 10px;
+		font-size: 13px;
+	}
+	figpal-picker button:focus-visible {
+		outline: 2px solid hsl(var(--theme-accent));
+		outline-offset: 3px;
+	}
+	.figpal-layer {
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+		z-index: 9998;
+		overflow: hidden;
+		contain: strict;
+	}
+	.figpal-pointer,
+	.figpal-sticker {
+		position: absolute;
+		left: 0;
+		top: 0;
+		pointer-events: none;
+		user-select: none;
+		object-fit: contain;
+	}
+	.figpal-pointer {
+		width: 48px;
+		height: 55px;
+		filter: drop-shadow(0 2px 2px #0003);
+		will-change: transform;
+	}
+	.figpal-pointer[hidden] {
+		display: none;
+	}
+	.figpal-sticker {
+		width: 64px;
+		height: 73px;
+		filter: drop-shadow(0 2px 1px #0003);
+		animation: figpal-stamp 5s both;
+	}
+	html[data-figpal-cursor],
+	html[data-figpal-cursor] * {
+		cursor: none !important;
+	}
+	@keyframes figpal-stamp {
+		0% {
+			opacity: 0;
+			scale: 0.65;
+			rotate: var(--sticker-rotation);
+		}
+		5% {
+			opacity: 1;
+			scale: 1.1;
+		}
+		9%,
+		90% {
+			opacity: 1;
+			scale: 1;
+		}
+		100% {
+			opacity: 0;
+			scale: 0.92;
+			rotate: var(--sticker-rotation);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.figpal-option img {
+			transition: none;
+		}
+		.figpal-option:hover img {
+			transform: none;
+		}
+		.figpal-sticker {
+			animation: none;
+		}
+	}
+</style>

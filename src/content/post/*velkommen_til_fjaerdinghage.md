@@ -4,7 +4,7 @@ description: En intro-side for Fjærdinghage. Oppdateres underveis mens hagen ut
 publishDate: 2024-11-11
 updatedDate: 2026-09-24
 tags:
-  - digital_hage
+  - digital-hage
 draft: false
 pinned: true
 ---

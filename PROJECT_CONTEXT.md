@@ -6,7 +6,7 @@ Eier: Ding Chen / Ding Chen Fjær
 Nettsted: `dingchen.no`  
 Autoritativ prosjektmappe: `/Users/ding/Github/cactus`  
 Plassering: `/Users/ding/Github/cactus/PROJECT_CONTEXT.md`  
-Verifisering er avgrenset per funksjonsområde nedenfor. Siste tillegg gjelder Raut-innlegg og arbeidsflyten for lesetips, se §6.13.
+Verifisering er avgrenset per funksjonsområde nedenfor. Siste tillegg gjelder FigPal-peker og midlertidige stickers, se §6.14.
 
 > Dokumentets bakgrunn bygger på samtaler og tidligere prosjektkontekst, ikke en
 > full teknisk revisjon. Historiske ønsker og rapporterte leveranser er ikke bevis
@@ -636,6 +636,29 @@ under `src/content/post/`. Kilder, filnavn og kontrollgrunnlag finnes i
   produksjonsbygg er ikke kjørt i denne innholdsoppgaven.
 - Ingen commit, push eller deploy er utført for dette tillegget. Brukerens
   eksisterende endring i `AGENTS.md` er bevart.
+
+### 6.14 FigPal-peker og stickers
+
+Implementert lokalt 2026-10-03. `src/components/FigPalPicker.astro` ligger i
+felles `Header.astro`, til venstre for søk, med Phosphor Cursor Click-ikon.
+Ni originale figurer fra Dings FigPals-mappe ligger i `public/figpals/`.
+Mushroom er standard; valgt figur eller «Vanlig peker» huskes i localStorage.
+Velgeren bruker nettstedets temafarger og kan betjenes med tastatur.
+
+`src/scripts/figpals.ts` viser figuren som peker ved musebruk og legger en sticker
+på klikkstedet. Stickers følger dokumentets scrollposisjon, animeres mykt inn/ut
+og fjernes etter fem sekunder; maksimalt 30 er aktive samtidig. På berøring
+brukes bare stickers, uten en svevende musepeker. Tekstmarkering, dragging,
+inputfelter, canvas og dialoger unngår stickers. Lenker beholder normal oppførsel.
+Redusert bevegelse slår av sticker-animasjonen, men beholder femsekundersgrensen.
+
+Kontrollert i lokal preview fra originalrepoet: figurbytte, standardfigur,
+lagret valg etter oppdatering/navigasjon, «Vanlig peker», tastatur/Escape,
+femsekundersgrense, scrollforankring, lys/mørk meny og header/velger ved desktop,
+390 og 320 px. Søkedialogen åpner fortsatt. Alle ni SVG-ene lastes.
+Astro-sjekk: null feil, tre eksisterende hints. Fysisk berøringsenhet og
+redusert-bevegelse-innstilling er ikke nettlesertestet. Full produksjonsbuild og
+publisering er ikke utført for denne endringen.
 
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 
