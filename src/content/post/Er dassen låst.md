@@ -30,8 +30,8 @@ Så kom en dame ut og de gikk inn, og jeg mistenkte det var en runde til der inn
 
 Dette er så latterlig frustrende at det må være så vanskelig for folk å skjønne om toalett er låst når de bruker det. Du er i en "sårbar" situasjon når du er på do, og det verste som kan skje er et tog av folk ser deg på utstilling når du gjør fra deg. Og like vanskelig for folk som venter utenfor å skjønne om det er virkelig opptatt eller ledig. 
 
-I har opplevd lignende situasjon på noen offentlige toalett der du bare aner ikke hvordan låse døren. Det hjelper ikke med mange tegninger som gjør man bare forvirret. 
-Akkurat på det Vy-toget hadde jeg faktisk en runde selv, før jeg hørte samtalen mellom den moren og datteren. 
+Jeg har opplevd lignende situasjon på noen offentlige toalett der du bare aner ikke hvordan låse døren. Det hjelper ikke med mange tegninger som gjør man bare forvirret. 
+Akkurat på det Vy-toget hadde jeg faktisk en runde selv der inne, før jeg hørte samtalen mellom den moren og datteren. 
 
 [Jeg skal legge inn et bilde senere når jeg har tatt bilde av det]
 
@@ -40,7 +40,7 @@ en for å lukke døren.
 en for å låse døren. Med en tegning av en lås?
 en for å åpne? (usikker hva den gjør). Med en tegning av en ulåst lås, og strippet linje?
 
-Det finnes en tredje knappe, rett over doen, for å spyle ned. Den er grønn, også når toalettdøren er låst. 
+Det finnes en fjerde knappe, rett over doen, for å spyle ned. Den er grønn, også når toalettdøren er låst. 
 
 [.....kommer til å skrive mer]
 
