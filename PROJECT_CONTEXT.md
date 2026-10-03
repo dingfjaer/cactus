@@ -1,12 +1,12 @@
 # Prosjektkontekst: Fjærdinghage / Digital hage med Astro / Cactus
 
-Sist endret i dokumentet: 2026-09-29
+Sist endret i dokumentet: 2026-10-03
 Dokumentversjon: 2 — samordnet med instruksjonspakken  
 Eier: Ding Chen / Ding Chen Fjær  
 Nettsted: `dingchen.no`  
 Autoritativ prosjektmappe: `/Users/ding/Github/cactus`  
 Plassering: `/Users/ding/Github/cactus/PROJECT_CONTEXT.md`  
-Kodebasen verifisert ved denne dokumentoppdateringen: Delvis – 3D-modellen og Om-siden, se §6.2, §6.5, §6.7 og §6.8
+Verifisering er avgrenset per funksjonsområde nedenfor. Siste tillegg gjelder Raut-innlegg og arbeidsflyten for lesetips, se §6.13.
 
 > Dokumentets bakgrunn bygger på samtaler og tidligere prosjektkontekst, ikke en
 > full teknisk revisjon. Historiske ønsker og rapporterte leveranser er ikke bevis
@@ -608,6 +608,34 @@ publisert i denne oppgaven. `src/pages/portfolio/ios-apper.astro` bruker eksiste
   siste-bilde-grense, Enter, Escape og fokusretur er prøvd. Om-siden er kontrollert
   uten modell/canvas og med bevart `#about-top`. Fysisk touch, skjermleser og fullt
   produksjonsbygg er ikke testet. Mørkt tema er gjenopprettet etter kontrollen.
+
+### 6.13 Faglige lesetips fra Raut og Medium
+
+Seks innlegg fra [Raut #197](https://raut.no/197) er lagt til lokalt 2026-10-02,
+med avsluttende dokumentasjonskontroll 2026-10-03. Samlingen har nå 34 Raut-innlegg
+under `src/content/post/`. Kilder, filnavn og kontrollgrunnlag finnes i
+`scripts/raut/manifest.json`; innleggsliste og redaksjonelle valg står i
+`scripts/raut/README.md`. Tidligere Medium-arbeid er dokumentert i `scripts/medium/`.
+
+- Raut-datoen er nyhetsbrevets utsendelsesdato; #197 er kontrollert til 2026-09-29
+  både på utgaven og i arkivet. Innleggene har `draft: false`, `Rauting` og to
+  emnetagger, eksisterende HTML-kildekort, «Key takeaways» og «Ding! 💡».
+  Refleksjonene er KI-formulert på Dings oppdrag. Ingen bilder er lagt til.
+- Den personlige skillen `hage-lesetips` er opprettet i
+  `~/.codex/skills/hage-lesetips/` og er nå synlig i Codex sin skill-liste.
+  Den støtter samme flyt fra Raut, Medium og leselister, med originalkildelesing,
+  dublettkontroll og registrering av utilgjengelig innhold. Vanlig automatisk
+  valg er aktivert; eksplisitt bruk er `$hage-lesetips` fulgt av lenken.
+  Skillen er lokal for denne Mac-en og er ikke versjonskontrollert i cactus.
+- Kontroll: Astro-sjekk med Node 24 og prosjektets pnpm ga 0 feil, 0 advarsler
+  og 3 eksisterende hint. Alle seks filer er kontrollert for frontmatter, dato,
+  tagger og doble kildelenker. Alle seks sider er åpnet i lokal nettleser, med
+  riktig dato, kildekort og overskrifter. Eksempelinnlegget er visuelt kontrollert
+  i lyst og mørkt tema på desktop. Preview på port 4325 er verifisert mot originalrepoet.
+  Skill-validatoren og kontroll av UI-metadata bestod. Mobil og fullt
+  produksjonsbygg er ikke kjørt i denne innholdsoppgaven.
+- Ingen commit, push eller deploy er utført for dette tillegget. Brukerens
+  eksisterende endring i `AGENTS.md` er bevart.
 
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 

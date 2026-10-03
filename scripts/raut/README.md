@@ -1,6 +1,6 @@
 # Raut-innlegg til Fjærdinghage
 
-28 selvstendige notater, skrevet på norsk og kontrollert 23. september 2026. Utvalget er gjort etter gjennomgang av arkivet og 28 utgaver, med vekt på UX, universell utforming, innholdsdesign, frontend, samarbeid og produktutvikling.
+34 selvstendige notater på norsk. De første 28 ble kontrollert 23. september 2026; seks fra Raut #197 ble lagt til og kildekontrollert 2. oktober 2026. Utvalget vektlegger UX, universell utforming, innholdsdesign, frontend, samarbeid og produktutvikling.
 
 ## Publisering
 
@@ -52,10 +52,34 @@ Designsystemets V1-artikkel har flyttet fra `/bloggen/2025/V1` til `/no/blog/V1`
 | 2026-08-25 | [HTML kan mer enn vi ofte gir det ansvar for](../../src/content/post/raut-html-kan-mer.md) | [Raut #194](https://raut.no/194) |
 | 2026-09-08 | [Trenger alle nettsider en synlig temabryter?](../../src/content/post/raut-trenger-vi-temabryteren.md) | [Raut #195](https://raut.no/195) |
 | 2026-09-22 | [Færre detaljer gir mer rom for omtanke](../../src/content/post/raut-faerre-detaljer-mer-omtanke.md) | [Raut #196](https://raut.no/196) |
-
+| 2026-09-29 | [Når koden blir billigere, blir problemforståelsen viktigere](../../src/content/post/raut-naar-koden-blir-billigere.md) | [Raut #197](https://raut.no/197) |
+| 2026-09-29 | [Et mer polert uttrykk er ikke alltid bedre design](../../src/content/post/raut-polert-er-ikke-alltid-bedre.md) | [Raut #197](https://raut.no/197) |
+| 2026-09-29 | [KI-debatten trenger mer tillit mellom dem som lager ting](../../src/content/post/raut-ki-debatten-og-tilliten.md) | [Raut #197](https://raut.no/197) |
+| 2026-09-29 | [Tilgjengelighet avgjør om hele tjenesten virker](../../src/content/post/raut-uu-i-digitale-helsetjenester.md) | [Raut #197](https://raut.no/197) |
+| 2026-09-29 | [Kontroll over KI krever mer enn en godkjenningsknapp](../../src/content/post/raut-ki-kontroll-mer-enn-godkjenning.md) | [Raut #197](https://raut.no/197) |
+| 2026-09-29 | [Verdiene våre vises i valgene vi belønner](../../src/content/post/raut-verdier-vises-i-valgene.md) | [Raut #197](https://raut.no/197) |
 
 ## Flytting og justeringer
 
 Innleggene er flyttet fra den lokale prosjektkopien til `/Users/ding/Github/cactus/src/content/post/`. Kortstilene er lagt til i dette prosjektets `src/styles/global.css`.
 
-Alle 28 bruker overskriftene «Key takeaways» og «Ding! 💡». Kildelinjen har formatet `[Raut#182](https://raut.no/182), 24. mars 2026`.
+Alle innlegg bruker overskriftene «Key takeaways» og «Ding! 💡». Kildelinjen har formatet `[Raut#182](https://raut.no/182), 24. mars 2026`.
+
+
+## Videre bruk
+
+Den personlige Codex-skillen `hage-lesetips` i `~/.codex/skills/hage-lesetips/`
+bruker denne dokumentasjonen og faktiske innlegg som mal. Den tar imot Raut-utgaver,
+Medium-lenker og leselister, velger relevante kilder, leser originalinnhold og lager
+publiseringsklare Markdown-filer uten bilder. Den gjør ingen automatisk commit,
+push eller deploy. Skillen er lokal for denne Mac-en og følger ikke repoet i Git.
+
+Før nye innlegg: sammenlign kildelenker med manifestene og Markdown-filene for å
+unngå dubletter. Bevar originale kontrolldatoer i manifestet; nye rader får egen
+`checkedOn`, og `lastBatchCheckedOn` viser siste tillegg.
+
+For #197 er datoen kontrollert både på utgaven og i arkivet. «For the Designless»
+lenker til forfatterens åpne parallellpublisering på LinkedIn. Helseinnlegget bruker
+Uu-tilsynets direkte lenkede oppsummering, ikke en oppsummering av en ulest rapport.
+KI-prognoser og debattinnlegg er tydelig omtalt som forfatterperspektiver. Videoer,
+produktnyheter og øvrige inspirasjonslenker ble ikke valgt til denne faglige runden.

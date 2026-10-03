@@ -29,7 +29,8 @@
     193,
     194,
     195,
-    196
+    196,
+    197
   ],
   "posts": [
     {
@@ -479,6 +480,109 @@
       "rautLink": "https://raut.no/t/ZWbEbvH0?src=web",
       "verification": "Originalartikkel hentet og lest.",
       "words": 143
+    },
+    {
+      "file": "src/content/post/raut-naar-koden-blir-billigere.md",
+      "title": "Når koden blir billigere, blir problemforståelsen viktigere",
+      "source": "https://seldo.com/posts/we-are-all-product-engineers-now/",
+      "sourceTitle": "We are all Product Engineers now",
+      "rautLink": "https://raut.no/t/KjpgzcmP?src=web",
+      "verification": "Originalartikkelen lest på seldo.com. Fremtidsanslag er omtalt som forfatterens vurdering.",
+      "publishDate": "2026-09-29",
+      "tags": [
+        "Rauting",
+        "produktutvikling",
+        "kunstig-intelligens"
+      ],
+      "newsletter": "https://raut.no/197",
+      "checkedOn": "2026-10-02",
+      "words": 143
+    },
+    {
+      "file": "src/content/post/raut-polert-er-ikke-alltid-bedre.md",
+      "title": "Et mer polert uttrykk er ikke alltid bedre design",
+      "source": "https://www.linkedin.com/pulse/designless-joshua-leigh-ggx8e",
+      "sourceTitle": "For the Designless",
+      "rautLink": "https://raut.no/t/2H1jCCo2?src=web",
+      "verification": "Raut-målet var blokkert. Forfatterens åpne parallellpublisering på LinkedIn er lest; den oppgir samtidig publisering i UX Collective.",
+      "publishDate": "2026-09-29",
+      "tags": [
+        "Rauting",
+        "visuell-design",
+        "kunstig-intelligens"
+      ],
+      "newsletter": "https://raut.no/197",
+      "checkedOn": "2026-10-02",
+      "words": 149
+    },
+    {
+      "file": "src/content/post/raut-ki-debatten-og-tilliten.md",
+      "title": "KI-debatten trenger mer tillit mellom dem som lager ting",
+      "source": "https://notes.erlend.sh/3muwdtclths2d",
+      "sourceTitle": "Making software hurts now",
+      "rautLink": "https://raut.no/t/VsHCrNbG?src=web",
+      "verification": "Hele essayet lest hos forfatteren på notes.erlend.sh.",
+      "publishDate": "2026-09-29",
+      "tags": [
+        "Rauting",
+        "samarbeid",
+        "kunstig-intelligens"
+      ],
+      "newsletter": "https://raut.no/197",
+      "checkedOn": "2026-10-02",
+      "words": 140
+    },
+    {
+      "file": "src/content/post/raut-uu-i-digitale-helsetjenester.md",
+      "title": "Tilgjengelighet avgjør om hele tjenesten virker",
+      "source": "https://www.uutilsynet.no/innsikt-og-analyse/digitale-helsetenester-er-ikkje-tilgjengelege-alle/3232",
+      "sourceTitle": "Digitale helsetenester er ikkje tilgjengelege for alle",
+      "rautLink": "https://www.uutilsynet.no/innsikt-og-analyse/digitale-helsetenester-er-ikkje-tilgjengelege-alle/3232",
+      "verification": "Uu-tilsynets egen nettside med hovedfunn lest. Denne primærkilden er direkte lenket fra Raut #197; full rapport er ikke oppsummert.",
+      "publishDate": "2026-09-29",
+      "tags": [
+        "Rauting",
+        "uu",
+        "interaksjonsdesign"
+      ],
+      "newsletter": "https://raut.no/197",
+      "checkedOn": "2026-10-02",
+      "words": 138
+    },
+    {
+      "file": "src/content/post/raut-ki-kontroll-mer-enn-godkjenning.md",
+      "title": "Kontroll over KI krever mer enn en godkjenningsknapp",
+      "source": "https://www.aftenbladet.no/meninger/debatt/i/xror1l/kan-vi-fortsatt-bestemme-naar-maskinene-blir-superintelligente",
+      "sourceTitle": "Kan vi fortsatt bestemme når maskinene blir superintelligente?",
+      "rautLink": "https://raut.no/t/XEbk9xdH?src=web",
+      "verification": "Debattinnlegget av Tobias Kvaslerud lest i offentlig tilgjengelig HTML hos Aftenbladet. Oppsummeringen gjelder argumentene om kontroll, ikke selvstendig verifisering av omtalte hendelser.",
+      "publishDate": "2026-09-29",
+      "tags": [
+        "Rauting",
+        "kunstig-intelligens",
+        "interaksjonsdesign"
+      ],
+      "newsletter": "https://raut.no/197",
+      "checkedOn": "2026-10-02",
+      "words": 145
+    },
+    {
+      "file": "src/content/post/raut-verdier-vises-i-valgene.md",
+      "title": "Verdiene våre vises i valgene vi belønner",
+      "source": "https://kieransnyder.kit.com/posts/your-values-aren-t-a-democracy",
+      "sourceTitle": "Your values aren't a democracy",
+      "rautLink": "https://raut.no/t/2xETczdP?src=web",
+      "verification": "Hele den åpne originalteksten lest fra forfatterens nyhetsbrevside; nettsøket viste bare innledningen.",
+      "publishDate": "2026-09-29",
+      "tags": [
+        "Rauting",
+        "designledelse",
+        "samarbeid"
+      ],
+      "newsletter": "https://raut.no/197",
+      "checkedOn": "2026-10-02",
+      "words": 141
     }
-  ]
+  ],
+  "lastBatchCheckedOn": "2026-10-02"
 }
