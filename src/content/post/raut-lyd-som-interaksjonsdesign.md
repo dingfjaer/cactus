@@ -5,7 +5,6 @@ publishDate: 2025-05-26
 tags:
   - Rauting
   - interaksjonsdesign
-  - lyd
 draft: false
 contentType: ki-oppsummert
 ---

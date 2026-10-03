@@ -3,8 +3,7 @@ title: Fargeblind og UX
 description: Hva er fargeblind, og utfordringer med fargeblindhet i ux
 publishDate: 2025-01-13
 tags:
-  - design
-  - notat
+  - uu
 draft: false
 contentType: ki-oppsummert
 ---

@@ -90,7 +90,7 @@ class SpiraExplorer extends HTMLElement {
 			const copy =
 				filter === "nerding"
 					? ["NerDing", "Egne tanker, små oppdagelser og notater i vekst."]
-					: ["KI-oppsummert", "Fagstoff jeg har utforsket, lest og oppsummert med hjelp av KI."];
+					: ["KI-oppsummert", "Fagstoff jeg har utforsket eller lest som er oppsummert med hjelp av KI."];
 			get("[data-description]").hidden = filter === "alle";
 			get("[data-filter-title]").textContent = copy[0];
 			get("[data-filter-description]").textContent = copy[1];

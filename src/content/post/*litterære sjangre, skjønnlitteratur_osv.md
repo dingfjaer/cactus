@@ -6,6 +6,7 @@ tags:
   - notat
 draft: false
 contentType: nerding
+inProgress: true
 ---
 [Litterære sjangre](https://kublakan.no/sjangre/)
 
