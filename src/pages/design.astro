@@ -1,4 +1,5 @@
 ---
+import BackToTop from "@/components/BackToTop.astro";
 import BaseHead from "@/components/BaseHead.astro";
 import DesignDevice from "@/components/design/DesignDevice.astro";
 // Portfolio draft: edit the copy here and replace DesignDevice slots with project images.
@@ -71,6 +72,7 @@ const projects = [
       <section class="closing" aria-labelledby="closing-title"><p class="eyebrow">MER OM MEG</p><h2 id="closing-title">Et arbeid i utvikling.<br /><em>Akkurat som meg.</em></h2><p>Flere prosjekter og små oppdagelser kommer etter hvert.</p><div class="closing-links"><a class="button light" href="/about/">Møt designeren <span aria-hidden="true">↗</span></a><a class="closing-cv" href="/cv/">Se min CV <span aria-hidden="true">↗</span></a></div><span class="closing-flower" aria-hidden="true">✳</span></section>
     </main>
     <footer class="design-footer"><a href="/">← Tilbake til Fjærdinghage</a><span>© {new Date().getFullYear()} Ding Chen Fjær</span><a href="#innhold">Til toppen ↑</a></footer>
+    <BackToTop />
   </body>
 </html>
 

@@ -1,0 +1,145 @@
+<back-to-top>
+	<button
+		type="button"
+		aria-label="Til toppen av siden"
+		title="Til toppen av siden"
+		data-show="false"
+		tabindex="-1"
+		aria-hidden="true"
+	>
+		<svg
+			aria-hidden="true"
+			focusable="false"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+		>
+			<path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+	</button>
+</back-to-top>
+
+<script>
+	class BackToTop extends HTMLElement {
+		private cleanup?: () => void;
+		connectedCallback() {
+			this.cleanup?.();
+			const button = this.querySelector("button")!;
+			const controller = new AbortController();
+			const { signal } = controller;
+			const header = document.querySelector<HTMLElement>("#blog-hero, #main-header, header");
+			// Keep the article's original threshold when its heading is present.
+			const target = document.getElementById("blog-hero") ?? header;
+			const shortcuts = document.querySelector("about-name");
+			const show = (visible: boolean) => {
+				visible = visible && !shortcuts?.hasAttribute("data-shortcuts");
+				if (button.dataset.show === String(visible)) return;
+				button.dataset.show = String(visible);
+				button.tabIndex = visible ? 0 : -1;
+				button.setAttribute("aria-hidden", String(!visible));
+			};
+			const update = () =>
+				show(target ? target.getBoundingClientRect().bottom < 0 : window.scrollY > 320);
+			let frame = 0;
+			const schedule = () => {
+				if (!frame)
+					frame = requestAnimationFrame(() => {
+						frame = 0;
+						update();
+					});
+			};
+			window.addEventListener("scroll", schedule, { passive: true, signal });
+			window.addEventListener("resize", schedule, { passive: true, signal });
+			const observer = new MutationObserver(schedule);
+			if (shortcuts)
+				observer.observe(shortcuts, { attributes: true, attributeFilter: ["data-shortcuts"] });
+			window.addEventListener("pageshow", update, { signal });
+			button.addEventListener(
+				"click",
+				() => {
+					const focusTarget = document.querySelector<HTMLElement>(
+						"header a[href], .gallery-toolbar button, main",
+					);
+					if (focusTarget) {
+						if (focusTarget.matches("main") && !focusTarget.hasAttribute("tabindex"))
+							focusTarget.tabIndex = -1;
+						focusTarget.focus({ preventScroll: true });
+					}
+					window.scrollTo({
+						top: 0,
+						behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+					});
+				},
+				{ signal },
+			);
+			update();
+			this.cleanup = () => {
+				controller.abort();
+				observer.disconnect();
+				cancelAnimationFrame(frame);
+			};
+		}
+		disconnectedCallback() {
+			this.cleanup?.();
+		}
+	}
+	if (!customElements.get("back-to-top")) customElements.define("back-to-top", BackToTop);
+</script>
+
+<style>
+	button {
+		position: fixed;
+		z-index: 45;
+		inset-inline-end: 1rem;
+		bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		padding: 0;
+		border: 2px solid hsl(var(--theme-text, 203deg 11% 15%) / 0.2);
+		border-radius: 50%;
+		background: hsl(var(--theme-bg, 0deg 0% 98%));
+		color: hsl(var(--theme-text, 203deg 11% 15%));
+		box-shadow: 0 2px 12px #0002;
+		cursor: pointer;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(1rem);
+		transition:
+			opacity 0.25s,
+			transform 0.25s,
+			visibility 0.25s,
+			border-color 0.15s;
+	}
+	button[data-show="true"] {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	button:hover {
+		border-color: hsl(var(--theme-accent, 270deg 60% 30%));
+	}
+	button:focus-visible {
+		outline: 2px solid hsl(var(--theme-accent, 270deg 60% 30%));
+		outline-offset: 3px;
+	}
+	svg {
+		width: 24px;
+		height: 24px;
+	}
+	@media (min-width: 640px) {
+		button {
+			inset-inline-end: 2rem;
+			width: 48px;
+			height: 48px;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		button {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>

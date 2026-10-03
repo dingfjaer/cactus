@@ -739,6 +739,26 @@ Preview på port 4325 kjører fra originalrepoet. Astros utdaterte utviklingscac
 måtte regenereres etter schema-endringen. Kontrollene ovenfor gjelder lokal
 implementasjon; GitHub Pages-deploy er ikke verifisert for Dingo-utvidelsen.
 
+### 6.16 Felles knapp til toppen
+
+`src/components/BackToTop.astro` brukes i `Base.astro` og de selvstendige
+sidene `photos.astro`, `design.astro` og `videos-poc.astro`. Den gamle lokale
+knappen/scriptet i `BlogPost.astro` er erstattet av den felles komponenten.
+En rund ikonknapp med chevron opp vises nede til høyre når headeren er passert
+(artikkelhodet på innlegg, 320 px på sider uten header). Den skjules ved toppen
+og er da ikke fokuserbar. Klikk/Enter flytter fokus tilbake til toppen og
+scroller mykt; redusert bevegelse bruker direkte hopp og ingen overgang.
+Størrelsen er 44 px på mobil og 48 px på desktop, med nettstedets temafarger.
+På Om-/porteføljesiden skjules den mens navneseksjonens egne snarveier er synlige,
+slik at pilene ikke overlapper. Lyttere ryddes ved navigasjon.
+
+Kontrollert lokalt 2026-10-03: skjult/synlig tilstand, tastatur og retur til toppen
+på Rosa ved mobilbredde, én knapp på artikkel ved desktop, ingen overlapp med
+Om-sidens snarveier, og funksjon på designsidens selvstendige mal. Astro-sjekk:
+0 feil, 0 advarsler, 3 eksisterende hints. Fysisk mobil, redusert bevegelse i
+nettleseren og full produksjonsbuild er ikke testet. GitHub Pages-deploy er
+ikke verifisert for dette tillegget.
+
 ## 7. Idéer og backlog — ikke en bestilling på implementering
 
 I idédumpen 2026-09-26 sa brukeren uttrykkelig at ideene skulle samles, men at

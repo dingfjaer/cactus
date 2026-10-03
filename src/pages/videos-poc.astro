@@ -1,4 +1,5 @@
 ---
+import BackToTop from "@/components/BackToTop.astro";
 // Isolated, unlinked experiment. No signed media URLs are baked into the build.
 export const prerender = true;
 ---
@@ -103,5 +104,6 @@ try {
 } catch(e) { log(`Feil: ${e.message}`); showError(`Kunne ikke hente albumet: ${e.message}`); }
 </script>
 <style>body{font:16px system-ui;margin:2rem auto;padding:0 1rem;max-width:850px}label{display:block;margin:1rem 0}video{display:block;width:100%;height:440px;max-height:60vh;object-fit:contain;background:#111}details{margin:1rem 0}summary{cursor:pointer}button:disabled{opacity:.5}button,select{font:inherit;padding:.4rem}pre{white-space:pre-wrap;font-size:.8rem;background:#eee;color:#111;padding:1rem}</style>
+<BackToTop />
 </body>
 </html>
