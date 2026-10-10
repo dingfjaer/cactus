@@ -1,7 +1,7 @@
 ---
 title: "Samtalen mellom Harry Styles og Thom Yorke (Radiohead)"
 description: Harry og Thom snakker om å lage musikk og hva det vil si å være kreativ.
-publishDate: 2026-10-03
+publishDate: 2026-10-10
 tags: [musikk, Youtube]
 draft: false
 contentType: nerding
