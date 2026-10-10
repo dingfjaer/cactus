@@ -1,9 +1,10 @@
 ---
 title: "{{title}}"
-description: "Kort beskrivelse av innlegget (maks 160 tegn)."
-publishDate: {{date:YYYY-MM-DD}}
+description: Kort beskrivelse av innlegget (maks 160 tegn).
+publishDate:
+  "{ date:YYYY-MM-DD }":
 tags: []
-draft: true
+draft: false
 contentType: nerding
-inProgress: false
+inProgress: true
 ---
