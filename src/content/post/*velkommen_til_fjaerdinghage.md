@@ -42,7 +42,7 @@ Hvorfor ble det sånn?
 
 Det dukket opp en merkelig feil da jeg skulle deployet en oppdatering, og fikk aldri fikset det uansett hva jeg prøvde. Jeg ble meget demotivert og synes det var frustrende med disse tekniske avhengigheter som jeg ikke hadde kontroll på. 
 
-Annen grunn var at jeg ikke hadde så mye på hjertet som jeg ville skrive om. Kanskje noen tanker eller ideer slo meg innimellom, men aldri noe så spennende at jeg ville sette meg ned en kveld og skrive ned masse ord om det. chrome 
+Annen grunn var at jeg ikke hadde så mye på hjertet som jeg ville skrive om. Kanskje noen tanker eller ideer slo meg innimellom, men aldri noe så spennende at jeg ville sette meg ned en kveld og skrive ned masse ord om det.
 
 Sist, men ikke minst! Vi fikk hund i år, da er ikke det rart at man ikke får nok tid til å drive med noen sideprosjekter på kvelder. Joda, det får man... men ikke jeg.
 
