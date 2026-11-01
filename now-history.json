@@ -48,6 +48,20 @@
           "title": "Slow Horses · Sesong 6"
         }
       }
+    },
+    {
+      "publishedAt": "2026-11-01T13:01:24.676Z",
+      "sourceCommit": "b70e078a5983ac0b4f2959fe73187f5169e739f4",
+      "changes": {
+        "doing": {
+          "title": "Klar for ferie.",
+          "detail": "Wuhan, Chongqing, Beijing"
+        },
+        "finished": {
+          "title": "Slow Horses",
+          "detail": "Sesong 6"
+        }
+      }
     }
   ]
 }
