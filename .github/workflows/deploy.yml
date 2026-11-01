@@ -13,6 +13,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      now_at: ${{ steps.now.outputs.at }}
+      now_base: ${{ steps.now.outputs.base }}
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
@@ -22,6 +25,9 @@ jobs:
           cache: pnpm
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
+      - name: Prepare now history
+        id: now
+        run: node scripts/now-history.mjs prepare
       - name: Check, build and index search
         run: pnpm build
       - uses: actions/configure-pages@v6
@@ -30,11 +36,24 @@ jobs:
           path: dist
   deploy:
     needs: build
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+      - name: Preserve successfully published now history
+        run: node scripts/now-history.mjs persist
+        env:
+          NOW_HISTORY_AT: ${{ needs.build.outputs.now_at }}
+          NOW_HISTORY_BASE: ${{ needs.build.outputs.now_base }}

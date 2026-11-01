@@ -11,6 +11,7 @@
     "format": "pnpm run format:code && pnpm run format:imports",
     "format:code": "biome format . --write && prettier -w \"**/*\" \"!**/*.{md,mdx}\" --ignore-unknown --cache",
     "format:imports": "biome check --formatter-enabled=false --write",
+    "now:sync": "node scripts/now-history.mjs sync",
     "check": "astro check"
   },
   "dependencies": {

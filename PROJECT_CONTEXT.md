@@ -1,6 +1,6 @@
 # Prosjektkontekst: Fjærdinghage / Digital hage med Astro / Cactus
 
-Sist endret i dokumentet: 2026-10-03
+Sist endret i dokumentet: 2026-11-01
 Dokumentversjon: 2 — samordnet med instruksjonspakken  
 Eier: Ding Chen / Ding Chen Fjær  
 Nettsted: `dingchen.no`  
@@ -500,7 +500,7 @@ Implementert lokalt 2026-09-28, ikke committet/publisert i denne oppgaven:
   fra `src/data/now.ts`: Driver med, Hører på, Leser, Ser på, Sett ferdig og Tintin.
   Uttrykket er et responsivt glasskort inspirert av brukerens musikkspillerbilde.
   Originale Phosphor-SVG-er ligger i `src/assets/phosphor/`, med MIT-lisens og kilde.
-- Temaene byttes hvert sjuende sekund, med Forrige, Pause/Play og Neste.
+- Temaene byttes hvert femte sekund, med Forrige, Pause/Play og Neste.
   Hover, tastaturfokus og skjult fane pauser timeren midlertidig. Redusert bevegelse
   starter uten automatisk bytte. Uten JavaScript vises temaene som statisk innhold.
   Kontroller og fokus har skjermleseretiketter; automatisk bytte leses ikke opp.
@@ -515,6 +515,25 @@ Implementert lokalt 2026-09-28, ikke committet/publisert i denne oppgaven:
   Nettleseren bekreftet første, mellomliggende og siste artikkel, samt widgetens
   innhold, temabytte, pause, datovisning og mobilbredde 390 px uten overbredde.
   Fysisk mobil og OS-styrt redusert bevegelse er ikke testet.
+
+Utvidet lokalt 2026-11-01 (ikke committet/publisert):
+
+- «Historikk» i widgeten åpner `/now/`. `NowTimeline.astro` viser fem tidslinjer,
+  vertikale kolonner på desktop og fem stablede rader med felles horisontal rulling
+  på mobil. Tintins automatiske alder er fortsatt bare i widgeten.
+- Redigering skjer fortsatt i `src/data/now.ts`. CI sammenligner title/detail med
+  sist publiserte innhold og lagrer bare endrede temaer på egen `now-history`-branch
+  etter vellykket Pages-deploy. Tidspunktet tas ved forberedelse av publiseringsbygget
+  og vises i Europe/Oslo. Ingen automatiske commits på main.
+- Brukerbestemt startoppføring: dagens fem temaer datert 27. september 2026 kl. 18:25,
+  i `src/data/now-history-seed.json`. Dette er manuelt datert, ikke en påstått deploydato.
+- Lokal cache synkroniseres med `pnpm now:sync`; upubliserte avvik merkes i preview.
+  Arbeidsflyt, lagring og feilhåndtering er beskrevet i `scripts/now-history.md`.
+- Ni tester av kalender og historikk bestod, inkludert CLI mot midlertidig Git-remote,
+  uendret innhold, retur til tidligere verdi, gjentatt lagring og samtidighetskontroll.
+  Desktop og mobilbredde 390 px er kontrollert i nettleser, inkludert lys/mørk visning,
+  tastaturrulling og felles horisontal rulling med midlertidige testdata (fjernet etterpå).
+  Faktisk GitHub-deploy og opprettelse av historikkbranchen er ikke kjørt.
 
 ### 6.11 På tur-case i porteføljen
 

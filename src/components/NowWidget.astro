@@ -16,7 +16,7 @@ const icons = { doing:Code, listening:Headphones, reading:Book, watching:Televis
 ---
 <now-widget aria-label="Hva skjer nå" class="now-widget">
   <div class="now-glass">
-    <div class="now-heading"><h2>Hva skjer nå</h2><span class="now-count" aria-hidden="true" data-count>01 / 06</span></div>
+    <div class="now-heading"><h2>Hva skjer nå</h2><div class="now-heading-actions"><span class="now-count" aria-hidden="true" data-count>01 / 06</span><a class="now-history-link" href={`${import.meta.env.BASE_URL}now/`} aria-label="Se historikken for Hva skjer nå"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11a9 9 0 1 1 2.6 7.4M3 5v6h6M12 7v5l3 2" stroke-linecap="round" stroke-linejoin="round" /></svg><span>Historikk</span></a></div></div>
     <div class="now-slides">
       {nowItems.map((item,index) => {
         const TopicIcon = icons[item.key];
@@ -59,6 +59,12 @@ import '../scripts/now-widget';
 :global([data-theme="dark"]) .now-glass { color:#f5eee6; background:linear-gradient(125deg,#61574ebb,#423c38b8 60%,#393c34b0); border-color:#ffffff36; box-shadow:inset 0 1px 0 #ffffff45,0 12px 36px #0003; }
 .now-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:.9rem; gap:1rem; }
 .now-heading h2 { font-size:.68rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; opacity:.75; }
+.now-heading-actions { display:flex; align-items:center; gap:.65rem; flex-shrink:0; }
+@media (max-width:380px) { .now-heading-actions .now-count { display:none; } }
+.now-history-link { display:inline-flex; align-items:center; gap:.35rem; min-height:36px; padding:.3rem .6rem; border:1px solid currentColor; border-color:color-mix(in srgb,currentColor 22%,transparent); border-radius:99px; font-size:.7rem; }
+.now-history-link svg { width:17px; height:17px; }
+.now-history-link:hover { background:#ffffff28; }
+.now-history-link:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
 .now-count { font-size:.65rem; letter-spacing:.12em; font-variant-numeric:tabular-nums; opacity:.55; }
 .now-slides { min-height:110px; display:grid; align-items:center; }
 .now-slide { display:flex; align-items:center; gap:1.1rem; min-width:0; }

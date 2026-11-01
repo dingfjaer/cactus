@@ -1,0 +1,29 @@
+{
+	"version": 1,
+	"snapshots": [
+		{
+			"publishedAt": "2026-09-27T16:25:00.000Z",
+			"sourceCommit": null,
+			"changes": {
+				"doing": {
+					"title": "Vibecoding og søker jobb"
+				},
+				"listening": {
+					"title": "Sweet Fortune",
+					"detail": "Ryan Beatty"
+				},
+				"reading": {
+					"title": "Sapiens",
+					"detail": "En kort historie om menneskeheten"
+				},
+				"watching": {
+					"title": "Slow Horses · Sesong 6",
+					"detail": "Vikings · Sesong 3"
+				},
+				"finished": {
+					"title": "DTF St. Louis"
+				}
+			}
+		}
+	]
+}

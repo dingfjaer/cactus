@@ -1,14 +1,17 @@
-// Edit these entries to update the home page widget. Tintin's age stays automatic.
+// Rediger title/detail her. Publiser som vanlig via main; CI arkiverer endrede temaer.
+// Behold key-verdiene. Historikken lagres automatisk på branchen now-history etter vellykket deploy.
+// Tintins alder er automatisk og inngår ikke i de fem tidslinjene.
+// Lokal historikk: pnpm now:sync. Les scripts/now-history.md for arbeidsflyten.
 export const nowItems = [
-	{ key: "doing", label: "Driver med", title: "Vibecoding og søker jobb" },
-	{ key: "listening", label: "Hører på", title: "Sweet Fortune", detail: "Ryan Beatty" },
-	{ key: "reading", label: "Leser", title: "Sapiens", detail: "En kort historie om menneskeheten" },
+	{ key: "doing", label: "Driver med", title: "Landet ny jobb. Klar for ferie: Wuhan, Chongqing, Beijing" },
+	{ key: "listening", label: "Hører på", title: "Sehnsucht", detail: "Rammstein" },
+	{ key: "reading", label: "Leser", title: "Homo Deus", detail: "En kort historie om i morgen" },
 	{
 		key: "watching",
 		label: "Ser på",
-		title: "Slow Horses · Sesong 6",
-		detail: "Vikings · Sesong 3",
+		title: "Mission impossible 1-6",
+		detail: "Bakeskolen, TV2",
 	},
-	{ key: "finished", label: "Sett ferdig", title: "DTF St. Louis" },
+	{ key: "finished", label: "Sett ferdig", title: "Slow Horses · Sesong 6" },
 	{ key: "tintin", label: "Tintin", title: "", detail: "Litt større for hver dag" },
 ] as const;

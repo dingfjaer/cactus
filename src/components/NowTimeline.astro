@@ -1,0 +1,298 @@
+---
+import Code from "@/assets/phosphor/code.svg";
+import Headphones from "@/assets/phosphor/headphones.svg";
+import Book from "@/assets/phosphor/book-open.svg";
+import Television from "@/assets/phosphor/television.svg";
+import Finished from "@/assets/phosphor/check-circle.svg";
+import { nowItems } from "@/data/now";
+import {
+	currentNowChanges,
+	nowDateLabel,
+	nowTopicKeys,
+	type NowHistory,
+	type NowSnapshot,
+} from "@/utils/now-history";
+interface Props {
+	history: NowHistory;
+	preview?: boolean;
+}
+const { history, preview = false } = Astro.props;
+const icons = {
+	doing: Code,
+	listening: Headphones,
+	reading: Book,
+	watching: Television,
+	finished: Finished,
+};
+const pending = preview ? currentNowChanges(history, nowItems) : {};
+type Slot = { publishedAt: string | null; changes: NowSnapshot["changes"] };
+const slots: Slot[] = [...history.snapshots].reverse();
+if (Object.keys(pending).length) slots.unshift({ publishedAt: null, changes: pending });
+const topics = nowTopicKeys.map((key) => ({
+	key,
+	label: nowItems.find((item) => item.key === key)!.label,
+	icon: icons[key],
+}));
+---
+
+{
+	slots.length ? (
+		<>
+			<p class="timeline-hint">
+				<>
+					<span class="desktop-hint">Nyeste øverst. Rull ned for tidligere oppdateringer.</span>
+					<span class="mobile-hint">
+						Nyeste først. Sveip sidelengs – alle fem tidslinjer følger med.
+					</span>
+				</>
+			</p>
+			<div
+				class="timeline-scroll"
+				role="region"
+				aria-label="Fem tidslinjer for hva som skjer nå"
+				tabindex="0"
+			>
+				<div class="timeline-grid" style={`--slots:${slots.length}`}>
+					{topics.map(({ key, label, icon: TopicIcon }, topicIndex) => (
+						<>
+							<h2 class="topic-heading" id={`now-topic-${key}`} style={`--topic:${topicIndex + 1}`}>
+								<TopicIcon aria-hidden="true" />
+								<span>{label}</span>
+							</h2>
+							{slots.map((slot, slotIndex) => {
+								const event = slot.changes[key];
+								const latest = slots.findIndex((s) => s.changes[key]) === slotIndex;
+								return (
+									<div
+										class:list={[
+											"timeline-cell",
+											{
+												"has-event": !!event,
+												"is-latest": latest,
+												"is-pending": !slot.publishedAt,
+											},
+										]}
+										style={`--topic:${topicIndex + 1};--slot:${slotIndex + 1}`}
+										aria-hidden={!event ? "true" : undefined}
+									>
+										{event && (
+											<article
+												aria-labelledby={`now-event-${topicIndex}-${slotIndex}`}
+												aria-describedby={`now-topic-${key}`}
+											>
+												<div class="event-meta">
+													{slot.publishedAt ? (
+														<time datetime={slot.publishedAt}>
+															{nowDateLabel(slot.publishedAt)}
+														</time>
+													) : (
+														<span>Ikke publisert</span>
+													)}
+													{latest && slot.publishedAt && <span class="current-badge">Nå</span>}
+												</div>
+												<h3 id={`now-event-${topicIndex}-${slotIndex}`}>{event.title}</h3>
+												{event.detail && <p>{event.detail}</p>}
+											</article>
+										)}
+									</div>
+								);
+							})}
+						</>
+					))}
+				</div>
+			</div>
+		</>
+	) : (
+		<p class="history-empty">Historikken starter ved neste publisering.</p>
+	)
+}
+<style>
+	.timeline-hint {
+		margin: 1.5rem 0 1rem;
+		font-size: 0.8rem;
+		color: hsl(var(--theme-text) / 0.7);
+	}
+	.mobile-hint {
+		display: none;
+	}
+	.timeline-scroll {
+		overflow: auto;
+		max-height: 76vh;
+		border: 1px solid hsl(var(--theme-text) / 0.16);
+		border-radius: 1.25rem;
+		background: hsl(var(--theme-bg));
+		scrollbar-color: hsl(var(--theme-accent) / 0.4) transparent;
+		scrollbar-width: thin;
+	}
+	.timeline-scroll:focus-visible {
+		outline: 2px solid hsl(var(--theme-accent));
+		outline-offset: 4px;
+	}
+	.timeline-grid {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		grid-template-rows: auto repeat(var(--slots), auto);
+	}
+	.topic-heading {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		grid-column: var(--topic);
+		grid-row: 1;
+		display: flex;
+		gap: 0.55rem;
+		align-items: center;
+		padding: 1.4rem 0.9rem;
+		background: hsl(var(--theme-bg));
+		color: hsl(var(--theme-accent));
+		border-bottom: 1px solid hsl(var(--theme-text) / 0.16);
+		font-size: 0.88rem;
+		font-weight: 600;
+	}
+	.topic-heading :global(svg) {
+		width: 22px;
+		height: 22px;
+		flex-shrink: 0;
+	}
+	.timeline-cell {
+		position: relative;
+		grid-column: var(--topic);
+		grid-row: calc(var(--slot) + 1);
+		padding: 1.6rem 0.8rem 1.5rem 1.6rem;
+		min-height: 175px;
+		border-inline-end: 1px solid hsl(var(--theme-text) / 0.06);
+	}
+	.timeline-cell::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0.8rem;
+		width: 1px;
+		background: hsl(var(--theme-accent) / 0.25);
+	}
+	.has-event::after {
+		content: "";
+		position: absolute;
+		top: 1.9rem;
+		left: calc(0.8rem - 3px);
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: hsl(var(--theme-accent));
+		box-shadow: 0 0 0 4px hsl(var(--theme-bg));
+	}
+	.event-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		min-height: 1.2rem;
+		color: hsl(var(--theme-text) / 0.65);
+		font-size: 0.66rem;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.5;
+	}
+	.current-badge {
+		font-size: 0.58rem;
+		letter-spacing: 0.03em;
+		padding: 0 0.35rem;
+		border: 1px solid hsl(var(--theme-accent) / 0.4);
+		border-radius: 1rem;
+		color: hsl(var(--theme-accent));
+	}
+	article {
+		position: relative;
+		overflow-wrap: anywhere;
+	}
+	h3 {
+		margin-top: 0.8rem;
+		font-size: 1.05rem;
+		font-weight: 500;
+		line-height: 1.4;
+		color: hsl(var(--theme-accent-2));
+		text-wrap: pretty;
+	}
+	article p {
+		font-size: 0.83rem;
+		line-height: 1.6;
+		margin-top: 0.5rem;
+		color: hsl(var(--theme-text) / 0.75);
+	}
+	.is-latest.has-event {
+		background: linear-gradient(135deg, hsl(var(--theme-accent) / 0.065), transparent);
+	}
+	.is-pending .event-meta {
+		font-style: italic;
+	}
+	.is-pending.has-event::after {
+		background: hsl(var(--theme-bg));
+		border: 1px solid hsl(var(--theme-accent));
+	}
+	.history-empty {
+		padding-block: 3rem;
+	}
+	@media (max-width: 899px) {
+		.desktop-hint {
+			display: none;
+		}
+		.mobile-hint {
+			display: inline;
+		}
+		.timeline-scroll {
+			max-height: none;
+		}
+		.timeline-grid {
+			grid-template-columns: 100px repeat(var(--slots), minmax(235px, 1fr));
+			grid-template-rows: repeat(5, auto);
+			min-width: max-content;
+		}
+		.topic-heading {
+			top: auto;
+			left: 0;
+			grid-column: 1;
+			grid-row: var(--topic);
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+			gap: 0.65rem;
+			font-size: 0.78rem;
+			line-height: 1.3;
+			padding: 1.2rem 0.9rem;
+			border-bottom: 1px solid hsl(var(--theme-text) / 0.08);
+			border-inline-end: 1px solid hsl(var(--theme-text) / 0.16);
+		}
+		.timeline-cell {
+			grid-row: var(--topic);
+			grid-column: calc(var(--slot) + 1);
+			width: 235px;
+			min-height: 185px;
+			padding: 2rem 1.2rem 1.5rem;
+			border-inline-end: 0;
+			border-bottom: 1px solid hsl(var(--theme-text) / 0.08);
+		}
+		.timeline-cell::before {
+			top: 1rem;
+			bottom: auto;
+			left: 0;
+			width: 100%;
+			height: 1px;
+		}
+		.has-event::after {
+			top: calc(1rem - 3px);
+			left: 1.2rem;
+		}
+		h3 {
+			font-size: 1rem;
+		}
+	}
+	@media (forced-colors: active) {
+		.timeline-cell::before,
+		.has-event::after {
+			background: CanvasText;
+		}
+		.topic-heading {
+			background: Canvas;
+		}
+	}
+</style>
