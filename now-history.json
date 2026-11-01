@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "snapshots": [
+    {
+      "publishedAt": "2026-09-27T16:25:00.000Z",
+      "sourceCommit": null,
+      "changes": {
+        "doing": {
+          "title": "Vibecoding og søker jobb"
+        },
+        "listening": {
+          "title": "Sweet Fortune",
+          "detail": "Ryan Beatty"
+        },
+        "reading": {
+          "title": "Sapiens",
+          "detail": "En kort historie om menneskeheten"
+        },
+        "watching": {
+          "title": "Slow Horses · Sesong 6",
+          "detail": "Vikings · Sesong 3"
+        },
+        "finished": {
+          "title": "DTF St. Louis"
+        }
+      }
+    },
+    {
+      "publishedAt": "2026-11-01T12:53:53.501Z",
+      "sourceCommit": "6dcd77222bb80cc0533cbb0f9dcd06e004c16f84",
+      "changes": {
+        "doing": {
+          "title": "Landet ny jobb. Klar for ferie: Wuhan, Chongqing, Beijing"
+        },
+        "listening": {
+          "title": "Sehnsucht",
+          "detail": "Rammstein"
+        },
+        "reading": {
+          "title": "Homo Deus",
+          "detail": "En kort historie om i morgen"
+        },
+        "watching": {
+          "title": "Mission impossible 1-6",
+          "detail": "Bakeskolen, TV2"
+        },
+        "finished": {
+          "title": "Slow Horses · Sesong 6"
+        }
+      }
+    }
+  ]
+}
